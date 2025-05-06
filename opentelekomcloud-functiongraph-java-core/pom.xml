@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.opentelekomcloud</groupId>
+    <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+    <version>1.0.7-SNAPSHOT</version>
+  </parent>
+
+  <groupId>com.opentelekomcloud</groupId>
+  <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
+  <packaging>jar</packaging>
+
+  <!-- based on 2.0.6 -->
+  <name>opentelekomcloud-functiongraph-java-core</name>
+  <description>FunctionGraph core library to use with OpenTelekomCloud</description>
+
+  <dependencies>
+      <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${com.google.code.gson.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.gmaven</groupId>
+        <artifactId>groovy-maven-plugin</artifactId>
+        <version>2.1.1</version>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <source>
+                <![CDATA[
+                  println("==== Creating version.txt ====");
+
+                  File versionFile = new File("${project.basedir}/../version.txt");
+                  if(versionFile.exists() && versionFile.isDirectory()) {
+                    println("Version file exists and is directory! Wont overwrite");
+                    return;
+                  }
+
+                  println("Creating Version File");
+                  BufferedWriter writer = new BufferedWriter(new FileWriter(versionFile));
+                  writer.write("${project.version}");
+                  writer.newLine();
+
+                  writer.close();
+
+                ]]>
+          </source>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

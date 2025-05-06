@@ -1,0 +1,3 @@
+# Handler name:
+# Handler name:
+com.opentelekomcloud.samples.DebugTriggerFG.handleRequest

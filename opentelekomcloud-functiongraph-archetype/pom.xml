@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.opentelekomcloud</groupId>
+    <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+    <version>1.0.7-SNAPSHOT</version>
+  </parent>
+
+  <groupId>com.opentelekomcloud</groupId>
+  <artifactId>opentelekomcloud-functiongraph-archetype</artifactId>
+
+  <packaging>maven-archetype</packaging>
+
+  <build>
+    <!-- embed version in archetype pom.xml,... , see: https://stackoverflow.com/a/7223084 --> 
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>archetype-resources/pom.xml</include>
+          <include>archetype-resources/build.gradle</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <excludes>
+          <exclude>archetype-resources/pom.xml</exclude>
+          <exclude>archetype-resources/build.gradle</exclude>
+        </excludes>
+      </resource>
+    </resources>
+
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-resources-plugin.version}</version>
+          <configuration>
+            <escapeString>\</escapeString>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>3.3.1</version>
+      </extension>
+    </extensions>
+  </build>
+
+</project>

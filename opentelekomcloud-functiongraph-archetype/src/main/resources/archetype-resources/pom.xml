@@ -1,0 +1,165 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>\${groupId}</groupId>
+  <artifactId>\${artifactId}</artifactId>
+  <version>\${version}</version>
+
+  <packaging>jar</packaging>
+  <name>\${artifactId}</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+
+    <maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
+    <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>3.3.0</maven-surefire-plugin.version>
+    <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+    <maven-install-plugin.version>3.1.2</maven-install-plugin.version>
+    <maven-deploy-plugin.version>3.1.2</maven-deploy-plugin.version>
+    <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
+    <maven-project-info-reports-plugin.version>3.6.1</maven-project-info-reports-plugin.version>
+
+    <junit-bom.version>5.11.0</junit-bom.version>
+    <com.google.code.gson.version>2.11.0</com.google.code.gson.version>
+
+    <opentelekomcloud-functiongraph-java.version>${project.version}</opentelekomcloud-functiongraph-java.version>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
+      <version>${opentelekomcloud-functiongraph-java.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
+      <version>${opentelekomcloud-functiongraph-java.version}</version>
+    </dependency>
+
+    
+    <dependency>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
+      <version>${opentelekomcloud-functiongraph-java.version}</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.11.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.11.0</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <!-- lock down plugins versions to avoid using Maven defaults -->
+      <plugins>
+        <!-- clean lifecycle, see
+        https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${maven-clean-plugin.version}</version>
+        </plugin>
+        <!-- default lifecycle, jar packaging: see
+        https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-resources-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven-jar-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${maven-install-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${maven-deploy-plugin.version}</version>
+        </plugin>
+        <!-- site lifecycle, see
+        https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${maven-site-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>${maven-project-info-reports-plugin.version}</version>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifestEntries>
+              <FunctionGraph-Handler-Name>${package}.${handlerClassName}.handleRequest</FunctionGraph-Handler-Name>
+            </manifestEntries>
+          </archive>
+          <finalName>${project.name}</finalName>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+
+          </execution>
+        </executions>
+      </plugin>
+
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.0</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.5.0</version>
+      </plugin>
+
+
+    </plugins>
+
+  </build>
+
+</project>

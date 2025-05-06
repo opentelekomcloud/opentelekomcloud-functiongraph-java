@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.opentelekomcloud</groupId>
+    <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+    <version>1.0.7-SNAPSHOT</version>
+  </parent>
+
+  <groupId>com.opentelekomcloud</groupId>
+  <artifactId>functiongraph-samples-doc</artifactId>
+
+  <packaging>pom</packaging>
+  <!-- <name>functiongraph-doc-samples</name> -->
+  <url>https://docs.otc.t-systems.com/function-graph/index.html</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <modules>
+    <module>debug</module>
+    <module>doc-sample-2</module>
+    <module>doc-sample-deploy</module>
+    <module>doc-sample-invoke-fg</module>
+    <module>doc-sample-logging</module>     
+    <module>generic</module>
+  </modules>
+</project>

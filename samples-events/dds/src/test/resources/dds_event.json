@@ -1,0 +1,17 @@
+{
+  "records": [
+      {
+          "event_source": "dds",
+          "event_name": "insert",
+          "region": "region",
+          "event_version": "1.0",
+          "dds": {
+              "size_bytes": "100",
+              "token": "{\"_data\": \"825D8C2F4D0000001529295A100474039A3412A64BA89041DC952357FB4446645F696400645D8C2F8E5BECCB6CF5370D6A0004\"}",
+              "full_document": "{\"_id\": {\"$oid\": \"5d8c2f8e5beccb6cf5370d6a\"},\"name\": \"dds\",\"age\": {\"$numberDouble\": \"52.0\"}}",
+              "ns": "{\"db\": \"functiongraph\",\"coll\": \"person\"}"
+          },
+          "event_source_id": "e6065860-f7b8-4cca-80bd-24ef2a3bb748"
+      }
+  ]
+}

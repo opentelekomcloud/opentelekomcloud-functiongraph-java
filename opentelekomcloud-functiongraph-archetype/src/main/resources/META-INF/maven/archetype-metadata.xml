@@ -1,0 +1,49 @@
+<archetype-descriptor
+  xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 https://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+  name="quickstart">
+
+  <fileSets>
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>src/main/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>src/test/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>src/main/resources</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory />
+      <includes>
+        <include>.gitignore</include>
+        <include>README.md</include>
+        <include>handler.txt</include>
+        <include>build.gradle</include>
+      </includes>
+    </fileSet>
+
+  </fileSets>
+
+  <requiredProperties>
+
+    <requiredProperty key="handlerClassName">
+      <defaultValue>FunctionGraphHandler</defaultValue>
+    </requiredProperty>
+
+  </requiredProperties>
+
+</archetype-descriptor>

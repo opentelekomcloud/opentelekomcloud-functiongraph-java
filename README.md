@@ -1,1 +1,0 @@
-# opentelekomcloud-functiongraph-java

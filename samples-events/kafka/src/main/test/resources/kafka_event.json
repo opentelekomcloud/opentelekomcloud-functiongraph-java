@@ -1,0 +1,19 @@
+{
+  "event_version": "v1.0",
+  "event_time": 1576737962,
+  "trigger_type": "KAFKA",
+  "region": "region",
+  "instance_id": "81335d56-b9fe-4679-ba95-7030949cc76b",
+  "records": [
+      {
+          "messages": [
+              "kafka message1",
+              "kafka message2",
+              "kafka message3",
+              "kafka message4",
+              "kafka message5"
+          ],
+          "topic_id": "topic-test"
+      }
+  ]
+}

@@ -1,0 +1,10 @@
+target
+.venv
+build
+.gradle
+bin
+*.egg*
+.idea
+.vscode
+.tox
+=*

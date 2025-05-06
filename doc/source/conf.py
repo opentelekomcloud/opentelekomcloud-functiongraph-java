@@ -1,0 +1,177 @@
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+# implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import os
+import warnings
+from git import Repo
+from datetime import datetime
+
+# -- General configuration ----------------------------------------------------
+
+# Add any Sphinx extension module names here, as strings. They can be
+# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
+extensions = [
+     'sphinx.ext.autodoc',
+     'otcdocstheme',
+#    'cliff.sphinxext',
+#    'otc_api_ref',
+     'sphinx_tabs.tabs',
+     'sphinx_copybutton',
+     'sphinx_design',
+     'sphinx_substitution_extensions',
+     'sphinx.ext.extlinks',
+
+]
+
+# openstackdocstheme options
+otcdocs_repo_name = 'opentelekomcloud/opentelekomcloud-functiongraph-java'
+otcdocs_edit_enabled = False
+otcdocs_bug_reported_enabled = False
+otcdocs_pdf_link = False
+
+otcdocs_doc_environment = 'public'
+otcdocs_doc_link = '/function-graph/dev-guide/java'
+otcdocs_doc_title = 'FunctionGraph Developer Guide Java'
+otcdocs_doc_type = 'dev'
+otcdocs_service_title = 'FunctionGraph'
+otcdocs_service_type = 'fg'
+otcdocs_service_category = 'compute'
+
+otcdocs_auto_version = False
+
+html_last_updated_fmt = '%Y-%m-%d %H:%M'
+html_theme = 'otcdocs'
+
+html_theme_options = {
+    "show_other_versions": "True",
+}
+
+html_title = "FunctionGraph Developer Guide Java"
+
+
+# TODO(shade) Set this to true once the build-openstack-sphinx-docs job is
+# updated to use sphinx-build.
+# When True, this will raise an exception that kills sphinx-build.
+enforcer_warnings_as_errors = False
+
+# autodoc generation is a bit aggressive and a nuisance when doing heavy
+# text edit cycles.
+# execute "export SPHINX_DEBUG=1" in your terminal to disable
+
+# The suffix of source filenames.
+source_suffix = '.rst'
+
+# The master toctree document.
+master_doc = 'index'
+
+current_year=datetime.now().year
+# General information about the project.
+project = u'OpenTelekomCloud FunctionGraph Java'
+copyright = f'{current_year}, Open Telekom Cloud' 
+author = u'OpenTelekomCloud'
+
+
+# Get the Git commit values for last updated timestamp on each page
+repo = Repo(search_parent_directories=True)
+commit = repo.head.commit
+current_commit_hash = commit.hexsha
+current_commit_time = commit.committed_datetime.strftime('%Y-%m-%d %H:%M')
+
+local_branch = repo.active_branch.name
+
+# A few variables have to be set for the log-a-bug feature.
+#   gitsha: The SHA checksum of the bug description. Extracted from git log.
+#   bug_tag: Tag for categorizing the bug. Must be set manually.
+#   bug_project: Launchpad project to file bugs against.
+# These variables are passed to the logabug code via html_context.
+git_cmd = "/usr/bin/git log | head -n1 | cut -f2 -d' '"
+try:
+    gitsha = os.popen(git_cmd).read().strip('\n')
+except Exception:
+    warnings.warn("Can not get git sha.")
+    gitsha = "unknown"
+
+otcdocs_bug_tag = "docs"
+pwd = os.getcwd()
+# html_context allows us to pass arbitrary values into the html template
+html_context = {"pwd": pwd,
+                "gitsha": gitsha}
+
+# If true, '()' will be appended to :func: etc. cross-reference text.
+add_function_parentheses = True
+
+# If true, the current module name will be prepended to all description
+# unit titles (such as .. function::).
+add_module_names = True
+
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = 'native'
+
+autodoc_member_order = "bysource"
+
+# Locations to exclude when looking for source files.
+exclude_patterns = []
+
+# -- Options for HTML output ----------------------------------------------
+
+# Don't let openstackdocstheme insert TOCs automatically.
+theme_include_auto_toc = False
+
+# Output file base name for HTML help builder.
+htmlhelp_basename = '%sdoc' % project
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title, author, documentclass
+# [howto/manual]).
+latex_documents = [
+    ('index',
+     '%s.tex' % project,
+     u'%s Documentation' % project,
+     u'OpenTelekomCloud', 'manual'),
+]
+
+# Include both the class and __init__ docstrings when describing the class
+autoclass_content = "both"
+
+# -- Options for cliff.sphinxext plugin ---------------------------------------
+
+autoprogram_cliff_application = 'openstack'
+
+autoprogram_cliff_ignored = [
+    '--help', '--format', '--column', '--max-width', '--fit-width',
+    '--print-empty', '--prefix', '--noindent', '--quote']
+
+
+def getPomVersion(pomfile):
+  # return version information of pom file
+  from xml.etree import ElementTree as et
+  ns = "http://maven.apache.org/POM/4.0.0"
+  et.register_namespace('', ns)
+  tree = et.ElementTree()
+  tree.parse(pomfile)
+  p = tree.getroot().find("{%s}version" % ns)
+  return p.text
+
+pom_version=getPomVersion("../../pom.xml")
+
+rst_prolog = f"""
+.. |pom_version| replace:: {pom_version}
+"""
+
+# https://www.sphinx-doc.org/en/master/usage/extensions/extlinks.html
+extlinks= {
+    "github_repo_master": (f'https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/{local_branch}/%s', "%s"),
+}
+
+version = pom_version
+release = pom_version

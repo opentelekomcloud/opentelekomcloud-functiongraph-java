@@ -1,0 +1,25 @@
+{
+  "cts": {
+      "time": 1529996047,
+      "user": {
+          "name": "userName",
+          "id": "5b726c4fbfd84821ba866bafaaf56aax",
+          "domain": {
+              "name": "domainName",
+              "id": "b2b3853af40448fcb9e40dxj89505ba"
+          }
+      },
+      "request": {},
+      "response": {},
+      "code": 204,
+      "service_type": "FunctionGraph",
+      "resource_type": "graph",
+      "resource_name": "workflow-2be1",
+      "resource_id": "urn:fgs:region:projectId:graph:workflow-2be1",
+      "trace_name": "deleteGraph",
+      "trace_type": "ConsoleAction",
+      "record_time": 1529996047,
+      "trace_id": "69be64a7-0233-11e8-82e4-e5d37911193e",
+      "trace_status": "normal"
+  }
+}
