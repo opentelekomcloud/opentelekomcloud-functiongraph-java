@@ -21,7 +21,7 @@ To run java example following environment variables should be set:
 
    * - OTC_USER_PASSWORD
      - User password
-     - *******
+     - [PASSWORD]
 
    * - OTC_SDK_PROJECTID
      - Project Id
