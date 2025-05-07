@@ -1,10 +1,9 @@
 package com.opentelekomcloud.samples;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
+import com.opentelekomcloud.services.functiongraph.runtime.core.ContextHelper;
 import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
 
 public class FGLogSample2 implements RequestHandler<JsonObject, String> {
@@ -15,11 +14,9 @@ public class FGLogSample2 implements RequestHandler<JsonObject, String> {
     RuntimeLogger log = context.getLogger();
 
     // get current LogLevel from context
-    Gson gson2 = new Gson();
-    String json = gson2.toJson(context);
+    ContextHelper ctxHelper = new ContextHelper(context);
     
-    String logLevel = JsonParser.parseString(json).getAsJsonObject().get("logger").getAsJsonObject().get("logLevel")
-        .toString();
+    String logLevel = ctxHelper.getLogLevel();
 
     log.log("Current LogLevel:" + logLevel);
 

@@ -9,6 +9,7 @@ public final class JavaRuntime {
       System.out.print(string);
     }
 
+    @SuppressWarnings("unused")
     public void log(byte[] message) {
       try {
         System.out.write(message);
