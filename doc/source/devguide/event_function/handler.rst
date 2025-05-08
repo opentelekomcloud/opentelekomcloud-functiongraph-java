@@ -26,7 +26,7 @@ When deploying to FunctionGraph make sure to specify the correct handler:
 
 In this example the handler is: `mypackage.FGEventHandler.handleRequest`.
 
-.. image:: ../_static/fg-console-handler.png
+.. image:: ../../_static/fg-console-handler.png
   :width: 600
   :alt: FunctionGraph Console
 

@@ -38,11 +38,14 @@ Benefits of the Initializer
 
 * Isolate function initialization and request processing to enable clearer program logic 
   and better structured and higher-performance code.
+
 * Ensure a smooth function upgrade to prevent performance loss during the application 
   layer's cold start initialization. Enable new function instances to automatically execute initialization logic before processing requests.
+
 * Identify the overhead of application layer initialization, and accurately determine 
   the time for resource scaling and the quantity of required resources. This feature 
   makes request latency more stable when the application load increases and more function instances are required.
+  
 * If there are continuous requests and the function is not updated, the system may still reclaim or update 
   existing containers. Although no code starts on the platform side, there are cold starts on the service side. 
   The initializer can be used to ensure that requests can be processed properly.

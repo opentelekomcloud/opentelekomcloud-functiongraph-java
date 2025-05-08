@@ -1,0 +1,4 @@
+/opt/function/runtime/java11/rtsp/jre/bin/java \
+  -Dfile.encoding=utf-8 \
+  -cp $RUNTIME_CODE_ROOT/doc-sample-springboot.jar:$RUNTIME_CODE_ROOT/lib/* \
+  com.opentelekomcloud.samples.springboot.RestServiceApplication
