@@ -56,24 +56,23 @@ Step 3: Create deployment zip file
 
 The structure of the deployment zip file is:
 
-.. code-block:: bash
-  :emphasize-lines: 6
-  :caption: zip structure of doc-sample-springboot-|pom_version|.zip
+  .. code-block:: bash
+    :caption: zip structure of doc-sample-springboot-|pom_version|.zip
 
-  /
-  ├─ lib
-  |  ├─ dependancy1.jar 
-  |  ├─ dependancy2.jar 
-  |  └─ ...
-  |
-  ├─ doc-sample-springboot.jar
-  └─ bootstrap
+    /
+    ├─ lib
+    |  ├─ dependancy1.jar 
+    |  ├─ dependancy2.jar 
+    |  └─ ...
+    |
+    ├─ doc-sample-springboot.jar
+    └─ bootstrap
 
 To create the deployment zip file run in project root:
 
-.. code-block:: bash
+  .. code-block:: bash
 
-   doc-sample-springboot-rest$ mvn package
+    doc-sample-springboot-rest$ mvn package
 
 This will create the deployment zip file in folder ``target`` using the `Apache Maven Assembly Plugin <https://maven.apache.org/plugins/maven-assembly-plugin/>`_ .
 
@@ -88,7 +87,7 @@ Step 4: Create FunctionGraph HTTP Function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create an HTTP function and upload the packaged zip package. 
-For details, see `Creating an HTTP Function <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#functiongraph-01-1442>`_ .
+For details, see `Creating an HTTP Function <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`_ .
 
 Step 5: Verify the results
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -100,7 +99,7 @@ Select the event template "API Gateway (Dedicated gateway), modify the
 and build a simple **Get** request.
 
   .. code-block:: json
-     :caption: Test event sample data
+     :caption: Test event sample data with adaptions on line 13 and 15
      :linenos:
      :emphasize-lines: 13,15
 
@@ -142,18 +141,39 @@ and build a simple **Get** request.
 Step 6: Configure APIG Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Please refer to `Using APIG Triggers <https://docs.otc.t-systems.com/function-graph/umn/creating_triggers/using_an_apig_dedicated_trigger.html#functiongraph-01-0204>`_  to create an APIG exclusive version trigger. 
-   It is recommended to select None for Security Authentication to facilitate debugging.
+1. Please refer to `User manual "Creating an HTTP Function" <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`_  
+   and `Create a Trigger <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id4>`_ to create an APIG exclusive version trigger
+   
+   It is recommended to select **None** for Security Authentication to facilitate debugging.
+
+   When defining the API request, set values according to:
+
+   .. image:: ../../_static/springbootrest-console-edit-api-request.png
+      :width: 800
+      :alt: Edit API Request
+
+
+   .. note::
+      Generated URL can be found in FunctionGraph console -> Tab Configuation -> Triggers
+
+      .. image:: ../../_static/springbootrest-console-trigger.png
+         :width: 800
+         :alt: URL location
 
 2. Copy the generated call URL and curl it:
 
-.. code-block:: bash
-   :caption: Test event sample data
-    
-   $ curl https://XXXXXXXXXX.apic.eu-de.otc.t-systems.com/greeting?name=John
-   {"id":2,"content":"Hello, John!"}
+   .. code-block:: bash
+      :caption: Test event sample data
+        
+      $ curl https://XXXXXXXXXX.apic.eu-de.otc.t-systems.com/greeting?name=John
+      {"id":2,"content":"Hello, John!"}
 
 
+3. Or use copied URL in web browser:
+
+   .. image:: ../../_static/springbootrest-browserresult.png
+      :width: 800
+      :alt: Browser result
 
 
 Frequently asked questions
@@ -187,7 +207,7 @@ or directly using the print function to print the log.
 The logs output to the console will be collected by the function system. If the user activates the LTS service, 
 the logs will be put into LTS for more real-time log analysis.
 
-Commissioning suggestion: It is recommended to enable LTS logs during commissioning and click Go to LTS for log analysis to 
+Commissioning suggestion: It is recommended to enable `LTS logs <https://docs.otc.t-systems.com/function-graph/umn/configuring_functions/configuring_a_log_group_and_log_stream.html#functiongraph-01-1841>`_ during commissioning and click Go to LTS for log analysis to 
 observe and analyze the real-time logs.
 
 What user permissions does my code have?
