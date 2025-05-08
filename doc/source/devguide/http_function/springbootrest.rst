@@ -28,11 +28,11 @@ create a **bootstrap** file in the same directory as the jar package, and write 
 Step 1: Configure SprintBoot web port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The HTTP function currently supports only port **8000**. You need to configure the project web port to 8000 in SpringBoot ``application.properties``. 
+The HTTP function currently supports only port **8000**. You need to configure the project web port to 8000 in SpringBoot ``application.yaml``. 
 
-.. literalinclude:: /../../samples-doc/doc-sample-springboot-rest/src/main/resources/application.properties
+.. literalinclude:: /../../samples-doc/doc-sample-springboot-rest/src/main/resources/application.yaml
         :language: properties
-        :caption: application.properties
+        :caption: application.yaml
 
 
 Step 2: Create bootstrap file
