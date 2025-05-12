@@ -9,18 +9,19 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <!-- <version>3.4.5</version> -->
     <version>2.7.17</version>
-    <relativePath /> 
-  </parent> 
+    <relativePath />
+  </parent>
 
-  <groupId>com.opentelekomcloud.samples</groupId>
-  <artifactId>doc-sample-springboot</artifactId>
-  <version>1.0.7-SNAPSHOT</version>
-  <name>doc-sample-springboot</name>
+  <groupId>com.opentelekomcloud.samples.doc</groupId>
+  <artifactId>functiongraph-samples-doc-springboot-2x</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
   <description>Demo project for Spring Boot</description>
   
   <properties>
     <java.version>11</java.version>
     <start-class>com.opentelekomcloud.samples.springboot.RestServiceApplication</start-class>
+    <maven.compiler.release>11</maven.compiler.release>
   </properties>
 
   <dependencies>
@@ -68,6 +69,16 @@
           </execution>
         </executions>
       </plugin>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+
 
     </plugins>
 

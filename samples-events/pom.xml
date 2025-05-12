@@ -5,15 +5,15 @@
   <parent>
     <groupId>com.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud</groupId>
+  <groupId>com.opentelekomcloud.samples</groupId>
   <artifactId>functiongraph.samples-events</artifactId>
 
   <packaging>pom</packaging>
   <name>functiongraph-samples-events</name>
-  <url>https://docs.otc.t-systems.com/function-graph/index.html</url>
+  <url>https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
 
   <build>
     <pluginManagement>

@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.opentelekomcloud</groupId>
+    <groupId>com.opentelekomcloud.samples</groupId>
     <artifactId>functiongraph.samples-events</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud</groupId>
+  <groupId>com.opentelekomcloud.samples</groupId>
   <artifactId>functiongraph-samples-events-lts</artifactId>
 
   <dependencies>

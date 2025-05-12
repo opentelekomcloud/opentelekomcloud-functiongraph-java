@@ -5,15 +5,15 @@
   <parent>
     <groupId>com.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud</groupId>
+  <groupId>com.opentelekomcloud.samples.doc</groupId>
   <artifactId>functiongraph-samples-doc</artifactId>
 
   <packaging>pom</packaging>
   <!-- <name>functiongraph-doc-samples</name> -->
-  <url>https://docs.otc.t-systems.com/function-graph/index.html</url>
+  <url>https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
 
   <dependencies>
     <dependency>
@@ -52,7 +52,7 @@
     <module>doc-sample-deploy</module>
     <module>doc-sample-invoke-fg</module>
     <module>doc-sample-logging</module>     
-    <module>doc-sample-springboot-rest</module>
+    <module>doc-sample-springboot-2.x-rest</module>
     <module>generic</module>
     
   </modules>

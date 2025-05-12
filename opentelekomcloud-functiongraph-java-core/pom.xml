@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>com.opentelekomcloud</groupId>
@@ -22,7 +22,6 @@
       <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>${com.google.code.gson.version}</version>
       <scope>provided</scope>
     </dependency>
     
@@ -64,6 +63,59 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.12.1</version>
+        <executions>
+            <execution>
+                <id>JDK 8</id>
+                <phase>compile</phase>
+                <goals>
+                    <goal>compile</goal>
+                </goals>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                    <fork>true</fork>
+                </configuration>
+            </execution>
+            <execution>
+                <id>JDK 11</id>
+                <phase>compile</phase>
+                <goals>
+                    <goal>compile</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${project.build.outputDirectory}_jdk11</outputDirectory>
+                    <executable>${jdk.11.executable.path}</executable>
+                    <source>8</source>
+                    <target>11</target>
+                    <fork>true</fork>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.3.0</version>
+      <executions>
+          <execution>
+              <id>default-package-jdk11</id>
+              <phase>package</phase>
+              <goals>
+                  <goal>jar</goal>
+              </goals>
+              <configuration>
+                  <classesDirectory>${project.build.outputDirectory}_jdk11</classesDirectory>
+                  <classifier>jdk11</classifier>
+              </configuration>
+          </execution>
+      </executions>
+  </plugin> -->
 
     </plugins>
   </build>

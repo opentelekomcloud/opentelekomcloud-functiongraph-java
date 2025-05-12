@@ -33,9 +33,9 @@ Code Optimization
   
   Writing idempotent code for your function ensures that the function handles repeated events in the same way.
 
-* **Use the connection pool**
+* **Use connection pooling**
   
-  Use the connection pool properly and reuse connections to reduce the cold start overhead of new connections 
+  Use an connection pool properly and reuse connections to reduce the cold start overhead of new connections 
   (such as HTTP connection pool, database connection pool, Redis connection pool, etc.).
 
 * **Avoid reinitializing variable objects**
@@ -51,6 +51,7 @@ Code Optimization
   the reliability of the business.
 
 * **Use appropriate logging**
+
   When accessing third-party services, OpenTelekomCloud services, and performing related 
   operations in FunctionGraph functions, logs should be recorded to facilitate subsequent 
   abnormal location, performance optimization, and business analysis.
@@ -61,8 +62,7 @@ Performance stress testing
 Performance testing of functions is a key step in ensuring the selection of the optimal configuration. 
 During the function stress testing process, you can use the indicators, logs, call chains and other means provided 
 by the platform to further analyze the function performance data, thereby optimizing the function configuration 
-selection. For details on the specific observable indicators, please refer to the function monitoring overview 
-`<https://docs.otc.t-systems.com/function-graph/umn/monitoring/index.html>`_ .
+selection. For details on the specific observable indicators, please refer to the :otc_fg_umn:`Monitoring <monitoring/index.html>` .
 
 Simplify code and reduce image size
 -----------------------------------
@@ -84,10 +84,8 @@ Configuring a larger memory for a function can improve CPU performance, thereby 
 and execution. You can monitor the function execution time to evaluate the impact of different memory 
 configurations on function performance and select the optimal memory size.
 
-For detailed monitoring information, please refer to View Monitoring Data 
-`<https://docs.otc.t-systems.com/function-graph/umn/monitoring/metrics/function_monitoring.html>`_ . 
-For the steps to configure memory, please refer to Configure Function Information 
-`<https://docs.otc.t-systems.com/function-graph/umn/configuring_functions/index.html>`_ .
+* For detailed monitoring information, please refer to :otc_fg_umn:`View Monitoring Data <monitoring/metrics/function_monitoring.html>`. 
+* For the steps to configure memory, please refer to :otc_fg_umn:`Configuring Functions <configuring_functions/index.html>`.
 
 Use public dependency packages to speed up
 ------------------------------------------
@@ -100,7 +98,7 @@ private dependency packages. When using a public dependency package, FunctionGra
 download it to the execution node in advance to reduce the download time of the dependency package. 
 Therefore, it is recommended to use the public dependency packages provided by FunctionGraph first 
 and minimize the use of private dependencies. For an introduction to dependency packages, please 
-refer to Function Dependency Packages `<https://docs.otc.t-systems.com/function-graph/umn/dependency_management/index.html>`_ .
+refer to :otc_fg_umn:`Function Dependency Packages <dependency_management/index.html>`.
 
 Configuring Reserved Instances
 -----------------------------------
@@ -108,12 +106,12 @@ After the reserved instance is created, the function's code, dependent packages,
 entry function will be automatically loaded and kept in the environment. Therefore, configuring a 
 reserved instance for a function can avoid latency issues caused by cold start. 
 For more information about configuring a function's reserved instance, 
-see Configuring a Reserved Instance for a Function `<https://docs.otc.t-systems.com/function-graph/umn/reserved_instance_management.html>`_ .
+see :otc_fg_umn:`Reserved Instance Management <reserved_instance_management.html>` .
 
 Use function to initialize entry
 -----------------------------------
 For functions that need to be called frequently, placing the initialization logic at the initialization entry can 
 significantly reduce the execution time each time, such as initializing HTTP connections, initializing database 
-connections, etc. For configuration operations of the function initialization entry, please refer to Configuring Function Initialization 
-`<https://docs.otc.t-systems.com/function-graph/umn/configuring_functions/configuring_initialization.html>`_.
+connections, etc. For configuration operations of the function initialization entry, please refer to 
+:otc_fg_umn:`Configuring Initialization <configuring_functions/configuring_initialization.html>`.
 

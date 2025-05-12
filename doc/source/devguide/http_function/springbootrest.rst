@@ -1,22 +1,23 @@
-Building a SpringBoot REST FunctionGraph
-========================================
+Building a SpringBoot 2.x REST FunctionGraph
+============================================
 
 Overview
 --------
 
 This guide shows how to use SpringBoot to develop applications and deploy services to FunctionGraph.
 
-Users can usually use `SpringInitializr <https://start.spring.io/>`_ or IntelliJ IDEA to build SpringBoot in various ways. 
+.. Users can usually use `SpringInitializr <https://start.spring.io/>`_ or IntelliJ IDEA to build SpringBoot in various ways. 
+
 This section takes a slightly modified version of the `<https://spring.io/guides/gs/rest-service/>`_ project of Spring.io 
 as an example and deploys it to FunctionGraph using HTTP functions.
 
 .. note::
-  Full sample can be found in GitHub repository: :github_repo_master:`doc-sample-springboot-rest <samples-doc/doc-sample-springboot-rest>`
-
-  SpringInitializr does not support Java versions below 17 anymore because of SpringBoot 3.x.
+  Full sample can be found in GitHub repository: :github_repo_master:`doc-sample-springboot-2.x-rest <samples-doc/doc-sample-springboot-2.x-rest>`
 
   Provided example here uses Java 11 with SpringBoot v2.7.17.
-  
+
+  .. SpringInitializr does not support Java versions below 17 anymore because of SpringBoot 3.x.
+
 
 Operation process
 -----------------
@@ -30,7 +31,7 @@ Step 1: Configure SprintBoot web port
 
 The HTTP function currently supports only port **8000**. You need to configure the project web port to 8000 in SpringBoot ``application.yaml``. 
 
-.. literalinclude:: /../../samples-doc/doc-sample-springboot-rest/src/main/resources/application.yaml
+.. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/resources/application.yaml
         :language: properties
         :caption: application.yaml
 
@@ -40,9 +41,9 @@ Step 2: Create bootstrap file
 
 Create a bootstrap file in the same directory as the jar package and enter the startup parameters.
 
-For availabe Runtimes paths, see `Table 1 Paths for different runtimes <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>`_ 
+For availabe Runtimes paths, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>` 
 
-.. literalinclude:: /../../samples-doc/doc-sample-springboot-rest/bootstrap
+.. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/bootstrap
         :language: bash
         :caption: bootstrap file
 
@@ -72,22 +73,21 @@ To create the deployment zip file run in project root:
 
   .. code-block:: bash
 
-    doc-sample-springboot-rest$ mvn package
+    doc-sample-springboot-2.x-rest$ mvn package
 
 This will create the deployment zip file in folder ``target`` using the `Apache Maven Assembly Plugin <https://maven.apache.org/plugins/maven-assembly-plugin/>`_ .
 
 For details see:
 
-* :github_repo_master:`pom.xml <samples-doc/doc-sample-springboot-rest/pom.xml>`
-* :github_repo_master:`assembly/zip.xml <doc-sample-springboot-rest/src/main/assembly/zip.xml>`
-  
+* :github_repo_master:`pom.xml <samples-doc/doc-sample-springboot-2.x-rest/pom.xml>`
+* :github_repo_master:`assembly/zip.xml <doc-sample-springboot-2.x-rest/src/main/assembly/zip.xml>`
 
 
 Step 4: Create FunctionGraph HTTP Function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create an HTTP function and upload the packaged zip package. 
-For details, see `Creating an HTTP Function <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`_ .
+For details, see :otc_fg_umn:`Creating an HTTP Function <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`.
 
 Step 5: Verify the results
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -141,8 +141,8 @@ and build a simple **Get** request.
 Step 6: Configure APIG Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Please refer to `User manual "Creating an HTTP Function" <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`_  
-   and `Create a Trigger <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id4>`_ to create an APIG exclusive version trigger
+1. Please refer to :otc_fg_umn:`User manual "Creating an HTTP Function" <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`  
+   and :otc_fg_umn:`Create a Trigger <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id4>` to create an APIG exclusive version trigger
    
    It is recommended to select **None** for Security Authentication to facilitate debugging.
 
@@ -179,14 +179,20 @@ Step 6: Configure APIG Trigger
 Frequently asked questions
 --------------------------
 
-How to test local
+How to test local?
 ^^^^^^^^^^^^^^^^^
-
 To test local use following command in root of project:
 
 .. code-block:: bash
 
-   doc-sample-springboot-rest$ ./mvnw spring-boot:run
+   doc-sample-springboot-2.x-rest$ ./mvnw spring-boot:run
+
+Why ClassNotFoundException after deployment?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Check ``bootstrap`` file for correct:
+
+* ``jar`` file name in classpath
+* correct main class name
 
 What directories can my code access?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -207,8 +213,32 @@ or directly using the print function to print the log.
 The logs output to the console will be collected by the function system. If the user activates the LTS service, 
 the logs will be put into LTS for more real-time log analysis.
 
-Commissioning suggestion: It is recommended to enable `LTS logs <https://docs.otc.t-systems.com/function-graph/umn/configuring_functions/configuring_a_log_group_and_log_stream.html#functiongraph-01-1841>`_ during commissioning and click Go to LTS for log analysis to 
+Commissioning suggestion: It is recommended to enable :otc_fg_umn:`LTS logs <configuring_functions/configuring_a_log_group_and_log_stream.html#functiongraph-01-1841>` during commissioning and click Go to LTS for log analysis to 
 observe and analyze the real-time logs.
+
+As all FunctionGraph instances write to the same log, it can be difficult to distinguish logs of different requests.
+Writing to ``stdout`` or ``stderr`` will need to log the requestId of the request obtained from the incoming request header ``x-cff-request-id``.
+(see :otc_fg_umn:`Common Function Request Headers <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#common-function-request-headers>`)
+
+Using a logging framework the user is responible for adding the request id to the log output.
+This can be achieved by using MDC (Mapped Diagnostic Context).
+
+The provided example ``OTCRequestContextLoggingFilter.java`` uses SpringBoot ``@Component`` annotation and request/reponse 
+filtering to add header values to the MDC.
+
+.. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/java/com/opentelekomcloud/samples/springboot/components/OTCRequestContextLoggingFilter.java
+        :language: java
+        :caption: OTCRequestContextLoggingFilter.java
+
+For more details on request filtering, see: `How to Define a Spring Boot Filter <https://www.baeldung.com/spring-boot-add-filter>`_
+
+In the logging configuration of ``application.yaml``
+
+.. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/resources/application.yaml
+        :language: yaml
+        :caption: application.yaml
+
+you can see that for ``logging.pattern.console`` the ``x-cff-request-id`` is added to the log line.
 
 What user permissions does my code have?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -246,6 +276,8 @@ Adapt pom.xml
 Adapt bootstrap file
 """"""""""""""""""""""""""
 
+For runtime location path, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>` 
+
 .. code-block:: bash
   :caption: Change java path in bootstrap, line 1:
   :emphasize-lines: 1
@@ -264,4 +296,4 @@ Run following command in project root folder:
 .. code-block:: bash
   :caption: update project
   
-  doc-sample-springboot-rest$ ./mvnw clean install
+  doc-sample-springboot-2.x-rest$ ./mvnw clean install

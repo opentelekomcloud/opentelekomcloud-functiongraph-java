@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.opentelekomcloud.samples.springboot.config.OTCRequestContextFilter;
+import com.opentelekomcloud.samples.springboot.components.OTCRequestContextLoggingFilter;
 
 @RestController
 public class GreetingController {
@@ -22,7 +22,7 @@ public class GreetingController {
   @GetMapping("/greeting")
   public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 
-    logger.info("RequestID: {} Name: {}",  OTCRequestContextFilter.requestId.get(), name);
+    logger.info("RequestID: {} Name: {}",  OTCRequestContextLoggingFilter.getRequestId(), name);
 
     return new Greeting(counter.incrementAndGet(), String.format(templateGreeting, name));
   }
@@ -30,7 +30,7 @@ public class GreetingController {
   @GetMapping("/byebye")
   public Greeting byebye(@RequestParam(value = "name", defaultValue = "World") String name) {
 
-    logger.info("RequestID: {} Name: {}",  OTCRequestContextFilter.requestId.get(), name);
+    logger.info("RequestID: {} Name: {}",  OTCRequestContextLoggingFilter.getRequestId(), name);
 
     return new Greeting(counter.incrementAndGet(), String.format(templateByeBye, name));
   }

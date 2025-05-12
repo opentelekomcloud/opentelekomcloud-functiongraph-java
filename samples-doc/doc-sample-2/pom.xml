@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.opentelekomcloud</groupId>
+    <groupId>com.opentelekomcloud.samples.doc</groupId>
     <artifactId>functiongraph-samples-doc</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud</groupId>
+  <groupId>com.opentelekomcloud.samples.doc</groupId>
   <artifactId>functiongraph-samples-doc-sample-2</artifactId>
   <packaging>jar</packaging>
 
@@ -25,14 +25,12 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.11.0</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.11.0</version>
       <scope>test</scope>
     </dependency>
 

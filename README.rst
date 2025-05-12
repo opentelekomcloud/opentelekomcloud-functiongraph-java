@@ -14,7 +14,7 @@ Documentation
 
 `For documentation and usage overview see:  <https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java/>`_
 
-`FunctionGraph User Guides <https://docs.otc.t-systems.com/function-graph/umn/>`_
+:otc_fg_umn:`FunctionGraph User Guides <umn/>`
 
 .. note::
   To run documentation localy run:

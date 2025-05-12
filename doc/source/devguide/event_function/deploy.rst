@@ -101,4 +101,4 @@ Following snippets show how to build a ZIP package with gradle or a JAR Package 
 Deployment with the FunctionGraph console
 -------------------------------------------------------------
 
-See: `FunctionGraph User Guides <https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_event_function.html>`_
+See: :otc_fg_umn:`Creating an Event Function <building_functions/creating_a_function_from_scratch/creating_an_event_function.html>`

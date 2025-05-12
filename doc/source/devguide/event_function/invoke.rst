@@ -58,6 +58,9 @@ Deploy this FunctionGraph as follows:
 Invoking FunctionGraph using Java
 ---------------------------------
 
+.. note:: 
+   Supported Java Version 11 and above.
+
 .. tabs::
 
   .. tab:: InvokeFG.java

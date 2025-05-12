@@ -10,7 +10,7 @@
   <groupId>com.opentelekomcloud.samples</groupId>
   <artifactId>doc-sample-springboot</artifactId>
   <name>doc-sample-springboot</name>
-  <version>1.0.7-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <description>Demo project for Spring Boot</description>
   <build>
     <plugins>
