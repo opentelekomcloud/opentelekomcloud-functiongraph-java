@@ -37,8 +37,8 @@ The HTTP function currently supports only port **8000**. You need to configure
 the project web port to 8000 in SpringBoot ``application.yaml``.
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/resources/application.yaml
-        :language: properties
-        :caption: application.yaml
+    :language: properties
+    :caption: application.yaml
 
 
 Step 2: Create bootstrap file
@@ -50,8 +50,8 @@ and enter the startup parameters.
 For availabe Runtimes paths, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>` 
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/bootstrap
-        :language: bash
-        :caption: bootstrap file
+    :language: bash
+    :caption: bootstrap file
 
 .. note::
    The Java runtime environment can be called directly in the FunctionGraph bootstrap
@@ -63,8 +63,8 @@ Step 3: Create deployment zip file
 
 The structure of the deployment zip file is:
 
-  .. code-block:: bash
-    :caption: zip structure of doc-sample-springboot-|pom_version|.zip
+.. code-block:: bash
+   :caption: zip structure of doc-sample-springboot-|pom_version|.zip
 
     /
     ├─ lib
@@ -77,9 +77,9 @@ The structure of the deployment zip file is:
 
 To create the deployment zip file run in project root:
 
-  .. code-block:: bash
+.. code-block:: bash
 
-    doc-sample-springboot-2.x-rest$ mvn package
+   doc-sample-springboot-2.x-rest$ mvn package
 
 This will create the deployment zip file in folder ``target`` using the `Apache Maven Assembly Plugin <https://maven.apache.org/plugins/maven-assembly-plugin/>`_ .
 
@@ -105,42 +105,42 @@ Select the event template "API Gateway (Dedicated gateway), modify the
 **pathParameters** (see line 15 in sample) parameters in the test event,
 and build a simple **Get** request.
 
-  .. code-block:: json
-     :caption: Test event sample data with adaptions on line 13 and 15
-     :linenos:
-     :emphasize-lines: 13,15
+.. code-block:: json
+    :caption: Test event sample data with adaptions on line 13 and 15
+    :linenos:
+    :emphasize-lines: 13,15
 
-      {
-          "body": "",
-          "requestContext": {
-              "apiId": "bc1dcffd-aa35-474d-897c-d53425a4c08e",
-              "requestId": "11cdcdcf33949dc6d722640a13091c77",
-              "stage": "RELEASE"
-          },
-          "queryStringParameters": {
-              "responseType": "html"
-          },
-          "httpMethod": "GET",
-          "pathParameters": {
-              "name": "John Doe"
-          },
-          "path": "/greeting",
-          "headers": {
-              "accept-language": "q=0.5,en-US;q=0.3,en;q=0.2",
-              "accept-encoding": "gzip, deflate, br",
-              "x-forwarded-port": "443",
-              "x-forwarded-for": "103.218.216.98",
-              "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-              "upgrade-insecure-requests": "1",
-              "host": "host",
-              "x-forwarded-proto": "https",
-              "pragma": "no-cache",
-              "cache-control": "no-cache",
-              "x-real-ip": "103.218.216.98",
-              "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0"
-          },
-          "isBase64Encoded": true
-      }
+    {
+        "body": "",
+        "requestContext": {
+            "apiId": "bc1dcffd-aa35-474d-897c-d53425a4c08e",
+            "requestId": "11cdcdcf33949dc6d722640a13091c77",
+            "stage": "RELEASE"
+        },
+        "queryStringParameters": {
+            "responseType": "html"
+        },
+        "httpMethod": "GET",
+        "pathParameters": {
+            "name": "John Doe"
+        },
+        "path": "/greeting",
+        "headers": {
+            "accept-language": "q=0.5,en-US;q=0.3,en;q=0.2",
+            "accept-encoding": "gzip, deflate, br",
+            "x-forwarded-port": "443",
+            "x-forwarded-for": "103.218.216.98",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "upgrade-insecure-requests": "1",
+            "host": "host",
+            "x-forwarded-proto": "https",
+            "pragma": "no-cache",
+            "cache-control": "no-cache",
+            "x-real-ip": "103.218.216.98",
+            "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0"
+        },
+        "isBase64Encoded": true
+    }
 
 .. note::
    It is recommended that you increase the function memory specification and timeout period during testing, such as 512MB and 5s.
