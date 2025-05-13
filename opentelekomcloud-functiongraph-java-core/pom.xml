@@ -42,15 +42,14 @@
             <configuration>
               <source>
                 <![CDATA[
-                  println("==== Creating version.txt ====");
+                  String versionFilePath = new String(project.basedir.absolutePath.replace(File.separator,'/') + "/../version.txt");
 
-                  File versionFile = new File("${project.basedir}/../version.txt");
+                  File versionFile = new File(versionFilePath);
                   if(versionFile.exists() && versionFile.isDirectory()) {
                     println("Version file exists and is directory! Wont overwrite");
                     return;
                   }
 
-                  println("Creating Version File");
                   BufferedWriter writer = new BufferedWriter(new FileWriter(versionFile));
                   writer.write("${project.version}");
                   writer.newLine();
