@@ -3,15 +3,14 @@ Maven archetype for FunctionGraph sample project
 
 To ease project setup, following maven archetype can be used.
 
-Install maven archetype
-^^^^^^^^^^^^^^^^^^^^^^^
+Install maven archetype from source
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Run following command in folder ``opentelekomcloud-functiongraph-archetype``
 
 .. code-block:: console
 
    mvn clean install
-
 
 Create sample FunctionGraph project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -24,7 +23,7 @@ To create a sample java project using maven archetype use:
   mvn archetype:generate                                 \
     -DarchetypeGroupId=com.opentelekomcloud              \
     -DarchetypeArtifactId=opentelekomcloud-functiongraph \
-    -DarchetypeVersion=|pom_version|                     \ 
+    -DarchetypeVersion=|pom_version|                    \
     -DgroupId=com.sample                                 \
     -DartifactId=sample                                  \
     -DhandlerClassName=MyHandler
