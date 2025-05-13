@@ -6,4 +6,5 @@ HTTP Function
 
    Spring Boot REST <springbootrest>
 
-HTTP functions support mainstream Web application frameworks and can be accessed through a browser or called directly by a URL.
+HTTP functions support mainstream Web application frameworks and
+can be accessed through a browser or called directly by a URL.

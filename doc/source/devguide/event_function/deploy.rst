@@ -6,23 +6,25 @@ Package Specification
 
 JAR Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If the function does not reference any third-party software, you can directly compile the function project into a JAR package.
+If the function does not reference any third-party software,
+you can directly compile the function project into a JAR package.
 
-.. note:: 
-  The maximum size of a JAR to be uploaded using console is 40MB, for larger files store JAR in OBS
+.. note::
+  The maximum size of a JAR to be uploaded using console is 40MB,
+  for larger files store JAR in OBS
 
 Example JAR Package
 """""""""""""""""""
 
-.. code-block:: console 
+.. code-block:: console
   :caption: Example JAR package structure
   :emphasize-lines: 2
 
   example.jar
-  ├─ com                                      
-  |  └─ sample                              # FunctionGraph handler 
+  ├─ com
+  |  └─ sample                              # FunctionGraph handler
   |  |  └─ SampleFunctionHandler.class
-  |  └─ opentelekomcloud                     # OpenTelekomCloud dependencies 
+  |  └─ opentelekomcloud                     # OpenTelekomCloud dependencies
   |     └─ services
   |        └─ runtime
   |           └─ Context.class
@@ -41,14 +43,16 @@ Jar with dependencies
 ^^^^^^^^^^^^^^^^^^^^^
 
 Using ``maven-assembly-plugin`` a jar with all dependencies will be created.
-This file ``*-jar-with-dependencies`` located in the target folder can be used as deployment file.
+This file ``*-jar-with-dependencies`` located in the target folder can be
+used as deployment file.
 
 ZIP Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If the function references a third-party software, compile the function project into a Jar package, 
-and then package all the dependent third-party software and the function JAR package into a ZIP package.
+If the function references a third-party software, compile the function
+project into a Jar package, and then package all the dependent third-party
+software and the function JAR package into a ZIP package.
 
-.. note:: 
+.. note::
   The maximum size of a ZIP to be uploaded using console is 40MB, for larger files store ZIP in OBS.
 
 Example ZIP Package
@@ -69,7 +73,8 @@ Example ZIP Package
 
 OBS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Package the project into a ZIP package and upload it to the OBS storage bucket.
+Package the project into a ZIP package and upload it to the OBS storage
+bucket.
 
 
 
@@ -78,7 +83,8 @@ Building a deployment package
 
 Deployment packages can be built using gradle or maven.
 
-Following snippets show how to build a ZIP package with gradle or a JAR Package with dependencies using maven.
+Following snippets show how to build a ZIP package with gradle or a
+JAR Package with dependencies using maven.
 
 .. tabs::
 

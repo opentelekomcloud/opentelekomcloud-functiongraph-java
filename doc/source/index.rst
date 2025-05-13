@@ -1,7 +1,8 @@
 OpenTelekomCloud FunctionGraph Java documentation
 =================================================
 
-This is the FunctionGraph Java Development Guide for running FunctionGraph on OpenTelekomCloud (OTC).
+This is the FunctionGraph Java Development Guide for running
+FunctionGraph on OpenTelekomCloud (OTC).
 
 .. toctree::
    :includehidden:

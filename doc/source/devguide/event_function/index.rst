@@ -19,22 +19,25 @@ Event functions can be configured with event triggers and integrate a variety of
 FunctionGraph Java libraries
 ----------------------------
 
-OpenTelekomCloud provides following libraries for FunctionGraph. These libraries are available through 
+OpenTelekomCloud provides following libraries for FunctionGraph.
+These libraries are available through:
 `Maven Central Repository <https://search.maven.org/search?q=g:com.opentelekomcloud-functiongraph>`_.
 
 * :github_repo_master:`com.opentelekomcloud:opentelekomcloud-functiongraph-java-core <opentelekomcloud-functiongraph-java-core>` (required)
 
-  Defines handler method interfaces and context object that the runtime passes to the handler. 
+  Defines handler method interfaces and context object that the runtime
+  passes to the handler.
 
 * :github_repo_master:`com.opentelekomcloud:opentelekomcloud-functiongraph-java-events <opentelekomcloud-functiongraph-java-events>`
 
   Event sources from services that invoke FunctionGraph functions (e.g. APIG)
 
 * :github_repo_master:`com.opentelekomcloud:opentelekomcloud-functiongraph-java-test <opentelekomcloud-functiongraph-java-test>`
-  
-  Defines a test classes, that can be used in JUnit tests. 
 
-These packages can be included as dependency to your Maven `pom.xml` or gardle `build.gradle` as follows:
+  Defines a test classes, that can be used in JUnit tests.
+
+These packages can be included as dependency to your Maven `pom.xml`
+or gardle `build.gradle` as follows:
 
 .. tabs::
 
@@ -89,7 +92,7 @@ These packages can be included as dependency to your Maven `pom.xml` or gardle `
           // ZIP must contain only jar files in root folder
           from jar
           from processResources
-          from configurations.runtimeClasspath 
+          from configurations.runtimeClasspath
         }
 
         java {
@@ -98,4 +101,3 @@ These packages can be included as dependency to your Maven `pom.xml` or gardle `
         }
 
         build.dependsOn buildZip
-

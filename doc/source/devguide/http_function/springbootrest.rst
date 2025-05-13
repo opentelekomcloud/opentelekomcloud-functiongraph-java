@@ -248,16 +248,16 @@ The provided example ``OTCRequestContextLoggingFilter.java`` uses SpringBoot ``@
 annotation and request/reponse filtering to add header values to the MDC.
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/java/com/opentelekomcloud/samples/springboot/components/OTCRequestContextLoggingFilter.java
-        :language: java
-        :caption: OTCRequestContextLoggingFilter.java
+   :language: java
+   :caption: OTCRequestContextLoggingFilter.java
 
 For more details on request filtering, see: `How to Define a Spring Boot Filter <https://www.baeldung.com/spring-boot-add-filter>`_
 
 In the logging configuration of ``application.yaml``
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/resources/application.yaml
-        :language: yaml
-        :caption: application.yaml
+   :language: yaml
+   :caption: application.yaml
 
 you can see that for ``logging.pattern.console`` the
  ``x-cff-request-id`` is added to the log line.
@@ -272,8 +272,8 @@ How to change Java and SpringBoot version?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Adapt pom.xml
-""""""""""""""""""""""""""
-.. code-block:: bash
+"""""""""""""
+.. code-block:: console
   :caption: Change SpringBoot version, line 4
   :emphasize-lines: 4
   :linenos:
@@ -282,10 +282,10 @@ Adapt pom.xml
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.7.17</version>    <!-- NEW: <version>3.4.5</version> -->
-    <relativePath /> 
+    <relativePath />
   </spring-boot-starter-parent>
 
-.. code-block:: bash
+.. code-block:: console
   :caption: Change Java version, line 2
   :emphasize-lines: 2
   :linenos:
@@ -296,7 +296,7 @@ Adapt pom.xml
   </properties>
 
 Adapt bootstrap file
-""""""""""""""""""""""""""
+""""""""""""""""""""
 
 For runtime location path, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>`
 

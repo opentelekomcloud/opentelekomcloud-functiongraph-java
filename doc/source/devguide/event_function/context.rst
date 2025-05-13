@@ -1,8 +1,10 @@
 Using the FunctionGraph context interface to retrieve Java function information
 ===============================================================================
 
-When FunctionGraph runs your function, it passes a context object to the handler.
-This object provides methods and properties that provide information about the invocation, function, and execution environment.
+When FunctionGraph runs your function, it passes a context object to the
+handler.
+This object provides methods and properties that provide information about
+the invocation, function, and execution environment.
 
 Context interface
 -----------------
@@ -14,96 +16,98 @@ Context interface
    * - Method Name
      - Description
 
-   * - getRequestID( )
+   * - getRequestID()
      - Get the request ID.
 
-   * - getRemainingTimeInMilliSeconds ( )
+   * - getRemainingTimeInMilliSeconds ()
      - Get the remaining running time of a function.
 
-   * - getAccessKey( )
-     - Get the AccessKey delegated by the user (valid for 24 hours). 
+   * - getAccessKey()
+     - Get the AccessKey delegated by the user (valid for 24 hours).
 
        To use this method, you need to configure agency for the function.
 
-       **The current function workflow has stopped maintaining the getAccessKey interface in the Runtime SDK. 
+       **The current function workflow has stopped maintaining the getAccessKey
+       interface in the Runtime SDK.
        You will not be able to use getAccessKey to obtain a temporary AK.**
 
-   * - getSecretKey( )
-     - Get the SecretKey of the user's agency (valid for 24 hours). 
+   * - getSecretKey()
+     - Get the SecretKey of the user's agency (valid for 24 hours).
 
        To use this method, you need to configure the agency for the function.
 
-       **The current function workflow has stopped maintaining the getSecretKey interface in the Runtime SDK.
+       **The current function workflow has stopped maintaining the getSecretKey
+       interface in the Runtime SDK.
        You will not be able to use getSecretKey to obtain a temporary SK.**
 
-   * - getSecurityAccessKey( )
-     - Get the SecurityAccessKey delegated by the user (valid for 24 hours). 
+   * - getSecurityAccessKey()
+     - Get the SecurityAccessKey delegated by the user (valid for 24 hours).
 
        To use this method, you need to configure a agency for the function.
 
-   * - getSecuritySecretKey( )
-     - Get the SecuritySecretKey (valid for 24 hours) delegated by the user. 
+   * - getSecuritySecretKey()
+     - Get the SecuritySecretKey (valid for 24 hours) delegated by the user.
 
        To use this method, you need to configure the agency for the function.
 
-   * - getSecurityToken( )
-     - Get the SecurityToken delegated by the user (valid for 24 hours). 
+   * - getSecurityToken()
+     - Get the SecurityToken delegated by the user (valid for 24 hours).
 
        To use this method, you need to configure the agency for the function.
 
    * - getUserData(string key)
      - Get the value passed by the user through the environment variable through key.
 
-   * - getFunctionName( )
+   * - getFunctionName()
      - Get the function name.
 
-   * - getRunningTimeInSeconds ( )
+   * - getRunningTimeInSeconds ()
      - Get the function timeout.
 
-   * - getVersion( )
+   * - getVersion()
      - Get the version of the function.
 
-   * - getMemorySize( )
+   * - getMemorySize()
      - Allocated memory.
 
-   * - getCPUNumber( )
+   * - getCPUNumber()
      - Get the CPU resources used by the function.
 
-   * - getPackage( )
+   * - getPackage()
      - Gets a function group.
 
-   * - getToken( )
+   * - getToken()
      - Get the user's delegated token (valid for 24 hours).
 
        To use this method, you need to configure the agency for the function.
 
-   * - getLogger( )
+   * - getLogger()
      - Get the logger method provided by the context (by default, it will output information such as time and request ID).
 
    * - getAlias
      - Get the alias of a function
-  
+
    * - getInvokeProperty()
-     - ??
-  
+     - Get the invoke property
+
    * - getWorkflowRunID()
-     - ??
+     - Get the workflow run id
 
    * - getWorkflowStateID()
-     - ??
+     - Get the workflow state id
 
    * - getTraceID()
-     - ??
-   
+     - Get the trace Id
+
    * - getInvokeID()
-     - ??
+     - Get the invoke id
 
    * - getState()
-     - ??
+     - Get the state
 
    * - setState()
-     - ??
-  
+     - Set the state
+
 Log interface
 -------------
 
@@ -118,7 +122,7 @@ The following table shows the log interface description.
 
    * - RuntimeLogger()
      - Record user input logs. See  :doc:`Logging<./logging/logging>` for details
-  
+
 To obtain the logger from the context use:
 
 .. code-block:: java
@@ -126,4 +130,3 @@ To obtain the logger from the context use:
 
     RuntimeLogger log = context.getLogger();
     log.log("Hello world!");
-  

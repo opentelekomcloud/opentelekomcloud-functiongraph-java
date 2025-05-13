@@ -6,7 +6,7 @@ Setting up the java handler project
 
 A typical Java FunctionGraph project is typically structured as follows:
 
-.. code-block:: bash
+.. code-block:: console
   :emphasize-lines: 6
   :caption: Project structure
 
@@ -19,10 +19,11 @@ A typical Java FunctionGraph project is typically structured as follows:
   |           └─ <other_supporting_classes>
   └─  pom.xml or build.gradle
 
-The main logic for the function resides in Java file `src/main/java/mypackage` folder.
+The main logic for the function resides in Java file
+`src/main/java/mypackage` folder.
 When deploying to FunctionGraph make sure to specify the correct handler:
 
-[Package name].[Class name].[Execution function name]
+[**Package name**].[**Class name**].handleRequest
 
 In this example the handler is: `mypackage.FGEventHandler.handleRequest`.
 
@@ -50,7 +51,7 @@ The following example receives an event.
 
     @Override
     public String handleRequest(JsonObject event, Context context) {
-  
+
       return "Success";
     }
   }
@@ -58,19 +59,23 @@ The following example receives an event.
 
 Valid class definitions for Java handlers
 -----------------------------------------
-To simplify handler configuration and validate the method signature at compile time 
-the ``opentelekomcloud-functiongraph-java-core`` library defines following interface:
+To simplify handler configuration and validate the method signature
+at compile time the ``opentelekomcloud-functiongraph-java-core``
+library defines following interface:
 
 * :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler <opentelekomcloud-functiongraph-java-core/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/core/RequestHandler.java>`
-                                                                                               
+
 The RequestHandler interface is a generic type that takes two parameters:
 
-* the ``input`` type and 
+* the ``input`` type and
 * the ``output`` type.
 
-Both types must be Java objects. In this example, our FGEventHandler class implements ``RequestHandler<FGEventHandler.EventData, String>``.
+Both types must be Java objects. In this example, our FGEventHandler class
+implements ``RequestHandler<FGEventHandler.EventData, String>``.
 
-The input type is ``EventData`` defined within the class, and the output type is ``String``.
+The:
+* input type is ``EventData`` defined within the class, and
+* output type is ``String``.
 
 .. code-block:: java
 
@@ -88,8 +93,11 @@ The input type is ``EventData`` defined within the class, and the output type is
 
   }
 
-When using this interface, the Java runtime deserializes the event into the object with the ``input`` type, 
-and serializes the ``output`` into text. Use this interface when the built-in serialization works with your input and output types.
+When using this interface, the Java runtime deserializes the event into the
+object with the ``input`` type, and serializes the ``output`` into text.
+
+Use this interface when the built-in serialization works with your input
+and output types.
 
 
 Defining and accessing the input event object
@@ -98,7 +106,7 @@ Defining and accessing the input event object
 JSON is the most common and standard input format for FunctionGraph functions.
 In this example, the function expects an input similar to the following:
 
-.. code-block:: json 
+.. code-block:: json
     :caption: Input data as json
 
     {
@@ -176,16 +184,20 @@ For this example we define following data object:
 
         }
 
-This object matches the expected input data. After you define your object, you can write a handler signature 
-that takes in a JSON input that conforms to the record definition. 
-The Java runtime automatically deserializes this JSON into a Java object and the fields of the object can be accessed. 
+This object matches the expected input data.
+After you define your object, you can write a handler signature
+that takes in a JSON input that conforms to the record definition.
+The Java runtime automatically deserializes this JSON into a Java object
+and the fields of the object can be accessed.
 
-For example, ``event.getId()`` retrieves the value of Id from the original input.
+For example, ``event.getId()`` retrieves the value of Id from the
+original input.
 
 Event Types of other OpenTelekomCloud services
 ----------------------------------------------
 
-For events sent by other OpenTelekomCloud services, there are predefined types in:
+For events sent by other OpenTelekomCloud services, there are predefined
+types in:
 
 * :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events>`
 
@@ -196,7 +208,7 @@ For events sent by other OpenTelekomCloud services, there are predefined types i
    * - Service
      - Short
      - Remark
-   
+
    * - API Gateway (Dedicated Gateway)
      - APIG
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.apig <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/apig>`
@@ -204,7 +216,7 @@ For events sent by other OpenTelekomCloud services, there are predefined types i
    * - Cloud Trace Service
      - CTS
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.cts <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/cts>`
-   
+
    * - Document Database Service
      - DDS
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.dds <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/dds>`
@@ -226,7 +238,7 @@ For events sent by other OpenTelekomCloud services, there are predefined types i
      - S3OBS
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.s3obs <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/s3obs>`
 
-   * - Simple Message Notification 
+   * - Simple Message Notification
      - SMN
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.smn <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/smn>`
 
@@ -237,28 +249,34 @@ For events sent by other OpenTelekomCloud services, there are predefined types i
 Accessing and using the FunctionGraph context object
 ----------------------------------------------------
 
-The :doc:`Context<./context>` interface allows functions to obtain the function execution context, 
-such as information about the invocation, function, execution environment, and so on. 
+The :doc:`Context<./context>` interface allows functions to obtain the
+function execution context, such as information about the invocation,
+function, execution environment, and so on.
 
-The context is of type ``com.opentelekomcloud.services.runtime.Context`` and is the second argument of the handler function.
+The context is of type ``com.opentelekomcloud.services.runtime.Context``
+and is the second argument of the handler function.
 
 * :github_repo_master:`com.opentelekomcloud.services.runtime.Context <opentelekomcloud-functiongraph-java-core/src/main/java/com/opentelekomcloud/services/runtime/Context.java>`
 
-To produce logs in OpenTelekomCloud Log Tank Servics (LTS) you can use ``context.getLogger()`` to get a RuntimeLogger object for logging.
+To produce logs in OpenTelekomCloud Log Tank Servics (LTS) you can use
+``context.getLogger()`` to get a RuntimeLogger object for logging.
 
 .. code-block:: java
 
   context.getLogger().log("Hello world!");
 
-Besides of logging, you can also use the context object for function monitoring.
-For more information about the context object, see :doc:`Using the FunctionGraph context object to retrieve Java function information.<./context>`
+Besides of logging, you can also use the context object for
+function monitoring.
+For more information about the context object,
+see :doc:`Using the FunctionGraph context object to retrieve Java function information.<./context>`
 
 Accessing environment variables
 -------------------------------
 
-Environment variables defined in ``OpenTelekomCloud`` -> ``Configuration`` -> ``Environment Variables`` can be accessed using:
+Environment variables defined in ``OpenTelekomCloud`` -> 
+``Configuration`` -> ``Environment Variables`` can be accessed using:
 
 .. code-block:: java
-  
+
   // accessing an environment variable named "ENV_VAR1"
   context.getUserData("ENV_VAR1");
