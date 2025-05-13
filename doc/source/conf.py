@@ -189,6 +189,9 @@ autoprogram_cliff_ignored = [
     '--print-empty', '--prefix', '--noindent', '--quote']
 
 
+# -- Options sphinx-tabs -------------------------
+sphinx_tabs_valid_builders = ['linkcheck']
+
 # -- Options sphinx_substitution_extensions -------------------------
 def getPomVersion(pomfile):
   # return version information of pom file

@@ -16,8 +16,11 @@ To create a sample java project using maven archetype use:
 mvn archetype:generate                                           \
   -DarchetypeGroupId=com.opentelekomcloud                        \
   -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
-  -DarchetypeVersion=1.0.0-SNAPSHOT                              \
+  -DarchetypeVersion=0.0.1-SNAPSHOT                              \
   -DgroupId=com.sample                                           \
   -DartifactId=sample                                            \
   -DhandlerClassName=MyHandler
 ```
+
+Hint:
+Replace ``archetypeVersion`` with correct one.

@@ -4,11 +4,13 @@ Building a SpringBoot 2.x REST FunctionGraph
 Overview
 --------
 
-This guide shows how to use SpringBoot to develop applications and deploy services to FunctionGraph.
+This guide shows how to use SpringBoot to develop applications and
+deploy services to FunctionGraph.
 
-.. Users can usually use `SpringInitializr <https://start.spring.io/>`_ or IntelliJ IDEA to build SpringBoot in various ways. 
+.. Users can usually use `SpringInitializr <https://start.spring.io/>`_
+   or IntelliJ IDEA to build SpringBoot in various ways.
 
-This section takes a slightly modified version of the `<https://spring.io/guides/gs/rest-service/>`_ project of Spring.io 
+This section takes a slightly modified version of the `<https://spring.io/guides/gs/rest-service/>`_ project of Spring.io
 as an example and deploys it to FunctionGraph using HTTP functions.
 
 .. note::
@@ -22,14 +24,17 @@ as an example and deploys it to FunctionGraph using HTTP functions.
 Operation process
 -----------------
 
-To deploy an existing project to FunctionGraph, you usually only need to change the project listening port number to **8000**, 
-create a **bootstrap** file in the same directory as the jar package, and write the command to execute the jar package.
+To deploy an existing project to FunctionGraph, you usually only need to change
+the project listening port number to **8000**, create a **bootstrap** file in
+the same directory as the jar package, and write the command to execute the
+jar package.
 
 
 Step 1: Configure SprintBoot web port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The HTTP function currently supports only port **8000**. You need to configure the project web port to 8000 in SpringBoot ``application.yaml``. 
+The HTTP function currently supports only port **8000**. You need to configure
+the project web port to 8000 in SpringBoot ``application.yaml``.
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/resources/application.yaml
         :language: properties
@@ -39,7 +44,8 @@ The HTTP function currently supports only port **8000**. You need to configure t
 Step 2: Create bootstrap file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a bootstrap file in the same directory as the jar package and enter the startup parameters.
+Create a bootstrap file in the same directory as the jar package
+and enter the startup parameters.
 
 For availabe Runtimes paths, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>` 
 
@@ -62,8 +68,8 @@ The structure of the deployment zip file is:
 
     /
     ├─ lib
-    |  ├─ dependancy1.jar 
-    |  ├─ dependancy2.jar 
+    |  ├─ dependancy1.jar
+    |  ├─ dependancy2.jar
     |  └─ ...
     |
     ├─ doc-sample-springboot.jar
@@ -86,15 +92,16 @@ For details see:
 Step 4: Create FunctionGraph HTTP Function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create an HTTP function and upload the packaged zip package. 
+Create an HTTP function and upload the packaged zip package.
 For details, see :otc_fg_umn:`Creating an HTTP Function <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`.
 
 Step 5: Verify the results
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On the function details page, select the function version and click ``Configure Test Events``. The Configure Test Events page pops up.
-Select the event template "API Gateway (Dedicated gateway), modify the 
-**path** (see line 13 in sample) and 
+On the function details page, select the function version and click
+``Configure Test Events``. The Configure Test Events page pops up.
+Select the event template "API Gateway (Dedicated gateway), modify the
+**path** (see line 13 in sample) and
 **pathParameters** (see line 15 in sample) parameters in the test event,
 and build a simple **Get** request.
 
@@ -141,10 +148,11 @@ and build a simple **Get** request.
 Step 6: Configure APIG Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Please refer to :otc_fg_umn:`User manual "Creating an HTTP Function" <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`  
+1. Please refer to :otc_fg_umn:`User manual "Creating an HTTP Function" <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`
    and :otc_fg_umn:`Create a Trigger <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id4>` to create an APIG exclusive version trigger
-   
-   It is recommended to select **None** for Security Authentication to facilitate debugging.
+
+   It is recommended to select **None** for Security Authentication to
+   facilitate debugging.
 
    When defining the API request, set values according to:
 
@@ -164,7 +172,7 @@ Step 6: Configure APIG Trigger
 
    .. code-block:: bash
       :caption: Test event sample data
-        
+
       $ curl https://XXXXXXXXXX.apic.eu-de.otc.t-systems.com/greeting?name=John
       {"id":2,"content":"Hello, John!"}
 
@@ -180,7 +188,7 @@ Frequently asked questions
 --------------------------
 
 How to test local?
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 To test local use following command in root of project:
 
 .. code-block:: bash
@@ -196,35 +204,48 @@ Check ``bootstrap`` file for correct:
 
 What directories can my code access?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-According to the commands in the bootstrap file above, it can be seen that the uploaded code package 
-is finally stored in the function instance (referring to the environment/computing resources where the function runs, 
-which can be understood as a container) ``/opt/function/code/`` path. However, this directory can only be read, not written. 
-If you want to write some data to the instance during code execution, print logs locally, or the dependencies you 
-se are written to the directory where the jar is located by default, please write to the ``/tmp`` directory.
+According to the commands in the bootstrap file above, it can be seen that the
+uploaded code package is finally stored in the function instance (referring to
+the environment/computing resources where the function runs,
+which can be understood as a container) ``/opt/function/code/`` path. However,
+this directory can only be read, not written.
+
+If you want to write some data to the instance during code execution, write
+to the ``/tmp`` directory.
 
 How are my logs collected and how should I output them?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If there is no request for a period of time, the function instance will be destroyed, and the data written to the local 
-log will be destroyed at the same time. The current user cannot view the local log of the function while the function 
-is running, so it is recommended not to write the log only to the local. 
-It is recommended to output the generated log to the console, such as configuring the ``log4j`` output target to ``System.out``, 
-or directly using the print function to print the log.
+If there is no request for a period of time, the function instance will be
+destroyed, and the data written to the local log will be destroyed at the
+same time. The current user cannot view the local log of the function while
+the function is running, so it is recommended not to write the log only to
+the local.
 
-The logs output to the console will be collected by the function system. If the user activates the LTS service, 
-the logs will be put into LTS for more real-time log analysis.
+It is recommended to output the generated log to the console, such as
+configuring the ``log4j`` output target to ``System.out``, or directly
+using the print function to print the log.
 
-Commissioning suggestion: It is recommended to enable :otc_fg_umn:`LTS logs <configuring_functions/configuring_a_log_group_and_log_stream.html#functiongraph-01-1841>` during commissioning and click Go to LTS for log analysis to 
-observe and analyze the real-time logs.
+The logs output to the console will be collected by the function system.
+If the user activates the LTS service, the logs will be put into LTS for more
+real-time log analysis.
 
-As all FunctionGraph instances write to the same log, it can be difficult to distinguish logs of different requests.
-Writing to ``stdout`` or ``stderr`` will need to log the requestId of the request obtained from the incoming request header ``x-cff-request-id``.
+It is recommended to enable :otc_fg_umn:`LTS logs <configuring_functions/configuring_a_log_group_and_log_stream.html#functiongraph-01-1841>`
+during commissioning and click Go to LTS for log analysis to observe and
+analyze the real-time logs.
+
+As all FunctionGraph instances write to the same log, it can be difficult to
+distinguish logs of different requests.
+Writing to ``stdout`` or ``stderr`` will need to log the requestId of the
+request obtained from the incoming request header ``x-cff-request-id``.
 (see :otc_fg_umn:`Common Function Request Headers <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#common-function-request-headers>`)
 
-Using a logging framework the user is responible for adding the request id to the log output.
+Using a logging framework the user is responible for adding the request id to
+the log output.
+
 This can be achieved by using MDC (Mapped Diagnostic Context).
 
-The provided example ``OTCRequestContextLoggingFilter.java`` uses SpringBoot ``@Component`` annotation and request/reponse 
-filtering to add header values to the MDC.
+The provided example ``OTCRequestContextLoggingFilter.java`` uses SpringBoot ``@Component``
+annotation and request/reponse filtering to add header values to the MDC.
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/java/com/opentelekomcloud/samples/springboot/components/OTCRequestContextLoggingFilter.java
         :language: java
@@ -238,24 +259,25 @@ In the logging configuration of ``application.yaml``
         :language: yaml
         :caption: application.yaml
 
-you can see that for ``logging.pattern.console`` the ``x-cff-request-id`` is added to the log line.
+you can see that for ``logging.pattern.console`` the
+ ``x-cff-request-id`` is added to the log line.
 
 What user permissions does my code have?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Like ordinary event functions, the code is executed without root privileges, so code or commands that require root privileges 
-cannot be executed in HTTP functions.
+Like ordinary event functions, the code is executed without root privileges,
+so code or commands that require root privileges cannot be executed
+in HTTP functions.
 
 How to change Java and SpringBoot version?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Adapt pom.xml
 """"""""""""""""""""""""""
-  
 .. code-block:: bash
-  :caption: Change SpringBoot version, line 4:
+  :caption: Change SpringBoot version, line 4
   :emphasize-lines: 4
   :linenos:
-  
+
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -276,7 +298,7 @@ Adapt pom.xml
 Adapt bootstrap file
 """"""""""""""""""""""""""
 
-For runtime location path, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>` 
+For runtime location path, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>`
 
 .. code-block:: bash
   :caption: Change java path in bootstrap, line 1:
@@ -295,5 +317,5 @@ Run following command in project root folder:
 
 .. code-block:: bash
   :caption: update project
-  
+
   doc-sample-springboot-2.x-rest$ ./mvnw clean install
