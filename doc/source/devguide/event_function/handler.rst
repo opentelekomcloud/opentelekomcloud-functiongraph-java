@@ -61,11 +61,17 @@ Valid class definitions for Java handlers
 -----------------------------------------
 To simplify handler configuration and validate the method signature
 at compile time the ``opentelekomcloud-functiongraph-java-core``
-library defines following interface:
+library defines following interfaces:
 
-* :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler <opentelekomcloud-functiongraph-java-core/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/core/RequestHandler.java>`
+* Generic RequestHandler interface:
+  :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler <opentelekomcloud-functiongraph-java-core/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/core/RequestHandler.java>`
+* EventRequestHandler interface for predefined events:
+  :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler <opentelekomcloud-functiongraph-java-core/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/core/EventRequestHandler.java>`
 
-The RequestHandler interface is a generic type that takes two parameters:
+Generic RequestHandler interface
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The generic RequestHandler interface is a generic type that takes two parameters:
 
 * the ``input`` type and
 * the ``output`` type.
@@ -101,7 +107,7 @@ and output types.
 
 
 Defining and accessing the input event object
----------------------------------------------
+"""""""""""""""""""""""""""""""""""""""""""""
 
 JSON is the most common and standard input format for FunctionGraph functions.
 In this example, the function expects an input similar to the following:
@@ -193,13 +199,21 @@ and the fields of the object can be accessed.
 For example, ``event.getId()`` retrieves the value of Id from the
 original input.
 
-Event Types of OpenTelekomCloud services
-----------------------------------------
 
-For predefined OpenTelekomCloud service events, use:
+EventRequestHandler interface for predefined events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For predefined OpenTelekomCloud service events, you can also use:
 ``com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler``
 instead of
 ``com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler``
+
+The EventRequestHandler interface takes two parameters:
+
+* the ``input`` of type TriggerEvent and
+* the ``output`` type.
+
+As an example, here the use of an SMNTriggerEvent:
 
 .. code-block:: java
   :caption: Example: SMNEventHandler.java
@@ -221,65 +235,78 @@ instead of
   }
 
 
+Event Types of OpenTelekomCloud services
+""""""""""""""""""""""""""""""""""""""""
+
 For events sent by other OpenTelekomCloud services, there are predefined
 types in:
 
 * :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events>`
 
 .. list-table:: **Table 1** Events
-   :widths: 25 20 8 50
+   :widths: 25 20 8 20 20
    :header-rows: 1
 
    * - Service
      - Short
      - Calling method
      - Source
+     - Remark
 
    * - API Gateway (Dedicated Gateway)
      - APIG
      - sync
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.apig <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/apig>`
+     - 
 
    * - Cloud Trace Service
      - CTS
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.cts <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/cts>`
+     - 
 
    * - Document Database Service
      - DDS
      - Async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.dds <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/dds>`
+     - 
 
 
    * - DMS for Kafka
      - DMS4Kafka
      - sync
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.dms4kafka <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/dms4kafka>`
+     - 
 
    * - Kafka (OPENSOURCEKAFKA)
      - KAFKA
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.kafka <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/kafka>`
+     - 
 
    * - Log Tank Service
      - LTS
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.lts <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/lts>`
+     - 
 
    * - S3 Object Storage Service
      - S3OBS
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.s3obs <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/s3obs>`
+     - OBS can only trigger FunctionGraph in the main project (e.g. eu-de), not in sub projects.
 
    * - Simple Message Notification
      - SMN
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.smn <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/smn>`
+     - 
 
    * - Timer
      - Timer
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.timer <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/timer>`
+     - 
 
 Accessing and using the FunctionGraph context object
 ----------------------------------------------------

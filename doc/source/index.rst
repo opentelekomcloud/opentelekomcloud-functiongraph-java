@@ -15,7 +15,7 @@ FunctionGraph on OpenTelekomCloud (OTC).
 
 Source Code
 -----------
-For source code, see `<https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java>`_.
+For source code, see :github_repo_master:`opentelekomcloud-functiongraph-java on github <>`.
 
 FunctionGraph User Guide
 ------------------------

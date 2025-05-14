@@ -11,6 +11,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @ToString(includeFieldNames=true)
+/**
+ * Trigger on OBS Events
+ * 
+ * Hint: OBS events can only trigger FunctionGraphs in main project, 
+ * not in sub projects.
+ */
 public class S3ObsTriggerEvent implements IObsTriggerInfo {
 
   /**

@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.opentelekomcloud.services.functiongraph.runtime.events.timer.Timer;
+import com.opentelekomcloud.services.functiongraph.runtime.events.timer.TimerTriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
 
 public class TimerTriggerFGTest {
