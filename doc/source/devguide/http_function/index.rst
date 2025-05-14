@@ -1,5 +1,5 @@
-HTTP Function
-=============
+HTTP Functions
+==============
 .. toctree::
    :maxdepth: 1
    :hidden:

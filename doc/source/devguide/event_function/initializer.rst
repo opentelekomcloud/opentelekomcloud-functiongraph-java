@@ -1,7 +1,7 @@
 :original_name: functiongraph_02_0532.html
 
-Initializer
-===========
+Initializer funcion
+===================
 
 Overview
 --------
@@ -41,26 +41,28 @@ initialization logic for proper resource scheduling.
 Benefits of the Initializer
 ---------------------------
 
-* Isolate function initialization and request processing to enable
-  clearer program logic and better structured and higher-performance code.
+* Separating the initialization logic and request processing logic makes
+  the program logic clearer, allowing users to more easily write
+  well-structured and high-performance code.
 
-* Ensure a smooth function upgrade to prevent performance loss during
-  the application layer's cold start initialization.
-  Enable new function instances to automatically execute initialization
-  logic before processing requests.
+* When the user function code is updated, the system can ensure the
+  smooth upgrade of the user function and avoid the performance loss
+  caused by the cold start of the application layer initialization.
+  After the new function instance is started, it can automatically
+  execute the user's initialization logic and process the request
+  after the initialization is completed.
 
-* Identify the overhead of application layer initialization, and
-  accurately determine the time for resource scaling and the quantity
-  of required resources. This feature makes request latency more
-  stable when the application load increases and more function
-  instances are required.
+* When the application load increases and more function instances
+  need to be added, the system can identify the initialization
+  overhead of the function application layer, more accurately
+  calculate the timing of resource scaling and the amount of
+  resources required, and make request delays more stable.
 
-* If there are continuous requests and the function is not updated,
-  the system may still reclaim or update existing containers.
-  Although no code starts on the platform side, there are cold starts
-  on the service side.
-  The initializer can be used to ensure that requests can be processed
-  properly.
+* Even if the user has continuous requests and does not update the
+  function, the system may still recycle or update the existing
+  container. In this case, there will be no cold start on the
+  platform side, but there will be a cold start on the business 
+  side. Initializer can minimize this situation.
 
 Constraints and Restrictions
 ----------------------------
@@ -70,8 +72,19 @@ Constraints and Restrictions
 * Custom image event functions do not currently support initialization
   configuration.
 
-Features of the Initializer
----------------------------
+Example of function initializer
+-------------------------------
+
+.. code-block:: java
+  :caption: initializer
+
+    public void initializer(Context context) {
+      RuntimeLogger log = context.getLogger();
+      log.log(String.format("ak:%s", context.getAccessKey()));
+    }
+
+Initializer Interface Specification
+-----------------------------------
 
 The initializer of each runtime has the following features:
 
@@ -80,7 +93,7 @@ The initializer of each runtime has the following features:
   The initializer does not support custom parameters and only uses
   the variables in context for logic processing.
 
-* **No return values:**
+* **No return value:**
 
   No values will be returned for initializer invocation.
 
@@ -89,52 +102,52 @@ The initializer of each runtime has the following features:
   You can set an initialization timeout (≤ 300s) different from the
   timeout for invoking the handler.
 
-* **Execution duration:**
+* **Execution time:**
 
-  Function instances are processes that execute function logic in a
-  container and automatically scale if the number of requests changes.
-  When a new function instance is generated, the system invokes the
-  initializer and then executes the handler logic if the invocation
-  is successful.
+  The process that runs the function logic is called a function instance,
+  which runs in a container. FunctionGraph will scale the function
+  instance based on the user load. Whenever a new function instance is
+  created, the system will first call the initializer.
+  The system ensures that the handler logic will be executed only after
+  the initializer is successfully executed.
 
-*  **One-time execution:**
+* **One-time execution:**
 
-   After each function instance starts, the initializer can only be
-   executed once. If an instance fails to execute the initializer,
-   the instance is abandoned and another instance starts to execute
-   the initializer.
-   A maximum of three attempts are allowed.
-   If the initializer is executed successfully, the instance will
-   only process requests upon invocation and will no longer execute
-   the initializer again within its lifecycle.
+  FunctionGraph ensures that the initializer will only be successfully
+  executed once after each function instance is started.
+  If the execution fails, the function instance fails to execute, and
+  the next instance is selected for re-execution, with a maximum of 3
+  retries.
+  Once the execution succeeds, the initializer will not be executed
+  again during the life cycle of the instance, and only the request
+  processing function will be executed after receiving the Invoke request.
 
 * **Naming rule:**
 
   The initializer for Java has to be named as:
-  **[Package name].[Class name].handleRequest**
+  **[Package name].[Class name].[Initializer function name]**
 
-* **Billing:**
+  If your handler function implements
+  ``com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler``
+  or
+  ``com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler``,
+  name of initializer function is ``initializer``.
 
-  The initializer execution duration will be billed at the same rate
-  as the function execution duration.
+* **Metering and Billing:**
+
+  The execution time of the Initializer will also be measured, and the
+  user needs to pay for it. The billing method is the same as the
+  execution function.
 
 
 Configuring Initialization
 ---------------------------
 
-Prerequisites
-*************
-
-You have created a function.
-
-Initializing a Function
-***********************
-
-#. Log in to the `FunctionGraph console <https://console.otc.t-systems.com/functiongraph>`_.
+#. Log in to the :fg_console:`FunctionGraph console <>`.
 
    In the navigation pane, choose **Functions** > **Function List**.
 #. Click the function to be configured to go to the function details page.
-#. Choose **Configuration** > **Advanced Settings** and enable
+#. Choose **Configuration** > **Lifecycle** and enable
    **Initialization**
 
 
@@ -154,15 +167,9 @@ Initializing a Function
        The value ranges from 1s to 300s.
 
    * - Initializer
-     - You can enable function initialization on the Configuration tab page.
-       The initializer must be named in the same way as the handler.
+     - The initializer must be named in the same way as the handler.
        Set an initializer name in the format of **[Package name].[Class name].[Initializer function name]**
 
-       .. note::
-         * This parameter is not required if function initialization is disabled.
-         * Ensure that the function initializer and handler are in the same file.
+#. Save the configuration
 
-.. note::
-  * Set the initializer in the same way as the handler.
 
-    **[Package name].[Class name].[Initializer function name]**

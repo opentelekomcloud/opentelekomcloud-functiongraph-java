@@ -1,20 +1,25 @@
 Event Functions
 ==========================================
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :hidden:
 
    Handler <handler>
    Deploy <deploy>
    Context <context>
    Initializer <initializer>
-   Logging <logging/index>   
+   Pre-Stop <prestop>
+   Heartbeat <heartbeat>
+   Class isolation <classisolation>
+   Logging <logging/index>
    Samples <samples>
    Maven Archetype <mavenarchetype>
    Invoke FunctionGraph <invoke>
 
-Event functions can be configured with event triggers and integrate a variety of OpenTelekomCloud products 
-(such as object storage service OBS, distributed messaging service RabbitMQ version, cloud log service LTS, etc.).
+Event functions can be configured with event triggers and integrate
+a variety of OpenTelekomCloud products (such as object storage service
+OBS, distributed messaging service RabbitMQ version,
+cloud log service LTS, etc.).
 
 FunctionGraph Java libraries
 ----------------------------

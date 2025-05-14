@@ -216,7 +216,8 @@ release = pom_version
 # https://www.sphinx-doc.org/en/master/usage/extensions/extlinks.html
 extlinks= {
     "github_repo_master": (f'https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/{local_branch}/%s', "%s"),
-    "otc_fg_umn": ('https://docs.otc.t-systems.com/function-graph/umn/%s', "%s")
+    "otc_fg_umn": ('https://docs.otc.t-systems.com/function-graph/umn/%s', "%s"),
+    "fg_console": ('https://console.otc.t-systems.com/functiongraph/%s', "%s")
 }
-
+extlinks_detect_hardcoded_links = True
 

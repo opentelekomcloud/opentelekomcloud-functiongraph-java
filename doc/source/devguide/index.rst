@@ -4,8 +4,7 @@ Building with Java
    :maxdepth: 1
    :hidden:
 
-   Event Function <event_function/index>
-   HTTP Function <http_function/index>
+
 
 
 You can run Java code in OpenTelekomCloud FunctionGraph.
@@ -18,28 +17,23 @@ Supported Java Runtimes
 FunctionGraph supports following Java runtimes:
 
 .. list-table:: **Table 1** Java Runtimes
-   :widths: 25 25 50
+   :widths: 25 25
    :header-rows: 1
 
    * - Name
      - Identifier
-     - Remark
 
    * - Java 8
      - Java8
-     -  
 
    * - Java 11
      - Java11
-     - 
 
    * - Java 17
      - Java17
-     - comming soon
 
    * - Java 21
      - Java21
-     - comming soon
 
 
 FunctionGraph Types
@@ -47,7 +41,7 @@ FunctionGraph Types
 
 FunctionGraph provides 2 types of functions:
 
-* **Event Function**
+* **Event Functions**
 
   Event functions can be configured with event triggers and integrate
   a variety of OpenTelekomCloud products
@@ -56,9 +50,9 @@ FunctionGraph provides 2 types of functions:
 
   See :doc:`Event Function <event_function/index>`
 
-* **HTTP Function**
+* **HTTP Functions**
 
   HTTP functions support mainstream Web application frameworks and can
   be accessed through a browser or called directly by a URL.
 
-  See :doc:`HTTP Function <http_function/index>`
+  See :doc:`HTTP Functions <http_function/index>`

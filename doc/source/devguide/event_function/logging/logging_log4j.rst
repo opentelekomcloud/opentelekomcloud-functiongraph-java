@@ -36,6 +36,7 @@ printing.
     /**
     * Setup logging in initializer
     */
+    @Override
     public void initializer(Context context) {
       try {
         // put requestId into MDC

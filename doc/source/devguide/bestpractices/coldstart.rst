@@ -43,33 +43,7 @@ The life cycle of a Serverless instance can be divided into three stages:
   environment is usually called the "cold start time".
   In the Serverless architecture, the cold start problem is unavoidable.
 
-Currently, FunctionGraph has made a lot of optimizations for cold start on
-the system side.
-
 For the user side, please refer to the following solutions.
-
-Snapshot Cold Start (COMMING SOON)
-----------------------------------
-The slow cold start speed of Java applications is particularly prominent.
-OpenTelekomCloud FunctionGraph innovatively proposed a cold start acceleration
-solution based on process-level snapshots, which is committed to helping users
-break through the performance bottleneck of cold start without user perception
-(no/little code adaptation is required).
-This optimization solution directly restores the operating environment from
-the snapshot after application initialization, skipping the complex framework
-and business initialization stage, thereby significantly reducing the startup
-delay of Java applications, and the measured performance improvement is 90%+.
-
-Users can use Java functions to turn on the configuration switch for cold start
-snapshot acceleration.
-For details, see Configuring snapshot cold start.
-OpenTelekomCloud FunctionGraph will pre-execute the initialization code
-corresponding to the function, obtain a snapshot of its initialization
-execution context environment, and perform encrypted cache.
-When the function is subsequently called and cold start expansion is triggered,
-the execution environment will be restored directly from the pre-initialized
-application snapshot instead of going through the initialization process again,
-thereby greatly improving the startup performance.
 
 Reduce code size and image size
 -------------------------------

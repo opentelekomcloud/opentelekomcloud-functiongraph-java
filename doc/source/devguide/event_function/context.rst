@@ -19,7 +19,7 @@ Context interface
    * - getRequestID()
      - Get the request ID.
 
-   * - getRemainingTimeInMilliSeconds ()
+   * - getRemainingTimeInMilliSeconds()
      - Get the remaining running time of a function.
 
    * - getAccessKey()
@@ -55,13 +55,13 @@ Context interface
 
        To use this method, you need to configure the agency for the function.
 
-   * - getUserData(string key)
+   * - getUserData(String key)
      - Get the value passed by the user through the environment variable through key.
 
    * - getFunctionName()
      - Get the function name.
 
-   * - getRunningTimeInSeconds ()
+   * - getRunningTimeInSeconds()
      - Get the function timeout.
 
    * - getVersion()
@@ -84,7 +84,7 @@ Context interface
    * - getLogger()
      - Get the logger method provided by the context (by default, it will output information such as time and request ID).
 
-   * - getAlias
+   * - getAlias()
      - Get the alias of a function
 
    * - getInvokeProperty()
@@ -105,8 +105,6 @@ Context interface
    * - getState()
      - Get the state
 
-   * - setState()
-     - Set the state
 
 Log interface
 -------------
