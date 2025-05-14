@@ -1,13 +1,14 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
 import com.google.gson.annotations.SerializedName;
+import com.opentelekomcloud.services.functiongraph.runtime.core.TriggerEvent;
 
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString(includeFieldNames=true)
-public class SMNTriggerEvent {
+public class SMNTriggerEvent implements TriggerEvent{
 
   /**
    * SMN Records

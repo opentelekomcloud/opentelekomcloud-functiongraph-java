@@ -1,13 +1,14 @@
 package com.opentelekomcloud.samples;
 
-import com.opentelekomcloud.services.runtime.Context;
-import com.opentelekomcloud.services.runtime.RuntimeLogger;
-import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
+import com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler;
 import com.opentelekomcloud.services.functiongraph.runtime.events.smn.SMNRecord;
 import com.opentelekomcloud.services.functiongraph.runtime.events.smn.SMNTriggerEvent;
+import com.opentelekomcloud.services.runtime.Context;
+import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
-public class SMNTriggerFG implements RequestHandler<SMNTriggerEvent, String> {
+public class SMNTriggerFG implements EventRequestHandler<SMNTriggerEvent, String> {
 
+  @Override
   public String handleRequest(SMNTriggerEvent event, Context context) {
 
     RuntimeLogger log = context.getLogger();

@@ -3,14 +3,15 @@ package com.opentelekomcloud.samples;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.opentelekomcloud.services.runtime.Context;
-import com.opentelekomcloud.services.runtime.RuntimeLogger;
-import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
+import com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerResponse;
+import com.opentelekomcloud.services.runtime.Context;
+import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
-public class APIGTriggerFG implements RequestHandler<APIGTriggerEvent, APIGTriggerResponse> {
+public class APIGTriggerFG implements EventRequestHandler<APIGTriggerEvent, APIGTriggerResponse> {
 
+  @Override
   public APIGTriggerResponse handleRequest(APIGTriggerEvent event, Context context) {
 
     RuntimeLogger log = context.getLogger();

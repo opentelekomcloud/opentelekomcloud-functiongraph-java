@@ -1,6 +1,8 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
-public interface IObsTriggerInfo {
+import com.opentelekomcloud.services.functiongraph.runtime.core.TriggerEvent;
+
+public interface IObsTriggerInfo extends TriggerEvent {
   /**
    * 
    * @return bucket name

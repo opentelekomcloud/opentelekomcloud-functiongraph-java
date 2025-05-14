@@ -5,13 +5,14 @@ import java.util.Base64;
 import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
+import com.opentelekomcloud.services.functiongraph.runtime.core.TriggerEvent;
 
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString(includeFieldNames=true)
-public class APIGTriggerEvent {
+public class APIGTriggerEvent implements TriggerEvent {
 
   /**
    * Is body of an event encoded using Base64.

@@ -17,7 +17,6 @@ public class SampleFG implements RequestHandler<SampleFG.EventData , String> {
     return "ok";
   }
 
-
   public class EventData {
     String key;
 

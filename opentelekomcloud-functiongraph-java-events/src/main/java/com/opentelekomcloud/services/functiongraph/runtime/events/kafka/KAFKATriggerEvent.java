@@ -1,13 +1,14 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.kafka;
 
 import com.google.gson.annotations.SerializedName;
+import com.opentelekomcloud.services.functiongraph.runtime.core.TriggerEvent;
 
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString(includeFieldNames=true)
-public class KAFKATriggerEvent {
+public class KAFKATriggerEvent implements TriggerEvent {
 
   /**
    * Event version
