@@ -17,12 +17,28 @@ Create sample FunctionGraph project
 
 To create a sample java project using maven archetype use:
 
+From remote maven repository:
+
 .. code-block:: console
   :substitutions:
 
   mvn archetype:generate                                 \
     -DarchetypeGroupId=com.opentelekomcloud              \
-    -DarchetypeArtifactId=opentelekomcloud-functiongraph \
+    -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
+    -DarchetypeVersion=|pom_version|                    \
+    -DgroupId=com.sample                                 \
+    -DartifactId=sample                                  \
+    -DhandlerClassName=MyHandler
+
+From local maven repository:
+
+.. code-block:: console
+  :substitutions:
+
+  mvn archetype:generate                                 \
+    -DarchetypeCatalog=local                             \
+    -DarchetypeGroupId=com.opentelekomcloud              \
+    -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
     -DarchetypeVersion=|pom_version|                    \
     -DgroupId=com.sample                                 \
     -DartifactId=sample                                  \
