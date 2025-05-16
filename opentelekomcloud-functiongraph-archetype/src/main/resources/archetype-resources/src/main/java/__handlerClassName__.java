@@ -1,5 +1,6 @@
 package ${package};
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
@@ -7,8 +8,20 @@ import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
 
 public class ${handlerClassName} implements RequestHandler<JsonObject , String> {
 
-  public ${handlerClassName}() {
-    // Initialize stuff here, so that it can be reused for subsequent invocations.
+  @Override
+  public void initializer(Context context) {
+   // put initializer functionality here
+  }
+
+  @Override
+  public boolean heartbeat() {
+    // put heart beat functionality here
+    return true;
+  }
+
+  @Override
+  public void prestop() {
+    // put pre-stop functionality here
   }
 
   @Override
@@ -16,8 +29,13 @@ public class ${handlerClassName} implements RequestHandler<JsonObject , String> 
     
     RuntimeLogger log = context.getLogger();
 
-    log.log(String.format("class name: %s", event.getClass().getName()));
+    log.log("Hello world");
+
+    Gson gson = new Gson();
+
+    log.log(gson.toJson(event));
     
     return "ok";
   }
+
 }

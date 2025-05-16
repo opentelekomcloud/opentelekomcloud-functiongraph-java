@@ -80,10 +80,10 @@ public interface RequestHandler<Input, Output> {
   /**
    * default implementation for Pre-Stop method
    * 
-   * The preStop function is a callback function FunctionGraph invokes
+   * The Pre-stop function is a callback function FunctionGraph invokes
    * before the current function instance stops.
    */
-  default public void preStop() {
+  default public void prestop() {
     
   }
 }
