@@ -35,28 +35,32 @@
                       AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_SECRET_ACCESS_KEY }}
                       AWS_DEFAULT_REGION: eu-de
                   run: |
-                      pip install awscli
-                      aws configure set default.s3.signature_version s3v4
-                      export TARGET_PATH=s3://helpcenter-docs/opentelekomcloud-functiongraph-java/${{ github.head_ref || github.ref_name }}/
-                      export ENDPOINT_URL=https://obs.eu-de.otc.t-systems.com
-                      aws s3 rm "$TARGET_PATH" --recursive --endpoint-url "$ENDPOINT_URL"
-                      aws s3 sync doc/build/html "$TARGET_PATH" \
-                        --endpoint-url "$ENDPOINT_URL" \
-                        --delete \
-                        --exact-timestamps
-
-                      find doc/build/html -type f \( -name "*.woff2" -o -name "*.woff" -o -name "*.ttf" \) | while read file; do
-                          rel_path=${file#doc/build/html/}
-                          case "$file" in
-                              *.woff2) mime="font/woff2" ;;
-                              *.woff)  mime="font/woff" ;;
-                              *.ttf)   mime="font/ttf" ;;
-                              *)       mime="application/octet-stream" ;;
-                          esac
-                          echo "Re-uploading $rel_path with MIME type $mime"
-                          aws s3 cp "$file" "$TARGET_PATH$rel_path" \
+                        pip install awscli
+                        aws configure set default.s3.signature_version s3v4
+                        export TARGET_PATH=s3://helpcenter-docs/opentelekomcloud-functiongraph-java/${{ github.head_ref || github.ref_name }}/
+                        export ENDPOINT_URL=https://obs.eu-de.otc.t-systems.com
+                        aws s3 rm "$TARGET_PATH" --recursive --endpoint-url "$ENDPOINT_URL"
+                        aws s3 sync doc/build/html "$TARGET_PATH" \
                             --endpoint-url "$ENDPOINT_URL" \
-                            --content-type "$mime"
-                      done
+                            --delete \
+                            --exact-timestamps \
+                            --content-type "text/html" \
+                            --exclude "*.js" --exclude "*.css" --exclude "*.woff*" \
+                            && aws s3 cp doc/build/html "$TARGET_PATH" \
+                            --recursive \
+                            --endpoint-url "$ENDPOINT_URL" \
+                            --exclude "*" --include "*.js" \
+                            --content-type "application/javascript" \
+                            && aws s3 cp doc/build/html "$TARGET_PATH" \
+                            --recursive \
+                            --endpoint-url "$ENDPOINT_URL" \
+                            --exclude "*" --include "*.css" \
+                            --content-type "text/css" \
+                            && aws s3 cp doc/build/html "$TARGET_PATH" \
+                            --recursive \
+                            --endpoint-url "$ENDPOINT_URL" \
+                            --exclude "*" --include "*.woff" --include "*.woff2" \
+                            --content-type "font/woff2"
+
 
                 
