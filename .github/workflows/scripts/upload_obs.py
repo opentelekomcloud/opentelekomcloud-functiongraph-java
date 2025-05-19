@@ -54,6 +54,7 @@ def upload_directory(s3, bucket, local_path, remote_prefix):
                 ExtraArgs={'ContentType': content_type}
             )
 
+
 def main():
     # Resolve reference name
     ref_name = os.getenv('GITHUB_HEAD_REF') or os.getenv('GITHUB_REF_NAME') or 'default-branch'
