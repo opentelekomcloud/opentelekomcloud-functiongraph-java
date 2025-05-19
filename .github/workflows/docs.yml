@@ -37,4 +37,5 @@
                   run: |
                       pip install awscli
                       aws configure set default.s3.signature_version s3v4
+                      aws s3 rm "s3://helpcenter-docs/opentelekomcloud-functiongraph-java/${{ github.head_ref || github.ref_name }}/" --recursive --endpoint-url https://obs.eu-de.otc.t-systems.com
                       aws s3 cp doc/build/html s3://helpcenter-docs/opentelekomcloud-functiongraph-java/${{ github.head_ref || github.ref_name }}/ --recursive --endpoint-url https://obs.eu-de.otc.t-systems.com
