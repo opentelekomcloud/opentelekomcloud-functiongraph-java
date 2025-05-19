@@ -43,5 +43,6 @@
                       aws s3 sync doc/build/html "$TARGET_PATH" \
                         --endpoint-url "$ENDPOINT_URL" \
                         --delete
+                        --content-encoding gzip
 
                 
