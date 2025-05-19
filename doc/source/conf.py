@@ -96,8 +96,8 @@ show_authors = False
 # Get the Git commit values for last updated timestamp on each page
 # Environment for GitHub actions
 local_branch = ""
-if os.environ.get("GIT_BRANCH") is not None:
-    local_branch = os.environ.get("GIT_BRANCH")
+if os.environ.get("GH_ACTIONS_GIT_BRANCH") is not None:
+    local_branch = os.environ.get("GH_ACTIONS_GIT_BRANCH")
 else:
     repo = Repo(search_parent_directories=True)
     commit = repo.head.commit
