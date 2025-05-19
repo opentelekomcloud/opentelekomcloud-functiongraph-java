@@ -27,7 +27,7 @@
                 - name: Run Tox for Documentation
                   env:
                       GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
-                  run: tox -e docs
+                  run: tox -e docs && cat docs/build/html/index.html
                 
                 - name: Upload artifacts to OBS
                   env:
