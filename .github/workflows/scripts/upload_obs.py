@@ -2,6 +2,7 @@ import os
 import boto3
 from botocore.client import Config
 from pathlib import Path
+import mimetypes
 
 def get_s3_client():
     """Create a boto3 client for OBS using the S3 interface."""
@@ -36,14 +37,22 @@ def delete_prefix(s3, bucket, prefix):
         print(f"Deleted {len(chunk)} objects.")
 
 def upload_directory(s3, bucket, local_path, remote_prefix):
-    """Recursively upload a local directory to S3."""
+    """Recursively upload a local directory to S3 with correct Content-Type."""
     local_path = Path(local_path)
     for file_path in local_path.rglob('*'):
         if file_path.is_file():
             relative_path = file_path.relative_to(local_path)
             s3_key = f"{remote_prefix}{relative_path.as_posix()}"
-            print(f"Uploading {file_path} to {s3_key}")
-            s3.upload_file(str(file_path), bucket, s3_key)
+            content_type, _ = mimetypes.guess_type(file_path.as_posix())
+            content_type = content_type or 'application/octet-stream'
+
+            print(f"Uploading {file_path} to {s3_key} with Content-Type: {content_type}")
+            s3.upload_file(
+                str(file_path),
+                bucket,
+                s3_key,
+                ExtraArgs={'ContentType': content_type}
+            )
 
 def main():
     # Resolve reference name
