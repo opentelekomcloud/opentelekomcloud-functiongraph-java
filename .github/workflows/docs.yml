@@ -36,7 +36,7 @@
                       AWS_DEFAULT_REGION: eu-de
                   run: |
                       pip install boto3
-                      python scripts/upload_obs.py
+                      python .github/workflows/scripts/upload_obs.py
                         
 
                 
