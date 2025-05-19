@@ -44,4 +44,3 @@
                           echo "Uploading $file as $mime_type"
                           aws s3 cp "$file" "s3://helpcenter-docs/opentelekomcloud-functiongraph-java/${{ github.head_ref || github.ref_name }}/$s3_path" --content-type "$mime_type" --endpoint-url https://obs.eu-de.otc.t-systems.com
                       done
-                      
