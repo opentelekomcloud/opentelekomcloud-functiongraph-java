@@ -28,3 +28,13 @@
                   env:
                       GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
                   run: tox -e docs
+                
+                - name: Upload artifacts to OBS
+                  env:
+                      AWS_ACCESS_KEY_ID: ${{ secrets.OTC_ACCESS_KEY_ID }}
+                      AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_SECRET_ACCESS_KEY }}
+                      AWS_DEFAULT_REGION: eu-de
+                  run: |
+                      pip install awscli
+                      aws configure set default.s3.signature_version s3v4
+                      aws s3 cp doc/build/html s3://helpcenter-docs/opentelekomcloud-functiongraph-java/${{ github.head_ref || github.ref_name }}/ --recursive --endpoint-url https://obs.eu-de.otc.t-systems.com
