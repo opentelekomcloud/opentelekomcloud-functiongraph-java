@@ -37,7 +37,7 @@ def delete_prefix(s3, bucket, prefix):
         print(f"Deleted {len(chunk)} objects.")
 
 def upload_directory(s3, bucket, local_path, remote_prefix):
-    """Recursively upload a local directory to S3 with correct Content-Type."""
+    """Recursively upload a local directory to S3 with correct Content-Type using put_object."""
     local_path = Path(local_path)
     for file_path in local_path.rglob('*'):
         if file_path.is_file():
@@ -47,13 +47,13 @@ def upload_directory(s3, bucket, local_path, remote_prefix):
             content_type = content_type or 'application/octet-stream'
 
             print(f"Uploading {file_path} to {s3_key} with Content-Type: {content_type}")
-            s3.upload_file(
-                str(file_path),
-                bucket,
-                s3_key,
-                ExtraArgs={'ContentType': content_type}
-            )
-
+            with open(file_path, 'rb') as f:
+                s3.put_object(
+                    Bucket=bucket,
+                    Key=s3_key,
+                    Body=f,
+                    ContentType=content_type
+                )
 
 def main():
     # Resolve reference name
