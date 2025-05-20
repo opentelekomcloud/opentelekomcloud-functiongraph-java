@@ -20,4 +20,4 @@ For source code, see :github_repo_master:`opentelekomcloud-functiongraph-java on
 FunctionGraph User Guide
 ------------------------
 
-For FuncionGraph usage, see :otc_fg_umn:`FunctionGraph User Guide <>`.
+For FunctionGraph usage, see :otc_fg_umn:`FunctionGraph User Guide <>`.
