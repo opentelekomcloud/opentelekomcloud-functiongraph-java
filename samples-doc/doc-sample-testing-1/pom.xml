@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -9,10 +11,8 @@
   </parent>
 
   <groupId>com.opentelekomcloud.samples.doc</groupId>
-  <artifactId>functiongraph-samples-doc-sample-2</artifactId>
+  <artifactId>functiongraph-samples-doc-sample-testing-1</artifactId>
   <packaging>jar</packaging>
-
-  <!-- <name>doc-sample-2</name> -->
 
   <dependencies>
 
@@ -20,6 +20,13 @@
       <groupId>com.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
       <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -31,6 +38,13 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>uk.org.webcompere</groupId>
+      <artifactId>system-stubs-jupiter</artifactId>
+      <version>2.1.8</version>
       <scope>test</scope>
     </dependency>
 
@@ -67,12 +81,20 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.0</version>
+        <configuration>
+          <environmentVariables>
+            <OTC_SDK_AK>MyAccessKey</OTC_SDK_AK>
+            <OTC_SDK_SK>MySecretKey</OTC_SDK_SK>
+            <OTC_SDK_SECURITY_TOKEN>MySecretKey</OTC_SDK_SECURITY_TOKEN>
+            <OTC_SDK_PROJECTID>MyProjectId</OTC_SDK_PROJECTID>
+          </environmentVariables>
+        </configuration>
       </plugin>
+
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>3.5.0</version>
       </plugin>
-
 
     </plugins>
 

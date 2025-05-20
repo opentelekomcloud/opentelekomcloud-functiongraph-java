@@ -12,9 +12,10 @@ Event Functions
    Heartbeat <heartbeat>
    Class isolation <classisolation>
    Logging <logging/index>
-   Samples <samples>
    Maven Archetype <mavenarchetype>
    Invoke FunctionGraph <invoke>
+   Local Testing <localtesting>
+   Samples <samples>
 
 Event functions can be configured with event triggers and integrate
 a variety of OpenTelekomCloud products (such as object storage service
