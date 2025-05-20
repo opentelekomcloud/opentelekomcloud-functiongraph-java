@@ -14,6 +14,7 @@ To create a sample java project using maven archetype use:
 
 ```bash
 mvn archetype:generate                                           \
+  -DarchetypeCatalog=local                                       \
   -DarchetypeGroupId=com.opentelekomcloud                        \
   -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
   -DarchetypeVersion=0.0.1-SNAPSHOT                              \
