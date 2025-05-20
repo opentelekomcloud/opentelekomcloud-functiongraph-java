@@ -84,7 +84,7 @@ e.g. a configuration in maven-surfire-plugin for all test classes:
       </plugin>
 
 
-Or for Java >= version 11 using `System Stubs <https://github.com/webcompere/system-stubs>`_
+Or for Java (version >= 11) using `System Stubs <https://github.com/webcompere/system-stubs>`_
 
 
 Example
