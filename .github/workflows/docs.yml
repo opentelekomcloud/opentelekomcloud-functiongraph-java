@@ -27,7 +27,7 @@
                 - name: Run Tox for Documentation
                   env:
                       GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
-                  run: tox -e docs && cat doc/build/html/index.html
+                  run: tox -e docs
 
                 - name: Compress documentation into .tar.gz
                   run: |
@@ -61,7 +61,7 @@
                       CONTAINER_NAME: opentelekomcloud-functiongraph-java
                       PREFIX: ${{ github.head_ref || github.ref_name }}
                   run: |
-                      curl -O ~/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py && \
+                      curl -o ~/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py && \
                       python upload_artifact_swift.py \
                         --cloud "$CLOUD_NAME" \
                         --container "$CONTAINER_NAME" \
