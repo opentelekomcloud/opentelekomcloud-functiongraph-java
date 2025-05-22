@@ -68,7 +68,7 @@
                       --extra-vars '{
                         "cloud": {"cloud": "otc"},
                         "container": "opentelekomcloud-functiongraph-java",
-                        "prefix": "'"${{ github.head_ref || github.ref_name }}"'",
+                        "prefix": "test-prefix",
                         "src": "docs-html.tar.gz",
                         "public": true
                       }'
