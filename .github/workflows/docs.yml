@@ -53,21 +53,17 @@
 
                 - name: Install dependencies for Swift upload
                   run: |
-                      python -m pip install openstacksdk ansible requests requestsexceptions
+                      python -m pip install openstacksdk ansible requests requestsexceptions ansible
 
                 - name: Upload to Swift
-                  env:
-                      CLOUD_NAME: otc
-                      CONTAINER_NAME: opentelekomcloud-functiongraph-java
-                      PREFIX: ${{ github.head_ref || github.ref_name }}
                   run: |
                       curl -o ~/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py && \
-                      python ~/upload_artifact_swift.py \
-                        --cloud "$CLOUD_NAME" \
-                        --container "$CONTAINER_NAME" \
-                        --prefix "$PREFIX" \
-                        --src docs-html.tar.gz \
-                        --public
+                      ansible localhost -m ~/upload_artifact_swift.py -i localhost, \
+                        -e "cloud={'cloud': 'otc'} \
+                            container='opentelekomcloud-functiongraph-java' \
+                            prefix='${{ github.head_ref || github.ref_name }}' \
+                            src='docs-html.tar.gz' \
+                            public=true"
                 
                 - name: Upload artifacts to OBS
                   env:
