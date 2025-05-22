@@ -48,6 +48,14 @@
 
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>github_harald</id>
+      <name>GitHub Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
+    </repository>
+  </distributionManagement>
+
   <dependencyManagement>
     <dependencies>
 
@@ -78,7 +86,7 @@
         <version>${junit-jupiter.version}</version>
         <scope>test</scope>
       </dependency>
-  
+
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
