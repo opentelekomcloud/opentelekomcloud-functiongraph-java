@@ -65,11 +65,13 @@
                       -i localhost, \
                       -M ./library \
                       -m upload_artifact_swift \
-                      -e "cloud={'cloud': 'otc'} \
-                          container='opentelekomcloud-functiongraph-java' \
-                          prefix='${{ github.head_ref || github.ref_name }}' \
-                          src='docs-html.tar.gz' \
-                          public=true"
+                      --extra-vars '{
+                        "cloud": {"cloud": "otc"},
+                        "container": "opentelekomcloud-functiongraph-java",
+                        "prefix": "'"${{ github.head_ref || github.ref_name }}"'",
+                        "src": "docs-html.tar.gz",
+                        "public": true
+                      }'
                 
                 - name: Upload artifacts to OBS
                   env:
