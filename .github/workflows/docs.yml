@@ -62,7 +62,7 @@
                       PREFIX: ${{ github.head_ref || github.ref_name }}
                   run: |
                       curl -o ~/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py && \
-                      python upload_artifact_swift.py \
+                      python ~/upload_artifact_swift.py \
                         --cloud "$CLOUD_NAME" \
                         --container "$CONTAINER_NAME" \
                         --prefix "$PREFIX" \
