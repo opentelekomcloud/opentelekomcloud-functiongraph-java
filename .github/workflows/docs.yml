@@ -28,6 +28,46 @@
                   env:
                       GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
                   run: tox -e docs && cat doc/build/html/index.html
+
+                - name: Compress documentation into .tar.gz
+                  run: |
+                      tar -czf docs-html.tar.gz -C doc/build/html .
+
+                - name: Write clouds.yaml
+                  run: |
+                      mkdir -p ~/.config/openstack
+                      cat > ~/.config/openstack/clouds.yaml <<EOF
+                      clouds:
+                        otc:
+                          auth:
+                            auth_url: storage_endpoint
+                            username: demo_user
+                            password: demo_password
+                            project_name: demo_project
+                            user_domain_name: user_domain_name
+                            project_domain_name: project_domain_name
+                          region_name: swift_region_name
+                          interface: public
+                          identity_api_version: 3
+                      EOF
+
+                - name: Install dependencies for Swift upload
+                  run: |
+                      python -m pip install openstacksdk ansible requests requestsexceptions
+
+                - name: Upload to Swift
+                  env:
+                      CLOUD_NAME: otc
+                      CONTAINER_NAME: opentelekomcloud-functiongraph-java
+                      PREFIX: ${{ github.head_ref || github.ref_name }}
+                  run: |
+                      curl -O ~/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py && \
+                      python upload_artifact_swift.py \
+                        --cloud "$CLOUD_NAME" \
+                        --container "$CONTAINER_NAME" \
+                        --prefix "$PREFIX" \
+                        --src docs-html.tar.gz \
+                        --public
                 
                 - name: Upload artifacts to OBS
                   env:
