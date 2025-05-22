@@ -57,21 +57,9 @@
 
                 - name: Upload to Swift
                   run: |
-                    mkdir -p ./library
-                    curl -sSL -o ./library/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py
+                    curl -sSL -o ./playbooks/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py
 
-                    ansible localhost \
-                      --connection=local \
-                      -i localhost, \
-                      -M ./library \
-                      -m upload_artifact_swift \
-                      --extra-vars '{
-                        "cloud": {"cloud": "otc"},
-                        "container": "opentelekomcloud-functiongraph-java",
-                        "prefix": "test-prefix",
-                        "src": "docs-html.tar.gz",
-                        "public": true
-                      }'
+                    ansible-playbook -i localhost, -M ./playbooks upload-swift.yml
                 
                 - name: Upload artifacts to OBS
                   env:

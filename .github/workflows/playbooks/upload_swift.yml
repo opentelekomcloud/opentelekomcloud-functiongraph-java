@@ -1,0 +1,11 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Upload compressed docs to Swift
+      upload_artifact_swift:
+        cloud:
+          cloud: otc
+        container: opentelekomcloud-functiongraph-java
+        prefix: "test-prefix"
+        src: docs-html.tar.gz
+        public: true
