@@ -58,7 +58,7 @@
                 - name: Upload to Swift
                   run: |
                       curl -o ~/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py && \
-                      ansible localhost -m ~/upload_artifact_swift.py -i localhost, \
+                      ansible localhost --connection=local -m ~/upload_artifact_swift.py -i localhost, \
                         -e "cloud={'cloud': 'otc'} \
                             container='opentelekomcloud-functiongraph-java' \
                             prefix='${{ github.head_ref || github.ref_name }}' \
