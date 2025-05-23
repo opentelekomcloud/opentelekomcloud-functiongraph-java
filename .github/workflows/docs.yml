@@ -40,7 +40,7 @@
                       clouds:
                         otc:
                           auth:
-                            auth_url: storage_endpoint
+                            auth_url: ${{ secrets.OTC_ENDPOINT_STORAGE }}
                             username: demo_user
                             password: demo_password
                             project_name: demo_project
