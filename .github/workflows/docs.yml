@@ -41,9 +41,10 @@
                         otc:
                           auth:
                             auth_url: ${{ secrets.OTC_ENDPOINT_STORAGE }}
+                            object_store_endpoint_override: ${{ secrets.OTC_ENDPOINT_STORAGE }}
                             username: demo_user
                             password: demo_password
-                            project_name: demo_project
+                            project_name: ${{ secrets.OTC_PROJECT_NAME }}
                             user_domain_name: user_domain_name
                             project_domain_name: project_domain_name
                           region_name: swift_region_name
