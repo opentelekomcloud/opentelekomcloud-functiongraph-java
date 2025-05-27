@@ -45,8 +45,6 @@
                             password: demo_password
                             project_name: ${{ secrets.OTC_PROJECT_NAME }}
                             user_domain_name: user_domain_name
-                            project_domain_name: project_domain_name
-                          region_name: eu_de
                           interface: public
                           identity_api_version: 3
                           object_store_endpoint_override: ${{ secrets.OTC_ENDPOINT_STORAGE }}
