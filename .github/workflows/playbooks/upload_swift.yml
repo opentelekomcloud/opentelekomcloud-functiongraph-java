@@ -6,6 +6,5 @@
         cloud:
           cloud: otc
         container: opentelekomcloud-functiongraph-java
-        prefix: "test-prefix"
         src: docs-html.tar.gz
         public: true

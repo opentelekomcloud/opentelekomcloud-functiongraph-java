@@ -39,6 +39,7 @@
                       cat > ~/.config/openstack/clouds.yaml <<EOF
                       clouds:
                         otc:
+                          profile: otc
                           auth:
                             auth_url: https://iam.eu-de.otc.t-systems.com:443/v3
                             username: demo_user
