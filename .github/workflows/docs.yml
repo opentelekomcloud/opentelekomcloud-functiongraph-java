@@ -32,6 +32,7 @@
                 - name: Compress documentation into .tar.gz
                   run: |
                       tar -czf docs-html.tar.gz -C doc/build/html .
+                      mkdir -p ./library
                       cp docs-html.tar.gz ./library/docs-html.tar.gz
                       cp docs-html.tar.gz .github/workflows/playbooks/docs-html.tar.gz
 
