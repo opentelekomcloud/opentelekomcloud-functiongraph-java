@@ -6,5 +6,5 @@
         cloud:
           cloud: otc
         container: opentelekomcloud-functiongraph-java
-        src: ~/docs-html.tar.gz
+        src: ./docs-html.tar.gz
         public: true
