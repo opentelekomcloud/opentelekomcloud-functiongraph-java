@@ -48,13 +48,13 @@
 
   </properties>
 
-  <distributionManagement>
+  <!-- <distributionManagement>
     <repository>
-      <id>github_harald</id>
+      <id>github</id>
       <name>GitHub Apache Maven Packages</name>
       <url>https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
     </repository>
-  </distributionManagement>
+  </distributionManagement> -->
 
   <dependencyManagement>
     <dependencies>
