@@ -32,7 +32,6 @@
                 - name: Compress documentation into .tar.gz
                   run: |
                       tar -czf docs-html.tar.gz -C doc/build/html .
-                      cp docs-html.tar.gz ${{ github.workspace }}/docs-html.tar.gz
 
                 - name: Write clouds.yaml
                   run: |
