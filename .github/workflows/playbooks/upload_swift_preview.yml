@@ -1,10 +1,10 @@
 - hosts: localhost
   connection: local
+  vars:
+    run_id: "{{ run_id | default('manual-run') }}"
   tasks:
     - name: Upload compressed docs to Swift
       upload_artifact_swift:
-        vars:
-          run_id: "{{ run_id | default('manual-run') }}"
         cloud:
           cloud: otc
         container: gh_action_logs/opentelekomcloud-functiongraph-java/{{ run_id }}
