@@ -1,0 +1,14 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Upload compressed docs to Swift
+      upload_swift_preview:
+        cloud:
+          cloud: otc
+        container: github_actions_logs
+        files: 
+          - docs-html.tar.gz
+        partition: false
+        delete_after: 648000
+        public: true
+        shard_build: true
