@@ -2,7 +2,7 @@
   connection: local
   tasks:
     - name: Upload compressed docs to Swift
-      upload_swift_preview:
+      zuul_swift_upload:
         cloud:
           cloud: otc
         container: github_actions_logs
