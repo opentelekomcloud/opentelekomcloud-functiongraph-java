@@ -71,7 +71,7 @@
                     PREVIEW_URL: "${{ secrets.OTC_ENDPOINT_STORAGE_PREVIEW }}/gh_action_logs/opentelekomcloud-functiongraph-java/${{ github.run_id }}/"
                     PR_NUMBER: ${{ github.event.pull_request.number }}
                   run: |
-                    COMMENT_BODY="📦 Preview-Documentation uploaded to Swift:\n\n\${PREVIEW_URL}\"
+                    COMMENT_BODY="📦 Preview-Documentation uploaded to Swift:\n\n\`${PREVIEW_URL}`\"
                     
                     curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                         -H "Content-Type: application/json" \
