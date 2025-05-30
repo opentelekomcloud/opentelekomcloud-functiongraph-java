@@ -2,12 +2,9 @@
   connection: local
   tasks:
     - name: Upload compressed docs to Swift
-      zuul_swift_upload:
+      upload_artifact_swift:
         cloud:
           cloud: otc
-        container: github_actions_logs
-        files: 
-          - docs-html.tar.gz
-        partition: false
-        delete_after: 648000
+        container: opentelekomcloud-functiongraph-java
+        src: docs-html.tar.gz
         public: true

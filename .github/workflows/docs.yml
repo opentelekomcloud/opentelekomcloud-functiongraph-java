@@ -60,9 +60,6 @@
                 
                 - name: Upload to Swift as preview
                   run: |
-                    mkdir -p ./library
-                    curl -sSL -o ./library/zuul_swift_upload.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-logs-otc-swift/library/zuul_swift_upload.py
-
                     ansible-playbook -i localhost, -M ./library .github/workflows/playbooks/upload_swift_preview.yml
 
                 # - name: Upload to Swift
