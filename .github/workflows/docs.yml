@@ -60,7 +60,7 @@
                 
                 - name: Upload to Swift as preview
                   run: |
-                    ansible-playbook -i localhost, -M ./library .github/workflows/playbooks/upload_swift_preview.yml
+                    ansible-playbook -i localhost, -M .github/workflows/library .github/workflows/playbooks/upload_swift_preview.yml
 
                 # - name: Upload to Swift
                 #   run: |
