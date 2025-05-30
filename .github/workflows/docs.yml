@@ -59,8 +59,10 @@
                       python -m pip install openstacksdk ansible requests requestsexceptions ansible
                 
                 - name: Upload to Swift as preview
+                  env:
+                    RUN_ID: ${{ github.run_id }}
                   run: |
-                    ansible-playbook -i localhost, -M .github/workflows/library .github/workflows/playbooks/upload_swift_preview.yml
+                    ansible-playbook -i localhost, -M .github/workflows/library -e "run_id=$RUN_ID" .github/workflows/playbooks/upload_swift_preview.yml
 
                 # - name: Upload to Swift
                 #   run: |
@@ -69,19 +71,19 @@
 
                 #     ansible-playbook -i localhost, -M ./library .github/workflows/playbooks/upload_swift.yml
                 
-                - name: Upload artifacts to OBS
-                  env:
-                      AWS_ACCESS_KEY_ID: ${{ secrets.OTC_ACCESS_KEY_ID }}
-                      AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_SECRET_ACCESS_KEY }}
-                      AWS_DEFAULT_REGION: eu-de
-                  run: |
-                      pip install "awscli<1.33.0"
-                      export TARGET_PATH=s3://helpcenter-docs/opentelekomcloud-functiongraph-java/${{ github.head_ref || github.ref_name }}/
-                      export ENDPOINT_URL=https://obs.eu-de.otc.t-systems.com
-                      aws s3 rm "$TARGET_PATH" --recursive --endpoint-url "$ENDPOINT_URL"
-                      aws s3 cp doc/build/html "$TARGET_PATH" \
-                        --endpoint-url "$ENDPOINT_URL" \
-                        --recursive
+                # - name: Upload artifacts to OBS
+                #   env:
+                #       AWS_ACCESS_KEY_ID: ${{ secrets.OTC_ACCESS_KEY_ID }}
+                #       AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_SECRET_ACCESS_KEY }}
+                #       AWS_DEFAULT_REGION: eu-de
+                #   run: |
+                #       pip install "awscli<1.33.0"
+                #       export TARGET_PATH=s3://helpcenter-docs/opentelekomcloud-functiongraph-java/${{ github.head_ref || github.ref_name }}/
+                #       export ENDPOINT_URL=https://obs.eu-de.otc.t-systems.com
+                #       aws s3 rm "$TARGET_PATH" --recursive --endpoint-url "$ENDPOINT_URL"
+                #       aws s3 cp doc/build/html "$TARGET_PATH" \
+                #         --endpoint-url "$ENDPOINT_URL" \
+                #         --recursive
                         
 
                 

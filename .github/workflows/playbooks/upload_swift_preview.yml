@@ -3,8 +3,10 @@
   tasks:
     - name: Upload compressed docs to Swift
       upload_artifact_swift:
+        vars:
+          run_id: "{{ run_id | default('manual-run') }}"
         cloud:
           cloud: otc
-        container: gh_action_logs/opentelekomcloud-functiongraph-java
+        container: gh_action_logs/opentelekomcloud-functiongraph-java/{{ run_id }}
         src: docs-html.tar.gz
         public: true
