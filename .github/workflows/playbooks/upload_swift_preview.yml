@@ -5,6 +5,6 @@
       upload_artifact_swift:
         cloud:
           cloud: otc
-        container: opentelekomcloud-functiongraph-java
+        container: gh_action_logs/opentelekomcloud-functiongraph-java
         src: docs-html.tar.gz
         public: true

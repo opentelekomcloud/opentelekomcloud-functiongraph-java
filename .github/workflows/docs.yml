@@ -45,9 +45,9 @@
                           profile: otc
                           auth:
                             auth_url: https://iam.eu-de.otc.t-systems.com:443/v3
-                            username: ${{ secrets.OTC_AUTH_USERNAME }}
+                            username: ${{ secrets.OTC_AUTH_USERNAME_PREVIEW }}
                             password: ${{ secrets.OTC_AUTH_PASSWORD }}
-                            project_name: ${{ secrets.OTC_PROJECT_NAME }}
+                            project_name: ${{ secrets.OTC_PROJECT_NAME_PREVIEW }}
                             user_domain_name: ${{ secrets.OTC_DOMAIN }}
                           interface: public
                           identity_api_version: 3

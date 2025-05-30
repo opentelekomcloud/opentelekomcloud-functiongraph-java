@@ -48,7 +48,7 @@ def main():
             src=dict(required=True, type='str'),
             public=dict(type='bool', default=True),
             read_acl=dict(type='str'),
-            delete_after=dict(type='str', default='604800'),
+            delete_after=dict(type='str', default='1200'),
         )
     )
 
