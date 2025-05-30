@@ -11,4 +11,3 @@
         partition: false
         delete_after: 648000
         public: true
-        shard_build: true
