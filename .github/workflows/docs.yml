@@ -51,7 +51,7 @@
                             user_domain_name: ${{ secrets.OTC_DOMAIN }}
                           interface: public
                           identity_api_version: 3
-                          object_store_endpoint_override: ${{ secrets.OTC_ENDPOINT_STORAGE }}
+                          object_store_endpoint_override: ${{ secrets.OTC_ENDPOINT_STORAGE_PREVIEW }}
                       EOF
 
                 - name: Install dependencies for Swift upload
