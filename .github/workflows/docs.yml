@@ -64,6 +64,22 @@
                   run: |
                     ansible-playbook -i localhost, -M .github/workflows/library -e "run_id=$RUN_ID" .github/workflows/playbooks/upload_swift_preview.yml
 
+                - name: Comment on PR with container name
+                  if: github.event_name == 'pull_request'
+                  env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                    PREVIEW_URL: "${{ secrets.OTC_ENDPOINT_STORAGE_PREVIEW }}/gh_action_logs/opentelekomcloud-functiongraph-java/${{ github.run_id }}"
+                    PR_NUMBER: ${{ github.event.pull_request.number }}
+                  run: |
+                    COMMENT_BODY="📦 Preview-Documentation uploaded to Swift:\n\n\`${PREVIEW_URL}\`"
+                    
+                    curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+                        -H "Content-Type: application/json" \
+                        -X POST \
+                        -d "{\"body\": \"$COMMENT_BODY\"}" \
+                        "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
+
+
                 # - name: Upload to Swift
                 #   run: |
                 #     mkdir -p ./library
