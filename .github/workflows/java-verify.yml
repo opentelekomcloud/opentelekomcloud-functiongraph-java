@@ -1,11 +1,10 @@
-name: PR Workflow
+name: Verify java
 
 on:
   # push:
   #   branches: [ "main" ]
 
-  # pull_request:
-  #   branches: [ "main" ]
+  pull_request:
 
   workflow_dispatch:
 
@@ -25,6 +24,11 @@ jobs:
         java-version: '21'        
         cache: maven
 
+    - name: Setup maven
+      uses: stCarolas/setup-maven@v5
+      with:
+        maven-version: 3.6.3
+
     - name: Build with Maven
       run: mvn --batch-mode --file pom.xml --update-snapshots verify
 
@@ -32,26 +36,3 @@ jobs:
     # - name: Update dependency graph
     #   uses: advanced-security/maven-dependency-submission-action@v5
     #   if: github.ref == 'refs/heads/main'
-
-  # doc-check:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - name: checkout
-  #     uses: actions/checkout@v4
-
-    - name: setup python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12' 
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install tox
-
-    - name: Run Tox for Documentation
-      run: tox -e docs
-      env:
-        GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
-     
