@@ -13,10 +13,10 @@ jobs:
 
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Set up Python
-              uses: actions/setup-python@v3
+              uses: actions/setup-python@v4
               with:
                   python-version: '3.12'
 
@@ -35,7 +35,7 @@ jobs:
                   tar -czf docs-html.tar.gz -C doc/build/html .
                   mkdir -p ./library
                   cp docs-html.tar.gz ./library/docs-html.tar.gz
-                  cp docs-html.tar.gz .github/workflows/playbooks/docs-html.tar.gz
+                  cp docs-html.tar.gz playbooks/docs-html.tar.gz
 
             - name: Write clouds.yaml
               run: |
@@ -61,7 +61,7 @@ jobs:
             
             - name: Upload to Swift as preview
               run: |
-                ansible-playbook -i localhost, -M .github/workflows/library .github/workflows/playbooks/upload_swift.yml
+                ansible-playbook -i localhost, -M .github/workflows/library playbooks/upload_swift.yml
             
             # - name: Upload artifacts to OBS
             #   env:
