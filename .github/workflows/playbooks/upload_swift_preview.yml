@@ -10,3 +10,4 @@
         container: gh_action_logs/opentelekomcloud-functiongraph-java/{{ run_id }}
         src: docs-html.tar.gz
         public: true
+        delete_after: "604800"

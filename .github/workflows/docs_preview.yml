@@ -11,6 +11,10 @@
             runs-on: ubuntu-latest
 
             steps:
+                - name: Check if PR was merged
+                  if: github.event.pull_request.merged != true
+                  run: echo "Pull request was not merged — exiting." && exit 0
+
                 - name: Checkout code
                   uses: actions/checkout@v3
 

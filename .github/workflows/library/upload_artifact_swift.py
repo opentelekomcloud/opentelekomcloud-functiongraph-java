@@ -76,7 +76,7 @@ def main():
                 "X-Detect-Content-Type": "true",
                 "Content-Type": "application/gzip",
                 "Accept": "application/json",
-                "X-Delete-After": p["delete_after"] # 7 days
+                "X-Delete-After": p["delete_after"]
             }
 
             response = cloud.object_store.put(

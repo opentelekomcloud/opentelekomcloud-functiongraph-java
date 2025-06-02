@@ -8,3 +8,4 @@
         container: opentelekomcloud-functiongraph-java
         src: docs-html.tar.gz
         public: true
+        delete_after: "0"
