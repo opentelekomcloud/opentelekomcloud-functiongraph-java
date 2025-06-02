@@ -7,17 +7,24 @@
   <parent>
     <groupId>com.opentelekomcloud.samples</groupId>
     <artifactId>functiongraph.samples-events</artifactId>
-    <version>0.0.1-beta</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>com.opentelekomcloud.samples</groupId>
-  <artifactId>functiongraph-samples-events-apig</artifactId>
+  <artifactId>functiongraph-samples-events-timer</artifactId>
 
   <dependencies>
 
     <dependency>
       <groupId>com.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
       <version>${project.version}</version>
     </dependency>
 
@@ -28,18 +35,17 @@
     </dependency>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
-      <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
-      <version>${project.version}</version>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
     </dependency>
 
-
-    
   </dependencies>
 
   <build>
 
     <plugins>
+
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
@@ -48,7 +54,7 @@
           </descriptorRefs>
           <archive>
             <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.APIGTriggerFG.handleRequest</FunctionGraph-Handler-Name>
+              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.TimerTriggerFG.handleRequest</FunctionGraph-Handler-Name>
             </manifestEntries>
           </archive>
           <finalName>${project.name}</finalName>
@@ -63,17 +69,6 @@
           </execution>
         </executions>
       </plugin>
-
-
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.0</version>
-      </plugin>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.0</version>
-      </plugin>
-
 
     </plugins>
 

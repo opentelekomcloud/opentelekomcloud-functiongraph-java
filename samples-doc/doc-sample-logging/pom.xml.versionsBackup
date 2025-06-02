@@ -7,16 +7,13 @@
   <parent>
     <groupId>com.opentelekomcloud.samples.doc</groupId>
     <artifactId>functiongraph-samples-doc</artifactId>
-    <version>0.0.1-beta</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>com.opentelekomcloud.samples.doc</groupId>
-  <artifactId>functiongraph-samples-doc-debug</artifactId>
+  <artifactId>functiongraph-samples-doc-logging</artifactId> 
   <packaging>jar</packaging>
 
-  <properties>
-    <maven.compiler.release>11</maven.compiler.release>
-  </properties>
 
   <build>
 
@@ -30,7 +27,7 @@
           </descriptorRefs>
           <archive>
             <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.DebugTriggerFG.handleRequest</FunctionGraph-Handler-Name>
+              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.SampleFG.handleRequest</FunctionGraph-Handler-Name>
             </manifestEntries>
           </archive>
           <finalName>${project.name}</finalName>
@@ -48,4 +45,5 @@
 
     </plugins>
   </build>
+
 </project>
