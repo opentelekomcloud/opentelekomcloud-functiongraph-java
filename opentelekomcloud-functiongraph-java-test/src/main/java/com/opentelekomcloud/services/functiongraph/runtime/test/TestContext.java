@@ -124,11 +124,11 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get token, defaults to "token"
+   * Get security token from environment variable "OTC_SDK_SECURITY_TOKEN"
    */
   @Override
   public String getToken() {
-    return "token";
+    return System.getenv("OTC_SDK_SECURITY_TOKEN");
   }
 
   /**

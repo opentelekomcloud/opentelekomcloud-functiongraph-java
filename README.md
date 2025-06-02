@@ -1,32 +1,32 @@
 OpenTelekomCloud FunctionGraph Java libraries
 =============================================
 
-################### BETA Version, subject to change ###################
-
-..
-  .. image:: https://zuul.otc-service.com/api/tenant/eco/badge?project=opentelekomcloud/opentelekomcloud-functiongraph-java&pipeline=check&branch=master
-      :target: https://zuul.otc-service.com/t/eco/builds?project=opentelekomcloud%2Fopentelekomcloud-functiongraph-java
+> [!WARNING]  
+> ################### BETA Version, subject to change ###################
+>
 
 This Repository provides key libraries for running FunctionGraph on OpenTelekomCloud (OTC).
 
 Documentation
 -------------
 
-`For documentation and usage overview see:  <https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java/>`_
+For documentation and usage overview see: 
+* [FunctionGraph documentation](https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java/)
 
-:otc_fg_umn:`FunctionGraph User Guides <umn/>`
+* [FunctionGraph User Guides](https://docs.otc.t-systems.com/function-graph/umn)
 
-.. note::
-  To run documentation localy run:
-
-  .. code-block:: bash
-    tox -e docs-auto
+>[!NOTE] 
+>  To run documentation localy, run:
+>
+>  ```bash
+>  tox -e docs-auto
+>  ```
 
 
 Repository Overview
 -------------------
 
-.. code-block:: text
+```text
   .
   ├── doc                                         # Project documentation
   ├── opentelekomcloud-functiongraph-archetype    # Maven archtype
@@ -37,5 +37,6 @@ Repository Overview
   ├── samples-events                              # Samples on how to use event triggers
   ├── LICENSE
   ├── tox.ini                                     # tox 
-  └── README.rst                                  # This file
+  └── README.md                                  # This file
 
+```

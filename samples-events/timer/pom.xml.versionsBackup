@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.opentelekomcloud.samples.doc</groupId>
-    <artifactId>functiongraph-samples-doc</artifactId>
+    <groupId>com.opentelekomcloud.samples</groupId>
+    <artifactId>functiongraph.samples-events</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud.samples.doc</groupId>
-  <artifactId>functiongraph-samples-doc-sample-2</artifactId>
-  <packaging>jar</packaging>
-
-  <!-- <name>doc-sample-2</name> -->
+  <groupId>com.opentelekomcloud.samples</groupId>
+  <artifactId>functiongraph-samples-events-timer</artifactId>
 
   <dependencies>
 
@@ -22,22 +21,31 @@
       <version>${project.version}</version>
     </dependency>
 
+
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
     </dependency>
 
   </dependencies>
 
   <build>
+
     <plugins>
+
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
@@ -46,7 +54,7 @@
           </descriptorRefs>
           <archive>
             <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.SampleFG.handleRequest</FunctionGraph-Handler-Name>
+              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.TimerTriggerFG.handleRequest</FunctionGraph-Handler-Name>
             </manifestEntries>
           </archive>
           <finalName>${project.name}</finalName>
@@ -58,24 +66,11 @@
             <goals>
               <goal>single</goal>
             </goals>
-
           </execution>
         </executions>
       </plugin>
 
-
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.0</version>
-      </plugin>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.0</version>
-      </plugin>
-
-
     </plugins>
 
   </build>
-
 </project>

@@ -47,7 +47,7 @@ Step 2: Create bootstrap file
 Create a bootstrap file in the same directory as the jar package
 and enter the startup parameters.
 
-For availabe Runtimes paths, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>` 
+For availabe Runtimes paths, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>`
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/bootstrap
     :language: bash
@@ -63,7 +63,7 @@ Step 3: Create deployment zip file
 
 The structure of the deployment zip file is:
 
-.. code-block:: bash
+.. code-block:: console
    :caption: zip structure of doc-sample-springboot-|pom_version|.zip
 
     /
@@ -273,7 +273,7 @@ How to change Java and SpringBoot version?
 
 Adapt pom.xml
 """""""""""""
-.. code-block:: console
+.. code-block:: xml
   :caption: Change SpringBoot version, line 4
   :emphasize-lines: 4
   :linenos:
@@ -283,9 +283,9 @@ Adapt pom.xml
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.7.17</version>    <!-- NEW: <version>3.4.5</version> -->
     <relativePath />
-  </spring-boot-starter-parent>
+  </parent>
 
-.. code-block:: console
+.. code-block:: xml
   :caption: Change Java version, line 2
   :emphasize-lines: 2
   :linenos:

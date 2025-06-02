@@ -257,38 +257,38 @@ types in:
      - APIG
      - sync
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.apig <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/apig>`
-     - 
+     -
 
    * - Cloud Trace Service
      - CTS
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.cts <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/cts>`
-     - 
+     -
 
    * - Document Database Service
      - DDS
      - Async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.dds <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/dds>`
-     - 
+     -
 
 
    * - DMS for Kafka
      - DMS4Kafka
      - sync
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.dms4kafka <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/dms4kafka>`
-     - 
+     -
 
    * - Kafka (OPENSOURCEKAFKA)
      - KAFKA
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.kafka <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/kafka>`
-     - 
+     -
 
    * - Log Tank Service
      - LTS
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.lts <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/lts>`
-     - 
+     -
 
    * - S3 Object Storage Service
      - S3OBS
@@ -300,13 +300,13 @@ types in:
      - SMN
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.smn <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/smn>`
-     - 
+     -
 
    * - Timer
      - Timer
      - async
      - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.timer <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/timer>`
-     - 
+     -
 
 Accessing and using the FunctionGraph context object
 ----------------------------------------------------

@@ -6,7 +6,7 @@
 
   <groupId>com.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java</artifactId>
-  <version>0.0.1-beta</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!-- based on 2.0.6 -->
@@ -47,6 +47,14 @@
     <lombok.version>1.18.30</lombok.version>
 
   </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>github_harald</id>
+      <name>GitHub Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
+    </repository>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>

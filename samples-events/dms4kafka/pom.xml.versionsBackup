@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>com.opentelekomcloud.samples</groupId>
     <artifactId>functiongraph.samples-events</artifactId>
-    <version>0.0.1-beta</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>com.opentelekomcloud.samples</groupId>
-  <artifactId>functiongraph-samples-events-apig</artifactId>
-
+  <artifactId>functiongraph-samples-events-dms4kafka</artifactId>
+  
   <dependencies>
 
     <dependency>
@@ -32,14 +30,13 @@
       <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
       <version>${project.version}</version>
     </dependency>
-
-
     
   </dependencies>
 
   <build>
 
     <plugins>
+
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
@@ -48,7 +45,7 @@
           </descriptorRefs>
           <archive>
             <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.APIGTriggerFG.handleRequest</FunctionGraph-Handler-Name>
+              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.KafkaTriggerFG.handleRequest</FunctionGraph-Handler-Name>
             </manifestEntries>
           </archive>
           <finalName>${project.name}</finalName>
@@ -63,17 +60,6 @@
           </execution>
         </executions>
       </plugin>
-
-
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.0</version>
-      </plugin>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.0</version>
-      </plugin>
-
 
     </plugins>
 

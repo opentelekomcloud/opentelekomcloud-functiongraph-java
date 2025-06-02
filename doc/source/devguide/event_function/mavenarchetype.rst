@@ -8,7 +8,7 @@ Install maven archetype from source
 
 Run following command in folder ``opentelekomcloud-functiongraph-archetype``
 
-.. code-block:: console
+.. code-block:: bash
 
    mvn clean install
 
@@ -19,7 +19,7 @@ To create a sample java project using maven archetype use:
 
 From remote maven repository:
 
-.. code-block:: console
+.. code-block:: bash
   :substitutions:
 
   mvn archetype:generate                                 \
@@ -32,7 +32,7 @@ From remote maven repository:
 
 From local maven repository:
 
-.. code-block:: console
+.. code-block:: bash
   :substitutions:
 
   mvn archetype:generate                                 \
@@ -52,13 +52,13 @@ In root of generated project use one of following commands to build project:
 
 Using Maven:
 
-.. code-block:: console
+.. code-block:: bash
 
     mvn clean install
 
 
 Using Gradle:
 
-.. code-block:: console
+.. code-block:: bash
 
     gradle build
