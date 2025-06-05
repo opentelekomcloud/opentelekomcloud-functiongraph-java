@@ -212,7 +212,7 @@ pom_version=getPomVersion("../../pom.xml")
 
 rst_prolog = f"""
 .. |pom_version| replace:: {pom_version}
-.. |github_repo| replace::https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git
+.. |github_repo| replace:: "https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git"
 """
 version = pom_version
 release = pom_version
