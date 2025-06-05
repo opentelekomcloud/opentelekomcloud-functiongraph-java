@@ -4,15 +4,27 @@ on:
   release:
     types: [published]
 
-  workflow_dispatch:  
+  workflow_dispatch:
+    # used for bug fixing of documentation 
+    inputs:
+      branch:
+        type: string
+        description: The branch, tag or SHA to checkout to be used for publishing documentation
+        required: true
 
 jobs:
     doc-check:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout code
+            - if: ${{ github.event_name != 'workflow_dispatch' }}
+              name: Checkout code
               uses: actions/checkout@v4
+
+            - if: ${{ github.event_name == 'workflow_dispatch' }}
+              name: Checkout code for branch
+              uses: actions/checkout@v4
+              ref: ${{ github.event.inputs.branch }}
 
             - name: Set up Python
               uses: actions/setup-python@v5
@@ -34,7 +46,7 @@ jobs:
                   GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
                   GH_ACTIONS_GIT_COMMIT_DATE: ${{ steps.getgitinfo.outputs.GITHUB_COMMIT_DATE }}
                   GH_ACTIONS_GIT_COMMIT_HASH: ${{ github.sha }}
-                  
+
               run: tox -e docs
 
             - name: Compress documentation into .tar.gz
