@@ -96,15 +96,15 @@ show_authors = False
 # Get the Git commit values for last updated timestamp on each page
 # Environment for GitHub actions
 local_branch = ""
-# if os.environ.get("GH_ACTIONS_GIT_BRANCH") is not None:
-#     local_branch = os.environ.get("GH_ACTIONS_GIT_BRANCH")
-# else:
-repo = Repo(search_parent_directories=True)
-commit = repo.head.commit
-current_commit_hash = commit.hexsha
-current_commit_time = commit.committed_datetime.strftime('%Y-%m-%d %H:%M')
+if os.environ.get("GH_ACTIONS_GIT_BRANCH") is not None:
+    local_branch = os.environ.get("GH_ACTIONS_GIT_BRANCH")
+else:
+    repo = Repo(search_parent_directories=True)
+    commit = repo.head.commit
+    current_commit_hash = commit.hexsha
+    current_commit_time = commit.committed_datetime.strftime('%Y-%m-%d %H:%M')
 
-local_branch = repo.active_branch.name
+    local_branch = repo.active_branch.name
 
 # A few variables have to be set for the log-a-bug feature.
 #   gitsha: The SHA checksum of the bug description. Extracted from git log.
@@ -212,7 +212,7 @@ pom_version=getPomVersion("../../pom.xml")
 
 rst_prolog = f"""
 .. |pom_version| replace:: {pom_version}
-.. |github_repo| replace:: https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git
+.. |github_repo| replace::https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git
 """
 version = pom_version
 release = pom_version
