@@ -26,8 +26,6 @@ FunctionGraph Java libraries
 ----------------------------
 
 OpenTelekomCloud provides following libraries for FunctionGraph.
-These libraries are available through:
-`Maven Central Repository <https://search.maven.org/search?q=g:com.opentelekomcloud-functiongraph>`_.
 
 * :github_repo_master:`com.opentelekomcloud:opentelekomcloud-functiongraph-java-core <opentelekomcloud-functiongraph-java-core>` (required)
 
@@ -41,6 +39,77 @@ These libraries are available through:
 * :github_repo_master:`com.opentelekomcloud:opentelekomcloud-functiongraph-java-test <opentelekomcloud-functiongraph-java-test>`
 
   Defines a test classes, that can be used in JUnit tests.
+
+.. _ref_maven_install:
+
+Installing libraries
+^^^^^^^^^^^^^^^^^^^^
+
+These libraries are available through:
+
+.. tabs::
+
+  .. tab:: Source
+
+     Install libraries to local .m2 repository
+
+     .. code-block:: shell
+        :substitutions:
+
+        # Check out the repository with tag v|pom_version|
+        git clone --branch v|pom_version| --single-branch |github_repo|
+
+        # change to folder
+        cd opentelekomcloud-functiongraph-java
+
+        # run maven clean install
+        mvn clean install
+
+  .. tab:: GitHub
+
+     To use GitHub maven repository modify your ``settings.xml`` as follows and replace
+     ``[YOUR_GITHUB_TOKEN]`` with your `GitHub personal access token <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#installing-a-package>`_
+     (e.g. ~/.m2/settings.xml)
+
+     .. code-block:: xml
+        :caption: settings.xml
+
+        <servers>
+          <server>
+            <id>opentelekom_github</id>
+            <configuration>
+              <httpHeaders>
+                <property>
+                  <name>Authorization</name>
+                  <value>Bearer [YOUR_GITHUB_TOKEN]</value>
+                </property>
+              </httpHeaders>
+            </configuration>
+        </servers>
+
+        <profiles>
+          <profile>
+            <id>default</id>
+            <repositories>
+              <repository>
+                <id>opentelekom_github</id>
+                  <url>https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
+              </repository>
+            </repositories>
+          </profile>
+        </profiles>
+
+        <activeProfiles>
+          <activeProfile>default</activeProfile>
+        </activeProfiles>
+
+  .. tab:: Maven Central
+
+     Comming soon: `Maven Central Repository <https://search.maven.org/search?q=g:com.opentelekomcloud-functiongraph>`_
+
+
+Usage
+^^^^^
 
 These packages can be included as dependency to your Maven `pom.xml`
 or gardle `build.gradle` as follows:

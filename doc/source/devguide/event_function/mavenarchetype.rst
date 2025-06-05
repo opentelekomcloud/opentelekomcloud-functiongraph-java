@@ -3,46 +3,44 @@ Maven archetype for FunctionGraph sample project
 
 To ease project setup, following maven archetype can be used.
 
-Install maven archetype from source
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Install maven archetype
+^^^^^^^^^^^^^^^^^^^^^^^
 
-Run following command in folder ``opentelekomcloud-functiongraph-archetype``
-
-.. code-block:: bash
-
-   mvn clean install
+To install archtype, see :ref:`ref_maven_install`
 
 Create sample FunctionGraph project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To create a sample java project using maven archetype use:
 
-From remote maven repository:
+.. tabs::
 
-.. code-block:: bash
-  :substitutions:
+  .. tab:: From remote maven repository
 
-  mvn archetype:generate                                 \
-    -DarchetypeGroupId=com.opentelekomcloud              \
-    -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
-    -DarchetypeVersion=|pom_version|                    \
-    -DgroupId=com.sample                                 \
-    -DartifactId=sample                                  \
-    -DhandlerClassName=MyHandler
+     .. code-block:: shell
+        :substitutions:
 
-From local maven repository:
+        mvn archetype:generate                                 \
+          -DarchetypeGroupId=com.opentelekomcloud              \
+          -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
+          -DarchetypeVersion=|pom_version|                     \
+          -DgroupId=com.sample                                 \
+          -DartifactId=sample                                  \
+          -DhandlerClassName=MyHandler
 
-.. code-block:: bash
-  :substitutions:
+  .. tab:: From local maven repository:
 
-  mvn archetype:generate                                 \
-    -DarchetypeCatalog=local                             \
-    -DarchetypeGroupId=com.opentelekomcloud              \
-    -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
-    -DarchetypeVersion=|pom_version|                    \
-    -DgroupId=com.sample                                 \
-    -DartifactId=sample                                  \
-    -DhandlerClassName=MyHandler
+      .. code-block:: bash
+         :substitutions:
+
+         mvn archetype:generate                                 \
+           -DarchetypeCatalog=local                             \
+           -DarchetypeGroupId=com.opentelekomcloud              \
+           -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
+           -DarchetypeVersion=|pom_version|                     \
+           -DgroupId=com.sample                                 \
+           -DartifactId=sample                                  \
+           -DhandlerClassName=MyHandler
 
 
 Building the project

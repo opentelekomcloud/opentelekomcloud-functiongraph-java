@@ -2,7 +2,7 @@ name: Build and publish documentation
 
 on:
   release:
-    types: [published]
+    types: [published, edited]
 
 jobs:
     doc-check:
