@@ -98,6 +98,9 @@ show_authors = False
 local_branch = ""
 if os.environ.get("GH_ACTIONS_GIT_BRANCH") is not None:
     local_branch = os.environ.get("GH_ACTIONS_GIT_BRANCH")
+    
+    current_commit_hash = os.environ.get("GH_ACTIONS_GIT_COMMIT_HASH","unknown")
+    current_commit_time = os.environ.get("GH_ACTIONS_GIT_COMMIT_DATE","unknown")
 else:
     repo = Repo(search_parent_directories=True)
     commit = repo.head.commit

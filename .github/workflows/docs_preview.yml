@@ -28,9 +28,17 @@ jobs:
                   python -m pip install --upgrade pip
                   pip install tox
 
+            - name: get git info
+              id: getgitinfo
+              run: |
+                echo "GITHUB_COMMIT_DATE=$(git --no-pager log -1 --pretty='format:%cd' --date='format:%Y-%m-%d %H:%M:%S')" >> "$GITHUB_OUTPUT"
+
             - name: Run Tox for Documentation
               env:
                   GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
+                  GH_ACTIONS_GIT_COMMIT_DATE: ${{ steps.getgitinfo.outputs.GITHUB_COMMIT_DATE }}
+                  GH_ACTIONS_GIT_COMMIT_HASH: ${{ github.sha }}
+
               run: tox -e docs
 
             - name: Compress documentation into .tar.gz
