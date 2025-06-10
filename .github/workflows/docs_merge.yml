@@ -24,7 +24,8 @@ jobs:
             - if: ${{ github.event_name == 'workflow_dispatch' }}
               name: Checkout code for branch
               uses: actions/checkout@v4
-              ref: ${{ github.event.inputs.branch }}
+              with:
+                ref: ${{ github.event.inputs.branch }}
 
             - name: Set up Python
               uses: actions/setup-python@v5

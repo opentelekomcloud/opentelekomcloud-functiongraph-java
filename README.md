@@ -11,12 +11,15 @@ Documentation
 -------------
 
 For documentation and usage overview see: 
-* [FunctionGraph documentation](https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java/)
+* [FunctionGraph Java documentation](https://helpcenter-docs.obs-website.eu-de.otc.t-systems.com/opentelekomcloud-functiongraph-java/docs-build)
 
 * [FunctionGraph User Guides](https://docs.otc.t-systems.com/function-graph/umn)
 
 >[!NOTE] 
->  To run documentation localy, run:
+> To run documentation localy, 
+> Install [tox](https://tox.wiki/en/4.26.0/installation.html) 
+> 
+> and run:
 >
 >  ```bash
 >  tox -e docs-auto
