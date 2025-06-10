@@ -8,3 +8,4 @@ bin
 .vscode
 .tox
 =*
+pom.xml.versionsBackup
