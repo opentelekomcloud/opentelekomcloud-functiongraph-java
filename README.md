@@ -16,7 +16,7 @@ For documentation and usage overview see:
 * [FunctionGraph User Guides](https://docs.otc.t-systems.com/function-graph/umn)
 
 >[!NOTE] 
-> To run documentation localy, 
+> To run documentation locally, 
 > Install [tox](https://tox.wiki/en/4.26.0/installation.html) 
 > 
 > and run:
