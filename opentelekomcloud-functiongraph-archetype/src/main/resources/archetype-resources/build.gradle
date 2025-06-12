@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+  opentelekomcloud_functiongraph_java_version="${project.version}"
+}
+
+dependencies {
+    implementation "com.opentelekomcloud:opentelekomcloud-functiongraph-java-core:${opentelekomcloud_functiongraph_java_version}"
+    implementation "com.opentelekomcloud:opentelekomcloud-functiongraph-java-events:${opentelekomcloud_functiongraph_java_version}"
+    testImplementation "com.opentelekomcloud:opentelekomcloud-functiongraph-java-test:${opentelekomcloud_functiongraph_java_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.11.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.11.0"
+}
+
+task buildZip(type: Zip) {
+    // from compileJava -> not working with FunctionGraph
+    from 'handler.txt'
+    from jar
+    from processResources
+    from configurations.runtimeClasspath   
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+build.dependsOn buildZip

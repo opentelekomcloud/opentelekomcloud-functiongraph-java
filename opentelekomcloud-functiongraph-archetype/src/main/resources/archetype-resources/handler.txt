@@ -1,0 +1,11 @@
+# Handler name:
+${package}.${handlerClassName}.handleRequest
+
+# Function Initializer name:
+${package}.${handlerClassName}.initializer
+
+# Pre-stop Handler name:
+${package}.${handlerClassName}.prestop
+
+# Heartbeat Function Entry name:
+${package}.${handlerClassName}.heartbeat

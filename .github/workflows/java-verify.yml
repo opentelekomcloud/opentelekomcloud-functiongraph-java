@@ -1,0 +1,50 @@
+name: Verify java
+
+on:
+  # push:
+  #   branches: [ "main" ]
+
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '21'        
+        cache: maven
+
+    - name: Setup maven
+      uses: stCarolas/setup-maven@v5
+      with:
+        maven-version: 3.6.3
+
+    - name: Build with Maven
+      run: mvn --batch-mode --file pom.xml --update-snapshots verify
+
+    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+    # - name: Update dependency graph
+    #   uses: advanced-security/maven-dependency-submission-action@v5
+    #   if: github.ref == 'refs/heads/main'
+
+  check:
+    name: check
+    if: >
+      always()
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}

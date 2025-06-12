@@ -1,0 +1,84 @@
+name: Build and publish documentation
+
+on:
+  release:
+    types: [published]
+
+  workflow_dispatch:
+    # used for bug fixing of documentation 
+    inputs:
+      branch:
+        type: string
+        description: The branch, tag or SHA to checkout to be used for publishing documentation
+        required: true
+
+jobs:
+    doc-check:
+        runs-on: ubuntu-latest
+
+        steps:
+            - if: ${{ github.event_name != 'workflow_dispatch' }}
+              name: Checkout code
+              uses: actions/checkout@v4
+
+            - if: ${{ github.event_name == 'workflow_dispatch' }}
+              name: Checkout code for branch
+              uses: actions/checkout@v4
+              with:
+                ref: ${{ github.event.inputs.branch }}
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: '3.12'
+
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install tox
+
+            - name: get git info
+              id: getgitinfo
+              run: |
+                echo "GITHUB_COMMIT_DATE=$(git --no-pager log -1 --pretty='format:%cd' --date='format:%Y-%m-%d %H:%M:%S')" >> "$GITHUB_OUTPUT"
+
+            - name: Run Tox for Documentation
+              env:
+                  GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
+                  GH_ACTIONS_GIT_COMMIT_DATE: ${{ steps.getgitinfo.outputs.GITHUB_COMMIT_DATE }}
+                  GH_ACTIONS_GIT_COMMIT_HASH: ${{ github.sha }}
+
+              run: tox -e docs
+
+            - name: Compress documentation into .tar.gz
+              run: |
+                  tar -czf docs-html.tar.gz -C doc/build/html .
+                  mkdir -p ./library
+                  cp docs-html.tar.gz ./library/docs-html.tar.gz
+                  cp docs-html.tar.gz playbooks/docs-html.tar.gz
+
+            - name: Write clouds.yaml
+              run: |
+                  mkdir -p ~/.config/openstack
+                  cat > ~/.config/openstack/clouds.yaml <<EOF
+                  clouds:
+                    otc:
+                      profile: otc
+                      auth:
+                        auth_url: https://iam.eu-de.otc.t-systems.com:443/v3
+                        username: ${{ secrets.OTC_AUTH_USERNAME_PREVIEW }}
+                        password: ${{ secrets.OTC_AUTH_PASSWORD }}
+                        project_name: ${{ secrets.OTC_PROJECT_NAME_PREVIEW }}
+                        user_domain_name: ${{ secrets.OTC_DOMAIN }}
+                      interface: public
+                      identity_api_version: 3
+                      object_store_endpoint_override: ${{ secrets.OTC_ENDPOINT_STORAGE_PREVIEW }}
+                  EOF
+
+            - name: Install dependencies for Swift upload
+              run: |
+                  python -m pip install openstacksdk ansible requests requestsexceptions ansible
+            
+            - name: Upload to Swift
+              run: |
+                ansible-playbook -i localhost, -M .github/workflows/library playbooks/upload_swift.yml            

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.opentelekomcloud</groupId>
+    <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+    <version>0.0.1-beta</version>
+  </parent>
+
+  <groupId>com.opentelekomcloud</groupId>
+  <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
+  <packaging>jar</packaging>
+
+  <!-- based on 2.0.6 -->
+  <name>opentelekomcloud-functiongraph-java-events</name>
+  <description>FunctionGraph events library to use with OpenTelekomCloud</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.opentelekomcloud</groupId>
+      <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+</project>

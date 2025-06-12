@@ -1,0 +1,2 @@
+# Handler name:
+com.opentelekomcloud.samples.FGLogSample1.handleRequest

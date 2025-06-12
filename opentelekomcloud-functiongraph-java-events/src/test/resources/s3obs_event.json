@@ -1,0 +1,32 @@
+{
+  "Records": [
+      {
+          "eventVersion": "2.0",
+          "eventTime": "2018-01-09T07:50:50.028Z",
+          "requestParameters": {
+              "sourceIPAddress": "103.218.216.125"
+          },
+          "s3": {
+              "configurationId": "UK1DGFPYUKUZFHNQ00000160CC0B471D101ED30CE24DF4DB",
+              "object": {
+                  "eTag": "9d377b10ce778c4938b3c7e2c63a229a",
+                  "sequencer": "00000000160D9E681484D6B4C0000000",
+                  "key": "job.png",
+                  "size": 777835
+              },
+              "bucket": {
+                  "arn": "arn:fss:s3:::syj-input2",
+                  "name": "functionstorage-template",
+                  "ownerIdentity": {
+                      "PrincipalId": "0ed1b73473f24134a478962e631651eb"
+                  }
+              }
+          },
+          "awsRegion": "region",
+          "eventName": "ObjectCreated:Post",
+          "userIdentity": {
+              "principalId": "9bf43789b1ff4b679040f35cc4f0dc05"
+          }
+      }
+  ]
+}
