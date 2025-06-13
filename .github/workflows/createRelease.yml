@@ -154,14 +154,5 @@ jobs:
       - name: Install dependencies for Swift upload
         run: |
           python -m pip install openstacksdk ansible requests requestsexceptions ansible
-      
-      - name: Upload to Swift
-        run: |
-          ansible-playbook -i localhost, -M .github/workflows/library playbooks/upload_swift.yml            
 
-      - name: EchoURL
-        env:
-          URL: "${{ secrets.OTC_ENDPOINT_STORAGE }}"
-        run: |
-          echo "Documentation uploaded to Swift: ${URL}"
           
