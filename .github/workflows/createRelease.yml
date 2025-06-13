@@ -90,7 +90,7 @@ jobs:
           allowUpdates: true
           draft: false
           generateReleaseNotes: true
-          body: "See: [FunctionGraph Java Documentation]<https://helpcenter-docs.obs-website.eu-de.otc.t-systems.com/opentelekomcloud-functiongraph-java/docs-build>"
+          body: "See: [FunctionGraph Java Documentation]<https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java>"
 
 ###################### Publish Documentation
   publishDocs:
@@ -142,13 +142,13 @@ jobs:
               profile: otc
               auth:
                 auth_url: https://iam.eu-de.otc.t-systems.com:443/v3
-                username: ${{ secrets.OTC_AUTH_USERNAME_PREVIEW }}
+                username: ${{ secrets.OTC_AUTH_USERNAME }}
                 password: ${{ secrets.OTC_AUTH_PASSWORD }}
-                project_name: ${{ secrets.OTC_PROJECT_NAME_PREVIEW }}
+                project_name: ${{ secrets.OTC_PROJECT_NAME }}
                 user_domain_name: ${{ secrets.OTC_DOMAIN }}
               interface: public
               identity_api_version: 3
-              object_store_endpoint_override: ${{ secrets.OTC_ENDPOINT_STORAGE_PREVIEW }}
+              object_store_endpoint_override: ${{ secrets.OTC_ENDPOINT_STORAGE }}
           EOF
 
       - name: Install dependencies for Swift upload
@@ -158,3 +158,10 @@ jobs:
       - name: Upload to Swift
         run: |
           ansible-playbook -i localhost, -M .github/workflows/library playbooks/upload_swift.yml            
+
+      - name: EchoURL
+        env:
+          URL: "${{ secrets.OTC_ENDPOINT_STORAGE }}"
+        run: |
+          echo "Documentation uploaded to Swift: ${URL}"
+          

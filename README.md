@@ -11,7 +11,7 @@ Documentation
 -------------
 
 For documentation and usage overview see: 
-* [FunctionGraph Java documentation](https://helpcenter-docs.obs-website.eu-de.otc.t-systems.com/opentelekomcloud-functiongraph-java/docs-build)
+* [FunctionGraph Java documentation](https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java)
 
 * [FunctionGraph User Guides](https://docs.otc.t-systems.com/function-graph/umn)
 
