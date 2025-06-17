@@ -32,10 +32,10 @@ jobs:
             #   uses: actions/checkout@v4
 
             # - if: ${{ github.event_name == 'workflow_dispatch' }}
-            #   name: Checkout code for branch
-            #   uses: actions/checkout@v4
-            #   with:
-            #     ref: ${{ github.event.inputs.branch }}
+            - name: Checkout code for branch
+              uses: actions/checkout@v4
+              # with:
+              #   ref: ${{ github.event.inputs.branch }}
 
             - name: Set up Python
               uses: actions/setup-python@v5
@@ -57,7 +57,6 @@ jobs:
                   GH_ACTIONS_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
                   GH_ACTIONS_GIT_COMMIT_DATE: ${{ steps.getgitinfo.outputs.GITHUB_COMMIT_DATE }}
                   GH_ACTIONS_GIT_COMMIT_HASH: ${{ github.sha }}
-
               run: tox -e docs
 
             - name: Compress documentation into .tar.gz
