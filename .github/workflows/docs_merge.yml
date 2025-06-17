@@ -1,35 +1,41 @@
 name: Build and publish documentation
 
-on:
-  release:
-    types: [published]
+# on:
+#   release:
+#     types: [published]
 
-  workflow_dispatch:
-    # used for bug fixing of documentation 
-    inputs:
-      branch:
-        type: string
-        description: The branch, tag or SHA to checkout to be used for publishing documentation
-        required: true
+on:
+  pull_request:
+      branches:
+          - main
+          - initial
+
+  # workflow_dispatch:
+  #   # used for bug fixing of documentation 
+  #   inputs:
+  #     branch:
+  #       type: string
+  #       description: The branch, tag or SHA to checkout to be used for publishing documentation
+  #       required: true
 
 jobs:
     doc-check:
         runs-on: ubuntu-latest
 
         steps:
-            - name: DISABLE Workflow
-              if: 1 == 0
-              run: echo "Workflow disabled — exiting." && exit 0
+            # - name: DISABLE Workflow
+            #   if: 1 == 0
+            #   run: echo "Workflow disabled — exiting." && exit 0
 
-            - if: ${{ github.event_name != 'workflow_dispatch' }}
-              name: Checkout code
-              uses: actions/checkout@v4
+            # - if: ${{ github.event_name != 'workflow_dispatch' }}
+            #   name: Checkout code
+            #   uses: actions/checkout@v4
 
-            - if: ${{ github.event_name == 'workflow_dispatch' }}
-              name: Checkout code for branch
-              uses: actions/checkout@v4
-              with:
-                ref: ${{ github.event.inputs.branch }}
+            # - if: ${{ github.event_name == 'workflow_dispatch' }}
+            #   name: Checkout code for branch
+            #   uses: actions/checkout@v4
+            #   with:
+            #     ref: ${{ github.event.inputs.branch }}
 
             - name: Set up Python
               uses: actions/setup-python@v5
