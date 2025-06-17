@@ -90,7 +90,7 @@ jobs:
 
             - name: Clone up-to-date upload script
               run: |
-                curl -sSL -o ./library/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py
+                curl -sSL -o .github/workflows/library/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py
             
             - name: Upload to Swift
               run: |
