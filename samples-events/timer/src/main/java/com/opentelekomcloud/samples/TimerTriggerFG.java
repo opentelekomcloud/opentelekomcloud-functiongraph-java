@@ -2,7 +2,6 @@ package com.opentelekomcloud.samples;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler;
 import com.opentelekomcloud.services.functiongraph.runtime.events.timer.TimerTriggerEvent;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
@@ -10,11 +9,10 @@ import com.opentelekomcloud.services.runtime.RuntimeLogger;
 import lombok.Data;
 import lombok.ToString;
 
-public class TimerTriggerFG implements EventRequestHandler<TimerTriggerEvent, String> {
+public class TimerTriggerFG {
   private Gson gson = new Gson();
 
-  @Override
-  public String handleRequest(TimerTriggerEvent event, Context context) {
+  public String handleRequest(final TimerTriggerEvent event, final Context context) {
 
     RuntimeLogger log = context.getLogger();
 

@@ -9,13 +9,12 @@ import java.util.stream.Stream;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
-public class DebugTriggerFG implements RequestHandler<Object, String> {
+public class DebugTriggerFG {
 
-  public String handleRequest(Object event, Context context) {
+  public String handleRequest(final Object event, final  Context context) {
 
     // Show RuntimeLogger
     RuntimeLogger log = context.getLogger();

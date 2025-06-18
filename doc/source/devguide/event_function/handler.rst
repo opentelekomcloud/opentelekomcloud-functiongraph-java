@@ -45,65 +45,14 @@ The following example receives an event.
 
   import com.google.gson.JsonObject;
   import com.opentelekomcloud.services.runtime.Context;
-  import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler
 
-  public class FGEventHandler implements RequestHandler<JsonObject, String> {
+  public class FGEventHandler {
 
-    @Override
     public String handleRequest(JsonObject event, Context context) {
 
       return "Success";
     }
   }
-
-
-Valid class definitions for Java handlers
------------------------------------------
-To simplify handler configuration and validate the method signature
-at compile time the ``opentelekomcloud-functiongraph-java-core``
-library defines following interfaces:
-
-* Generic RequestHandler interface:
-  :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler <opentelekomcloud-functiongraph-java-core/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/core/RequestHandler.java>`
-* EventRequestHandler interface for predefined events:
-  :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler <opentelekomcloud-functiongraph-java-core/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/core/EventRequestHandler.java>`
-
-Generic RequestHandler interface
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The generic RequestHandler interface is a generic type that takes two parameters:
-
-* the ``input`` type and
-* the ``output`` type.
-
-Both types must be Java objects. In this example, our FGEventHandler class
-implements ``RequestHandler<FGEventHandler.EventData, String>``.
-
-The:
-* input type is ``EventData`` defined within the class, and
-* output type is ``String``.
-
-.. code-block:: java
-
-  public class FGEventHandler implements RequestHandler<FGEventHandler.EventData, String> {
-
-    @Override
-    public String handleRequest(FGEventHandler.EventData event, Context context) {
-      ...
-      return "Success";
-    }
-
-    public class EventData {
-     ...
-    }
-
-  }
-
-When using this interface, the Java runtime deserializes the event into the
-object with the ``input`` type, and serializes the ``output`` into text.
-
-Use this interface when the built-in serialization works with your input
-and output types.
 
 
 Defining and accessing the input event object
@@ -198,41 +147,6 @@ and the fields of the object can be accessed.
 
 For example, ``event.getId()`` retrieves the value of Id from the
 original input.
-
-
-EventRequestHandler interface for predefined events
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For predefined OpenTelekomCloud service events, you can also use:
-``com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler``
-instead of
-``com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler``
-
-The EventRequestHandler interface takes two parameters:
-
-* the ``input`` of type TriggerEvent and
-* the ``output`` type.
-
-As an example, here the use of an SMNTriggerEvent:
-
-.. code-block:: java
-  :caption: Example: SMNEventHandler.java
-  :name:  SMNEventHandler_java
-
-  package mypackage;
-
-  import com.google.gson.JsonObject;
-  import com.opentelekomcloud.services.runtime.Context;
-  import com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler
-
-  public class SMNEventHandler implements EventRequestHandler<SMNTriggerEvent, String> {
-
-    @Override
-    public String handleRequest(SMNTriggerEvent event, Context context) {
-
-      return "ok";
-    }
-  }
 
 
 Event Types of OpenTelekomCloud services

@@ -28,15 +28,13 @@ printing.
   import lombok.extern.slf4j.Slf4j;
 
   import com.opentelekomcloud.services.runtime.Context;
-  import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
 
   @Slf4j
-  public class App implements RequestHandler<EventData, String> {
+  public class App {
 
     /**
     * Setup logging in initializer
     */
-    @Override
     public void initializer(Context context) {
       try {
         // put requestId into MDC
@@ -63,7 +61,6 @@ printing.
     /**
     * FunctionGraph Handler
     */
-    @Override
     public String handleRequest(EventData event, Context context) {
       try {
         // put requestId into MDC

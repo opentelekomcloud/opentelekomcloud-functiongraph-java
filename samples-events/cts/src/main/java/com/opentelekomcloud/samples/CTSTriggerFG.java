@@ -1,14 +1,12 @@
 package com.opentelekomcloud.samples;
 
-import com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler;
 import com.opentelekomcloud.services.functiongraph.runtime.events.cts.CTSTriggerEvent;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
-public class CTSTriggerFG implements EventRequestHandler<CTSTriggerEvent, String> {
+public class CTSTriggerFG {
 
-  @Override
-  public String handleRequest(CTSTriggerEvent event, Context context) {
+  public String handleRequest(final CTSTriggerEvent event, final Context context) {
 
     RuntimeLogger log = context.getLogger();
 

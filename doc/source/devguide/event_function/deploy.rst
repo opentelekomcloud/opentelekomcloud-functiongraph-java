@@ -34,7 +34,7 @@ Example JAR Package
   |        └─ functiongraph
   |           └─ runtime
   |              └─ core
-  |              |  └─ RequestHandler.class
+  |              |  └─ ...
   |              └─ entity
   |                 └─ ...
 

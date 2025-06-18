@@ -7,10 +7,13 @@ import com.opentelekomcloud.services.runtime.Context;
  * FunctionGraph request handlers implement FunctionGraph application logic
  * using plain old java objects
  * as input and output.
- *
+ * @deprecated
+ * This interface is currently not working with gson on OpenTelekomCloud
+ * 
  * @param <Input>  The input parameter type
  * @param <Output> The output parameter type
  */
+@Deprecated
 public interface RequestHandler<Input, Output> {
   /**
    * Handles a FunctionGraph request

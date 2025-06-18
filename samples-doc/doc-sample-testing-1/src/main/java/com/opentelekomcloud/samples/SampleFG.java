@@ -2,12 +2,10 @@ package com.opentelekomcloud.samples;
 
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
-import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
 
-public class SampleFG implements RequestHandler<SampleFG.EventData , String> {
+public class SampleFG {
 
-  @Override
-  public String handleRequest(SampleFG.EventData event, Context context)  {
+  public String handleRequest(final SampleFG.EventData event, final Context context)  {
     
     RuntimeLogger log = context.getLogger();
 

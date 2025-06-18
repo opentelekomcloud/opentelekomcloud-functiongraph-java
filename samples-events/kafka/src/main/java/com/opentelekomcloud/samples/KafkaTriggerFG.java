@@ -1,14 +1,12 @@
 package com.opentelekomcloud.samples;
 
-import com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler;
 import com.opentelekomcloud.services.functiongraph.runtime.events.kafka.KAFKATriggerEvent;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
-public class KafkaTriggerFG implements EventRequestHandler<KAFKATriggerEvent, String> {
+public class KafkaTriggerFG {
 
-  @Override
-  public String handleRequest(KAFKATriggerEvent event, Context context) {
+  public String handleRequest(final KAFKATriggerEvent event, final Context context) {
     
     RuntimeLogger log = context.getLogger();
 
