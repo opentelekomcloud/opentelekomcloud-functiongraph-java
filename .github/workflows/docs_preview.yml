@@ -69,12 +69,16 @@ jobs:
             - name: Install dependencies for Swift upload
               run: |
                   python -m pip install openstacksdk ansible requests requestsexceptions ansible
+            
+            - name: Clone up-to-date upload script
+              run: |
+                curl -sSL -o ./library/upload_artifact_swift.py https://raw.githubusercontent.com/opentelekomcloud-infra/otc-zuul-jobs/refs/heads/main/roles/upload-artifact-swift/library/upload_artifact_swift.py
 
             - name: Upload to Swift as preview
               env:
                 RUN_ID: ${{ github.run_id }}
               run: |
-                ansible-playbook -i localhost, -M .github/workflows/library -e "run_id=$RUN_ID" playbooks/upload_swift_preview.yml
+                ansible-playbook -i localhost, -M ./library -e "run_id=$RUN_ID" playbooks/upload_swift_preview.yml
 
             - name: Comment on PR with container name
               if: github.event_name == 'pull_request'
