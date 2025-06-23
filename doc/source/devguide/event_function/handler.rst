@@ -48,10 +48,11 @@ The following example receives an event.
 
   public class FGEventHandler {
 
-    public String handleRequest(JsonObject event, Context context) {
+    public String handleRequest(final JsonObject event, final Context context) {
 
       return "Success";
     }
+
   }
 
 

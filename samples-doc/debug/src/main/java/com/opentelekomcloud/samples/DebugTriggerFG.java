@@ -9,12 +9,13 @@ import java.util.stream.Stream;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
 public class DebugTriggerFG {
 
-  public String handleRequest(final Object event, final  Context context) {
+  public String handleRequest(final JsonObject event, final Context context) {
 
     // Show RuntimeLogger
     RuntimeLogger log = context.getLogger();
@@ -28,26 +29,26 @@ public class DebugTriggerFG {
       // Show conext data
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(context);
-      System.out.println(json);
+      log.log(json);
 
       // Show files 
       File jarFile = new File(
           com.opentelekomcloud.services.runtime.Context.class.getProtectionDomain().getCodeSource().getLocation()
               .toURI().getPath());
 
-      System.out.println(String.format("AbsolutePath: %s", jarFile.getAbsolutePath()));
+      log.log(String.format("AbsolutePath: %s", jarFile.getAbsolutePath()));
 
       Set<String> files = listFilesUsingJavaIO(jarFile.getParentFile().getAbsolutePath());
 
       for (String s : files) {
-        System.out.println(String.format("%s", s));
+        log.log(String.format("%s", s));
       }
 
       // show public methods on Context
-      printMethods(Context.class);
+      printMethods(log,Context.class);
 
       // show public methods on RuntimLogger
-      printMethods(RuntimeLogger.class);
+      printMethods(log, RuntimeLogger.class);
       
 
     } catch (Exception e) {
@@ -57,12 +58,12 @@ public class DebugTriggerFG {
     return "ok";
   }
 
-  private <T> void printMethods(Class<T> clazz) {
+  private <T> void printMethods(RuntimeLogger log, Class<T> clazz) {
     Method[] allMethodsRuntimeLogger = clazz.getDeclaredMethods();
-    System.out.println(String.format("Methods in Class: %s", clazz.getName()));
+    log.log(String.format("Methods in class: %s", clazz.getName()));
     for (Method method : allMethodsRuntimeLogger) {
       if (Modifier.isPublic(method.getModifiers())) {
-        System.out.println(method);
+        log.log(method.toString());
       }
     }
   }

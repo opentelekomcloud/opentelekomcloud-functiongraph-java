@@ -61,7 +61,7 @@ printing.
     /**
     * FunctionGraph Handler
     */
-    public String handleRequest(EventData event, Context context) {
+    public String handleRequest(final EventData event, final Context context) {
       try {
         // put requestId into MDC
         MDC.put("requestid", context.getRequestID());
