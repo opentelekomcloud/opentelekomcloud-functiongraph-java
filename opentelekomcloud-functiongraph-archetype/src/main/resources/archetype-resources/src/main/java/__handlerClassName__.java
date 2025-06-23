@@ -20,7 +20,7 @@ public class ${handlerClassName} {
     // put pre-stop functionality here
   }
 
-  public String handleRequest(final JsonObject event, Context context)  {
+  public String handleRequest(final JsonObject event, final  Context context)  {
     
     RuntimeLogger log = context.getLogger();
 
