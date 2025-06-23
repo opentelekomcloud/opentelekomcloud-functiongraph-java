@@ -1,5 +1,5 @@
 {
-  "body": "{\"name\": \"OpenTelekomCloud\"}",
+  "body": "eyJuYW1lIjogIk9wZW5UZWxla29tQ2xvdWQifQ==",
   "requestContext": {
       "apiId": "bc1dcffd-aa35-474d-897c-d53425a4c08e",
       "requestId": "11cdcdcf33949dc6d722640a13091c77",
@@ -25,5 +25,5 @@
       "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0"
   },
   "path": "/",
-  "isBase64Encoded": false
+  "isBase64Encoded": true
 }
