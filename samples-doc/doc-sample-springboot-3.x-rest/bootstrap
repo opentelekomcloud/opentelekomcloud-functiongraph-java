@@ -1,0 +1,4 @@
+/opt/function/runtime/java17/rtsp/jre/bin/java \
+  -Dfile.encoding=utf-8 \
+  -cp $RUNTIME_CODE_ROOT/functiongraph-samples-doc-springboot-3x.jar:$RUNTIME_CODE_ROOT/lib/* \
+  com.opentelekomcloud.samples.springboot.RestServiceApplication

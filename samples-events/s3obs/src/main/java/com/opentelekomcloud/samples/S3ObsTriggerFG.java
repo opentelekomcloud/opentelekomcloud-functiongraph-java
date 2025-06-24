@@ -1,14 +1,12 @@
 package com.opentelekomcloud.samples;
 
-import com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler;
 import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.S3ObsTriggerEvent;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
-public class S3ObsTriggerFG implements EventRequestHandler<S3ObsTriggerEvent, String>{
+public class S3ObsTriggerFG {
 
-  @Override
-  public String handleRequest(S3ObsTriggerEvent event, Context context)  {
+  public String handleRequest(final S3ObsTriggerEvent event, final Context context)  {
     
     RuntimeLogger log = context.getLogger();
 

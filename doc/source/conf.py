@@ -24,7 +24,7 @@ from datetime import datetime
 extensions = [
      'sphinx.ext.autodoc',
      'otcdocstheme',
-#    'cliff.sphinxext',
+#     'cliff.sphinxext',
      'sphinx_tabs.tabs',
      'sphinx_copybutton',
      'sphinx_design',
@@ -40,6 +40,9 @@ otcdocs_repo_name = 'opentelekomcloud/opentelekomcloud-functiongraph-java'
 otcdocs_edit_enabled = False
 otcdocs_bug_reported_enabled = False
 otcdocs_pdf_link = False
+
+# Analytics app name
+otcdocs_analytics_app = 'opentelekomcloud-functiongraph-java'
 
 # Those variables are needed for indexing into OpenSearch
 otcdocs_doc_environment = 'public'
@@ -165,12 +168,20 @@ html_title = "FunctionGraph Developer Guide Java"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# These paths are either relative to html_static_path
+# or fully qualified paths (eg. https://...)
+html_css_files = [
+    'css/custom.css',
+]
+
 templates_path = ['_templates']
 
 # Do not include sources into the rendered results
 html_copy_source = False
+
 # Don't let openstackdocstheme insert TOCs automatically.
-# theme_include_auto_toc = False
+theme_include_auto_toc = False
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = '%sdoc' % project
@@ -190,11 +201,11 @@ autoclass_content = "both"
 
 # -- Options for cliff.sphinxext plugin ---------------------------------------
 
-autoprogram_cliff_application = 'openstack'
+# autoprogram_cliff_application = 'openstack'
 
-autoprogram_cliff_ignored = [
-    '--help', '--format', '--column', '--max-width', '--fit-width',
-    '--print-empty', '--prefix', '--noindent', '--quote']
+# autoprogram_cliff_ignored = [
+#     '--help', '--format', '--column', '--max-width', '--fit-width',
+#     '--print-empty', '--prefix', '--noindent', '--quote']
 
 
 # -- Options sphinx-tabs -------------------------
@@ -230,3 +241,8 @@ extlinks= {
 }
 extlinks_detect_hardcoded_links = True
 
+# Copybutton and otc theme button are not compatible. 
+# to, use custom selector:
+copybutton_selector = "div.copy-button pre"
+# do not copy line numbers and prompt character
+copybutton_exclude = '.linenos, .gp'

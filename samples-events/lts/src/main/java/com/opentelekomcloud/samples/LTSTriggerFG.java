@@ -4,12 +4,11 @@ import java.io.UnsupportedEncodingException;
 
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
-import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
 import com.opentelekomcloud.services.functiongraph.runtime.events.lts.LTSTriggerEvent;
 
-public class LTSTriggerFG implements RequestHandler<LTSTriggerEvent, String> {
+public class LTSTriggerFG {
 
-  public String handleRequest(LTSTriggerEvent event, Context context) {
+  public String handleRequest(final LTSTriggerEvent event, final Context context) {
 
     RuntimeLogger log = context.getLogger();
 

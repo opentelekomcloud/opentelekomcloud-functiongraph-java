@@ -127,12 +127,6 @@ The initializer of each runtime has the following features:
   The initializer for Java has to be named as:
   **[Package name].[Class name].[Initializer function name]**
 
-  If your handler function implements
-  ``com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler``
-  or
-  ``com.opentelekomcloud.services.functiongraph.runtime.core.EventRequestHandler``,
-  name of initializer function is ``initializer``.
-
 * **Metering and Billing:**
 
   The execution time of the Initializer will also be measured, and the

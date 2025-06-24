@@ -3,8 +3,17 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
+    
     mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
+    mavenLocal()
+    
 }
 
 ext {
@@ -12,7 +21,7 @@ ext {
 }
 
 dependencies {
-    implementation "com.opentelekomcloud:opentelekomcloud-functiongraph-java:${opentelekomcloud_functiongraph_java_version}"
+    implementation "com.opentelekomcloud:opentelekomcloud-functiongraph-java-core:${opentelekomcloud_functiongraph_java_version}"
 }
 
 task buildZip(type: Zip) {

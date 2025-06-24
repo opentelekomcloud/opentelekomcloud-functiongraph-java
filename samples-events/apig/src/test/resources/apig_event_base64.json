@@ -1,0 +1,29 @@
+{
+  "body": "eyJuYW1lIjogIk9wZW5UZWxla29tQ2xvdWQifQ==",
+  "requestContext": {
+      "apiId": "bc1dcffd-aa35-474d-897c-d53425a4c08e",
+      "requestId": "11cdcdcf33949dc6d722640a13091c77",
+      "stage": "RELEASE"
+  },
+  "queryStringParameters": {
+      "responseType": "html"
+  },
+  "httpMethod": "GET",
+  "pathParameters": {},
+  "headers": {
+      "accept-language": "q=0.5,en-US;q=0.3,en;q=0.2",
+      "accept-encoding": "gzip, deflate, br",
+      "x-forwarded-port": "443",
+      "x-forwarded-for": "103.218.216.98",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "upgrade-insecure-requests": "1",
+      "host": "host",
+      "x-forwarded-proto": "https",
+      "pragma": "no-cache",
+      "cache-control": "no-cache",
+      "x-real-ip": "103.218.216.98",
+      "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0"
+  },
+  "path": "/",
+  "isBase64Encoded": true
+}

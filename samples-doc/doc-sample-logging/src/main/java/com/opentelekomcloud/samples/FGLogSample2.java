@@ -4,12 +4,10 @@ import com.google.gson.JsonObject;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 import com.opentelekomcloud.services.functiongraph.runtime.core.ContextHelper;
-import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
 
-public class FGLogSample2 implements RequestHandler<JsonObject, String> {
+public class FGLogSample2 {
 
-  @Override
-  public String handleRequest(JsonObject event, Context context) {
+  public String handleRequest(final JsonObject event, final Context context) {
     // get RuntimeLogger from context
     RuntimeLogger log = context.getLogger();
 

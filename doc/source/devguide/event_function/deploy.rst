@@ -34,7 +34,7 @@ Example JAR Package
   |        └─ functiongraph
   |           └─ runtime
   |              └─ core
-  |              |  └─ RequestHandler.class
+  |              |  └─ ...
   |              └─ entity
   |                 └─ ...
 
@@ -83,8 +83,9 @@ Building a deployment package
 
 Deployment packages can be built using gradle or maven.
 
-Following snippets show how to build a ZIP package with gradle or a
-JAR Package with dependencies using maven.
+Following snippets show how to build JAR Package with dependencies using maven or a ZIP package with gradle.
+
+See full code in :github_repo_master:`doc-sample-deploy <sample-doc/doc-sample-deploy>`
 
 .. tabs::
 

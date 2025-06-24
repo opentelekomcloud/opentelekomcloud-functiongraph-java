@@ -7,13 +7,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
-import com.opentelekomcloud.services.functiongraph.runtime.core.RequestHandler;
 
-public class FGLogSample1 implements RequestHandler<JsonObject, String> {
+public class FGLogSample1 {
   Gson gsonPrettyPrint = new GsonBuilder().setPrettyPrinting().create();
 
-  @Override
-  public String handleRequest(JsonObject event, Context context) {
+  public String handleRequest(final JsonObject event, final Context context) {
     // get RuntimeLogger from context
     RuntimeLogger log = context.getLogger();
 

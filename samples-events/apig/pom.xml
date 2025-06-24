@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.opentelekomcloud.samples</groupId>
     <artifactId>functiongraph.samples-events</artifactId>
-    <version>0.0.1-beta</version>
+    <version>0.0.2-beta</version>
   </parent>
 
   <groupId>com.opentelekomcloud.samples</groupId>
@@ -33,7 +33,12 @@
       <version>${project.version}</version>
     </dependency>
 
-
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
     
   </dependencies>
 

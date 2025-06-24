@@ -51,9 +51,9 @@ If your code is:
 package com.opentelekomcloud.samples.apig;
 ...
 
-public class APIGTriggerTest implements RequestHandler<APIGTriggerEvent, APIGTriggerResponse> {
+public class APIGTriggerTest {
 
-  public APIGTriggerResponse handleRequest(APIGTriggerEvent event, Context context) {
+  public APIGTriggerResponse handleRequest(final APIGTriggerEvent event, final Context context) {
     ...
   }
 
