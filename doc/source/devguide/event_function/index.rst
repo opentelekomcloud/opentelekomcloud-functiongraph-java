@@ -5,13 +5,13 @@ Event Functions
    :hidden:
 
    Handler <handler>
-   Deploy <deploy>
    Context <context>
    Initializer <initializer>
    Pre-Stop <prestop>
    Heartbeat <heartbeat>
-   Class isolation <classisolation>
    Logging <logging/index>
+   Deploy <deploy>
+   Class isolation <classisolation>
    Maven Archetype <mavenarchetype>
    Invoke FunctionGraph <invoke>
    Local Testing <localtesting>
@@ -65,23 +65,28 @@ These libraries are available through:
         # run maven clean install
         mvn clean install
 
-  .. tab:: GitHub
+  .. tab:: GitHub and Maven
 
-     To use GitHub maven repository modify your ``settings.xml`` as follows and replace
-     ``[YOUR_GITHUB_TOKEN]`` with your `GitHub personal access token <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#installing-a-package>`_
-     (e.g. ~/.m2/settings.xml)
+    To use GitHub maven repository modify your ``settings.xml`` (e.g. ~/.m2/settings.xml) as follows.
+
+    If you need to use a proxy for internet connections, see `Configuring a proxy <https://maven.apache.org/guides/mini/guide-proxies.html>`_.
+
+    The environment variable ``GITHUB_TOKEN`` has to be set with your `GitHub personal access token <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token>`_,
+    e.g. in your ``~/.profile``.
+
+     Detailed instructions can be found `Working with the Apache Maven registry: Installing a package <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#installing-a-package>`_
 
      .. code-block:: xml
         :caption: settings.xml
 
         <servers>
           <server>
-            <id>opentelekom_github</id>
+            <id>github</id>
             <configuration>
               <httpHeaders>
                 <property>
                   <name>Authorization</name>
-                  <value>Bearer [YOUR_GITHUB_TOKEN]</value>
+                  <value>Bearer ${env.GITHUB_TOKEN}</value>
                 </property>
               </httpHeaders>
             </configuration>
@@ -90,10 +95,27 @@ These libraries are available through:
         <profiles>
           <profile>
             <id>default</id>
+
             <repositories>
               <repository>
-                <id>opentelekom_github</id>
-                  <url>https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
+                <id>central</id>
+                <url>https://repo1.maven.org/maven2</url>
+              </repository>
+
+              <repository>
+                <id>github</id>
+                <url>https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
+
+                <releases>
+                  <enabled>true</enabled>
+                  <updatePolicy>daily</updatePolicy>
+                </releases>
+
+                <snapshots>
+                  <enabled>true</enabled>
+                  <updatePolicy>always</updatePolicy>
+                </snapshots>
+
               </repository>
             </repositories>
           </profile>
@@ -102,6 +124,37 @@ These libraries are available through:
         <activeProfiles>
           <activeProfile>default</activeProfile>
         </activeProfiles>
+
+  .. tab:: GitHub and Gradle
+
+     To use GitHub maven repository with Gradle see:
+     `Working with the Gradle registry: Using a published package <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry#using-a-published-package>`_
+
+     The environment variables ``GITHUB_TOKEN`` and ``GITHUB_USERNAME`` have to be set with your `GitHub personal access token <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token>`_,
+     e.g. in your ``~/.profile``.
+
+     Add the repository to your build.gradle file (Gradle Groovy):
+
+    .. code-block:: groovy
+       :caption: build.gradle
+
+        repositories {
+
+          mavenCentral()
+
+          maven {
+              url = uri("https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java")
+              credentials {
+                  username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+                  password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+              }
+          }
+
+          mavenLocal()
+
+        }
+
+
 
   .. tab:: Maven Central
 
@@ -160,7 +213,9 @@ or gardle `build.gradle` as follows:
         }
 
         dependencies {
-          implementation 'opentelekomcloud-functiongraph-java:|pom_version|'
+          implementation 'opentelekomcloud-functiongraph-java-core:|pom_version|'
+          implementation 'opentelekomcloud-functiongraph-java-events:|pom_version|'
+          implementation 'opentelekomcloud-functiongraph-java-test:|pom_version|'
         }
 
         task buildZip(type: Zip) {

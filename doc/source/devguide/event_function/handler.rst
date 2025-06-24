@@ -117,6 +117,8 @@ For this example we define following data object:
         }
 
   .. tab:: EventData using Lombok
+      To use Lombok, you will need to `setup maven for Lombok <https://projectlombok.org/setup/maven>`_ or
+      `setup gradle for Lombok <https://projectlombok.org/setup/gradle>`_
 
       .. code-block:: java
         :caption: EventData

@@ -12,10 +12,18 @@ ext {
 }
 
 dependencies {
+    compileOnly("org.projectlombok:lombok:1.18.38")
+	  annotationProcessor("org.projectlombok:lombok:1.18.38")
+
     implementation "com.opentelekomcloud:opentelekomcloud-functiongraph-java-core:${opentelekomcloud_functiongraph_java_version}"
     implementation "com.opentelekomcloud:opentelekomcloud-functiongraph-java-events:${opentelekomcloud_functiongraph_java_version}"
+
+    testCompileOnly("org.projectlombok:lombok:1.18.38")
+	  testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
+    
     testImplementation "com.opentelekomcloud:opentelekomcloud-functiongraph-java-test:${opentelekomcloud_functiongraph_java_version}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.11.0"
+
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.11.0"
 }
 
