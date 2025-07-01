@@ -1,7 +1,6 @@
 Event Functions
 ==========================================
 .. toctree::
-   :maxdepth: 2
    :hidden:
 
    Handler <handler>
@@ -15,7 +14,7 @@ Event Functions
    Maven Archetype <mavenarchetype>
    Invoke FunctionGraph <invoke>
    Local Testing <localtesting>
-   Samples <samples>
+
 
 Event functions can be configured with event triggers and integrate
 a variety of OpenTelekomCloud products (such as object storage service

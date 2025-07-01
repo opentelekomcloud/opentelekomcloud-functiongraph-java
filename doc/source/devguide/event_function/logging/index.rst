@@ -2,7 +2,7 @@ Logging in FunctionGraph
 ========================
 
 .. toctree::
-   :maxdepth: 1
+   :hidden:
 
    Logging using RunTimeLogger<logging>
    Logging using Log4J <logging_log4j>

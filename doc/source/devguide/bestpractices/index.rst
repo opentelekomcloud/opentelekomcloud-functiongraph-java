@@ -2,7 +2,7 @@ Code best practices for Java FunctionGraph functions
 ====================================================
 
 .. toctree::
-   :maxdepth: 1
+   :hidden:
 
    Performance<performance>
    Cold Start Optimisation<coldstart>

@@ -1,5 +1,7 @@
 Building a SpringBoot 2.x REST FunctionGraph
 ============================================
+.. toctree::
+   :hidden:
 
 Overview
 --------

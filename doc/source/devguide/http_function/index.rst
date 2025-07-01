@@ -1,7 +1,6 @@
 HTTP Functions
 ==============
 .. toctree::
-   :maxdepth: 1
    :hidden:
 
    Spring Boot 2.x REST <springbootrest2.x>

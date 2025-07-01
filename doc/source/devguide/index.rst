@@ -1,10 +1,7 @@
 Building with Java
 ==========================================
 .. toctree::
-   :maxdepth: 1
    :hidden:
-
-
 
 
 You can run Java code in OpenTelekomCloud FunctionGraph.

@@ -54,6 +54,7 @@
     <module>doc-sample-logging</module>     
     <module>doc-sample-springboot-2.x-rest</module>
     <module>doc-sample-springboot-3.x-rest</module>
+    <module>doc-sample-sdk</module>
     <module>generic</module>
     
   </modules>

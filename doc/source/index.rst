@@ -5,12 +5,12 @@ This is the FunctionGraph Java Development Guide for running
 FunctionGraph on OpenTelekomCloud (OTC).
 
 .. toctree::
-   :includehidden:
-   :maxdepth: 1
+   :hidden:
 
    Building with Java <devguide/index>
    Event Functions <devguide/event_function/index>
    HTTP Functions <devguide/http_function/index>
+   Samples <samples/index>
    Best Practises <devguide/bestpractices/index>
 
 Source Code

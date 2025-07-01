@@ -239,6 +239,9 @@ extlinks= {
     "otc_fg_umn": ('https://docs.otc.t-systems.com/function-graph/umn/%s', "%s"),
     "fg_console": ('https://console.otc.t-systems.com/functiongraph/%s', "%s")
 }
+
+role_name = 'github_repo_master'
+
 extlinks_detect_hardcoded_links = True
 
 # Copybutton and otc theme button are not compatible. 
