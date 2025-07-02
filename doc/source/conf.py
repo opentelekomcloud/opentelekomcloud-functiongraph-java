@@ -38,7 +38,7 @@ otcdocs_repo_name = 'opentelekomcloud/opentelekomcloud-functiongraph-java'
 
 # Those variables are required for edit/bug links
 otcdocs_edit_enabled = False
-otcdocs_bug_reported_enabled = False
+otcdocs_bug_report_enabled= True
 otcdocs_pdf_link = False
 
 # Analytics app name
@@ -237,10 +237,10 @@ release = pom_version
 extlinks= {
     "github_repo_master": (f'https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/{local_branch}/%s', "%s"),
     "otc_fg_umn": ('https://docs.otc.t-systems.com/function-graph/umn/%s', "%s"),
-    "fg_console": ('https://console.otc.t-systems.com/functiongraph/%s', "%s")
+    "otc_fg_api": ('https://docs.otc.t-systems.com/function-graph/api-ref/%s', "%s"),
+    "fg_console": ('https://console.otc.t-systems.com/functiongraph/%s', "%s"),
+    "otc_developer": ('https://docs.otc.t-systems.com/developer/%s', "%s")
 }
-
-role_name = 'github_repo_master'
 
 extlinks_detect_hardcoded_links = True
 

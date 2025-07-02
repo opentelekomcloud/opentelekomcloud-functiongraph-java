@@ -1,3 +1,5 @@
+.. _sdk-samples-ref:
+
 SDK Samples
 ===========
 .. toctree::
@@ -13,6 +15,9 @@ request have to be signed.
 The OTC Java SDK v1 provides utility methods to handle this request signing.
 
 SDK samples can be found in: :github_repo_master:`/samples-doc/doc-sample-sdk <samples-doc/doc-sample-sdk>`
+
+.. note::
+   To prevent extended logging deploy function with :ref:`class-isolation-ref`.
 
 Dependencies
 ------------
