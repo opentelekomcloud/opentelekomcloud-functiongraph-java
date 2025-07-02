@@ -11,7 +11,7 @@
   </parent>
 
   <groupId>com.opentelekomcloud.samples.doc</groupId>
-  <artifactId>functiongraph-samples-doc-logging</artifactId>
+  <artifactId>functiongraph-samples-doc-logging-slf4j</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
