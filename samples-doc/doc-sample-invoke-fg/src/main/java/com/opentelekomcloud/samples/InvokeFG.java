@@ -21,6 +21,8 @@ public class InvokeFG {
 
   /**
    * Get user token through username/password-based authentication
+   * 
+   * @see https://docs.otc.t-systems.com/function-graph/api-ref/calling_apis/making_an_api_request.html
    * @return token
    * @throws Exception
    */
@@ -50,17 +52,34 @@ public class InvokeFG {
         + "  }"
         + "}";
 
-        System.out.println(authBody);
+    System.out.println(authBody);
 
-        HttpRequest request = HttpRequest.newBuilder()
+    HttpRequest request = HttpRequest.newBuilder()
         .uri(URI.create(Constants.getInstance().getTokenUri()))
         .header("Content-Type", "application/json;charset=utf8")
         .POST(BodyPublishers.ofString(authBody))
         .build();
 
-    HttpResponse<?> response = client.send(request, BodyHandlers.discarding());
+    HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
-    System.out.println("Status code of token request: " + response.statusCode());
+    if (response.statusCode() != 201) {
+
+      switch (response.statusCode()) {
+        case 401:
+          throw new Exception(
+              String.format("Get Token failed with: %s", "Unauthorized"));
+        default:
+          JsonElement jsonElement = JsonParser.parseString(response.body());
+
+          JsonElement error_code = jsonElement.getAsJsonObject().get("error_code");
+          JsonElement error_msg = jsonElement.getAsJsonObject().get("error_msg");
+
+          throw new Exception(
+              String.format("Get Token failed with: %s, %s, %s", response.statusCode(), error_code, error_msg));
+      }
+    }
+
+    System.out.println(response.body());
 
     Optional<String> token = response.headers().firstValue("x-subject-token");
 
@@ -68,44 +87,58 @@ public class InvokeFG {
 
   }
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
 
-    String token = getAuthToken();
+    try {
+      String token = getAuthToken();
 
-    HttpClient client = HttpClient.newBuilder()
-        .proxy(ProxySelector.getDefault())
-        .build();
+      HttpClient client = HttpClient.newBuilder()
+          .proxy(ProxySelector.getDefault())
+          .build();
 
-    String invokeUri = Constants.getInstance().getInvokeUri("InvokeSamplePython");
+      String invokeUri = Constants.getInstance().getInvokeUri("InvokeSamplePython");
 
-    String requestBody = "{ \"key\": \"Hello world of OpenTelekomCloud\"}";
+      String requestBody = "{ \"key\": \"Hello world of OpenTelekomCloud\"}";
 
-    HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create(invokeUri))
-        .header("Content-Type", "application/json;charset=utf8")
-        .header("X-AUTH-Token", token)
-        .header("X-Cff-Log-Type", "tail")
-        .header("X-CFF-Request-Version", "v1")
-        .POST(BodyPublishers.ofString(requestBody))
-        .build();
+      HttpRequest request = HttpRequest.newBuilder()
+          .uri(URI.create(invokeUri))
+          .header("Content-Type", "application/json;charset=utf8")
+          .header("X-AUTH-Token", token)
+          // X-Cff-Log-Type:
+          // "tail": 4KB logs will be returned
+          // "": no logs will be returned
+          .header("X-Cff-Log-Type", "tail")
+          // X-CFF-Request-Version:
+          // "v0" response body in text format
+          // "v1" response body in json format
+          .header("X-CFF-Request-Version", "v1")
+          .POST(BodyPublishers.ofString(requestBody))
+          .build();
 
-    HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+      HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
-    System.out.println("Status code of invoke request: " + response.statusCode());
+      System.out.println("Status code of invoke request: " + response.statusCode());
 
-    JsonElement jsonElement = JsonParser.parseString(response.body());
+      JsonElement jsonElement = JsonParser.parseString(response.body());
 
-    System.out.println("Complete response:");
-    System.out.println("==================");
-    System.out.println(gsonPrettyPrint.toJson(jsonElement));
+      System.out.println("Complete response:");
+      System.out.println("==================");
+      System.out.println(gsonPrettyPrint.toJson(jsonElement));
 
-    JsonElement result = jsonElement.getAsJsonObject().get("result");
+      JsonElement result = jsonElement.getAsJsonObject().get("result");
 
-    JsonObject o = JsonParser.parseString(result.getAsString()).getAsJsonObject();
-    System.out.println("Response body:");
-    System.out.println("==============");
-    System.out.println(o.get("body").getAsString());
+      JsonObject o = JsonParser.parseString(result.getAsString()).getAsJsonObject();
+      System.out.println("Response body:");
+      System.out.println("==============");
+      System.out.println(o.get("body").getAsString());
 
+      JsonElement log = jsonElement.getAsJsonObject().get("log");
+      System.out.println("Log:");
+      System.out.println("==============");
+      System.out.println(log.getAsString());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 }

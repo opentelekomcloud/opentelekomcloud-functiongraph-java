@@ -17,7 +17,7 @@ public class Constants {
     projectId = System.getenv("OTC_SDK_PROJECTID");
     accountName = System.getenv("OTC_DOMAIN_NAME");
 
-    authUrl = System.getenv("OTC_AUTH_URL");
+    authUrl = System.getenv("OTC_AUTH_URL"); // e.g. https://iam.eu-de.otc.t-systems.com
 
     region = System.getenv("OTC_TENANT_NAME");
 
@@ -42,16 +42,25 @@ public class Constants {
     return userPassword;
   }
 
+  /**
+   * Specifies a subproject ID.
+   * This parameter is mandatory only in multi-project scenarios.
+   * @return
+   */
   public String getProjectId() {
     return projectId;
   }
 
+  /**
+   * 
+   * @return
+   */
   public String getAccountName() {
     return accountName;
   }
 
   public String getTokenUri() {
-    return String.format("%s/%s", authUrl, "auth/tokens?nocatalog=true");
+    return String.format("%s/%s", authUrl, "v3/auth/tokens?nocatalog=true");
   }
 
   public String getFunctionGraphHost() {
