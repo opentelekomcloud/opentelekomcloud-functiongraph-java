@@ -1,0 +1,2 @@
+# Handler name:
+com.opentelekomcloud.samples.FGLoggingSLF4j.handleRequest
