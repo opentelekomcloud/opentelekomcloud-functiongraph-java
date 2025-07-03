@@ -18,6 +18,9 @@ public class Constants {
     accountName = System.getenv("OTC_DOMAIN_NAME");
 
     authUrl = System.getenv("OTC_AUTH_URL"); // e.g. https://iam.eu-de.otc.t-systems.com
+    if (authUrl == null || authUrl.equals("")){
+      authUrl="https://iam.eu-de.otc.t-systems.com";
+    }
 
     region = System.getenv("OTC_TENANT_NAME");
 
