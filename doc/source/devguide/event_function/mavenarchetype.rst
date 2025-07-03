@@ -6,12 +6,12 @@ To ease project setup, following maven archetype can be used.
 Install maven archetype
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-To install archtype, see :ref:`ref_maven_install`
+To install archtype, see :ref:`ref_maven_install`.
 
 Create sample FunctionGraph project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To create a sample java project using maven archetype use:
+To create a simple java 17 project using maven archetype use:
 
 .. tabs::
 

@@ -4,6 +4,13 @@ plugins {
 
 repositories {
     mavenLocal()
+    maven {
+       url = uri("https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java")
+       credentials {
+           username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+           password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+       }
+    }
     mavenCentral()
 }
 
@@ -28,8 +35,8 @@ task buildZip(type: Zip) {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 build.dependsOn buildZip
