@@ -248,4 +248,4 @@ extlinks_detect_hardcoded_links = True
 # to, use custom selector:
 copybutton_selector = "div.copy-button pre"
 # do not copy line numbers and prompt character
-copybutton_exclude = '.linenos, .gp'
+copybutton_exclude = '.linenos, .gp, .go'
