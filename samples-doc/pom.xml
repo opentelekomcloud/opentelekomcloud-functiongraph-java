@@ -47,7 +47,6 @@
   </build>
 
   <modules>
-    <module>debug</module>
     <module>doc-sample-testing-1</module>
     <module>doc-sample-deploy</module>
     <module>doc-sample-invoke-fg</module>
