@@ -1,5 +1,6 @@
 package com.opentelekomcloud.samples;
 
+import com.google.gson.annotations.SerializedName;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
@@ -17,6 +18,10 @@ public class SampleFG {
 
 
   public class EventData {
+    public EventData() {
+    }
+    
+    @SerializedName("key")
     String key;
 
     public String getKey(){

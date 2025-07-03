@@ -86,6 +86,9 @@ For this example we define following data object:
           double amount;
           String item;
 
+          public EventData() {
+          }
+
           public String getId(){
             return this.id;
           }
@@ -125,10 +128,12 @@ For this example we define following data object:
 
         import com.google.gson.annotations.SerializedName;
         import lombok.Data;
+        import lombok.NoArgsConstructor;
         import lombok.ToString;
 
         @Data
-        @ToString
+        @ToString(includeFieldNames=true)
+        @NoArgsConstructor
         public class EventData {
 
           @SerializedName("id")

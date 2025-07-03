@@ -4,34 +4,41 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Map;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @ToString(includeFieldNames=true)
+@NoArgsConstructor
 public class CTS {
   /**
    * Event generation time
    */
+  @SerializedName("time")
   private long time;
 
   /**
    * User information that triggered the event
    */
+  @SerializedName("user")
   private User user;
 
   /**
    * Event request content
    */
+  @SerializedName("request")
   private Map<String, String> request;
 
   /**
    * Event response content
    */
+  @SerializedName("response")
   private Map<String, String> response;
 
   /**
    * http response code
    */
+  @SerializedName("code")
   private int code;
 
   /**
@@ -88,6 +95,5 @@ public class CTS {
    */
   @SerializedName("trace_status")
   private String traceStatus;
-
 
 }

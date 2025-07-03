@@ -5,6 +5,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -15,21 +17,25 @@ public class APIGTriggerResponse {
   /**
    * Body
    */
+  @SerializedName("body")
   private String body;
 
   /**
    * Headers
    */
+  @SerializedName("headers")
   private Map<String, String> headers;
 
   /**
    * http status code
    */
+  @SerializedName("statusCode")
   private int statusCode;
 
   /**
    * Whether the body has been encoded using Base64.
    */
+  @SerializedName("isBase64Encoded")
   private boolean isBase64Encoded;
 
   public APIGTriggerResponse() {

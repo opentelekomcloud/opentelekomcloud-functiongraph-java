@@ -4,10 +4,12 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Map;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @ToString(includeFieldNames=true)
+@NoArgsConstructor
 public class SMNBody {
 
   /**
