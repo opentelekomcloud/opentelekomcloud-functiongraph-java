@@ -61,7 +61,7 @@ Benefits of the Initializer
 * Even if the user has continuous requests and does not update the
   function, the system may still recycle or update the existing
   container. In this case, there will be no cold start on the
-  platform side, but there will be a cold start on the business 
+  platform side, but there will be a cold start on the business
   side. Initializer can minimize this situation.
 
 Constraints and Restrictions
