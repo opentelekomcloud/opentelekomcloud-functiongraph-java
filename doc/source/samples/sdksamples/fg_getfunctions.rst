@@ -17,7 +17,7 @@ Handler name:
   - com.otc.sdk.samples.functiongraph.services.fg.ListFunctions.handleRequest
 
 Permissions:
-  - Agency with FG permissions
+  - Agency (Cloud Service Type) with FG permissions, e.g.:
 
  .. code-block:: json
 

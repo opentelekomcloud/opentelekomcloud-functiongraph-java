@@ -53,7 +53,7 @@ Context interface
        To use this method, you need to configure the **agency** for the function.
 
    * - getSecurityToken()
-     - Get the SecuritySecretKey (valid for 24 hours) with an agency.
+     - Get the SecuritySecretToken (valid for 24 hours) with an agency.
 
        To use this method, you need to configure the **agency** for the function.
 
@@ -92,11 +92,14 @@ Context interface
    * - getInvokeProperty()
      - Get the invoke property
 
+   * - getWorkflowID()
+     - Get the workflow run id (not yet available)
+
    * - getWorkflowRunID()
-     - Get the workflow run id
+     - Get the workflow run id (not yet available)
 
    * - getWorkflowStateID()
-     - Get the workflow state id
+     - Get the workflow state id (not yet available)
 
    * - getTraceID()
      - Get the trace id (not yet available)

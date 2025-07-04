@@ -17,7 +17,7 @@ Handler name:
   - com.otc.sdk.samples.functiongraph.services.ecs.StopECSInstance.handleRequest
 
 Permissions:
-  - Agency with ECS stop permissions
+  - Agency (Cloud Service Type) with ECS stop permissions, e.g.:
 
  .. code-block:: json
 

@@ -17,7 +17,7 @@ Handler name:
   - com.otc.sdk.samples.functiongraph.services.ecs.RestartECSInstance.handleRequest
 
 Permissions:
-  - Agency with ECS reboot permissions
+  - Agency (Cloud Service Type) with ECS reboot permissions, e.g.:
 
  .. code-block:: json
 

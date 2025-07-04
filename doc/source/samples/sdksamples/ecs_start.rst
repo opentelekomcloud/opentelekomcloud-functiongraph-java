@@ -18,7 +18,7 @@ Handler name:
   - com.otc.sdk.samples.functiongraph.services.ecs.StartECSInstance.handleRequest
 
 Permissions:
-  - Agency with ECS start permissions
+  - Agency (Cloud Service Type) with ECS start permissions, e.g.:
 
  .. code-block:: json
 
