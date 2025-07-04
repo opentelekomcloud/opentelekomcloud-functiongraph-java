@@ -46,7 +46,7 @@ public class APIGTriggerFG {
     String responseBody = String.format("Hello %s",eventBody.getName());
 
  
-    Map<String, String> headers = new HashMap<String, String>();
+    Map<String, String> headers = new HashMap<>();
     headers.put("Content-Type", "application/json");
     return new APIGTriggerResponse(200, headers, responseBody);
   }

@@ -26,7 +26,7 @@ public class GenericTriggerFG {
     RuntimeLogger log = context.getLogger();
 
     log.log(String.format("class name: %s", event.getClass().getName()));
-    log.log(String.format("toString: %s", event.toString()));
+    log.log(String.format("toString: %s", event));
 
     for(String key : event.keySet()){
       log.log(String.format("key: %s = %s", key, event.get(key)));

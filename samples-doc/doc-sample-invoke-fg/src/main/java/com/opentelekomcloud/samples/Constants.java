@@ -18,11 +18,11 @@ package com.opentelekomcloud.samples;
 public class Constants {
   private static Constants instance;
 
-  private String userName;
-  private String userPassword;
-  private String projectId;
-  private String accountName;
-  private String region;
+  private final String userName;
+  private final String userPassword;
+  private final String projectId;
+  private final String accountName;
+  private final String region;
 
   private String authUrl;
 
@@ -33,7 +33,7 @@ public class Constants {
     accountName = System.getenv("OTC_DOMAIN_NAME");
 
     authUrl = System.getenv("OTC_AUTH_URL"); // e.g. https://iam.eu-de.otc.t-systems.com
-    if (authUrl == null || authUrl.equals("")){
+    if (authUrl == null || authUrl.isEmpty()){
       authUrl="https://iam.eu-de.otc.t-systems.com";
     }
 
@@ -63,15 +63,13 @@ public class Constants {
   /**
    * Specifies a subproject ID.
    * This parameter is mandatory only in multi-project scenarios.
-   * @return
    */
   public String getProjectId() {
     return projectId;
   }
 
   /**
-   * 
-   * @return
+   *
    */
   public String getAccountName() {
     return accountName;

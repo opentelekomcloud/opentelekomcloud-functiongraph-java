@@ -25,13 +25,13 @@ import lombok.Data;
 import lombok.ToString;
 
 public class TimerTriggerFG {
-  private Gson gson = new Gson();
+  private final Gson gson = new Gson();
 
   public String handleRequest(final TimerTriggerEvent event, final Context context) {
 
     RuntimeLogger log = context.getLogger();
 
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
     s.append(String.format("Trigger name: %s\n", event.getTriggerName()));
     s.append(String.format("Trigger type: %s\n", event.getTriggerType()));
     s.append(String.format("User event  : %s\n", event.getUserEvent()));

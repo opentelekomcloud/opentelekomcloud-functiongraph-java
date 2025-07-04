@@ -30,7 +30,7 @@ import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension;
 public class SampleFGTest {
 
   @SystemStub
-  private EnvironmentVariables environment = new EnvironmentVariables("OTC_SDK_AK", "MyAccessKey")//
+  private final EnvironmentVariables environment = new EnvironmentVariables("OTC_SDK_AK", "MyAccessKey")//
       .set("OTC_SDK_SK", "MySecretKey") //
       .set("OTC_SDK_PROJECTID", "MyOrojectID") //
       .set("OTC_SDK_SECURITY_TOKEN", "MySecurityToken");

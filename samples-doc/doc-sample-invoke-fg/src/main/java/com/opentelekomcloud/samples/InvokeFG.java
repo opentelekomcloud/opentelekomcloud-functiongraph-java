@@ -36,10 +36,9 @@ public class InvokeFG {
 
   /**
    * Get user token through username/password-based authentication
-   * 
-   * @see https://docs.otc.t-systems.com/function-graph/api-ref/calling_apis/making_an_api_request.html
+   *
+   * @see <a href="https://docs.otc.t-systems.com/function-graph/api-ref/calling_apis/making_an_api_request.html">Making an api request</a>
    * @return token
-   * @throws Exception
    */
   private static String getAuthToken() throws Exception {
 
@@ -79,24 +78,26 @@ public class InvokeFG {
 
     if (response.statusCode() != 201) {
 
-      switch (response.statusCode()) {
-        case 401:
-          throw new Exception(
-              String.format("Get Token failed with: %s", "Unauthorized"));
-        default:
-          JsonElement jsonElement = JsonParser.parseString(response.body());
+        if (response.statusCode() == 401) {
+            throw new Exception(
+                    String.format("Get Token failed with: %s", "Unauthorized"));
+        }
+        JsonElement jsonElement = JsonParser.parseString(response.body());
 
-          JsonElement error_code = jsonElement.getAsJsonObject().get("error_code");
-          JsonElement error_msg = jsonElement.getAsJsonObject().get("error_msg");
+        JsonElement error_code = jsonElement.getAsJsonObject().get("error_code");
+        JsonElement error_msg = jsonElement.getAsJsonObject().get("error_msg");
 
-          throw new Exception(
-              String.format("Get Token failed with: %s, %s, %s", response.statusCode(), error_code, error_msg));
-      }
+        throw new Exception(
+                String.format("Get Token failed with: %s, %s, %s", response.statusCode(), error_code, error_msg));
     }
 
     System.out.println(response.body());
 
     Optional<String> token = response.headers().firstValue("x-subject-token");
+
+    if (!token.isPresent()) {
+      throw new Exception("x-subject-token to present in header");
+    }
 
     return token.get();
 

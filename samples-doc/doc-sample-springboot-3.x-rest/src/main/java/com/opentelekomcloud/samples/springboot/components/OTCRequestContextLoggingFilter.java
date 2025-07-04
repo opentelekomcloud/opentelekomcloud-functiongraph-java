@@ -34,12 +34,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(1)
 public class OTCRequestContextLoggingFilter implements Filter {
-  private static Logger logger = LoggerFactory.getLogger(OTCRequestContextLoggingFilter.class);
+  private static final Logger logger = LoggerFactory.getLogger(OTCRequestContextLoggingFilter.class);
 
   /**
    * Default header fields of an HTTP function.
-   * 
-   * @see: https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id10
+   * </p>
+   * @see <a hred="https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id10">Creating a http function</a>
    */
   private static final String[] X_CFF_HEADERS = {
       "x-cff-request-id",

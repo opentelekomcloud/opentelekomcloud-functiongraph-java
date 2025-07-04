@@ -170,7 +170,7 @@ public class StopECSInstance {
       if (client != null) {
         try {
           client.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
       }
     }

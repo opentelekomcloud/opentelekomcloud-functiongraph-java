@@ -16,6 +16,7 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.apig;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -74,12 +75,12 @@ public class APIGTriggerResponse {
   }
 
   public void setBase64EncodedBody(String body) throws UnsupportedEncodingException {
-    this.body = Base64.getMimeEncoder().encodeToString(body.getBytes("UTF-8"));
+    this.body = Base64.getMimeEncoder().encodeToString(body.getBytes(StandardCharsets.UTF_8));
   }
 
   public void addHeader(String key, String value) {
     if (this.headers == null) {
-      this.headers = new HashMap<String, String>();
+      this.headers = new HashMap<>();
     }
 
     this.headers.put(key, value);
@@ -93,7 +94,7 @@ public class APIGTriggerResponse {
 
   public void addHeaders(Map<String, String> headersToAdd) {
     if (this.headers == null) {
-      this.headers = new HashMap<String, String>();
+      this.headers = new HashMap<>();
     }
 
     this.headers.putAll(headersToAdd);

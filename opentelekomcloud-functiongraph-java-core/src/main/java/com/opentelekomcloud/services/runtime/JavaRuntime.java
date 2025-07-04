@@ -18,7 +18,7 @@ package com.opentelekomcloud.services.runtime;
 import java.io.IOException;
 
 public final class JavaRuntime {
-  private static volatile RuntimeLogger logger = new RuntimeLogger() {
+  private static final RuntimeLogger logger = new RuntimeLogger() {
 
     public void log(String string) {
       System.out.print(string);

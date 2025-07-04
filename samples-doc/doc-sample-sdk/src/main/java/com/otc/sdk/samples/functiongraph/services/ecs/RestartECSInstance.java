@@ -170,7 +170,7 @@ public class RestartECSInstance {
       if (client != null) {
         try {
           client.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
       }
     }

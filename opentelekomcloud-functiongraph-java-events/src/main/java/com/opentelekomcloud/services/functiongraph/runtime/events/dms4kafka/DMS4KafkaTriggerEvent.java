@@ -70,11 +70,11 @@ public class DMS4KafkaTriggerEvent implements TriggerEvent {
    * @return clone of message records.
    */
   public DMS4KafkaRecord[] getRecords() {
-    return (DMS4KafkaRecord[]) this.records.clone();
+    return this.records.clone();
   }
 
   public void setRecords(DMS4KafkaRecord[] records) {
-    this.records = (DMS4KafkaRecord[]) records.clone();
+    this.records = records.clone();
   }
 
 }

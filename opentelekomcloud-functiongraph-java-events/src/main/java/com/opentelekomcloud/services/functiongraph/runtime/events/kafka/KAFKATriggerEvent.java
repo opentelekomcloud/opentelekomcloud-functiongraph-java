@@ -70,11 +70,11 @@ public class KAFKATriggerEvent implements TriggerEvent {
    * @return clone of message records.
    */
   public KAKFARecord[] getRecords() {
-    return (KAKFARecord[]) this.records.clone();
+    return this.records.clone();
   }
 
   public void setRecords(KAKFARecord[] records) {
-    this.records = (KAKFARecord[]) records.clone();
+    this.records = records.clone();
   }
 
 }

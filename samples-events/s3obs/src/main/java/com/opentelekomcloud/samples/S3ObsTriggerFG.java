@@ -25,11 +25,10 @@ public class S3ObsTriggerFG {
     
     RuntimeLogger log = context.getLogger();
 
-    StringBuffer s = new StringBuffer();
-    s.append(String.format("BucketName: %s\n", event.getBucketName()));
-    s.append(String.format("EventName : %s\n", event.getEventName()));
+      String s = String.format("BucketName: %s\n", event.getBucketName()) +
+              String.format("EventName : %s\n", event.getEventName());
     
-    log.log(s.toString());
+    log.log(s);
    
 
     return "ok";

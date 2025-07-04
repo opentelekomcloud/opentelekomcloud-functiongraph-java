@@ -47,11 +47,11 @@ public class SMNTriggerEvent implements TriggerEvent{
    * @return smn record clones
    */
   public SMNRecord[] getRecord() {
-    return (SMNRecord[]) this.record.clone();
+    return this.record.clone();
   }
 
   public void setRecord(SMNRecord[] record) {
-    this.record = (SMNRecord[]) record.clone();
+    this.record = record.clone();
   }
 
 }

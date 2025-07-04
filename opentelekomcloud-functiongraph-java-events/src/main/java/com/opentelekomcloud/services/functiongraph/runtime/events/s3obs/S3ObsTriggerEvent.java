@@ -26,11 +26,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @ToString(includeFieldNames=true)
-/**
- * Trigger on OBS Events
- * 
- * Hint: OBS events can only trigger FunctionGraphs in main project, 
- * not in sub projects.
+/*
+  Trigger on OBS Events
+  <p>
+  Hint: OBS events can only trigger FunctionGraphs in main project,
+  not in sub projects.
  */
 public class S3ObsTriggerEvent implements IObsTriggerInfo {
 
@@ -58,21 +58,21 @@ public class S3ObsTriggerEvent implements IObsTriggerInfo {
 
   public String getBucketName() {
     Optional<S3Record[]> s3Record = this.check();
-    return (String) s3Record.map((r) -> {
+    return s3Record.map((r) -> {
       return r[0].getS3obs().getBucket().getName();
     }).orElseThrow(IllegalArgumentException::new);
   }
 
   public String getObjectKey() {
     Optional<S3Record[]> obsRecord = this.check();
-    return (String) obsRecord.map((r) -> {
+    return obsRecord.map((r) -> {
       return r[0].getS3obs().getObsobject().getKey();
     }).orElseThrow(IllegalArgumentException::new);
   }
 
   public String getEventName() {
     Optional<S3Record[]> s3Record = this.check();
-    return (String) s3Record.map((r) -> {
+    return s3Record.map((r) -> {
       return r[0].getEventName();
     }).orElseThrow(IllegalArgumentException::new);
   }

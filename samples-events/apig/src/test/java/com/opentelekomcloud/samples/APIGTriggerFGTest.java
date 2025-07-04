@@ -15,9 +15,6 @@
 
 package com.opentelekomcloud.samples;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
@@ -33,6 +30,8 @@ import com.google.gson.JsonParser;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerResponse;
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class APIGTriggerFGTest {
   @Test
@@ -53,7 +52,7 @@ public class APIGTriggerFGTest {
 
       APIGTriggerResponse r = fg.handleRequest(event, context);
 
-      assertTrue(getValidReturnValue(event).equals(r.getBody()));
+        assertEquals(getValidReturnValue(event), r.getBody());
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -79,7 +78,7 @@ public class APIGTriggerFGTest {
 
       APIGTriggerResponse r = fg.handleRequest(event, context);
 
-      assertTrue(getValidReturnValue(event).equals(r.getBody()));
+        assertEquals(getValidReturnValue(event), r.getBody());
 
     } catch (Exception e) {
       e.printStackTrace();

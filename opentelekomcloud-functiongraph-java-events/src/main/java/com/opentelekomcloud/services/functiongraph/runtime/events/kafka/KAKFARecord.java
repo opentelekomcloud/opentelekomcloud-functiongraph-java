@@ -42,11 +42,11 @@ public class KAKFARecord {
    * @return messages.
    */
   public String[] getMessages() {
-    return (String[]) this.messages.clone();
+    return this.messages.clone();
   }
   
   public void setMessages(String[] messages) {
-    this.messages = (String[]) messages.clone();
+    this.messages = messages.clone();
   }
 
 }

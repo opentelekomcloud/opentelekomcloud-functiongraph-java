@@ -24,7 +24,7 @@ import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
 public class FGLogSample1 {
-  Gson gsonPrettyPrint = new GsonBuilder().setPrettyPrinting().create();
+  final Gson gsonPrettyPrint = new GsonBuilder().setPrettyPrinting().create();
 
   public String handleRequest(final JsonObject event, final Context context) {
     // get RuntimeLogger from context

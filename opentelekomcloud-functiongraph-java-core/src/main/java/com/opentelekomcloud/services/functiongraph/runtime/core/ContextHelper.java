@@ -24,7 +24,7 @@ import com.google.gson.JsonParser;
  */
 public class ContextHelper {
 
-  private Context context;
+  private final Context context;
 
   public ContextHelper(Context context) {
     this.context=context;

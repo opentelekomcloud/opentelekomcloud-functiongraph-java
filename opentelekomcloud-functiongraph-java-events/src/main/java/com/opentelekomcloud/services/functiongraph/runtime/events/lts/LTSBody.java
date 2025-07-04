@@ -16,6 +16,7 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.lts;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 import com.google.gson.annotations.SerializedName;
@@ -38,11 +39,10 @@ public class LTSBody {
   /**
    * 
    * @return get base64 decoded raw data
-   * @throws UnsupportedEncodingException
    */
   public String getRawData() throws UnsupportedEncodingException {
     byte[] decoded = Base64.getMimeDecoder().decode(this.data);
-    return new String(decoded, "UTF-8");
+    return new String(decoded, StandardCharsets.UTF_8);
   }
 
 }

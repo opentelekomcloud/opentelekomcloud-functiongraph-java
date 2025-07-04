@@ -16,6 +16,7 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.apig;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Map;
 
@@ -87,11 +88,10 @@ public class APIGTriggerEvent implements TriggerEvent {
 
   /**
    * @return obtain the body decoded using Base64
-   * @throws UnsupportedEncodingException
    */
   public String getRawBody() throws UnsupportedEncodingException {
     byte[] decoded = Base64.getMimeDecoder().decode(this.body);
-    return new String(decoded, "UTF-8");
+    return new String(decoded, StandardCharsets.UTF_8);
   }
 
 }

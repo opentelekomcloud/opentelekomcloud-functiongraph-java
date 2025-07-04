@@ -28,7 +28,7 @@ import com.opentelekomcloud.samples.springboot.components.OTCRequestContextLoggi
 @RestController
 public class GreetingController {
 
-  private static Logger logger = LoggerFactory.getLogger(GreetingController.class);
+  private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
 
   private static final String templateGreeting = "Hello, %s!";
   private static final String templateByeBye = "Bye bye, %s!";

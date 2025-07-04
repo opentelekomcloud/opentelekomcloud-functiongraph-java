@@ -26,9 +26,9 @@ public class SMNTriggerFG {
 
     RuntimeLogger log = context.getLogger();
 
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
 
-    SMNRecord records[] = event.getRecord();
+    SMNRecord[] records = event.getRecord();
     for (SMNRecord smnRecord : records) {
       s.append(String.format("Subject: %s\n", smnRecord.getSmn().getSubject()));  
     }
