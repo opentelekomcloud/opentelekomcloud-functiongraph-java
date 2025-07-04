@@ -23,40 +23,42 @@ Context interface
      - Get the remaining running time of a function.
 
    * - getAccessKey()
-     - Get the AccessKey delegated by the user (valid for 24 hours).
+     - Get the AccessKey (valid for 24 hours) with an agency.
 
-       To use this method, you need to configure agency for the function.
+       To use this method, you need to configure **agency** for the function.
 
-       **The current function workflow has stopped maintaining the getAccessKey
-       interface in the Runtime SDK.
-       You will not be able to use getAccessKey to obtain a temporary AK.**
+       .. note::
+
+         FunctionGraph has stopped maintaining the **getAccessKey()** API in the Runtime
+         SDK. You cannot use this API to obtain a temporary AK.
 
    * - getSecretKey()
-     - Get the SecretKey of the user's agency (valid for 24 hours).
+     - Get the SecretKey (valid for 24 hours) with an agency.
 
-       To use this method, you need to configure the agency for the function.
+       To use this method, you need to configure the **agency** for the function.
 
-       **The current function workflow has stopped maintaining the getSecretKey
-       interface in the Runtime SDK.
-       You will not be able to use getSecretKey to obtain a temporary SK.**
+       .. note::
+
+         FunctionGraph has stopped maintaining the **getSecretKey()** API in the Runtime
+         SDK. You cannot use this API to obtain a temporary SK.
 
    * - getSecurityAccessKey()
-     - Get the SecurityAccessKey delegated by the user (valid for 24 hours).
+     - Get the SecurityAccessKey (valid for 24 hours) with an agency.
 
-       To use this method, you need to configure a agency for the function.
+       To use this method, you need to configure a **agency** for the function.
 
    * - getSecuritySecretKey()
-     - Get the SecuritySecretKey (valid for 24 hours) delegated by the user.
+     - Get the SecuritySecretKey (valid for 24 hours) with an agency.
 
-       To use this method, you need to configure the agency for the function.
+       To use this method, you need to configure the **agency** for the function.
 
    * - getSecurityToken()
-     - Get the SecurityToken delegated by the user (valid for 24 hours).
+     - Get the SecuritySecretKey (valid for 24 hours) with an agency.
 
-       To use this method, you need to configure the agency for the function.
+       To use this method, you need to configure the **agency** for the function.
 
    * - getUserData(String key)
-     - Get the value passed by the user through the environment variable through key.
+     - Uses keys to obtain the values passed by environment variables.
 
    * - getFunctionName()
      - Get the function name.
@@ -77,9 +79,9 @@ Context interface
      - Gets a function group.
 
    * - getToken()
-     - Get the user's delegated token (valid for 24 hours).
+     - Get the token (valid for 24 hours) with an agency.
 
-       To use this method, you need to configure the agency for the function.
+       To use this method, you need to configure the **agency** for the function.
 
    * - getLogger()
      - Get the logger method provided by the context (by default, it will output information such as time and request ID).
@@ -97,7 +99,7 @@ Context interface
      - Get the workflow state id
 
    * - getTraceID()
-     - Get the trace Id
+     - Get the trace id (not yet available)
 
    * - getInvokeID()
      - Get the invoke id
@@ -105,6 +107,10 @@ Context interface
    * - getState()
      - Get the state
 
+.. warning::
+  Results returned by using the ``getToken()``, ``getAccessKey()``, and
+  ``getSecretKey()`` methods contain sensitive information.
+  Exercise caution when using these methods
 
 Log interface
 -------------
@@ -119,7 +125,8 @@ The following table shows the log interface description.
      - Description
 
    * - RuntimeLogger()
-     - Record user input logs. See  :doc:`Logging<./logging/logging>` for details
+     - | Records user input logs using the method ``log(String string)``.
+       | See :doc:`Logging<./logging/logging>` for details.
 
 To obtain the logger from the context use:
 

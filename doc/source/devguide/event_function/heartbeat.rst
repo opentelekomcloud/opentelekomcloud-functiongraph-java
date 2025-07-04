@@ -50,24 +50,25 @@ Configuring Heartbeat Function
 #. Choose **Configuration** > **Advanced Settings** and enable
    **Heartbeat Function**
 
+    .. list-table:: **Table 2** Parameter configuration
+      :widths: 25 25
+      :header-rows: 1
 
-.. list-table:: **Table 2** Parameter configuration
-   :widths: 25 25
-   :header-rows: 1
+      * - Parameter
+        - Description
 
-   * - Parameter
-     - Description
+      * - Heartbeat Function
+        - Enable heatbeat if needed.
 
-   * - Heartbeat Function
-     - Enable heatbeat if needed.
+      * - Heartbeat Function Entry
+        - The Heartbeat Function Entry must be named in the same way as the handler.
+          Set an HeatBeat function name in the format of:
 
-   * - Heartbeat Function Entry
-     - The Heartbeat Function Entry must be named in the same way as the handler.
-       Set an HeatBeat function name in the format of **[Package name].[Class name].[Heartbeat function name]**
+          **[Package name].[Class name].[Heartbeat function name]**
 
-       .. note::
-         * This parameter is not required if function Heartbeat Function is disabled.
-         * Ensure that the heartbeat function and handler are in the same file.
+          .. note::
+            * This parameter is not required if function Heartbeat Function is disabled.
+            * Ensure that the heartbeat function and handler are in the same file.
 
 #. Save the configuration
 

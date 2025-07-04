@@ -9,3 +9,4 @@ bin
 .tox
 =*
 pom.xml.versionsBackup
+__pycache__

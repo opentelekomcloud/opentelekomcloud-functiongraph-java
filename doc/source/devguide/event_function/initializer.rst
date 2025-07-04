@@ -144,25 +144,26 @@ Configuring Initialization
 #. Choose **Configuration** > **Lifecycle** and enable
    **Initialization**
 
+    .. list-table:: **Table 2** Parameter configuration
+      :widths: 25 25
+      :header-rows: 1
 
-.. list-table:: **Table 2** Parameter configuration
-   :widths: 25 25
-   :header-rows: 1
+      * - Parameter
+        - Description
 
-   * - Parameter
-     - Description
+      * - Initialization
+        - Enable initialization if needed.
 
-   * - Initialization
-     - Enable initialization if needed.
+      * - Initialization Timeout (s)
+        - Maximum duration the function can be initialized. Set this parameter if you enable function initialization.
 
-   * - Initialization Timeout (s)
-     - Maximum duration the function can be initialized. Set this parameter if you enable function initialization.
+          The value ranges from 1s to 300s.
 
-       The value ranges from 1s to 300s.
+      * - Initializer
+        - The initializer must be named in the same way as the handler.
+          Set an initializer name in the format of
 
-   * - Initializer
-     - The initializer must be named in the same way as the handler.
-       Set an initializer name in the format of **[Package name].[Class name].[Initializer function name]**
+          **[Package name].[Class name].[Initializer function name]**
 
 #. Save the configuration
 
