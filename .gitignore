@@ -9,3 +9,9 @@ bin
 .tox
 =*
 pom.xml.versionsBackup
+__pycache__
+.terraform*
+terraform.tfstate
+terraform.tfstate.backup
+.tfmodules
+

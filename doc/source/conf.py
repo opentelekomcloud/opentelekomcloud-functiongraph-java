@@ -237,7 +237,8 @@ release = pom_version
 extlinks= {
     "github_repo_master": (f'https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/{local_branch}/%s', "%s"),
     "otc_fg_umn": ('https://docs.otc.t-systems.com/function-graph/umn/%s', "%s"),
-    "fg_console": ('https://console.otc.t-systems.com/functiongraph/%s', "%s")
+    "fg_console": ('https://console.otc.t-systems.com/functiongraph/%s', "%s"),
+    "api_usage": ('https://docs.otc.t-systems.com/api-usage/%s', "%s")
 }
 extlinks_detect_hardcoded_links = True
 

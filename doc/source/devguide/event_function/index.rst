@@ -10,7 +10,7 @@ Event Functions
    Pre-Stop <prestop>
    Heartbeat <heartbeat>
    Logging <logging/index>
-   Deploy <deploy>
+   Deployment <deployment/index>
    Class isolation <classisolation>
    Maven Archetype <mavenarchetype>
    Invoke FunctionGraph <invoke>
