@@ -11,7 +11,7 @@ FunctionGraph on OpenTelekomCloud.
    Event Functions <devguide/event_function/_index>
    HTTP Functions <devguide/http_function/_index>
    Deployment <devguide/deployment/_index>
-   Samples <samples/index>
+   Samples <samples/_index>
    Best Practises <devguide/bestpractices/_index>
 
 Source Code

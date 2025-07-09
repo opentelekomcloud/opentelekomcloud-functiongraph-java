@@ -6,6 +6,7 @@ Deployment of FunctionGraph functions
    :hidden:
 
    Event Functions <deployment_eventfunctions/_index>
+   HTTP Functions <deployment_httpfunctions/_index>
    Terraform <terraform/_index>
 
 This capter describes deployment of FunctionGraph.

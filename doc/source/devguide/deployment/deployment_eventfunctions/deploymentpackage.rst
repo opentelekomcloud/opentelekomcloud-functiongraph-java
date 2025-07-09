@@ -1,6 +1,6 @@
-.. _ref_deploymentpackage:
+.. _ref_deploymentpackage_event:
 
-Deploy Java FunctionGraph functions with .zip or JAR file archives
+Deploy Event Functions with .zip or JAR file archives
 ==================================================================
 
 Package Specification

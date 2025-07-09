@@ -1,9 +1,9 @@
-Deployment of Event Functions
+Deployment of HTTP Functions
 =============================
 
 .. toctree::
    :maxdepth: 2
    :hidden:
 
-   Deploy zip/jar <deploymentpackage>
+   Deploy zip <deploymentpackage_http>
 

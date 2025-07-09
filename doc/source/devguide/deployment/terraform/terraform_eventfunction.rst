@@ -13,7 +13,7 @@ Configure variables in:
 :github_repo_master:`variables.tf <samples-doc/doc-sample-deploy-tf/src/main/tf/variables.tf>`.
 
 * for ``function_handler_name``, see :ref:`ref_functionhandler`.
-* for ``jar_file_name``, see :ref:`ref_deploymentpackage`.
+* for ``jar_file_name``, see :ref:`ref_deploymentpackage_event`.
 
 .. literalinclude:: /../../samples-doc/doc-sample-deploy-tf/src/main/tf/variables.tf
    :language: terraform
