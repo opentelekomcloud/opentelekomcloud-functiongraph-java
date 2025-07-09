@@ -1,3 +1,5 @@
+.. _ref_functionhandler:
+
 Define FunctionGraph function handler in Java
 =============================================
 

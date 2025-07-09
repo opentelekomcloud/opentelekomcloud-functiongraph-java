@@ -1,7 +1,7 @@
 :original_name: functiongraph_02_0532.html
 
-Initializer funcion
-===================
+Initializer function
+====================
 
 Overview
 --------

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 for var in "${!OTC_@}"; do
     export $(printf 'TF_VAR_%s=%s\n' "$var" "${!var}")
 done

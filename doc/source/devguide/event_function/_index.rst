@@ -9,8 +9,7 @@ Event Functions
    Initializer <initializer>
    Pre-Stop <prestop>
    Heartbeat <heartbeat>
-   Logging <logging/index>
-   Deployment <deployment/index>
+   Logging <logging/_index>
    Class isolation <classisolation>
    Maven Archetype <mavenarchetype>
    Invoke FunctionGraph <invoke>

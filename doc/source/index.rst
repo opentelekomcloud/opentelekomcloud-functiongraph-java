@@ -8,10 +8,11 @@ FunctionGraph on OpenTelekomCloud (OTC).
    :includehidden:
    :maxdepth: 1
 
-   Building with Java <devguide/index>
-   Event Functions <devguide/event_function/index>
-   HTTP Functions <devguide/http_function/index>
-   Best Practises <devguide/bestpractices/index>
+   Building with Java <devguide/_index>
+   Event Functions <devguide/event_function/_index>
+   HTTP Functions <devguide/http_function/_index>
+   Deployment <devguide/deployment/_index>
+   Best Practises <devguide/bestpractices/_index>
 
 Source Code
 -----------
