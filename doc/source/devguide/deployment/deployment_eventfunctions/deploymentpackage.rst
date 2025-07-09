@@ -1,3 +1,5 @@
+.. _ref_deploymentpackage:
+
 Deploy Java FunctionGraph functions with .zip or JAR file archives
 ==================================================================
 

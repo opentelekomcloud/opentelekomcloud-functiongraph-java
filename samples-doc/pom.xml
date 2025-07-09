@@ -49,6 +49,7 @@
   <modules>
     <module>doc-sample-testing-1</module>
     <module>doc-sample-deploy</module>
+    <module>doc-sample-deploy-tf</module>
     <module>doc-sample-invoke-fg</module>
     <module>doc-sample-logging</module>
     <module>doc-sample-logging-slf4j</module>

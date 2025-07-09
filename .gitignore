@@ -10,3 +10,10 @@ bin
 =*
 pom.xml.versionsBackup
 __pycache__
+
+__pycache__
+.terraform*
+terraform.tfstate
+terraform.tfstate.backup
+.tfmodules
+

@@ -45,11 +45,11 @@ FunctionGraph provides 2 types of functions:
   (such as object storage service OBS, distributed messaging service
   RabbitMQ version, cloud log service LTS, etc.).
 
-  See :doc:`Event Function <event_function/index>`
+  See :doc:`Event Function <event_function/_index>`
 
 * **HTTP Functions**
 
   HTTP functions support mainstream Web application frameworks and can
   be accessed through a browser or called directly by a URL.
 
-  See :doc:`HTTP Functions <http_function/index>`
+  See :doc:`HTTP Functions <http_function/_index>`
