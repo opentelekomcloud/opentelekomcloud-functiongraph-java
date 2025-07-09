@@ -12,7 +12,7 @@ SDK Samples
 
 To access OpenTelekomCloud services from FunctionGraph using the API
 request have to be signed.
-The OTC Java SDK v1 provides utility methods to handle this request signing.
+The ``OTC Java SDK v1`` provides utility methods to handle this request signing.
 
 SDK samples can be found in: :github_repo_master:`/samples-doc/doc-sample-sdk <samples-doc/doc-sample-sdk>`.
 
@@ -21,16 +21,12 @@ SDK samples can be found in: :github_repo_master:`/samples-doc/doc-sample-sdk <s
 
 Dependencies
 ------------
-Currently the `OTC Java SDK v1` is only available as jar file.
+
+The community edition of the `OTC Java SDK v1` can be found on :github_java_sdk:`otc-java-sdk-v1<>`
+
+For installation see: :github_java_sdk:`Getting started <blob/main/doc/source/gettingstarted/index.rst>`
 
 To use this jar the pom.xml has to be adapted.
-
-After adaption install the OTC Java SDK v1 jar (:github_repo_master:`com-otc-sdk-core-1.0.0.jar <samples-doc/doc-sample-sdk/lib/com-otc-sdk-core-1.0.0.jar>`) using:
-
-.. code-block:: console
-  :caption: Install local jar
-
-  mvn validate
 
 As an example see:
 
