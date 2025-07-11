@@ -63,7 +63,7 @@ terraform {
     bucket = "sample-tf-backend"
 
     # (Required) Specifies the path to the state file inside the bucket.
-    key    = "terraform_state/doc-sample-deploy-tf.tf"
+    key    = "terraform_state/doc-sample-springboot-3.x-rest.tf"
 
     # (Required) Specifies the region where the bucket is located.
     # This can also be sourced from the AWS_DEFAULT_REGION and 

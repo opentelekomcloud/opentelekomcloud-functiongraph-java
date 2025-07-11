@@ -97,6 +97,9 @@ Step 4: Create FunctionGraph HTTP Function
 Create an HTTP function and upload the packaged zip package.
 For details, see :otc_fg_umn:`Creating an HTTP Function <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`.
 
+.. note::
+   It is recommended that you increase the function memory specification and timeout period during testing, such as 512MB and 5s.
+
 Step 5: Verify the results
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -144,8 +147,6 @@ and build a simple **Get** request.
         "isBase64Encoded": true
     }
 
-.. note::
-   It is recommended that you increase the function memory specification and timeout period during testing, such as 512MB and 5s.
 
 Step 6: Configure APIG Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

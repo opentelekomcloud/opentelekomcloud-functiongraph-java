@@ -1,3 +1,4 @@
+.. _ref_terraform_setup:
 Prepare the Terraform environment
 ---------------------------------
 
