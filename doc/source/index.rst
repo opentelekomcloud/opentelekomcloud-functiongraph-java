@@ -40,4 +40,7 @@ FunctionGraph User Guide
 For FunctionGraph usage, see :otc_fg_umn:`FunctionGraph User Guide <>`.
 
 
+FunctionGraph Notes and Constraints
+-----------------------------------
 
+See :otc_fg_umn:`Notes and Constraints <service_overview/notes_and_constraints.html>`.

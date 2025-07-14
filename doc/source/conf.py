@@ -244,6 +244,7 @@ extlinks= {
     "github_java_sdk": ('https://github.com/opentelekomcloud-community/otc-java-sdk-v1/%s', "%s"),
 }
 
+# If enabled, extlinks emits a warning if a hardcoded link is replaceable by an extlink, and suggests a replacement via warning.
 extlinks_detect_hardcoded_links = True
 
 # Copybutton and otc theme button are not compatible. 

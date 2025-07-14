@@ -5,9 +5,13 @@ This section describes on how to deploy an Event Function using Terraform.
 
 Full sample can be found in :github_repo_master:`doc-sample-deploy-tf <samples-doc/doc-sample-deploy-tf>`.
 
+Prerequisite
+------------
+
+* Terraform configured according to :ref:`ref_terraform_setup`
 
 Adapt Terraform files
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 Configure variables in:
 :github_repo_master:`variables.tf <samples-doc/doc-sample-deploy-tf/src/main/tf/variables.tf>`.
@@ -31,7 +35,7 @@ The following "function.tf" configurationdeploys:
    :caption: src/main/tf/function.tf
 
 Using Terraform
-^^^^^^^^^^^^^^^
+---------------
 
 Run following commands in folder ``src/main/tf`` :
 

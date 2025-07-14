@@ -158,79 +158,11 @@ and the fields of the object can be accessed.
 For example, ``event.getId()`` retrieves the value of Id from the
 original input.
 
+OpenTelekomCloud Trigger Events
+-------------------------------
 
-Event Types of OpenTelekomCloud services
-""""""""""""""""""""""""""""""""""""""""
+For events sent by OpenTelekomCloud services, see :ref:`ref-otc-events`.
 
-For events sent by other OpenTelekomCloud services, there are predefined
-types in:
-
-* :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events>`
-
-.. list-table:: **Table 1** Events
-   :widths: 25 20 8 20 20
-   :header-rows: 1
-
-   * - Service
-     - Short
-     - Calling method
-     - Source
-     - Remark
-
-   * - API Gateway (Dedicated Gateway)
-     - APIG
-     - sync
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.apig <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/apig>`
-     -
-
-   * - Cloud Trace Service
-     - CTS
-     - async
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.cts <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/cts>`
-     -
-
-   * - Document Database Service
-     - DDS
-     - Async
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.dds <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/dds>`
-     -
-
-
-   * - DMS for Kafka
-     - DMS4Kafka
-     - sync
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.dms4kafka <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/dms4kafka>`
-     -
-
-   * - Kafka (OPENSOURCEKAFKA)
-     - KAFKA
-     - async
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.kafka <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/kafka>`
-     -
-
-   * - Log Tank Service
-     - LTS
-     - async
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.lts <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/lts>`
-     -
-
-   * - S3 Object Storage Service
-     - S3OBS
-     - async
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.s3obs <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/s3obs>`
-     - OBS can only trigger FunctionGraph in the main project (e.g. eu-de), not in sub projects.
-
-   * - Simple Message Notification
-     - SMN
-     - async
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.smn <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/smn>`
-     -
-
-   * - Timer
-     - Timer
-     - async
-     - :github_repo_master:`com.opentelekomcloud.services.functiongraph.runtime.events.timer <opentelekomcloud-functiongraph-java-events/src/main/java/com/opentelekomcloud/services/functiongraph/runtime/events/timer>`
-     -
 
 Accessing and using the FunctionGraph context object
 ----------------------------------------------------

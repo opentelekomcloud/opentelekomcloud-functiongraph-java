@@ -13,6 +13,7 @@ Event Functions
    Maven Archetype <mavenarchetype>
    Invoke FunctionGraph <invoke>
    Local Testing <localtesting>
+   Trigger Events <event_trigger/_index>
    Call OpenTelekomCloud Services <call_services>
 
 

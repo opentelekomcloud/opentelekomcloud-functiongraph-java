@@ -6,10 +6,7 @@ This section describes on how to deploy an HTTP Function using Terraform.
 Prerequisite
 ------------
 
-* Terraform configured acording to :ref:`ref_terraform_setup`
-
-
-For samples on how to deply HTTP Functions, see:
+* Terraform configured according to :ref:`ref_terraform_setup`
 
 Sample: Deploy HTTP Function with OBS source bucket
 ---------------------------------------------------
