@@ -1,7 +1,9 @@
 Stopping ECSs in a Batch
 ========================
+
 .. toctree::
    :hidden:
+
 
 Example of FuctionGraph on how to stop one or more ECS instances.
 

@@ -3,7 +3,7 @@ Java FunctionGraph samples
 .. toctree::
    :hidden:
 
-   SDK Samples <sdksamples/index>
+   SDK Samples <sdksamples/_index>
 
 See
 ---

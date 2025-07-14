@@ -5,19 +5,19 @@ SDK Samples
 .. toctree::
   :hidden:
 
-   ECS start <ecs_start>
-   ECS stop <ecs_stop>
-   ECS restart <ecs_restart>
-   FG list functions <fg_getfunctions>
+   ECS Service  <ecs/_index>
+   FunctionGraph Service <fg/_index>
 
 To access OpenTelekomCloud services from FunctionGraph using the API
 request have to be signed.
-The ``OTC Java SDK v1`` provides utility methods to handle this request signing.
+
+The community edition of :github_java_sdk:`OTC Java SDK v1<>` provides 
+utility methods to handle request signing.
 
 SDK samples can be found in: :github_repo_master:`/samples-doc/doc-sample-sdk <samples-doc/doc-sample-sdk>`.
 
 .. note::
-   To prevent extended logging deploy function with :ref:`class-isolation-ref`.
+   To prevent extended logging deploy function with :ref:`class-isolation-ref` set to `enabled`.
 
 Dependencies
 ------------
