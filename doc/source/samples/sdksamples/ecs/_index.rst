@@ -4,7 +4,7 @@ ECS Samples
 Following examples show how to access ECS service using FunctionGraph.
 
 .. toctree::
-   :maxdepth: 1
+   :hidden:
 
    Start ECS   <ecs_start>
    Stop ECS    <ecs_stop>

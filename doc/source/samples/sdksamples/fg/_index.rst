@@ -7,4 +7,4 @@ using FunctionGraph.
 .. toctree::
    :maxdepth: 1
 
-   Get function list <fg_getfunctions>
+   Get list of functions <fg_getfunctions>
