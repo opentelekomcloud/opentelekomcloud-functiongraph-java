@@ -1,7 +1,7 @@
 .. _ref-timer-event:
 
-Timer (Timer)
-=============
+Timer
+=====
 
 .. toctree::
    :hidden:

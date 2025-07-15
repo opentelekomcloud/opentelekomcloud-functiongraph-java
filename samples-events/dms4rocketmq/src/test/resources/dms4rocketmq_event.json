@@ -1,0 +1,19 @@
+{
+  "event_version": "v1.0",
+  "event_time": 1576737962,
+  "trigger_type": "ROCKETMQ",
+  "region": "eu-de",
+  "instance_id": "08fd3e1b-cf56-401f-b4c6-81fd2a1d3ae6",
+  "records": [
+      {
+          "messages": [
+              "kafka message1",
+              "kafka message2",
+              "kafka message3",
+              "kafka message4",
+              "kafka message5"
+          ],
+          "topic_id": "topic-test"
+      }
+  ]
+}

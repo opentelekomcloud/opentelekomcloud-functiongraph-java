@@ -1,7 +1,7 @@
 .. _ref-s3obs-event:
 
-S3 Object Storage Service (S3OBS)
-=================================
+Object Storage Service (OBS)
+=============================
 
 .. toctree::
    :hidden:

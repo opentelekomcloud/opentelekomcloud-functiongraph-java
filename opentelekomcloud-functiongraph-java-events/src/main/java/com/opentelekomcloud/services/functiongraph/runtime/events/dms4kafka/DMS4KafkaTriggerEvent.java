@@ -47,7 +47,7 @@ public class DMS4KafkaTriggerEvent implements TriggerEvent {
   private long eventTime;
 
   /**
-   * Trigger type
+   * Trigger type: KAFKA
    */
   @SerializedName("trigger_type")
   private String triggerType;

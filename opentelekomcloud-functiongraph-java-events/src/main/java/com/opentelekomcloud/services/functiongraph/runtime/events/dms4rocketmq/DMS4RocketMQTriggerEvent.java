@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.kafka;
+package com.opentelekomcloud.services.functiongraph.runtime.events.dms4rocketmq;
 
 import com.google.gson.annotations.SerializedName;
 import com.opentelekomcloud.services.functiongraph.runtime.core.TriggerEvent;
@@ -25,7 +25,7 @@ import lombok.ToString;
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class KAFKATriggerEvent implements TriggerEvent {
+public class DMS4RocketMQTriggerEvent implements TriggerEvent {
 
   /**
    * Event version
@@ -47,7 +47,7 @@ public class KAFKATriggerEvent implements TriggerEvent {
   private long eventTime;
 
   /**
-   * Trigger type: KAFKA
+   * Trigger type: "ROCKETMQ"
    */
   @SerializedName("trigger_type")
   private String triggerType;
@@ -59,21 +59,21 @@ public class KAFKATriggerEvent implements TriggerEvent {
   private String instanceId;
 
   /**
-   * Kafka records
+   * DMS4RocketMQ records
    */
   @SerializedName("records")
-  private KAKFARecord[] records;
+  private DMS4RocketMQRecord[] records;
 
 
   /**
    * 
    * @return clone of message records.
    */
-  public KAKFARecord[] getRecords() {
+  public DMS4RocketMQRecord[] getRecords() {
     return this.records.clone();
   }
 
-  public void setRecords(KAKFARecord[] records) {
+  public void setRecords(DMS4RocketMQRecord[] records) {
     this.records = records.clone();
   }
 

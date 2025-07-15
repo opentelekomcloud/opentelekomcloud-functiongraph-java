@@ -1,7 +1,7 @@
 .. _ref-kafka-event:
 
-Kafka (OPENSOURCE)
-==================
+Kafka (OPENSOURCEKAFKA)
+=======================
 
 .. toctree::
    :hidden:
