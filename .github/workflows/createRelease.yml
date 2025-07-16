@@ -70,7 +70,7 @@ jobs:
 
       - name: echo-if-package-exists
         if: "${{ steps.check_package_exist.outputs.PACKAGE_EXISTS == 'true' }}"
-        run: echo "::notice::Package exsits, skipping upload."
+        run: echo "::notice::Package exists, skipping upload."
 
       - name: deploy-package-to-github
         if: "${{ steps.check_package_exist.outputs.PACKAGE_EXISTS != 'true' }}"
@@ -163,4 +163,61 @@ jobs:
         run: |
           ansible-playbook -i localhost, -M ./library playbooks/upload_swift.yml            
 
-          
+
+  publishMavenCentral:
+    name: Publish to Maven Central
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+          server-id: ossrh
+          server-username: ${{ secrets.OSSRH_USERNAME }}
+          server-password: ${{ secrets.OSSRH_PASSWORD }}
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+      - name: Import GPG key
+        run: |
+          echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | base64 --decode | gpg --batch --import
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+
+      - name: Deploy to Maven Central
+        run: mvn -Psign-artifacts deploy -DskipTests --settings .github/maven-settings.xml
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+  publishMavenCentralDryRun:
+    name: Publish to Maven Central (Dry Run)
+    needs: build
+    if: github.event_name != 'push' || !startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Deploy to Maven Central
+        run: mvn -Psign-artifacts deploy -DskipTests --settings .github/maven-settings.xml
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
