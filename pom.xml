@@ -6,7 +6,7 @@
 
   <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <developers>
@@ -352,6 +352,14 @@
                   <goals>
                     <goal>sign</goal>
                   </goals>
+                  <configuration>
+                    <!-- This is required to make sure the plugin does not stop asking for -->
+                    <!-- user input on the passphrase -->
+                    <gpgArguments>
+                      <arg>--pinentry-mode</arg>
+                      <arg>loopback</arg>
+                    </gpgArguments>
+                  </configuration>
                 </execution>
               </executions>
             </plugin>

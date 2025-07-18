@@ -177,20 +177,20 @@ or gardle `build.gradle` as follows:
         <dependencies>
           ...
           <dependency>
-            <groupId>com.opentelekomcloud</groupId>
+            <groupId>io.github.opentelekomcloud</groupId>
             <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
             <version>|pom_version|</version>
           </dependency>
 
           <dependency>
-            <groupId>com.opentelekomcloud</groupId>
+            <groupId>com.io.github.opentelekomcloud</groupId>
             <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
             <version>|pom_version|</version>
           </dependency>
 
 
           <dependency>
-            <groupId>com.opentelekomcloud</groupId>
+            <groupId>io.github.opentelekomcloud</groupId>
             <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
             <version>|pom_version|</version>
             <scope>test</scope>

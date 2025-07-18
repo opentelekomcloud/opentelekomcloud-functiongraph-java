@@ -7,7 +7,7 @@
     <relativePath>pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.opentelekomcloud.samples</groupId>
+  <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>doc-sample-springboot</artifactId>
   <name>doc-sample-springboot</name>
   <version>0.0.1-SNAPSHOT</version>

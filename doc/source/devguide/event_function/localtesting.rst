@@ -14,7 +14,7 @@ To install this module, add following dependencies to your pom.xml:
   <dependencies>
     ...
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
       <version>|pom_version|</version>
       <scope>test</scope>

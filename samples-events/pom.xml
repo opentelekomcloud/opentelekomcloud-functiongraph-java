@@ -3,13 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.opentelekomcloud</groupId>
+    <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java</artifactId>
-    <version>0.0.2-beta</version>
+    <version>0.0.3-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud.samples</groupId>
-  <artifactId>functiongraph.samples-events</artifactId>
+  <artifactId>opentelekomcloud-functiongraph-java-samples-events</artifactId>
 
   <packaging>pom</packaging>
   <name>functiongraph-samples-events</name>

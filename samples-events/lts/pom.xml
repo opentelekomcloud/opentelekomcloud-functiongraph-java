@@ -3,30 +3,29 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.opentelekomcloud.samples</groupId>
-    <artifactId>functiongraph.samples-events</artifactId>
-    <version>0.0.2-beta</version>
+    <groupId>io.github.opentelekomcloud</groupId>
+    <artifactId>opentelekomcloud-functiongraph-java-samples-events</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud.samples</groupId>
-  <artifactId>functiongraph-samples-events-lts</artifactId>
+  <artifactId>opentelekomcloud-functiongraph-java-samples-events-lts</artifactId>
 
   <dependencies>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
       <version>${project.version}</version>
     </dependency>
