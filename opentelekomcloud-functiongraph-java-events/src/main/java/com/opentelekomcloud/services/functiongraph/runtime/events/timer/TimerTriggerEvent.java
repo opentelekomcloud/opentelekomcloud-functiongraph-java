@@ -22,6 +22,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * TimerTriggerEvent is used to represent the event triggered by a timer.
+ * It contains information such as version, time, trigger name, trigger type, and user event.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor

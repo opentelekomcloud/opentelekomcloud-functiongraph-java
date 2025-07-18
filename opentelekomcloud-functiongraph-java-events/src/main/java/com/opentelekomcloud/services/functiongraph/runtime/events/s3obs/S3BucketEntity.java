@@ -13,30 +13,43 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.dds;
-
+package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * S3BucketEntity is used to represent the bucket entity in S3/OBS events.
+ * It contains information such as bucket name, ARN, and owner identity.
+ */
+@NoArgsConstructor
 @Data
 @ToString(includeFieldNames=true)
-@NoArgsConstructor
-public class DDSBody {
+public class S3BucketEntity {
+  /**
+   * Bucket name
+   */
+  @SerializedName("name")
+  private String name;
 
-  @SerializedName("size_bytes")
-  private String sizeBytes;
+  /**
+   * ARN
+   */
+  @SerializedName("arn")
+  private String arn;
 
-  @SerializedName("token")
-  private String token;
+  /**
+   * Owner Identity
+   */
+  @SerializedName("ownerIdentity")
+  private UserIdentityEntity ownerIdentity;
 
-  @SerializedName("full_document")
-  private String fullDocument;
+  public S3BucketEntity(String name, UserIdentityEntity ownerIdentity, String arn) {
+    this.name = name;
+    this.arn = arn;
+    this.ownerIdentity = ownerIdentity;
+  }
 
-  @SerializedName("ns")
-  private String ns;
-
-  
 }

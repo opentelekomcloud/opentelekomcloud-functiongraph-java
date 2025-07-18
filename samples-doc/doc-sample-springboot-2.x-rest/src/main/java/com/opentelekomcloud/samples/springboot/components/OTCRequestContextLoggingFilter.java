@@ -31,6 +31,11 @@ import org.slf4j.MDC;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * OTCRequestContextLoggingFilter is a filter that logs request context information.
+ * It captures specific headers from the HTTP request and stores them in the MDC (Mapped Diagnostic Context)
+ * for logging purposes. This allows for better tracking of requests in logs.
+ */
 @Component
 @Order(1)
 public class OTCRequestContextLoggingFilter implements Filter {
@@ -60,6 +65,17 @@ public class OTCRequestContextLoggingFilter implements Filter {
     return requestId.get();
   }
 
+  /**
+   * This method is called for each request to log the request context.
+   * It retrieves the request ID from the HTTP header and stores it in a ThreadLocal variable.
+   * It also logs all available headers if debug logging is enabled.
+   *
+   * @param request the ServletRequest object
+   * @param response the ServletResponse object
+   * @param chain the FilterChain to pass the request and response to the next filter or servlet
+   * @throws IOException if an I/O error occurs
+   * @throws ServletException if a servlet error occurs
+   */
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {

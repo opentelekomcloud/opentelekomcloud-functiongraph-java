@@ -27,6 +27,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * APIGTriggerEvent is used to represent the event triggered by API Gateway.
+ * It contains information such as HTTP method, path, body, headers, and request context.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
@@ -66,7 +70,7 @@ public class APIGTriggerEvent implements TriggerEvent {
    * API Gateway configurations
    */
   @SerializedName("requestContext")
-  private APIGRequestContext requestContext;
+  private APIGRequestContextEntity requestContext;
 
   /**
    * HTTP request headers

@@ -16,7 +16,8 @@
 package com.opentelekomcloud.services.functiongraph.runtime.core;
 
 /**
- * Interfcae for predefined trigger events
+ * Interface for TriggerEvent.
+ * This interface can be implemented by various trigger event classes.
  */
 public interface TriggerEvent {
 

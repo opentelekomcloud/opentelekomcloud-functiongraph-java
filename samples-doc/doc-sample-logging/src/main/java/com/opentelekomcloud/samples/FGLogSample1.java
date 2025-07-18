@@ -23,6 +23,10 @@ import com.google.gson.JsonParser;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
+/**
+ * FGLogSample1 is a sample function that logs the event data received.
+ * It uses Gson to pretty print the JSON event data.
+ */
 public class FGLogSample1 {
   final Gson gsonPrettyPrint = new GsonBuilder().setPrettyPrinting().create();
 

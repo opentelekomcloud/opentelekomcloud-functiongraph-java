@@ -13,31 +13,44 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.cts;
+package com.opentelekomcloud.services.functiongraph.runtime.events.kafka;
 
 import com.google.gson.annotations.SerializedName;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
+/**
+ * KAKFARecordEntity is used to represent the record entity in Kafka.
+ * It contains information such as Kafka messages and topic ID.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class Domain {
+public class KAKFARecordEntity {
 
   /**
-   * Account Name
+   * Kafka messages
    */
-  @SerializedName("name")
-  private String name;
+  @SerializedName("messages")
+  private String[] messages;
 
   /**
-   * Account ID
+   * topic id
    */
-  @SerializedName("id")
-  private String id;
+  @SerializedName("topic_id")
+  private String topicId;
 
+  /**
+   * clone of kafka messages
+   * @return messages.
+   */
+  public String[] getMessages() {
+    return this.messages.clone();
+  }
+  
+  public void setMessages(String[] messages) {
+    this.messages = messages.clone();
+  }
 
 }

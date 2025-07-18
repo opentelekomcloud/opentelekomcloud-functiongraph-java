@@ -31,6 +31,11 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * OTCRequestContextLoggingFilter is a filter that logs request context information.
+ * It captures specific headers from the HTTP request and stores them in the MDC (Mapped Diagnostic Context)
+ * for logging purposes. This allows for better tracking of requests in logs.
+ */
 @Component
 @Order(1)
 public class OTCRequestContextLoggingFilter implements Filter {

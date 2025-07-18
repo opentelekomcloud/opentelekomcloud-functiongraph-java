@@ -13,60 +13,40 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
+package com.opentelekomcloud.services.functiongraph.runtime.events.lts;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 import com.google.gson.annotations.SerializedName;
-import java.util.Map;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * LTSBodyEntity is used to represent the body entity in Log Tank Service (LTS).
+ * It contains the LTS data and provides a method to get the raw data after Base64 decoding.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class SMNBody {
+public class LTSBodyEntity {
 
   /**
-   * Topic URN
+   * LTS data
    */
-  @SerializedName("topic_urn")
-  private String topicUrn;
+  @SerializedName("data")
+  private String data;
 
   /**
-   * Timestamp
+   * 
+   * @return get base64 decoded raw data
    */
-  @SerializedName("timestamp")
-  private String timestamp;
+  public String getRawData() throws UnsupportedEncodingException {
+    byte[] decoded = Base64.getMimeDecoder().decode(this.data);
+    return new String(decoded, StandardCharsets.UTF_8);
+  }
 
-  /**
-   * Message attributes
-   */
-  @SerializedName("message_attributes")
-  private Map<String, String> messageAttributes;
-
-  /**
-   * SMN Message
-   */
-  @SerializedName("message")
-  private String message;
-
-  /**
-   * SMN Type
-   */
-  @SerializedName("type")
-  private String type;
-
-  /**
-   * SMN message id
-   */
-  @SerializedName("message_id")
-  private String messageId;
-
-  /**
-   * MSN subject
-   */
-  @SerializedName("subject")
-  private String subject;
- 
 }

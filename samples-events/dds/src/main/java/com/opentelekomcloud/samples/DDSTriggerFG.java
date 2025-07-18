@@ -15,13 +15,25 @@
 
 package com.opentelekomcloud.samples;
 
-import com.opentelekomcloud.services.functiongraph.runtime.events.dds.DDSRecord;
+import com.opentelekomcloud.services.functiongraph.runtime.events.dds.DDSRecordEntity;
 import com.opentelekomcloud.services.functiongraph.runtime.events.dds.DDSTriggerEvent;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
+/**
+ * DDSTriggerFG is a sample function that demonstrates how to handle events from Data Distributed Service (DDS).
+ * It processes the incoming event and logs the event data.
+ */
 public class DDSTriggerFG  {
 
+  /**
+   * Handles the incoming DDS event and logs the event data.
+   * It retrieves the RuntimeLogger from the context and logs the event.
+   *
+   * @param event   the DDS event data received by the function
+   * @param context the runtime context providing access to logging and other services
+   * @return a success message
+   */
   public String handleRequest(final DDSTriggerEvent event, final Context context) {
 
     RuntimeLogger log = context.getLogger();
@@ -29,7 +41,7 @@ public class DDSTriggerFG  {
     log.log(String.format("event: %s", event));
 
 
-      for (DDSRecord record : event.getRecords()) {
+      for (DDSRecordEntity record : event.getRecords()) {
         log.log(String.format("event_name %s: ", record.getEventName()));
       }
 

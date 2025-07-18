@@ -22,6 +22,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * DMS4RocketMQTriggerEvent is used to represent the event triggered by DMS for RocketMQ.
+ * It contains information such as event version, region, event time, trigger type, instance ID,
+ * and RocketMQ records.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
@@ -62,18 +67,18 @@ public class DMS4RocketMQTriggerEvent implements TriggerEvent {
    * DMS4RocketMQ records
    */
   @SerializedName("records")
-  private DMS4RocketMQRecord[] records;
+  private DMS4RocketMQRecordEntity[] records;
 
 
   /**
    * 
    * @return clone of message records.
    */
-  public DMS4RocketMQRecord[] getRecords() {
+  public DMS4RocketMQRecordEntity[] getRecords() {
     return this.records.clone();
   }
 
-  public void setRecords(DMS4RocketMQRecord[] records) {
+  public void setRecords(DMS4RocketMQRecordEntity[] records) {
     this.records = records.clone();
   }
 

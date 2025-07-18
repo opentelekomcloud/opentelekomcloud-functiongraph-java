@@ -28,6 +28,10 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
 
+/**
+ * SMNTriggerEventTest is used to test the SMNTriggerEvent class.
+ * It reads a JSON file and verifies that the event is correctly parsed.
+ */
 public class SMNTriggerEventTest {
 
   @Test

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.apig;
+package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -21,29 +21,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * SMNRecordEntity is used to represent the record entity in SMN events.
+ * It contains information such as event version, event subscription URN, event source, and SMN body.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class APIGRequestContext {
+public class SMNRecordEntity {
   /**
-   * API Id
+   * Event version
    */
-  @SerializedName("apiId")
-  private String apiId;
+  @SerializedName("event_version")
+  private String eventVersion;
+
   /**
-   * Request Id
+   * Event subscription URN
    */
-  @SerializedName("requestId")
-  private String requestId;
+  @SerializedName("event_subscription_urn")
+  private String eventSubscriptionUrn;
+
   /**
-   * name of the environment in which an API has been published
+   * Event source
    */
-  @SerializedName("stage")
-  private String stage;
+  @SerializedName("event_source")
+  private String eventSource;
+
   /**
-   * Source IP of request
+   * SMN body
    */
-  @SerializedName("sourceIp")
-  private String sourceIp;
-  
+  @SerializedName("smn")
+  private SMNBodyEntity smn;
+
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
+package com.opentelekomcloud.services.functiongraph.runtime.events.cts;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -21,19 +21,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * UserEntity is used to represent the user entity in Cloud Trace Service (CTS).
+ * It contains information such as username, user ID, and account information.
+ */
 @Data
-@NoArgsConstructor
 @ToString(includeFieldNames=true)
-public class RequestParameters {
+@NoArgsConstructor
+public class UserEntity {
   /**
-   * Source IP address
+   * Username (multiple sub-users can be created under the same account)
    */
-  @SerializedName("sourceIPAddress")
-  private String sourceIPAddress;
+  @SerializedName("name")
+  private String name;
 
-  
-  public RequestParameters(String sourceIPAddress) {
-    this.sourceIPAddress = sourceIPAddress;
-  }
+  /**
+   * User ID
+   */
+  @SerializedName("id")
+  private String id;
+
+  /**
+   * Account information
+   */
+  @SerializedName("domain")
+  private DomainEntity domain;
 
 }

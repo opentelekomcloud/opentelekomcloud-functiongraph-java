@@ -15,8 +15,8 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.FileReader;
@@ -28,7 +28,11 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
 
-public class S3OBSTriggerEventTest {
+/**
+ * S3TriggerEventTest is used to test the S3TriggerEvent class.
+ * It reads a JSON file and verifies that the event is correctly parsed.
+ */
+public class S3TriggerEventTest {
 
   @Test
   void testEvent() throws Exception {
@@ -36,7 +40,7 @@ public class S3OBSTriggerEventTest {
     String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
     try (Reader reader = new FileReader(absolutePath + "/s3obs_event.json")) {
-      S3ObsTriggerEvent event = new Gson().fromJson(reader, S3ObsTriggerEvent.class);
+      S3TriggerEvent event = new Gson().fromJson(reader, S3TriggerEvent.class);
 
       assertEquals("functionstorage-template", event.getBucketName());
 

@@ -22,10 +22,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * CTSEntity is used to represent the event entity for Cloud Trace Service (CTS).
+ * It contains information such as event generation time, user information, request and response content,
+ * HTTP response code, service type, resource type, resource name, resource ID, trace name, trace type,
+ * record time, trace ID, and trace status.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class CTS {
+public class CTSEntity {
   /**
    * Event generation time
    */
@@ -36,7 +42,7 @@ public class CTS {
    * User information that triggered the event
    */
   @SerializedName("user")
-  private User user;
+  private UserEntity user;
 
   /**
    * Event request content

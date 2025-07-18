@@ -22,6 +22,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * CTSTriggerEvent is used to represent the event triggered by Cloud Trace Service (CTS).
+ * It contains information such as event generation time, user information, request and response content,
+ * HTTP response code, service type, resource type, resource name, resource ID, trace name, trace type,
+ * record time, trace ID, and trace status.
+ */
 @Data
 @NoArgsConstructor
 @ToString(includeFieldNames=true)
@@ -31,6 +37,6 @@ public class CTSTriggerEvent implements TriggerEvent {
    * CTS message body
    */
   @SerializedName("cts")
-  private CTS cts;
+  private CTSEntity cts;
 
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.cts;
+package com.opentelekomcloud.services.functiongraph.runtime.events.dms4rocketmq;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -21,27 +21,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
+/**
+ * DMS4RocketMQRecordEntity is used to represent the record entity in DMS for RocketMQ.
+ * It contains information such as RocketMQ messages and topic ID.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class User {
-  /**
-   * Username (multiple sub-users can be created under the same account)
-   */
-  @SerializedName("name")
-  private String name;
+public class DMS4RocketMQRecordEntity {
 
   /**
-   * User ID
+   * DMS4RocketMQ messages
    */
-  @SerializedName("id")
-  private String id;
+  @SerializedName("messages")
+  private String[] messages;
 
   /**
-   * Account information
+   * topic id
    */
-  @SerializedName("domain")
-  private Domain domain;
+  @SerializedName("topic_id")
+  private String topicId;
+
+  /**
+   * clone of DMS4RocketMQ messages
+   * @return messages.
+   */
+  public String[] getMessages() {
+    return this.messages.clone();
+  }
+  
+  public void setMessages(String[] messages) {
+    this.messages = messages.clone();
+  }
 
 }

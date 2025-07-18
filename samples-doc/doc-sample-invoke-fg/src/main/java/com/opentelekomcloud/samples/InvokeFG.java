@@ -30,6 +30,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+/**
+ * InvokeFG is a sample function that demonstrates how to invoke a FunctionGraph function
+ * using the OpenTelekomCloud FunctionGraph service.
+ * It retrieves an authentication token, constructs an HTTP request, and processes the response.
+ */
 public class InvokeFG {
 
   private static final Gson gsonPrettyPrint = new GsonBuilder().setPrettyPrinting().create();

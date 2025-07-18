@@ -28,6 +28,10 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
 
+/**
+ * KAFKATriggerEventTest is used to test the KAFKATriggerEvent class.
+ * It reads a JSON file and verifies that the event is correctly parsed.
+ */
 public class KAFKATriggerEventTest {
 
   @Test

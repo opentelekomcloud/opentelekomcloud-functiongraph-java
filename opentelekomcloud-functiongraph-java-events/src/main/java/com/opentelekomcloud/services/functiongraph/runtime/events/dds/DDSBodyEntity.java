@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.dms4rocketmq;
+package com.opentelekomcloud.services.functiongraph.runtime.events.dds;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -21,33 +21,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * DDSBodyEntity is used to represent the body entity in Data Distributed Service (DDS).
+ * It contains information such as size in bytes, token, full document, and namespace.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class DMS4RocketMQRecord {
+public class DDSBodyEntity {
 
-  /**
-   * DMS4RocketMQ messages
-   */
-  @SerializedName("messages")
-  private String[] messages;
+  @SerializedName("size_bytes")
+  private String sizeBytes;
 
-  /**
-   * topic id
-   */
-  @SerializedName("topic_id")
-  private String topicId;
+  @SerializedName("token")
+  private String token;
 
-  /**
-   * clone of DMS4RocketMQ messages
-   * @return messages.
-   */
-  public String[] getMessages() {
-    return this.messages.clone();
-  }
+  @SerializedName("full_document")
+  private String fullDocument;
+
+  @SerializedName("ns")
+  private String ns;
+
   
-  public void setMessages(String[] messages) {
-    this.messages = messages.clone();
-  }
-
 }

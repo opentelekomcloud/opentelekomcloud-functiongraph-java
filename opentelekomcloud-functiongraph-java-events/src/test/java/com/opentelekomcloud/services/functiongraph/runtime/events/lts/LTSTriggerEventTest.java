@@ -32,6 +32,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+/**
+ * LTSTriggerEventTest is used to test the LTSTriggerEvent class.
+ * It reads a JSON file and verifies that the event is correctly parsed.
+ */
 public class LTSTriggerEventTest {
 
   @Test

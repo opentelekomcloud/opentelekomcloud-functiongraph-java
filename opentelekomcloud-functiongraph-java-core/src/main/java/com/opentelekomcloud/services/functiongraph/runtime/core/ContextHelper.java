@@ -26,6 +26,11 @@ public class ContextHelper {
 
   private final Context context;
 
+  /**
+   * Constructor for ContextHelper.
+   *
+   * @param context the context to be used
+   */
   public ContextHelper(Context context) {
     this.context=context;
   }

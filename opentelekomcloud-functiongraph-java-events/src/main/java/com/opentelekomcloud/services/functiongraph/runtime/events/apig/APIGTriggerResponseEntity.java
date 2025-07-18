@@ -26,9 +26,13 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * APIGTriggerResponseEntity is used to represent the response entity for API Gateway triggers.
+ * It contains the body, headers, status code, and whether the body is Base64 encoded.
+ */
 @Data
 @ToString(includeFieldNames=true)
-public class APIGTriggerResponse {
+public class APIGTriggerResponseEntity {
 
   /**
    * Body
@@ -54,20 +58,20 @@ public class APIGTriggerResponse {
   @SerializedName("isBase64Encoded")
   private boolean isBase64Encoded;
 
-  public APIGTriggerResponse() {
+  public APIGTriggerResponseEntity() {
     this.statusCode = 200;
     this.body = "";
     this.isBase64Encoded = false;
   }
 
-  public APIGTriggerResponse(int statusCode, Map<String, String> headers, String body) {
+  public APIGTriggerResponseEntity(int statusCode, Map<String, String> headers, String body) {
     this.statusCode = statusCode;
     this.headers = headers;
     this.body = body;
     this.isBase64Encoded = false;
   }
 
-  public APIGTriggerResponse(int statusCode, Map<String, String> headers, boolean isBase64Encoded, String body) {
+  public APIGTriggerResponseEntity(int statusCode, Map<String, String> headers, boolean isBase64Encoded, String body) {
     this.body = body;
     this.headers = headers;
     this.statusCode = statusCode;

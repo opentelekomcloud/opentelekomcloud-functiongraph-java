@@ -22,35 +22,53 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * SMNTriggerEvent is used to represent the event triggered by SMN.
+ * It contains an array of SMNRecordEntity, function name, request ID, and timestamp.
+ */
 @Data
-@ToString(includeFieldNames=true)
+@ToString(includeFieldNames = true)
 @NoArgsConstructor
-public class SMNTriggerEvent implements TriggerEvent{
+public class SMNTriggerEvent implements TriggerEvent {
 
   /**
    * SMN Records
    */
   @SerializedName("record")
-  private SMNRecord[] record;
+  private SMNRecordEntity[] record;
 
+  /**
+   * Function name
+   */
   @SerializedName("functionname")
-  private String  functionName;
+  private String functionName;
 
+  /**
+   * Request ID
+   */
   @SerializedName("requestId")
-  private String  requestId;
+  private String requestId;
 
+  /**
+   * Event type
+   */
   @SerializedName("timestamp")
-  private String  timestamp;
+  private String timestamp;
 
   /**
    * 
    * @return smn record clones
    */
-  public SMNRecord[] getRecord() {
+  public SMNRecordEntity[] getRecord() {
     return this.record.clone();
   }
 
-  public void setRecord(SMNRecord[] record) {
+  /**
+   * Set SMN record
+   * 
+   * @param record SMNRecord array
+   */
+  public void setRecord(SMNRecordEntity[] record) {
     this.record = record.clone();
   }
 

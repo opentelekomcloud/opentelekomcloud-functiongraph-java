@@ -23,26 +23,54 @@ package com.opentelekomcloud.services.runtime;
 public interface RuntimeLogger {
   /**
    * Logs a string to LogTankService Logs
-   
+   * 
    * Logging will not be done:<br>
    * <ul>
    * <li>If the container is not configured to log to LogTankService.</li>
-   
-   * <li>If the role provided to the function does not have sufficient permissions.</li>
+   * 
+   * <li>If the role provided to the function does not have sufficient
+   * permissions.</li>
    * </ul>
-   
-   
-   * @param message A string containing the event to log.
+   * 
+   * 
+   * @param message A string containing the message to log.
    */
   void log(String message);
 
-  void debug(String var1);
+  /**
+   * Logs a string to LogTankService with the DEBUG log level.
+   *
+   * @param message A string containing the message to log.
+   */
+  void debug(String message);
 
-  void info(String var1);
+  /**
+   * Logs a string to LogTankService with the INFO log level.
+   *
+   * @param message A string containing the message to log.
+   */
+  void info(String message);
 
-  void warn(String var1);
+  /**
+   * Logs a string to LogTankService with the WARN log level.
+   *
+   * @param message A string containing the message to log.
+   */
 
-  void error(String var1);
+  void warn(String message);
 
-  void setLevel(String var1);
+  /**
+   * Logs a string to LogTankService with the ERROR log level.
+   *
+   * @param message A string containing the event to log.
+   */
+  void error(String message);
+
+  /**
+   * Sets the log level for the logger.
+   *
+   * @param logLevel The log level to set (e.g., "DEBUG", "INFO", "WARN",
+   *                 "ERROR").
+   */
+  void setLevel(String logLevel);
 }

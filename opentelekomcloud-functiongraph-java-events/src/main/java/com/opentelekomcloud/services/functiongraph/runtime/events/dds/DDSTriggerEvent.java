@@ -24,13 +24,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
+/**
+ * DDSTriggerEvent is used to represent the event triggered by Data Distributed Service (DDS).
+ * It contains a list of DDSRecordEntity objects that represent the records in the event.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
 public class DDSTriggerEvent implements TriggerEvent {
 
   @SerializedName("records")
-  private ArrayList<DDSRecord> records;
+  private ArrayList<DDSRecordEntity> records;
 
 }

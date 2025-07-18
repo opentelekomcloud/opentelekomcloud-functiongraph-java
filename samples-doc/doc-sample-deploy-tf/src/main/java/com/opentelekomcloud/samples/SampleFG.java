@@ -19,6 +19,10 @@ import com.google.gson.annotations.SerializedName;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
+/**
+ * SampleFG is a sample function that demonstrates how to handle requests.
+ * It logs the class name and key from the event data.
+ */
 public class SampleFG {
 
   public String handleRequest(final SampleFG.EventData event, final Context context) {

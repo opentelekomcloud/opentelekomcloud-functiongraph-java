@@ -16,37 +16,61 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.Map;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * SMNBodyEntity is used to represent the body of an SMN event.
+ * It contains information such as topic URN, timestamp, message attributes, message, type, message ID, and subject.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class SMNRecord {
-  /**
-   * Event version
-   */
-  @SerializedName("event_version")
-  private String eventVersion;
+public class SMNBodyEntity {
 
   /**
-   * Event subscription URN
+   * Topic URN
    */
-  @SerializedName("event_subscription_urn")
-  private String eventSubscriptionUrn;
+  @SerializedName("topic_urn")
+  private String topicUrn;
 
   /**
-   * Event source
+   * Timestamp
    */
-  @SerializedName("event_source")
-  private String eventSource;
+  @SerializedName("timestamp")
+  private String timestamp;
 
   /**
-   * SMN body
+   * Message attributes
    */
-  @SerializedName("smn")
-  private SMNBody smn;
+  @SerializedName("message_attributes")
+  private Map<String, String> messageAttributes;
 
+  /**
+   * SMN Message
+   */
+  @SerializedName("message")
+  private String message;
+
+  /**
+   * SMN Type
+   */
+  @SerializedName("type")
+  private String type;
+
+  /**
+   * SMN message id
+   */
+  @SerializedName("message_id")
+  private String messageId;
+
+  /**
+   * MSN subject
+   */
+  @SerializedName("subject")
+  private String subject;
+ 
 }

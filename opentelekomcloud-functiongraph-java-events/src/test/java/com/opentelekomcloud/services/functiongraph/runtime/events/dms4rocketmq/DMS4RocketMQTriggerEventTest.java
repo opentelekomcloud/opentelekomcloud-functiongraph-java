@@ -28,6 +28,10 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
 
+/**
+ * DMS4RocketMQTriggerEventTest is used to test the DMS4RocketMQTriggerEvent class.
+ * It reads a JSON file and verifies that the event is correctly parsed.
+ */
 public class DMS4RocketMQTriggerEventTest {
 
   @Test

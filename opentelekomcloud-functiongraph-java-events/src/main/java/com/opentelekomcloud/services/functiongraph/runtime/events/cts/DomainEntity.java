@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.dds;
+package com.opentelekomcloud.services.functiongraph.runtime.events.cts;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -21,27 +21,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * DomainEntity is used to represent the domain entity in Cloud Trace Service (CTS).
+ * It contains information such as account name and account ID.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class DDSRecord {
+public class DomainEntity {
 
-  @SerializedName("event_source")
-  private String eventSource;
+  /**
+   * Account Name
+   */
+  @SerializedName("name")
+  private String name;
 
-  @SerializedName("event_name")
-  private String eventName;
+  /**
+   * Account ID
+   */
+  @SerializedName("id")
+  private String id;
 
-  @SerializedName("region")
-  private String region;
 
-  @SerializedName("event_version")
-  private String eventVersion;
-
-  @SerializedName("dds")
-  private DDSBody dds;
-
-  @SerializedName("event_source_id")
-  private String eventSourceId;
-  
 }

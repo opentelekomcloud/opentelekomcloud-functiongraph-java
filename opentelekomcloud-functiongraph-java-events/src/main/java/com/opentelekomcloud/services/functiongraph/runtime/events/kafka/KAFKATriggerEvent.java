@@ -22,6 +22,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * KAFKATriggerEvent is used to represent the event triggered by Kafka.
+ * It contains information such as event version, region, event time, trigger type, instance ID,
+ * and Kafka records.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
@@ -62,18 +67,18 @@ public class KAFKATriggerEvent implements TriggerEvent {
    * Kafka records
    */
   @SerializedName("records")
-  private KAKFARecord[] records;
+  private KAKFARecordEntity[] records;
 
 
   /**
    * 
    * @return clone of message records.
    */
-  public KAKFARecord[] getRecords() {
+  public KAKFARecordEntity[] getRecords() {
     return this.records.clone();
   }
 
-  public void setRecords(KAKFARecord[] records) {
+  public void setRecords(KAKFARecordEntity[] records) {
     this.records = records.clone();
   }
 

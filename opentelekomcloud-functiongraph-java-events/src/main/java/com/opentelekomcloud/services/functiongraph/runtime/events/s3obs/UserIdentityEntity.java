@@ -13,11 +13,7 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.lts;
-
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -25,24 +21,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * UserIdentityEntity is used to represent the user identity in S3/OBS events.
+ * It contains information such as principal ID.
+ */
 @Data
-@ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class LTSBody {
-
+@ToString(includeFieldNames=true)
+public class UserIdentityEntity {
   /**
-   * LTS data
+   * Principal Id (e.g. 65b49ad6e14149e0b01abde940685697")
    */
-  @SerializedName("data")
-  private String data;
-
-  /**
-   * 
-   * @return get base64 decoded raw data
-   */
-  public String getRawData() throws UnsupportedEncodingException {
-    byte[] decoded = Base64.getMimeDecoder().decode(this.data);
-    return new String(decoded, StandardCharsets.UTF_8);
+  @SerializedName("PrincipalId")
+  private String principalId;
+  
+  public UserIdentityEntity(String principalId) {
+    this.principalId = principalId;
   }
-
+  
 }

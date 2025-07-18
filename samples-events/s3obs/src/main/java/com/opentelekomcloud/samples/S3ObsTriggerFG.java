@@ -15,13 +15,25 @@
 
 package com.opentelekomcloud.samples;
 
-import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.S3ObsTriggerEvent;
+import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.S3TriggerEvent;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
+/**
+ * S3ObsTriggerFG is a sample function that demonstrates how to handle events from S3 OBS.
+ * It processes the incoming event and logs the bucket name and event name.
+ */
 public class S3ObsTriggerFG {
 
-  public String handleRequest(final S3ObsTriggerEvent event, final Context context)  {
+  /**
+   * Handles the incoming S3 OBS event and logs the bucket name and event name.
+   * It retrieves the RuntimeLogger from the context and logs the event details.
+   *
+   * @param event   the S3 OBS event data received by the function
+   * @param context the runtime context providing access to logging and other services
+   * @return a success message
+   */
+  public String handleRequest(final S3TriggerEvent event, final Context context)  {
     
     RuntimeLogger log = context.getLogger();
 

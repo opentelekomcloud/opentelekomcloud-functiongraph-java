@@ -28,6 +28,10 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
 
+/**
+ * APIGTriggerEventTest is used to test the APIGTriggerEvent class.
+ * It reads a JSON file and verifies that the event is correctly parsed.
+ */
 public class APIGTriggerEventTest {
 
   @Test

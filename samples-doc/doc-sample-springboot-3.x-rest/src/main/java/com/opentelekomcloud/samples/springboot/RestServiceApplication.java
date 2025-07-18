@@ -18,6 +18,11 @@ package com.opentelekomcloud.samples.springboot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * RestServiceApplication is the main class for the Spring Boot application.
+ * It starts the application and sets up the necessary configurations.
+ * This application provides RESTful services for greeting messages.
+ */
 @SpringBootApplication
 public class RestServiceApplication {
 

@@ -23,6 +23,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * LTSTriggerEvent is used to represent the event triggered by Log Tank Service (LTS).
+ * It contains the LTS message body.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
@@ -32,6 +36,6 @@ public class LTSTriggerEvent implements TriggerEvent {
    * LTS message body
    */
   @SerializedName("lts")
-  private LTSBody lts;
+  private LTSBodyEntity lts;
   
 }

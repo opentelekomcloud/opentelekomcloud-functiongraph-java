@@ -21,10 +21,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * DMS4KafkaRecordEntity is used to represent the record entity in DMS for Kafka.
+ * It contains information such as Kafka messages and topic ID.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class DMS4KafkaRecord {
+public class DMS4KafkaRecordEntity {
 
   /**
    * Kafka messages

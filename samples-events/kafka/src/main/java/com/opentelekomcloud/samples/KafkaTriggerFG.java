@@ -19,8 +19,20 @@ import com.opentelekomcloud.services.functiongraph.runtime.events.kafka.KAFKATri
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
+/**
+ * KafkaTriggerFG is a sample function that demonstrates how to handle events from Kafka.
+ * It processes the incoming event and logs the event data.
+ */
 public class KafkaTriggerFG {
 
+  /**
+   * Handles the incoming Kafka event and logs the event data.
+   * It retrieves the RuntimeLogger from the context and logs the event.
+   *
+   * @param event   the Kafka event data received by the function
+   * @param context the runtime context providing access to logging and other services
+   * @return a success message
+   */
   public String handleRequest(final KAFKATriggerEvent event, final Context context) {
     
     RuntimeLogger log = context.getLogger();

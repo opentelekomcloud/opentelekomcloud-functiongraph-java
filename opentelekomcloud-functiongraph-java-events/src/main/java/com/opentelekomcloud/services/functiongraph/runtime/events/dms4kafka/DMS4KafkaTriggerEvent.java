@@ -22,6 +22,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * DMS4KafkaTriggerEvent is used to represent the event triggered by DMS for Kafka.
+ * It contains information such as event version, region, event time, trigger type, instance ID,
+ * and Kafka records.
+ */
 @Data
 @ToString(includeFieldNames=true)
 @NoArgsConstructor
@@ -62,18 +67,18 @@ public class DMS4KafkaTriggerEvent implements TriggerEvent {
    * Kafka records
    */
   @SerializedName("records")
-  private DMS4KafkaRecord[] records;
+  private DMS4KafkaRecordEntity[] records;
 
 
   /**
    * 
    * @return clone of message records.
    */
-  public DMS4KafkaRecord[] getRecords() {
+  public DMS4KafkaRecordEntity[] getRecords() {
     return this.records.clone();
   }
 
-  public void setRecords(DMS4KafkaRecord[] records) {
+  public void setRecords(DMS4KafkaRecordEntity[] records) {
     this.records = records.clone();
   }
 

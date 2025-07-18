@@ -17,6 +17,11 @@ package com.opentelekomcloud.samples.springboot;
 
 import lombok.Data;
 
+/**
+ * Greeting is a simple data class that represents a greeting message.
+ * It contains an ID and the content of the greeting.
+ * This class is used in the Spring Boot application to return greeting messages.
+ */
 @Data
 public class Greeting {
   private long id;

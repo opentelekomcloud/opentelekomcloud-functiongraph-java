@@ -19,8 +19,20 @@ import com.opentelekomcloud.services.functiongraph.runtime.events.dms4kafka.DMS4
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
+/**
+ * DMS4KafkaTriggerFG is a sample function that demonstrates how to handle events from DMS for Kafka.
+ * It processes the incoming event and logs the event data.
+ */
 public class DMS4KafkaTriggerFG {
 
+  /**
+   * Handles the incoming DMS for Kafka event and logs the event data.
+   * It retrieves the RuntimeLogger from the context and logs the event.
+   *
+   * @param event   the DMS for Kafka event data received by the function
+   * @param context the runtime context providing access to logging and other services
+   * @return a success message
+   */
   public String handleRequest(final DMS4KafkaTriggerEvent event, final Context context) {
     
     RuntimeLogger log = context.getLogger();

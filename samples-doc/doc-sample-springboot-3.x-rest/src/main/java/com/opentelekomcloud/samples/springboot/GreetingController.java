@@ -25,6 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.opentelekomcloud.samples.springboot.components.OTCRequestContextLoggingFilter;
 
+/**
+ * GreetingController is a Spring Boot REST controller that handles greeting requests.
+ * It provides endpoints to return greeting messages based on the provided name.
+ * The controller logs the request ID and name for each request.
+ */
 @RestController
 public class GreetingController {
 
@@ -34,6 +39,13 @@ public class GreetingController {
   private static final String templateByeBye = "Bye bye, %s!";
   private final AtomicLong counter = new AtomicLong();
 
+  /**
+   * Handles GET requests to the /greeting endpoint.
+   * Returns a greeting message with the provided name or "World" if no name is provided.
+   *
+   * @param name the name to include in the greeting message
+   * @return a Greeting object containing the ID and greeting message
+   */
   @GetMapping("/greeting")
   public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 
@@ -42,6 +54,13 @@ public class GreetingController {
     return new Greeting(counter.incrementAndGet(), String.format(templateGreeting, name));
   }
 
+  /**
+   * Handles GET requests to the /byebye endpoint.
+   * Returns a goodbye message with the provided name or "World" if no name is provided.
+   *
+   * @param name the name to include in the goodbye message
+   * @return a Greeting object containing the ID and goodbye message
+   */
   @GetMapping("/byebye")
   public Greeting byebye(@RequestParam(value = "name", defaultValue = "World") String name) {
 

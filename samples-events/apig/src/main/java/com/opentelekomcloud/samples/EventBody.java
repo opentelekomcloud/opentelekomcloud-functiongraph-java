@@ -19,6 +19,11 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * EventBody is a simple data class that represents an event body.
+ * It contains a name field which can be used to pass data to the function.
+ * This class is used in the Spring Boot application to return event body information.
+ */
 @Data
 @ToString(includeFieldNames=true)
 public class EventBody {

@@ -15,25 +15,36 @@
 
 package com.opentelekomcloud.samples;
 
-import com.opentelekomcloud.services.functiongraph.runtime.events.smn.SMNRecord;
+import com.opentelekomcloud.services.functiongraph.runtime.events.smn.SMNRecordEntity;
 import com.opentelekomcloud.services.functiongraph.runtime.events.smn.SMNTriggerEvent;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
+/**
+ * SMNTriggerFG is a sample function that demonstrates how to handle events from SMN (Simple Message Notification).
+ * It processes the incoming event and logs the subject of each SMN record.
+ */
 public class SMNTriggerFG {
 
+  /**
+   * Handles the incoming SMN event and logs the subject of each SMN record.
+   * It retrieves the RuntimeLogger from the context and logs the event data.
+   *
+   * @param event   the SMN event data received by the function
+   * @param context the runtime context providing access to logging and other services
+   * @return a success message
+   */
   public String handleRequest(final SMNTriggerEvent event, final Context context) {
 
     RuntimeLogger log = context.getLogger();
 
     StringBuilder s = new StringBuilder();
 
-    SMNRecord[] records = event.getRecord();
-    for (SMNRecord smnRecord : records) {
+    SMNRecordEntity[] records = event.getRecord();
+    for (SMNRecordEntity smnRecord : records) {
       s.append(String.format("Subject: %s\n", smnRecord.getSmn().getSubject()));  
     }
-   
-    
+       
     log.log(s.toString());
 
     return "ok";

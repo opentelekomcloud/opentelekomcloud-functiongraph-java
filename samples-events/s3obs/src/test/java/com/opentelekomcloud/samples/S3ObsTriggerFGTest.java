@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.S3ObsTriggerEvent;
+import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.S3TriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
 
 public class S3ObsTriggerFGTest {
@@ -27,7 +27,7 @@ public class S3ObsTriggerFGTest {
 
       String eventSting = new Gson().toJson(eventJson);
 
-      S3ObsTriggerEvent event = new Gson().fromJson(eventSting, S3ObsTriggerEvent.class);
+      S3TriggerEvent event = new Gson().fromJson(eventSting, S3TriggerEvent.class);
 
       TestContext context = new TestContext();
 

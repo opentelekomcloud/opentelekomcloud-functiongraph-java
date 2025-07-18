@@ -13,39 +13,44 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
+package com.opentelekomcloud.services.functiongraph.runtime.events.apig;
+
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@NoArgsConstructor
+/**
+ * APIGRequestContextEntity is used to represent the request context entity for API Gateway triggers.
+ * It contains information such as API ID, request ID, stage, and source IP.
+ */
 @Data
-@ToString(includeFieldNames=true)
-public class S3Bucket {
+@ToString(includeFieldNames = true)
+@NoArgsConstructor
+public class APIGRequestContextEntity {
   /**
-   * Bucket name
+   * API Id
    */
-  @SerializedName("name")
-  private String name;
+  @SerializedName("apiId")
+  private String apiId;
 
   /**
-   * ARN
+   * Request Id
    */
-  @SerializedName("arn")
-  private String arn;
+  @SerializedName("requestId")
+  private String requestId;
 
   /**
-   * Owner Identity
+   * Name of the environment in which an API has been published
    */
-  @SerializedName("ownerIdentity")
-  private S3IdEntity idEntity;
+  @SerializedName("stage")
+  private String stage;
 
-  public S3Bucket(String name, String arn, S3IdEntity idEntity) {
-    this.name = name;
-    this.arn = arn;
-    this.idEntity = idEntity;
-  }
+  /**
+   * Source IP of request
+   */
+  @SerializedName("sourceIp")
+  private String sourceIp;
 
 }

@@ -13,48 +13,39 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
+package com.opentelekomcloud.services.functiongraph.runtime.events.dds;
+
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@NoArgsConstructor
+/**
+ * DDSRecordEntity is used to represent the record entity in Data Distributed Service (DDS).
+ * It contains information such as event source, event name, region, event version, and DDS body entity.
+ */
 @Data
 @ToString(includeFieldNames=true)
-public class S3Body {
-  /**
-   * S3 schema version
-   */
-  @SerializedName("s3SchemaVersion")
-  private String version;
+@NoArgsConstructor
+public class DDSRecordEntity {
 
-  /**
-   * Configuration ID
-   */
-  @SerializedName("configurationId")
-  private String configurationId;
+  @SerializedName("event_source")
+  private String eventSource;
 
-  /**
-   * Bucket
-   */
-  @SerializedName("bucket")
-  private S3Bucket bucket;
+  @SerializedName("event_name")
+  private String eventName;
 
-  /**
-   * OBS Object
-   */  
-  @SerializedName("object")
-  private S3Object obsobject;
+  @SerializedName("region")
+  private String region;
 
+  @SerializedName("event_version")
+  private String eventVersion;
+
+  @SerializedName("dds")
+  private DDSBodyEntity dds;
+
+  @SerializedName("event_source_id")
+  private String eventSourceId;
   
-  public S3Body(String version, String configurationId, S3Bucket bucket,
-      S3Object obsobject) {
-    this.version = version;
-    this.configurationId = configurationId;
-    this.bucket = bucket;
-    this.obsobject = obsobject;
-  }
-
 }

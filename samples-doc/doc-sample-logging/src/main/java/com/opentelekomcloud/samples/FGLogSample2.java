@@ -20,6 +20,11 @@ import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 import com.opentelekomcloud.services.functiongraph.runtime.core.ContextHelper;
 
+/**
+ * FGLogSample2 is a sample function that demonstrates how to log messages
+ * at different log levels using RuntimeLogger.
+ * It retrieves the current log level and sets it to "INFO".
+ */
 public class FGLogSample2 {
 
   public String handleRequest(final JsonObject event, final Context context) {

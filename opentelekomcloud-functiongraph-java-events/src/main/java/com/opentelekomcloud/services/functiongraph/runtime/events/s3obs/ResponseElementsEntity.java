@@ -13,40 +13,32 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.kafka;
+package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
 import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * ResponseElementsEntity is used to represent the response elements entity in S3/OBS events.
+ * It contains information such as x-amz-id-2 and x-amz-request-id.
+ */
 @Data
-@ToString(includeFieldNames=true)
 @NoArgsConstructor
-public class KAKFARecord {
+@ToString(includeFieldNames = true)
+public class ResponseElementsEntity {
 
-  /**
-   * Kafka messages
-   */
-  @SerializedName("messages")
-  private String[] messages;
+  @SerializedName("x-amz-id-2")
+  private String xAmzId2;
 
-  /**
-   * topic id
-   */
-  @SerializedName("topic_id")
-  private String topicId;
+  @SerializedName("x-amz-request-id")
+  private String xAmzRequestId;
 
-  /**
-   * clone of kafka messages
-   * @return messages.
-   */
-  public String[] getMessages() {
-    return this.messages.clone();
-  }
-  
-  public void setMessages(String[] messages) {
-    this.messages = messages.clone();
+  public ResponseElementsEntity(String xAmzId2, String xAmzRequestId) {
+    this.xAmzId2 = xAmzId2;
+    this.xAmzRequestId = xAmzRequestId;
   }
 
 }

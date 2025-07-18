@@ -28,6 +28,10 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
 
+/**
+ * TimerTriggerEventTest is used to test the TimerTriggerEvent class.
+ * It reads a JSON file and verifies that the event is correctly parsed.
+ */
 public class TimerTriggerEventTest {
 
   @Test

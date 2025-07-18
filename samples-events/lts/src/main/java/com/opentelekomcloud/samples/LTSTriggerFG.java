@@ -21,8 +21,20 @@ import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 import com.opentelekomcloud.services.functiongraph.runtime.events.lts.LTSTriggerEvent;
 
+/**
+ * LTSTriggerFG is a sample function that demonstrates how to handle events from Log Tank Service (LTS).
+ * It processes the incoming event and logs the raw data.
+ */
 public class LTSTriggerFG {
 
+  /**
+   * Handles the incoming LTS event and logs the raw data.
+   * It retrieves the RuntimeLogger from the context and logs the event data.
+   *
+   * @param event   the LTS event data received by the function
+   * @param context the runtime context providing access to logging and other services
+   * @return a success message
+   */
   public String handleRequest(final LTSTriggerEvent event, final Context context) {
 
     RuntimeLogger log = context.getLogger();

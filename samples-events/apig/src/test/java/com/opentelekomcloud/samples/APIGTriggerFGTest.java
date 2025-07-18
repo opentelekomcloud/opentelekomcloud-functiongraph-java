@@ -28,7 +28,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerEvent;
-import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerResponse;
+import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerResponseEntity;
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,7 +50,7 @@ public class APIGTriggerFGTest {
 
       APIGTriggerFG fg = new APIGTriggerFG();
 
-      APIGTriggerResponse r = fg.handleRequest(event, context);
+      APIGTriggerResponseEntity r = fg.handleRequest(event, context);
 
         assertEquals(getValidReturnValue(event), r.getBody());
 
@@ -76,7 +76,7 @@ public class APIGTriggerFGTest {
 
       APIGTriggerFG fg = new APIGTriggerFG();
 
-      APIGTriggerResponse r = fg.handleRequest(event, context);
+      APIGTriggerResponseEntity r = fg.handleRequest(event, context);
 
         assertEquals(getValidReturnValue(event), r.getBody());
 

@@ -19,8 +19,21 @@ import com.google.gson.annotations.SerializedName;
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
+/**
+ * SampleFG is a sample function that demonstrates how to handle requests
+ * and log the event data received.
+ * It uses a custom EventData class to encapsulate the event data.
+ */
 public class SampleFG {
 
+  /**
+   * Handles the incoming request and logs the event data.
+   * It retrieves the RuntimeLogger from the context and logs the event data.
+   *
+   * @param event   the event data received by the function
+   * @param context the runtime context providing access to logging and other services
+   * @return a success message
+   */
   public String handleRequest(final SampleFG.EventData event, final Context context) {
 
     RuntimeLogger log = context.getLogger();
@@ -31,6 +44,10 @@ public class SampleFG {
     return "ok";
   }
 
+  /**
+   * EventData is a simple class that represents the event data structure.
+   * It contains a single field 'key' which can be used to pass data to the function.
+   */
   public class EventData {
     public EventData() {
     }
