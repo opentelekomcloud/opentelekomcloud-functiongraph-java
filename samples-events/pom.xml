@@ -31,15 +31,15 @@
   </build>
 
   <modules>
-<!--    <module>apig</module>-->
-<!--    <module>cts</module>-->
-<!--    <module>dds</module>-->
-<!--    <module>dms4kafka</module>-->
-<!--    <module>kafka</module>-->
-<!--    <module>lts</module>-->
-<!--    <module>s3obs</module>-->
-<!--    <module>smn</module>-->
-<!--    <module>timer</module>-->
+    <module>apig</module>
+    <module>cts</module>
+    <module>dds</module>
+    <module>dms4kafka</module>
+    <module>kafka</module>
+    <module>lts</module>
+    <module>s3obs</module>
+    <module>smn</module>
+    <module>timer</module>
   </modules>
 
   <dependencies>

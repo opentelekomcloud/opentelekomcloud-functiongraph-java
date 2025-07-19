@@ -175,8 +175,8 @@
     <module>opentelekomcloud-functiongraph-java-events</module>
     <module>opentelekomcloud-functiongraph-java-test</module>
     <module>opentelekomcloud-functiongraph-archetype</module>
-<!--    <module>samples-doc</module>-->
-<!--    <module>samples-events</module>-->
+    <module>samples-doc</module>
+    <module>samples-events</module>
   </modules>
 
 
