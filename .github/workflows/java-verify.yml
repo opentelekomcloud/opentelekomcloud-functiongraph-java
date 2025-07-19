@@ -50,7 +50,7 @@ jobs:
           jobs: ${{ toJSON(needs) }}
 
   publishMavenCentralDryRun:
-    name: Publish to Maven Central
+    name: Publish to Maven Central (DryRun)
     runs-on: ubuntu-latest
 
     steps:
