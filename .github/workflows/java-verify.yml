@@ -70,7 +70,7 @@ jobs:
           gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
       - name: Dry run deployment
-        run: mvn deploy -DdryRun=true -DskipTests --settings .github/settings.xml
+        run: mvn deploy -DdryRun=true -DskipTests -Prelease --settings .github/settings.xml
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
