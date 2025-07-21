@@ -10,6 +10,7 @@
 
   <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-samples-doc</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-doc</name>
 
   <packaging>pom</packaging>
   <!-- <name>functiongraph-doc-samples</name> -->

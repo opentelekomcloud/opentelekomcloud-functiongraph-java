@@ -9,6 +9,7 @@
   </parent>
 
   <artifactId>opentelekomcloud-functiongraph-java-samples-doc-deploy</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-doc-deploy</name>
   <packaging>jar</packaging>
 
   <dependencies>

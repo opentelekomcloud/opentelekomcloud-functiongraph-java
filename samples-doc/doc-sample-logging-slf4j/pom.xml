@@ -11,6 +11,7 @@
   </parent>
 
   <artifactId>opentelekomcloud-functiongraph-java-samples-doc-logging-slf4j</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-doc-logging-slf4j</name>
   <packaging>jar</packaging>
 
   <dependencies>

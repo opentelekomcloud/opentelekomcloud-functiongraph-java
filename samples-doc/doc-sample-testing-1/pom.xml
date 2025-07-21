@@ -12,6 +12,7 @@
 
   <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-samples-doc-sample-testing-1</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-doc-sample-testing-1</name>
   <packaging>jar</packaging>
 
   <dependencies>

@@ -9,6 +9,7 @@
   </parent>
 
   <artifactId>opentelekomcloud-functiongraph-java-samples-events-s3obs</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-events-s3obs</name>
 
   <dependencies>
 

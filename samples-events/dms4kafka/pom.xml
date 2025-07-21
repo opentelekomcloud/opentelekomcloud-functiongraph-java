@@ -9,7 +9,8 @@
   </parent>
 
   <artifactId>opentelekomcloud-functiongraph-java-samples-events-dms4kafka</artifactId>
-  
+  <name>opentelekomcloud-functiongraph-java-samples-events-dms4kafka</name>
+
   <dependencies>
 
     <dependency>

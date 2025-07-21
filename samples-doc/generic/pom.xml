@@ -9,6 +9,7 @@
   </parent>
 
   <artifactId>opentelekomcloud-functiongraph-java-samples-doc-generic</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-doc-generic</name>
 
   <build>
 

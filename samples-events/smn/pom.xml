@@ -9,6 +9,7 @@
   </parent>
 
   <artifactId>opentelekomcloud-functiongraph-java-samples-events-smn</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-events-smn</name>
 
   <dependencies>
 

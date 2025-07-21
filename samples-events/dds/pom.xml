@@ -9,7 +9,8 @@
   </parent>
 
   <artifactId>opentelekomcloud-functiongraph-java-samples-events-dds</artifactId>
-  
+  <name>opentelekomcloud-functiongraph-java-samples-events-dds</name>
+
   <dependencies>
 
     <dependency>
