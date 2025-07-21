@@ -5,13 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.opentelekomcloud.samples.doc</groupId>
-    <artifactId>functiongraph-samples-doc</artifactId>
-    <version>0.0.2-beta</version>
+    <groupId>io.github.opentelekomcloud</groupId>
+    <artifactId>opentelekomcloud-functiongraph-java-samples-doc</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud.samples.doc</groupId>
-  <artifactId>functiongraph-samples-doc-invoke-fg</artifactId>
+  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-invoke-fg</artifactId>
   <packaging>jar</packaging>
 
   <properties>

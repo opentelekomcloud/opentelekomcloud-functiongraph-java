@@ -5,25 +5,25 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.opentelekomcloud.samples.doc</groupId>
-    <artifactId>functiongraph-samples-doc</artifactId>
-    <version>0.0.2-beta</version>
+    <groupId>io.github.opentelekomcloud</groupId>
+    <artifactId>opentelekomcloud-functiongraph-java-samples-doc</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud.samples.doc</groupId>
-  <artifactId>functiongraph-samples-doc-sample-testing-1</artifactId>
+  <groupId>io.github.opentelekomcloud</groupId>
+  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-sample-testing-1</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>

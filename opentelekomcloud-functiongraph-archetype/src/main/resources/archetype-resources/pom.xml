@@ -34,20 +34,20 @@
   <dependencies>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
       <version>${opentelekomcloud-functiongraph-java.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
       <version>${opentelekomcloud-functiongraph-java.version}</version>
     </dependency>
 
     
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
       <version>${opentelekomcloud-functiongraph-java.version}</version>
       <scope>test</scope>

@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.opentelekomcloud</groupId>
+    <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java</artifactId>
-    <version>0.0.2-beta</version>
+    <version>0.0.3-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.opentelekomcloud.samples.doc</groupId>
-  <artifactId>functiongraph-samples-doc</artifactId>
+  <groupId>io.github.opentelekomcloud</groupId>
+  <artifactId>opentelekomcloud-functiongraph-java-samples-doc</artifactId>
 
   <packaging>pom</packaging>
   <!-- <name>functiongraph-doc-samples</name> -->
@@ -17,13 +17,13 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.opentelekomcloud</groupId>
+      <groupId>io.github.opentelekomcloud</groupId>
       <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
       <version>${project.version}</version>
     </dependency>

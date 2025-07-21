@@ -158,7 +158,11 @@ These libraries are available through:
 
   .. tab:: Maven Central
 
-     Comming soon: `Maven Central Repository <https://search.maven.org/search?q=g:com.opentelekomcloud-functiongraph>`_
+     For Maven Central, there is no special configuration needed.
+     Just add the dependencies to your `pom.xml` as shown below.
+
+     For list of libraries available in Maven Central see:
+     `Maven Central Repository <https://search.maven.org/search?q=com.opentelekomcloud-functiongraph&sort=name>`_
 
 
 Usage
@@ -177,20 +181,20 @@ or gardle `build.gradle` as follows:
         <dependencies>
           ...
           <dependency>
-            <groupId>com.opentelekomcloud</groupId>
+            <groupId>io.github.opentelekomcloud</groupId>
             <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
             <version>|pom_version|</version>
           </dependency>
 
           <dependency>
-            <groupId>com.opentelekomcloud</groupId>
+            <groupId>io.github.opentelekomcloud</groupId>
             <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
             <version>|pom_version|</version>
           </dependency>
 
 
           <dependency>
-            <groupId>com.opentelekomcloud</groupId>
+            <groupId>io.github.opentelekomcloud</groupId>
             <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
             <version>|pom_version|</version>
             <scope>test</scope>

@@ -21,7 +21,7 @@ To create a sample java project using maven archetype use:
         :substitutions:
 
         mvn archetype:generate                                 \
-          -DarchetypeGroupId=com.opentelekomcloud              \
+          -DarchetypeGroupId=io.github.opentelekomcloud        \
           -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
           -DarchetypeVersion=|pom_version|                     \
           -DgroupId=com.sample                                 \
@@ -35,7 +35,7 @@ To create a sample java project using maven archetype use:
 
          mvn archetype:generate                                 \
            -DarchetypeCatalog=local                             \
-           -DarchetypeGroupId=com.opentelekomcloud              \
+           -DarchetypeGroupId=io.github.opentelekomcloud        \
            -DarchetypeArtifactId=opentelekomcloud-functiongraph-archetype \
            -DarchetypeVersion=|pom_version|                     \
            -DgroupId=com.sample                                 \

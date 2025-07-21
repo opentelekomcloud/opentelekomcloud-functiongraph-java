@@ -70,7 +70,7 @@ jobs:
 
       - name: echo-if-package-exists
         if: "${{ steps.check_package_exist.outputs.PACKAGE_EXISTS == 'true' }}"
-        run: echo "::notice::Package exsits, skipping upload."
+        run: echo "::notice::Package exists, skipping upload."
 
       - name: deploy-package-to-github
         if: "${{ steps.check_package_exist.outputs.PACKAGE_EXISTS != 'true' }}"
@@ -163,4 +163,31 @@ jobs:
         run: |
           ansible-playbook -i localhost, -M ./library playbooks/upload_swift.yml            
 
-          
+
+  publishMavenCentral:
+    name: Publish to Maven Central
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+          server-id: central
+          server-username: ${{ secrets.OSSRH_USERNAME }}
+          server-password: ${{ secrets.OSSRH_PASSWORD }}
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+      - name: Dry run deployment
+        run: mvn deploy -DskipTests --settings .github/settings.xml
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
