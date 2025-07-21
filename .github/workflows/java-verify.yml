@@ -70,4 +70,4 @@ jobs:
           gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
       - name: Dry run deployment
-        run: mvn deploy -DdryRun=true -DskipTests -Psign-artifacts
+        run: mvn deploy -DdryRun=true -DskipTests
