@@ -68,11 +68,11 @@ These libraries are available through:
   .. tab:: Maven Central
 
      For Maven Central, there is no special configuration needed.
-     
+
      Just add the dependencies to your `pom.xml` as shown below.
 
      For list of libraries available in Maven Central see:
-     `Maven Central Repository <https://search.maven.org/search?q=com.opentelekomcloud-functiongraph&sort=name>`_
+     `Maven Central Repository <https://central.sonatype.com/search?q=opentelekomcloud-functiongraph-java&sort=name>`_
 
   .. tab:: GitHub and Maven
 
