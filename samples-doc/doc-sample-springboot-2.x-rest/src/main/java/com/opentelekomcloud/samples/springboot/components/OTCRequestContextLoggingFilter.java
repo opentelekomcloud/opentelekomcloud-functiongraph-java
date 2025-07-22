@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2025 T-Systems International GmbH.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.opentelekomcloud.samples.springboot.components;
 
 import java.io.IOException;
@@ -16,15 +31,20 @@ import org.slf4j.MDC;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * OTCRequestContextLoggingFilter is a filter that logs request context information.
+ * It captures specific headers from the HTTP request and stores them in the MDC (Mapped Diagnostic Context)
+ * for logging purposes. This allows for better tracking of requests in logs.
+ */
 @Component
 @Order(1)
 public class OTCRequestContextLoggingFilter implements Filter {
-  private static Logger logger = LoggerFactory.getLogger(OTCRequestContextLoggingFilter.class);
+  private static final Logger logger = LoggerFactory.getLogger(OTCRequestContextLoggingFilter.class);
 
   /**
    * Default header fields of an HTTP function.
-   * 
-   * @see: https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id10
+   * </p>
+   * @see <a href="https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id10">Creating a function from scratch</a>
    */
   private static final String[] X_CFF_HEADERS = {
       "x-cff-request-id",
@@ -45,6 +65,17 @@ public class OTCRequestContextLoggingFilter implements Filter {
     return requestId.get();
   }
 
+  /**
+   * This method is called for each request to log the request context.
+   * It retrieves the request ID from the HTTP header and stores it in a ThreadLocal variable.
+   * It also logs all available headers if debug logging is enabled.
+   *
+   * @param request the ServletRequest object
+   * @param response the ServletResponse object
+   * @param chain the FilterChain to pass the request and response to the next filter or servlet
+   * @throws IOException if an I/O error occurs
+   * @throws ServletException if a servlet error occurs
+   */
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {

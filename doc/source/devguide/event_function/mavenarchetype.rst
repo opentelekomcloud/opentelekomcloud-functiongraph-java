@@ -6,12 +6,12 @@ To ease project setup, following maven archetype can be used.
 Install maven archetype
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-To install archtype, see :ref:`ref_maven_install`
+To install archtype, see :ref:`ref_maven_install`.
 
 Create sample FunctionGraph project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To create a sample java project using maven archetype use:
+To create a simple java 17 project using maven archetype use:
 
 .. tabs::
 
@@ -30,7 +30,7 @@ To create a sample java project using maven archetype use:
 
   .. tab:: From local maven repository:
 
-      .. code-block:: bash
+      .. code-block:: shell
          :substitutions:
 
          mvn archetype:generate                                 \
@@ -48,15 +48,19 @@ Building the project
 
 In root of generated project use one of following commands to build project:
 
-Using Maven:
+.. tabs::
 
-.. code-block:: bash
+  .. tab:: Using maven
 
-    mvn clean install
+     .. code-block:: shell
+        :substitutions:
 
+        mvn clean install
 
-Using Gradle:
+  .. tab:: Using gradle
 
-.. code-block:: bash
+     .. code-block:: shell
+        :substitutions:
 
-    gradle build
+        gradle build
+

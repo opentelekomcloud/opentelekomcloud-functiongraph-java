@@ -212,7 +212,9 @@
               </execution>
             </executions>
           </plugin>
+
         </plugins>
+
       </build>
     </profile>
 
@@ -400,18 +402,22 @@
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-debug</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-sample-testing-1</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-deploy</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-deploy-tf</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-invoke-fg</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-logging</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-logging-slf4j</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-generic</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-springboot-2x</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-springboot-3x</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-sdk</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-obs</excludeArtifact>
 
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-pom</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-apig</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-cts</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-dds</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-dms4kafka</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-samples-events-dms4rocketmq</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-kafka</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-lts</excludeArtifact>
                 <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-s3obs</excludeArtifact>

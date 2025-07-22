@@ -51,14 +51,16 @@
   </build>
 
   <modules>
-    <module>debug</module>
     <module>doc-sample-testing-1</module>
     <module>doc-sample-deploy</module>
+    <module>doc-sample-deploy-tf</module>
     <module>doc-sample-invoke-fg</module>
     <module>doc-sample-logging</module>
     <module>doc-sample-logging-slf4j</module>
     <module>doc-sample-springboot-2.x-rest</module>
     <module>doc-sample-springboot-3.x-rest</module>
+    <module>doc-sample-sdk</module>
+    <module>doc-sample-obs</module>
     <module>generic</module>
 
   </modules>

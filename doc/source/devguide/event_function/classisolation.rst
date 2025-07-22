@@ -1,3 +1,5 @@
+.. _class-isolation-ref:
+
 Class isolation
 ===============
 

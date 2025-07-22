@@ -25,26 +25,27 @@ Configuring Pre-stop function
 #. Choose **Configuration** > **Lifecycle** and enable
    **Pre-stop**
 
+    .. list-table:: **Table 2** Parameter configuration
+      :widths: 25 25
+      :header-rows: 1
 
-.. list-table:: **Table 2** Parameter configuration
-   :widths: 25 25
-   :header-rows: 1
+      * - Parameter
+        - Description
 
-   * - Parameter
-     - Description
+      * - Pre-stop
+        - Enable ``Pre-stop`` if needed.
 
-   * - Pre-stop
-     - Enable ``Pre-stop`` if needed.
+      * - Pre-stop Timeout (s)
+        - Maximum duration the function can be Pre-stoped.
+          Set this parameter if you enable function Pre-stop.
 
-   * - Pre-stop Timeout (s)
-     - Maximum duration the function can be Pre-stoped.
-       Set this parameter if you enable function Pre-stop.
+          The value ranges from 1s to 90s.
 
-       The value ranges from 1s to 90s.
+      * - Pre-stop Handler
+        - The Pre-stop handler must be named in the same way as the handler.
+          Set an initializer name in the format of
 
-   * - Pre-stop Handler
-     - The Pre-stop handler must be named in the same way as the handler.
-       Set an initializer name in the format of **[Package name].[Class name].[Pre-Stop function name]**
+          **[Package name].[Class name].[Pre-Stop function name]**
 
 #. Save the configuration
 

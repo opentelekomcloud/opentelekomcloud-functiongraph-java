@@ -1,14 +1,22 @@
+/*
+ * Copyright (c) 2025 T-Systems International GmbH.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.opentelekomcloud.samples.springboot.components;
 
 import java.io.IOException;
 import java.util.Enumeration;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,15 +24,27 @@ import org.slf4j.MDC;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+
+/**
+ * OTCRequestContextLoggingFilter is a filter that logs request context information.
+ * It captures specific headers from the HTTP request and stores them in the MDC (Mapped Diagnostic Context)
+ * for logging purposes. This allows for better tracking of requests in logs.
+ */
 @Component
 @Order(1)
 public class OTCRequestContextLoggingFilter implements Filter {
-  private static Logger logger = LoggerFactory.getLogger(OTCRequestContextLoggingFilter.class);
+  private static final Logger logger = LoggerFactory.getLogger(OTCRequestContextLoggingFilter.class);
 
   /**
    * Default header fields of an HTTP function.
-   * 
-   * @see: https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id10
+   * </p>
+   * @see <a hred="https://docs.otc.t-systems.com/function-graph/umn/building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id10">Creating a http function</a>
    */
   private static final String[] X_CFF_HEADERS = {
       "x-cff-request-id",
