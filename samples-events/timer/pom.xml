@@ -4,12 +4,14 @@
 
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
-    <artifactId>opentelekomcloud-functiongraph-java-samples-events</artifactId>
+    <artifactId>opentelekomcloud-functiongraph-java-samples-events-pom</artifactId>
     <version>0.0.5-beta</version>
   </parent>
 
+  <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-samples-events-timer</artifactId>
   <name>opentelekomcloud-functiongraph-java-samples-events-timer</name>
+  <packaging>jar</packaging>
 
   <dependencies>
 
@@ -34,6 +36,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
 

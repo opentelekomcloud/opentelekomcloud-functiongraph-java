@@ -6,10 +6,11 @@
 
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
-    <artifactId>opentelekomcloud-functiongraph-java-samples-doc</artifactId>
+    <artifactId>opentelekomcloud-functiongraph-java-samples-doc-pom</artifactId>
     <version>0.0.5-beta</version>
   </parent>
 
+  <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-samples-doc-logging-slf4j</artifactId>
   <name>opentelekomcloud-functiongraph-java-samples-doc-logging-slf4j</name>
   <packaging>jar</packaging>

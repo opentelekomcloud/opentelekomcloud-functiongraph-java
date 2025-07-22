@@ -82,8 +82,7 @@ jobs:
             --batch-mode \
             --settings .github/settings.xml \
             -DskipTests \
-            -Pgpg-signing \
-            -PsonatypeDeploy
+            -P gpg-signing,dev,release,sonatypeDeploy
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}

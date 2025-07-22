@@ -37,8 +37,7 @@ jobs:
             -DdryRun=true \
             -DskipSonaTypePublishing=true \
             -DskipTests \
-            -Pgpg-signing \
-            -PsonatypeDeploy 
+            -P gpg-signing,dev,release,sonatypeDeploy 
 
       env:
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}

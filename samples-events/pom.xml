@@ -6,14 +6,15 @@
 
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
-    <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+    <artifactId>opentelekomcloud-functiongraph-java-pom</artifactId>
     <version>0.0.5-beta</version>
   </parent>
 
-  <artifactId>opentelekomcloud-functiongraph-java-samples-events</artifactId>
+  <groupId>io.github.opentelekomcloud</groupId>
+  <artifactId>opentelekomcloud-functiongraph-java-samples-events-pom</artifactId>
 
   <packaging>pom</packaging>
-  <name>functiongraph-samples-events</name>
+  <name>opentelekomcloud-functiongraph-java-samples-events-pom</name>
   <url>https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
 
   <build>
