@@ -393,27 +393,18 @@
               <waitUntil>published</waitUntil>
 
               <excludeArtifacts>
-
                 <excludeArtifact>
-                  <!-- <groupId>io.github.opentelekomcloud</groupId> -->
-                  <artifactId>opentelekomcloud-functiongraph-java-samples-doc</artifactId>
+                  opentelekomcloud-functiongraph-java-samples-doc
                 </excludeArtifact>
-
                 <excludeArtifact>
-                  <!-- <groupId>io.github.opentelekomcloud</groupId> -->
-                  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-springboot-2x</artifactId>
+                  opentelekomcloud-functiongraph-java-samples-doc-springboot-2x
                 </excludeArtifact>
-
                 <excludeArtifact>
-                  <!-- <groupId>io.github.opentelekomcloud</groupId> -->
-                  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-springboot-3x</artifactId>
+                  opentelekomcloud-functiongraph-java-samples-doc-springboot-3x
                 </excludeArtifact>
-
                 <excludeArtifact>
-                  <!-- <groupId>io.github.opentelekomcloud</groupId> -->
-                  <artifactId>opentelekomcloud-functiongraph-java-samples-events</artifactId>
+                  opentelekomcloud-functiongraph-java-samples-events
                 </excludeArtifact>
-
               </excludeArtifacts>
 
             </configuration>
