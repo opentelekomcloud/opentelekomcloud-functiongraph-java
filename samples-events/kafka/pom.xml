@@ -5,11 +5,12 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-samples-events</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.5-beta</version>
   </parent>
 
   <artifactId>opentelekomcloud-functiongraph-java-samples-events-kafka</artifactId>
-  
+  <name>opentelekomcloud-functiongraph-java-samples-events-kafka</name>
+
   <dependencies>
 
     <dependency>
