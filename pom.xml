@@ -6,7 +6,7 @@
 
   <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java</artifactId>
-  <version>0.0.4-beta</version>
+  <version>0.0.5-beta</version>
   <packaging>pom</packaging>
 
   <developers>
@@ -61,6 +61,8 @@
     <junit-jupiter.version>5.11.4</junit-jupiter.version>
     <lombok.version>1.18.30</lombok.version>
 
+    <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
+
   </properties>
 
   <dependencyManagement>
@@ -107,39 +109,7 @@
   </dependencyManagement>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.sonatype.central</groupId>
-        <artifactId>central-publishing-maven-plugin</artifactId>
-        <version>0.8.0</version>
-        <extensions>true</extensions>
-        <configuration>
-          <publishingServerId>central</publishingServerId>
-          <autoPublish>false</autoPublish>
-          <waitUntil>published</waitUntil>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>${maven-gpg-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-            <configuration>
-              <gpgArguments>
-                <arg>--pinentry-mode</arg>
-                <arg>loopback</arg>
-              </gpgArguments>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
+
     <pluginManagement>
       <!-- lock down plugins versions to avoid using Maven defaults -->
       <plugins>
@@ -397,6 +367,81 @@
           </plugins>
         </pluginManagement>
       </build>
+    </profile>
+
+    <profile>
+      <id>sonatypeDeploy</id>
+
+      <properties>
+        <skipSonaTypePublishing>false</skipSonaTypePublishing>
+      </properties>
+
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>${central-publishing-maven-plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+
+              <skipPublishing>${skipSonaTypePublishing}</skipPublishing>
+              <ignorePublishedComponents>true</ignorePublishedComponents>
+              <autoPublish>true</autoPublish>
+              <waitUntil>published</waitUntil>
+
+              <excludeArtifacts>
+
+                <excludeArtifact>
+                  <!-- <groupId>io.github.opentelekomcloud</groupId> -->
+                  <artifactId>opentelekomcloud-functiongraph-java-samples-doc</artifactId>
+                </excludeArtifact>
+
+                <excludeArtifact>
+                  <!-- <groupId>io.github.opentelekomcloud</groupId> -->
+                  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-springboot-2x</artifactId>
+                </excludeArtifact>
+
+                <excludeArtifact>
+                  <!-- <groupId>io.github.opentelekomcloud</groupId> -->
+                  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-springboot-3x</artifactId>
+                </excludeArtifact>
+
+                <excludeArtifact>
+                  <!-- <groupId>io.github.opentelekomcloud</groupId> -->
+                  <artifactId>opentelekomcloud-functiongraph-java-samples-events</artifactId>
+                </excludeArtifact>
+
+              </excludeArtifacts>
+
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven-gpg-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
     </profile>
   </profiles>
 

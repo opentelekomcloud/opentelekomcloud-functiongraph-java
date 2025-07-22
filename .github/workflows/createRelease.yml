@@ -77,7 +77,13 @@ jobs:
       #   run: echo "::notice::Package exists, skipping upload."
 
       - name: Maven deployment
-        run: mvn deploy -DskipTests --settings .github/settings.xml
+        run: |
+          mvn deploy \
+            --batch-mode \
+            --settings .github/settings.xml \
+            -DskipTests \
+            -Pgpg-signing \
+            -PsonatypeDeploy
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
