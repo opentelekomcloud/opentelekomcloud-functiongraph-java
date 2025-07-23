@@ -1,7 +1,22 @@
 .. _sdk-samples-ref:
 
+SDK Samples
+===========
+.. toctree::
+  :hidden:
 
-.. warning:: 
+   ECS Service  <ecs/_index>
+   FunctionGraph Service <fg/_index>
+
+To access OpenTelekomCloud services from FunctionGraph using the API
+request have to be signed.
+
+The community edition of :github_java_sdk:`OTC Java SDK v1<>` provides
+utility methods to handle request signing.
+
+
+.. warning::
+
    Currently the :github_java_sdk:`OTC Java SDK v1<>` is not available on maven central.
 
    To use the SDK samples, the dependency has to be built manually:
@@ -17,22 +32,7 @@
        cd otc-java-sdk-v1
 
        # build the project
-       mvn clean install -DskipTests 
-
-
-SDK Samples
-===========
-.. toctree::
-  :hidden:
-
-   ECS Service  <ecs/_index>
-   FunctionGraph Service <fg/_index>
-
-To access OpenTelekomCloud services from FunctionGraph using the API
-request have to be signed.
-
-The community edition of :github_java_sdk:`OTC Java SDK v1<>` provides
-utility methods to handle request signing.
+       mvn clean install -DskipTests
 
 SDK samples can be found in: :github_repo_master:`/samples-doc/doc-sample-sdk <samples-doc/doc-sample-sdk>`.
 
