@@ -28,7 +28,7 @@
   <dependencies>
 
     <dependency>
-      <groupId>io.github.opentelekomcloud.community</groupId>
+      <groupId>io.github.opentelekomcloud-community</groupId>
       <artifactId>otc-sdk-v1-core</artifactId>
       <version>${otc-sdk-core-v1.version}</version>
     </dependency>
