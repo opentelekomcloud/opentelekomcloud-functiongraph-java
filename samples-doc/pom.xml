@@ -6,13 +6,13 @@
 
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
-    <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+    <artifactId>opentelekomcloud-functiongraph-java-pom</artifactId>
     <version>0.0.5-beta</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
-  <artifactId>opentelekomcloud-functiongraph-java-samples-doc</artifactId>
-  <name>opentelekomcloud-functiongraph-java-samples-doc</name>
+  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-pom</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-doc-pom</name>
 
   <packaging>pom</packaging>
   <!-- <name>functiongraph-doc-samples</name> -->
@@ -45,20 +45,32 @@
           </configuration>
         </plugin>
 
+        <plugin>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>${central-publishing-maven-plugin.version}</version>
+          <configuration>
+            <skipPublishing>true</skipPublishing>
+          </configuration>
+        </plugin>
+
+
       </plugins>
 
     </pluginManagement>
   </build>
 
   <modules>
-    <module>debug</module>
     <module>doc-sample-testing-1</module>
     <module>doc-sample-deploy</module>
+    <module>doc-sample-deploy-tf</module>
     <module>doc-sample-invoke-fg</module>
     <module>doc-sample-logging</module>
     <module>doc-sample-logging-slf4j</module>
     <module>doc-sample-springboot-2.x-rest</module>
     <module>doc-sample-springboot-3.x-rest</module>
+    <!-- <module>doc-sample-sdk</module> -->
+    <module>doc-sample-obs</module>
     <module>generic</module>
 
   </modules>

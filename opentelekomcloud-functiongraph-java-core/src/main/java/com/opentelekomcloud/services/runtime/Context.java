@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2025 T-Systems International GmbH.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.opentelekomcloud.services.runtime;
 
 /**
@@ -28,26 +43,38 @@ public interface Context {
    * 
    * <b>If you use this method, you need to configure an agency for the
    * function.</b>*
+   * @deprecated
+   * <p>FunctionGraph has stopped maintaining the getAccessKey() API in the Runtime
+   * SDK.
+   * <p>You cannot use this API to obtain a temporary AK.
+   * <p> Use {@link Context#getSecurityAccessKey()} instead.
    * 
    * @return AccessKey (valid for 24 hours) with an agency.
    * 
    */
+  @Deprecated
   String getAccessKey();
 
   /**
    * <b>If you use this method, you need to configure an agency for the
    * function.</b>
-   * 
+   * @deprecated
+   * <p>FunctionGraph has stopped maintaining the getSecretKey() API in the Runtime
+   * SDK.
+   * <p>You cannot use this API to obtain a temporary SK.
+   * <p> Use {@link Context#getSecuritySecretKey()} instead
+   *
    * @return SecretKey (valid for 24 hours) with an agency.
    * 
    */
+  @Deprecated
   String getSecretKey();
 
   /**
    * <b>If you use this method, you need to configure an agency for the
    * function.</b>
    * 
-   * @return SecuritySecretKey (valid for 24 hours) with an agency.
+   * @return SecurityAccessKey (valid for 24 hours) with an agency.
    * 
    */
   String getSecurityAccessKey();
@@ -56,7 +83,7 @@ public interface Context {
    * <b>If you use this method, you need to configure an agency for the
    * function.</b>
    * 
-   * @return SecurityToken (valid for 24 hours) with an agency.
+   * @return SecuritySecretKey (valid for 24 hours) with an agency.
    */
   String getSecuritySecretKey();
 
@@ -157,9 +184,12 @@ public interface Context {
   String getInvokeProperty();
 
   /**
+   * @deprecated
+   * <p>Not available on OpenTelekomCloud.
    * 
    * @return trace id
    */
+  @Deprecated
   String getTraceID();
 
   /**
@@ -175,18 +205,26 @@ public interface Context {
   String getAlias();
 
   /**
+   * @deprecated
+   * <p>Not available on OpenTelekomCloud.
    * 
    * @return workflow run id
    */
+  @Deprecated
   String getWorkflowRunID();
 
   /**
+   * @deprecated
+   * <p>Not available on OpenTelekomCloud.
    * 
    * @return workflow state id
    */
+  @Deprecated
   String getWorkflowStateID();
 
   /**
+   * @deprecated
+   * <p>Not available on OpenTelekomCloud.
    * 
    * @return workflow id
    */

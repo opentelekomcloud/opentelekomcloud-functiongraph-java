@@ -4,12 +4,14 @@
 
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
-    <artifactId>opentelekomcloud-functiongraph-java-samples-events</artifactId>
+    <artifactId>opentelekomcloud-functiongraph-java-samples-events-pom</artifactId>
     <version>0.0.5-beta</version>
   </parent>
 
+  <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-samples-events-dds</artifactId>
   <name>opentelekomcloud-functiongraph-java-samples-events-dds</name>
+  <packaging>jar</packaging>
 
   <dependencies>
 

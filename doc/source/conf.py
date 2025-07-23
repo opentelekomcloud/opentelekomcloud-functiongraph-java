@@ -38,7 +38,7 @@ otcdocs_repo_name = 'opentelekomcloud/opentelekomcloud-functiongraph-java'
 
 # Those variables are required for edit/bug links
 otcdocs_edit_enabled = False
-otcdocs_bug_reported_enabled = False
+otcdocs_bug_report_enabled= True
 otcdocs_pdf_link = False
 
 # Analytics app name
@@ -237,12 +237,34 @@ release = pom_version
 extlinks= {
     "github_repo_master": (f'https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/{local_branch}/%s', "%s"),
     "otc_fg_umn": ('https://docs.otc.t-systems.com/function-graph/umn/%s', "%s"),
-    "fg_console": ('https://console.otc.t-systems.com/functiongraph/%s', "%s")
+    "otc_fg_api": ('https://docs.otc.t-systems.com/function-graph/api-ref/%s', "%s"),
+    "fg_console": ('https://console.otc.t-systems.com/functiongraph/%s', "%s"),
+    "api_usage": ('https://docs.otc.t-systems.com/api-usage/%s', "%s"),
+    "otc_developer": ('https://docs.otc.t-systems.com/developer/%s', "%s"),
+    "github_java_sdk": ('https://github.com/opentelekomcloud-community/otc-java-sdk-v1/%s', "%s"),
 }
+
+# If enabled, extlinks emits a warning if a hardcoded link is replaceable by an extlink, and suggests a replacement via warning.
 extlinks_detect_hardcoded_links = True
 
 # Copybutton and otc theme button are not compatible. 
 # to, use custom selector:
 copybutton_selector = "div.copy-button pre"
 # do not copy line numbers and prompt character
-copybutton_exclude = '.linenos, .gp'
+copybutton_exclude = '.linenos, .gp, .go'
+
+##########################
+def ultimateReplace(app, docname, source):
+    result = source[0]
+    for key in app.config.ultimate_replacements:
+        result = result.replace(key, app.config.ultimate_replacements[key])
+    source[0] = result
+
+ultimate_replacements = {
+    "{POM_VERSION}" : pom_version
+}
+
+def setup(app):
+   app.add_config_value('ultimate_replacements', {}, True)
+   app.connect('source-read', ultimateReplace)
+   

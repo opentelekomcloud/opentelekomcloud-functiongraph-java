@@ -6,10 +6,11 @@
 
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
-    <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+    <artifactId>opentelekomcloud-functiongraph-java-pom</artifactId>
     <version>0.0.5-beta</version>
   </parent>
 
+  <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-events</artifactId>
   <packaging>jar</packaging>
 
@@ -45,6 +46,12 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.10.8</version>
     </dependency>
 
   </dependencies>

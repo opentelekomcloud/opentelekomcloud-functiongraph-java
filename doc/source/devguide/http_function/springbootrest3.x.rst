@@ -1,5 +1,7 @@
 Building a SpringBoot 3.x REST FunctionGraph
 ============================================
+.. toctree::
+   :hidden:
 
 Overview
 --------
@@ -22,10 +24,11 @@ as an example and deploys it to FunctionGraph using HTTP functions.
 Operation process
 -----------------
 
-To deploy an existing project to FunctionGraph, you usually only need to change
-the project listening port number to **8000**, create a **bootstrap** file in
-the same directory as the jar package, and write the command to execute the
-jar package.
+To deploy an existing project to FunctionGraph,
+you usually only need to change:
+- the project listening port number to **8000**,
+-  create a **bootstrap** file in the same directory as the jar package, and
+-  write the command to execute the jar package.
 
 
 Step 1: Configure SprintBoot web port
@@ -42,10 +45,11 @@ the project web port to 8000 in SpringBoot ``application.yaml``.
 Step 2: Create bootstrap file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a bootstrap file in the same directory as the jar package
+Create a ``bootstrap`` file in the same directory as the jar package
 and enter the startup parameters.
 
-For availabe Runtimes paths, see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>`
+Check line 1 of ``bootstrap`` file for correct java runtime version, for availabe Runtimes paths,
+see :otc_fg_umn:`Table 1 Paths for different runtimes <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#id2>`.
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-3.x-rest/bootstrap
     :language: bash
@@ -62,7 +66,7 @@ Step 3: Create deployment zip file
 The structure of the deployment zip file is:
 
 .. code-block:: console
-   :caption: zip structure of doc-sample-springboot-|pom_version|.zip
+   :caption: zip structure of doc-sample-springboot-{POM_VERSION}.zip
 
     /
     ├─ lib
@@ -92,6 +96,9 @@ Step 4: Create FunctionGraph HTTP Function
 
 Create an HTTP function and upload the packaged zip package.
 For details, see :otc_fg_umn:`Creating an HTTP Function <building_functions/creating_a_function_from_scratch/creating_an_http_function.html#procedure>`.
+
+.. note::
+   It is recommended that you increase the function memory specification and timeout period during testing, such as 512MB and 5s.
 
 Step 5: Verify the results
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -140,8 +147,6 @@ and build a simple **Get** request.
         "isBase64Encoded": true
     }
 
-.. note::
-   It is recommended that you increase the function memory specification and timeout period during testing, such as 512MB and 5s.
 
 Step 6: Configure APIG Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

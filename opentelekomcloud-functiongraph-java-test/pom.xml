@@ -4,10 +4,11 @@
 
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
-    <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+    <artifactId>opentelekomcloud-functiongraph-java-pom</artifactId>
     <version>0.0.5-beta</version>
   </parent>
 
+  <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-test</artifactId>
 
   <name>opentelekomcloud-functiongraph-java-test</name>

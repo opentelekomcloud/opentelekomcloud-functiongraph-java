@@ -5,15 +5,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.opentelekomcloud</groupId>
-  <artifactId>opentelekomcloud-functiongraph-java</artifactId>
+  <artifactId>opentelekomcloud-functiongraph-java-pom</artifactId>
   <version>0.0.5-beta</version>
   <packaging>pom</packaging>
 
   <developers>
+
     <developer>
-      <id>harald-tsys</id>
-      <name>Harald</name>
-      <url>https://github.com/opentelekomcloud</url>
+      <id>opentelekomcloud</id>
+      <name>OpenTelekomCloud FunctionGraph team</name>
+      <organization>OpenTelekomCloud</organization>
+      <organizationUrl>https://www.open-telekom-cloud.com</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>Europe/Berlin</timezone>
     </developer>
   </developers>
 
@@ -24,10 +30,9 @@
     <tag>HEAD</tag>
   </scm>
 
-  <!-- based on 2.0.6 -->
-  <name>opentelekomcloud-functiongraph-java</name>
+  <name>opentelekomcloud-functiongraph-java-pom</name>
   <description>FunctionGraph libraries to use with OpenTelekomCloud</description>
-  <url>https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
+  <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
 
   <licenses>
     <license>
@@ -41,7 +46,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>8</maven.compiler.release>
 
-    <maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
+    <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
     <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     <maven-deploy-plugin.version>3.1.2</maven-deploy-plugin.version>
     <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
@@ -55,6 +60,7 @@
     <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
     <maven-surefire-plugin.version>3.3.0</maven-surefire-plugin.version>
 
+    <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
 
     <com.google.code.gson.version>2.12.0</com.google.code.gson.version>
     <junit-bom.version>5.11.4</junit-bom.version>
@@ -155,7 +161,31 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>${maven-project-info-reports-plugin.version}</version>
         </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${versions-maven-plugin.version}</version>
+          <configuration>
+            <generateBackupPoms>false</generateBackupPoms>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>${central-publishing-maven-plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>${maven-gpg-plugin.version}</version>
+        </plugin>
+
       </plugins>
+
+
     </pluginManagement>
 
   </build>
@@ -209,7 +239,9 @@
               </execution>
             </executions>
           </plugin>
+
         </plugins>
+
       </build>
     </profile>
 
@@ -224,7 +256,7 @@
         https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
             <plugin>
               <artifactId>maven-clean-plugin</artifactId>
-              <version>${maven-compiler-plugin.version}</version>
+              <version>${maven-clean-plugin.version}</version>
             </plugin>
             <!-- default lifecycle, jar packaging: see
             https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
@@ -392,20 +424,34 @@
               <autoPublish>true</autoPublish>
               <waitUntil>published</waitUntil>
 
-              <excludeArtifacts>
-                <excludeArtifact>
-                  opentelekomcloud-functiongraph-java-samples-doc
-                </excludeArtifact>
-                <excludeArtifact>
-                  opentelekomcloud-functiongraph-java-samples-doc-springboot-2x
-                </excludeArtifact>
-                <excludeArtifact>
-                  opentelekomcloud-functiongraph-java-samples-doc-springboot-3x
-                </excludeArtifact>
-                <excludeArtifact>
-                  opentelekomcloud-functiongraph-java-samples-events
-                </excludeArtifact>
-              </excludeArtifacts>
+              <!-- <excludeArtifacts>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-pom</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-debug</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-sample-testing-1</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-deploy</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-deploy-tf</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-invoke-fg</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-logging</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-logging-slf4j</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-generic</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-springboot-2x</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-springboot-3x</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-sdk</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-doc-obs</excludeArtifact>
+
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-pom</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-apig</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-cts</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-dds</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-dms4kafka</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-samples-events-dms4rocketmq</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-kafka</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-lts</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-s3obs</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-smn</excludeArtifact>
+                <excludeArtifact>opentelekomcloud-functiongraph-java-samples-events-timer</excludeArtifact>
+
+              </excludeArtifacts> -->
 
             </configuration>
           </plugin>
