@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-pom</artifactId>
-    <version>0.0.5-beta</version>
+    <version>0.0.6-beta</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
@@ -15,32 +15,14 @@
 
   <packaging>pom</packaging>
   <name>opentelekomcloud-functiongraph-java-samples-events-pom</name>
-  <url>https://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
+  <description>Parent POM for Open Telekom Cloud FunctionGraph Java SDK samples for events</description>
+  <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
 
-  <build>
-    <pluginManagement>
-      <plugins>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <configuration>
-            <skip>true</skip>
-          </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>org.sonatype.central</groupId>
-          <artifactId>central-publishing-maven-plugin</artifactId>
-          <version>${central-publishing-maven-plugin.version}</version>
-          <configuration>
-            <skipPublishing>true</skipPublishing>
-          </configuration>
-        </plugin>
-
-      </plugins>
-    </pluginManagement>
-  </build>
+  <scm>
+    <connection>scm:git:git://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git</connection>
+    <developerConnection>scm:git:ssh://github.com:opentelekomcloud/opentelekomcloud-functiongraph-java.git</developerConnection>
+    <url>http://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/main</url>
+  </scm>
 
   <modules>
     <module>apig</module>

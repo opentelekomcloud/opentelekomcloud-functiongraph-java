@@ -7,13 +7,21 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-samples-doc-pom</artifactId>
-    <version>0.0.5-beta</version>
+    <version>0.0.6-beta</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-samples-doc-sample-testing-1</artifactId>
   <name>opentelekomcloud-functiongraph-java-samples-doc-sample-testing-1</name>
   <packaging>jar</packaging>
+  <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
+  <description>Open Telekom Cloud FunctionGraph Java SDK samples documentation for sample testing 1</description>
+
+  <scm>
+    <connection>scm:git:git://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git</connection>
+    <developerConnection>scm:git:ssh://github.com:opentelekomcloud/opentelekomcloud-functiongraph-java.git</developerConnection>
+    <url>http://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/main</url>
+  </scm>
 
   <dependencies>
 

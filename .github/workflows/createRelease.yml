@@ -82,14 +82,11 @@ jobs:
             --batch-mode \
             --settings .github/settings.xml \
             -DskipTests \
-            -P gpg-signing,dev,release,sonatypeDeploy
+            -P gpg-signing,cimodules,dev,release,sonatypeDeploy
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-
-      - name: Maven publish
-        run: mvn central-publish:publish
 
       - name: Create Release
       # https://github.com/ncipollo/release-action/blob/main/.github/workflows/release.yml
@@ -99,7 +96,7 @@ jobs:
           allowUpdates: true
           draft: false
           generateReleaseNotes: true
-          body: "See: [FunctionGraph Java Documentation]<https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java>"
+          body: "See: [FunctionGraph Java Documentation](https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java)"
 
 ###################### Publish Documentation
   publishDocs:
