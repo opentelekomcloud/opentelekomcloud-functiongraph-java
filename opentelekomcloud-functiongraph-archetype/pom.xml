@@ -7,14 +7,22 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-pom</artifactId>
-    <version>0.0.5-beta</version>
+    <version>0.0.6-beta</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-archetype</artifactId>
   <name>opentelekomcloud-functiongraph-archetype</name>
-
+  <description>Open Telekom Cloud FunctionGraph Java SDK archetype</description>
+  <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
+  
   <packaging>maven-archetype</packaging>
+
+  <scm>
+    <connection>scm:git:git://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git</connection>
+    <developerConnection>scm:git:ssh://github.com:opentelekomcloud/opentelekomcloud-functiongraph-java.git</developerConnection>
+    <url>http://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/main</url>
+  </scm>
 
   <build>
     <!-- embed version in archetype pom.xml,... , see: https://stackoverflow.com/a/7223084 -->

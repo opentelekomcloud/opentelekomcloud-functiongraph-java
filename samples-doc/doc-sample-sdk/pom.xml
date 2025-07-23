@@ -12,8 +12,16 @@
   <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-samples-doc-sdk</artifactId>
   <name>opentelekomcloud-functiongraph-java-samples-doc-sdk</name>
+  <description>Open Telekom Cloud FunctionGraph Java SDK samples documentation for SDK</description>
+  <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
 
   <packaging>jar</packaging>
+
+  <scm>
+    <connection>scm:git:git://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git</connection>
+    <developerConnection>scm:git:ssh://github.com:opentelekomcloud/opentelekomcloud-functiongraph-java.git</developerConnection>
+    <url>http://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/main</url>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -7,16 +7,22 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-pom</artifactId>
-    <version>0.0.5-beta</version>
+    <version>0.0.6-beta</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
   <artifactId>opentelekomcloud-functiongraph-java-core</artifactId>
   <packaging>jar</packaging>
 
-  <!-- based on 2.0.6 -->
   <name>opentelekomcloud-functiongraph-java-core</name>
   <description>FunctionGraph core library to use with OpenTelekomCloud</description>
+  <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
+
+  <scm>
+    <connection>scm:git:git://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git</connection>
+    <developerConnection>scm:git:ssh://github.com:opentelekomcloud/opentelekomcloud-functiongraph-java.git</developerConnection>
+    <url>http://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java/tree/main</url>
+  </scm>
 
   <dependencies>
       <dependency>
