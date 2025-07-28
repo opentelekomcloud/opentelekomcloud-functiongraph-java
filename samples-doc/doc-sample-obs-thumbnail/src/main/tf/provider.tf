@@ -63,7 +63,7 @@ terraform {
     bucket = "sample-tf-backend"
 
     # (Required) Specifies the path to the state file inside the bucket.
-    key    = "terraform_state/doc-sample-obs.tf"
+    key    = "terraform_state/doc-sample-obs-thumbnail.tf"
 
     # (Required) Specifies the region where the bucket is located.
     # This can also be sourced from the AWS_DEFAULT_REGION and 

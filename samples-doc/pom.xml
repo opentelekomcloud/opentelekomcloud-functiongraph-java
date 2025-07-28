@@ -48,8 +48,8 @@
     <module>doc-sample-logging-slf4j</module>
     <module>doc-sample-springboot-2.x-rest</module>
     <module>doc-sample-springboot-3.x-rest</module>
-    <!-- <module>doc-sample-sdk</module> -->
-    <module>doc-sample-obs</module>
+    <module>doc-sample-sdk</module>
+    <module>doc-sample-obs-thumbnail</module>
     <module>generic</module>
 
   </modules>

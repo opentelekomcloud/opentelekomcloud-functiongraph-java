@@ -40,6 +40,10 @@ OpenTelekomCloud provides following libraries for FunctionGraph.
 
   Defines a test classes, that can be used in JUnit tests.
 
+OpenTelekomCloud community provides following libraries for Java development:
+
+* The community edition of :github_java_sdk:`OTC Java SDK v1<>` provides utility methods to handle request signing.
+
 .. _ref_maven_install:
 
 Installing libraries
@@ -72,106 +76,7 @@ These libraries are available through:
      Just add the dependencies to your `pom.xml` as shown below.
 
      For list of libraries available in Maven Central see:
-     `Maven Central Repository <https://central.sonatype.com/search?q=opentelekomcloud-functiongraph-java&sort=name>`_
-
-  .. tab:: GitHub and Maven
-
-    .. note::
-      DEPRECATED: The GitHub Maven repository is deprecated and will be removed in the future.
-
-      Use Maven Central instead.
-
-    To use GitHub maven repository modify your ``settings.xml`` (e.g. ~/.m2/settings.xml) as follows.
-
-    If you need to use a proxy for internet connections, see `Configuring a proxy <https://maven.apache.org/guides/mini/guide-proxies.html>`_.
-
-    The environment variable ``GITHUB_TOKEN`` has to be set with your `GitHub personal access token <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token>`_,
-    e.g. in your ``~/.profile``.
-
-     Detailed instructions can be found `Working with the Apache Maven registry: Installing a package <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#installing-a-package>`_
-
-     .. code-block:: xml
-        :caption: settings.xml
-
-        <servers>
-          <server>
-            <id>github</id>
-            <configuration>
-              <httpHeaders>
-                <property>
-                  <name>Authorization</name>
-                  <value>Bearer ${env.GITHUB_TOKEN}</value>
-                </property>
-              </httpHeaders>
-            </configuration>
-        </servers>
-
-        <profiles>
-          <profile>
-            <id>default</id>
-
-            <repositories>
-              <repository>
-                <id>central</id>
-                <url>https://repo1.maven.org/maven2</url>
-              </repository>
-
-              <repository>
-                <id>github</id>
-                <url>https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java</url>
-
-                <releases>
-                  <enabled>true</enabled>
-                  <updatePolicy>daily</updatePolicy>
-                </releases>
-
-                <snapshots>
-                  <enabled>true</enabled>
-                  <updatePolicy>always</updatePolicy>
-                </snapshots>
-
-              </repository>
-            </repositories>
-          </profile>
-        </profiles>
-
-        <activeProfiles>
-          <activeProfile>default</activeProfile>
-        </activeProfiles>
-
-  .. tab:: GitHub and Gradle
-
-     .. note::
-       DEPRECATED: The GitHub Maven repository is deprecated and will be removed in the future.
-      
-       Use Maven Central instead.
-
-     To use GitHub maven repository with Gradle see:
-     `Working with the Gradle registry: Using a published package <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry#using-a-published-package>`_
-
-     The environment variables ``GITHUB_TOKEN`` and ``GITHUB_USERNAME`` have to be set with your `GitHub personal access token <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token>`_,
-     e.g. in your ``~/.profile``.
-
-     Add the repository to your build.gradle file (Gradle Groovy):
-
-    .. code-block:: groovy
-       :caption: build.gradle
-
-        repositories {
-
-          mavenCentral()
-
-          maven {
-              url = uri("https://maven.pkg.github.com/opentelekomcloud/opentelekomcloud-functiongraph-java")
-              credentials {
-                  username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
-                  password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
-              }
-          }
-
-          mavenLocal()
-
-        }
+     `Maven Repository <https://mvnrepository.com/search?q=io.github.opentelekomcloud>`_
 
 
 Usage

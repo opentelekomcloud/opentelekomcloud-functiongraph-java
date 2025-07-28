@@ -10,9 +10,9 @@
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
-  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-obs</artifactId>
-  <name>opentelekomcloud-functiongraph-java-samples-doc-obs</name>
-  <description>Open Telekom Cloud FunctionGraph Java SDK samples documentation for OBS</description>
+  <artifactId>opentelekomcloud-functiongraph-java-samples-doc-obs-thumbnail</artifactId>
+  <name>opentelekomcloud-functiongraph-java-samples-doc-obs-thumbnail</name>
+  <description>FunctionGraph OBS thumbnail</description>
   <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
 
   <packaging>jar</packaging>
@@ -28,7 +28,7 @@
     <!-- <maven.compiler.release>17</maven.compiler.release> -->
     <org.slf4j.version>2.0.17</org.slf4j.version>
 
-    <commons-lang3.version>3.17.0</commons-lang3.version>
+    <commons-lang3.version>3.18.0</commons-lang3.version>
 
     <otc-sdk-core-v1.version>1.0.0</otc-sdk-core-v1.version>
   </properties>
@@ -98,7 +98,7 @@
           </descriptorRefs>
           <archive>
             <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.SampleFG.handleRequest</FunctionGraph-Handler-Name>
+              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.Thumbnail.handleRequest</FunctionGraph-Handler-Name>
             </manifestEntries>
           </archive>
           <finalName>${project.name}</finalName>

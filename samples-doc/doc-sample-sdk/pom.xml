@@ -6,7 +6,7 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-samples-doc-pom</artifactId>
-    <version>0.0.5-beta</version>
+    <version>0.0.6-beta</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
@@ -28,7 +28,7 @@
     <!-- <maven.compiler.release>17</maven.compiler.release> -->
     <org.slf4j.version>2.0.17</org.slf4j.version>
 
-    <commons-lang3.version>3.17.0</commons-lang3.version>
+    <commons-lang3.version>3.18.0</commons-lang3.version>
 
     <otc-sdk-core-v1.version>1.0.0</otc-sdk-core-v1.version>
   </properties>

@@ -34,11 +34,6 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
-          <archive>
-            <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.SampleFG.handleRequest</FunctionGraph-Handler-Name>
-            </manifestEntries>
-          </archive>
           <finalName>${project.name}</finalName>
         </configuration>
         <executions>
