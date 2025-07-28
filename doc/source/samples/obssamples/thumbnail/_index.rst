@@ -8,7 +8,7 @@ Thumbnail is a sample that processes an image uploaded to OBS,
 resizes it to fit within a maximum dimension, and uploads the resized
 image back to another OBS using FunctionGraph with OBS trigger event.
 
-SDK sample can be found in: :github_repo_master:`/samples-doc/doc-sample-obs-thumbnail <samples-doc/doc-sample-obs/doc-sample-obs-thumbnail>`.
+SDK sample can be found in: :github_repo_master:`/samples-doc/doc-sample-obs-thumbnail <samples-doc/doc-sample-obs-thumbnail>`.
 
 
 Overview
