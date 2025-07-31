@@ -16,4 +16,4 @@ __pycache__
 terraform.tfstate
 terraform.tfstate.backup
 .tfmodules
-
+dependency-reduced-pom.xml

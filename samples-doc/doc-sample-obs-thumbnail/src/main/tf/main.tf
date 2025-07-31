@@ -93,11 +93,14 @@ resource "opentelekomcloud_fgs_function_v2" "MyFunction" {
   app              = "default"
   agency           = opentelekomcloud_identity_agency_v3.agency.name
   handler          = var.function_handler_name
+  initializer_handler = var.initializer_handler_name
+  initializer_timeout =  30
+
   description      = "Sample on how to create Thumbnails from images uploaded to OBS"
   memory_size      = 512
   timeout          = 30
-  max_instance_num = 400
-
+  max_instance_num = 1
+  #enable_class_isolation = true
   runtime = "Java17"
 
   code_type = "obs"
@@ -112,7 +115,11 @@ resource "opentelekomcloud_fgs_function_v2" "MyFunction" {
   log_topic_name = opentelekomcloud_lts_stream_v2.MyLogStream.stream_name
 
   # set some environment variables
-  user_data = jsonencode({ "OUTPUT_BUCKET" : opentelekomcloud_s3_bucket.outbucket.bucket })
+  user_data = jsonencode({
+    "OUTPUT_BUCKET" : opentelekomcloud_s3_bucket.outbucket.bucket,
+    # "RUNTIME_LOG_LEVEL" : "ERROR",
+    # "RUNTIME_LOG_PATH" : "/tmp"
+  })
 
 
   tags = {

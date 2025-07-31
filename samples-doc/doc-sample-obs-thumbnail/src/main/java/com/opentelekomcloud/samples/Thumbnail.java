@@ -21,10 +21,16 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.net.URL;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
+
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.util.LoaderUtil;
+import org.slf4j.MDC;
 
 import com.obs.services.ObsClient;
 import com.obs.services.model.ObjectMetadata;
@@ -32,7 +38,8 @@ import com.obs.services.model.PutObjectResult;
 import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.S3TriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.S3TriggerEventRecord;
 import com.opentelekomcloud.services.runtime.Context;
-import com.opentelekomcloud.services.runtime.RuntimeLogger;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Thumbnail is a sample function that processes an image from OBS,
@@ -40,6 +47,7 @@ import com.opentelekomcloud.services.runtime.RuntimeLogger;
  * image back to OBS.
  * It supports JPEG and PNG formats.
  */
+@Slf4j
 public class Thumbnail {
 
   private final String OBS_ENDPOINT = "https://obs.otc.t-systems.com";
@@ -51,13 +59,54 @@ public class Thumbnail {
   private final String PNG_TYPE = "png";
   private final String PNG_MIME = "image/png";
 
-  public String handleRequest(final S3TriggerEvent event, final Context context) {
+  public void initializer(Context context) {
+    init(context);
+  }
 
-    RuntimeLogger log = context.getLogger();
+  private void init(Context context) {
+
+    MDC.put("requestid", context.getRequestID());
 
     try {
+      URL logURL = LoaderUtil.getThreadContextClassLoader().getResource("log4j2.xml");
+      Configurator.reconfigure(
+          Objects.requireNonNull(logURL.toURI()));
+
+      // InputStream input =
+      // LoaderUtil.getThreadContextClassLoader().getResourceAsStream("log4j2.xml");
+      // File file = File.createTempFile("log4j2", ".tmp");
+      // OutputStream out = new FileOutputStream(file);
+      // int read;
+      // byte[] bytes = new byte[1024];
+
+      // while ((read = input.read(bytes)) != -1) {
+      // out.write(bytes, 0, read);
+      // }
+      // out.close();
+      // file.deleteOnExit();
+
+      // String path = file.getAbsolutePath();
+      // log.debug("PATH: " + path);
+
+      // Log4j2Configurator.setLogConfig(path);
+
+    } catch (Exception e) {
+      log.error("An error occurred while configuring Log4J:" + e.getMessage());
+      throw new RuntimeException(e);
+    } finally {
+      MDC.remove("requestid");
+    }
+
+  }
+
+  public String handleRequest(final S3TriggerEvent event, final Context context) {
+
+    try {
+
+      MDC.put("requestid", context.getRequestID());
+
       // Log the event details
-      log.log(String.format("Received OBS event: %s", event));
+      log.debug(String.format("Received OBS event: %s", event));
 
       S3TriggerEventRecord[] records = event.getRecords();
 
@@ -66,23 +115,23 @@ public class Thumbnail {
       String srcBucket = record.getS3().getBucket().getName();
 
       String srcKey = record.getS3().getObject().getUrlDecodedKey();
-      
-      log.log("Processing file: " + srcBucket + "/" + srcKey);
-      
+
+      log.debug("Processing file: " + srcBucket + "/" + srcKey);
+
       String dstBucket = context.getUserData("OUTPUT_BUCKET");
       String dstKey = "resized-" + srcKey;
 
       // Infer the image type.
       Matcher matcher = Pattern.compile(REGEX).matcher(srcKey);
       if (!matcher.matches()) {
-        log.log("Unable to infer image type for key " + srcKey);
+        log.debug("Unable to infer image type for key " + srcKey);
         return "";
       }
 
       // Check if the image type is supported (jpg/png)
       String imageType = matcher.group(1);
       if (!(JPG_TYPE.equals(imageType)) && !(PNG_TYPE.equals(imageType))) {
-        log.log("Skipping non-image " + srcKey);
+        log.debug("Skipping non-image " + srcKey);
         return "";
       }
 
@@ -105,15 +154,17 @@ public class Thumbnail {
       ImageIO.write(newImage, imageType, outputStream);
 
       // Upload new image to S3
-      putObject(obsClient, outputStream, dstBucket, dstKey, imageType, log);
+      putObject(obsClient, outputStream, dstBucket, dstKey, imageType);// , log);
 
-      log.log("Successfully resized " + srcBucket + "/"
+      log.debug("Successfully resized " + srcBucket + "/"
           + srcKey + " and uploaded to " + dstBucket + "/" + dstKey);
       return "Ok";
 
     } catch (Exception e) {
       log.error("Error processing OBS event: " + e.getMessage());
       return "Error processing OBS event";
+    } finally {
+      MDC.remove("requestid");
     }
 
   }
@@ -129,7 +180,7 @@ public class Thumbnail {
    * @param logger       The logger to log messages.
    */
   private void putObject(ObsClient obsClient, ByteArrayOutputStream outputStream,
-      String bucket, String key, String imageType, RuntimeLogger logger) {
+      String bucket, String key, String imageType) {// }, Logger logger) {
 
     ObjectMetadata metadata = new ObjectMetadata();
     metadata.setContentLength((long) outputStream.size());
@@ -140,17 +191,17 @@ public class Thumbnail {
       metadata.setContentType(PNG_MIME);
     }
 
-    logger.log("Writing to: " + bucket + "/" + key);
+    log.debug("Writing to: " + bucket + "/" + key);
 
     // https://support.huaweicloud.com/intl/en-us/sdk-java-devg-obs/obs_21_0602.html
-    PutObjectResult  putObjectResult =
-    obsClient.putObject(bucket, key, new ByteArrayInputStream(outputStream.toByteArray()), metadata);
+    PutObjectResult putObjectResult = obsClient.putObject(bucket, key,
+        new ByteArrayInputStream(outputStream.toByteArray()), metadata);
 
     if (putObjectResult.getStatusCode() != 200) {
-      logger.error("Failed to upload resized image to OBS, stauscode.: " + putObjectResult.getStatusCode());
+      log.error("Failed to upload resized image to OBS, stauscode.: " + putObjectResult.getStatusCode());
       throw new RuntimeException("Failed to upload resized image to OBS: " + putObjectResult.getStatusCode());
-    } 
-    
+    }
+
   }
 
   /**
@@ -177,7 +228,7 @@ public class Thumbnail {
     BufferedImage resizedImage = new BufferedImage(width, height,
         BufferedImage.TYPE_INT_RGB);
     Graphics2D graphics = resizedImage.createGraphics();
-    
+
     // Fill with white before applying semi-transparent (alpha) images
     graphics.setPaint(Color.white);
     graphics.fillRect(0, 0, width, height);

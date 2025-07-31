@@ -31,21 +31,89 @@
     <commons-lang3.version>3.18.0</commons-lang3.version>
 
     <otc-sdk-core-v1.version>1.0.0</otc-sdk-core-v1.version>
+
+
+    <log4j.version>2.25.1</log4j.version>
+    <slf4j.version>2.0.17</slf4j.version>
+    <jackson.version>2.19.2</jackson.version>
+    <jackson.version>2.19.2</jackson.version>
+    <elastic.version>1.6.0</elastic.version>
+
   </properties>
 
   <dependencies>
+    <!-- <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.23.1</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.23.1</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-slf4j2-impl</artifactId>
+    <version>2.23.1</version>
+</dependency> -->
 
-    <dependency>
+    <!-- <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-log4j12</artifactId>
+    <version>1.7.30</version>
+</dependency> -->
+    <!-- <dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>log4j-over-slf4j</artifactId>
+    <version>1.7.30</version>
+</dependency> -->
+
+
+    <!-- <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${org.slf4j.version}</version>
       <scope>compile</scope>
-    </dependency>
+    </dependency> -->
 
+    <!--
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-nop</artifactId>
       <version>${org.slf4j.version}</version>
+    </dependency>
+  -->
+
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j2-impl</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-layout-template-json</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.17.2</version>
     </dependency>
 
     <dependency>
@@ -83,6 +151,46 @@
       <groupId>com.huaweicloud</groupId>
       <artifactId>esdk-obs-java</artifactId>
       <version>3.25.5</version>
+
+      <exclusions>
+
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+        </exclusion>
+
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-core</artifactId>
+        </exclusion>
+
+        <exclusion>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-api</artifactId>
+        </exclusion>
+
+      </exclusions>
+
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
@@ -90,6 +198,7 @@
   <build>
 
     <plugins>
+    <!--
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
@@ -99,9 +208,10 @@
           <archive>
             <manifestEntries>
               <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.Thumbnail.handleRequest</FunctionGraph-Handler-Name>
+              <Multi-Release>true</Multi-Release>
             </manifestEntries>
           </archive>
-          <finalName>${project.name}</finalName>
+          <finalName>deployment</finalName>
         </configuration>
         <executions>
           <execution>
@@ -110,6 +220,46 @@
             <goals>
               <goal>single</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+    -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.4.1</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-transform-maven-shade-plugin-extensions</artifactId>
+            <version>0.2.0</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>shade-jar-with-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+    
+              <finalName>deployment-jar-with-dependencies</finalName>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+    
+              <transformers>
+                <transformer
+                  implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer" />
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Multi-Release>true</Multi-Release>
+                  </manifestEntries>
+                </transformer>
+              </transformers>
+            </configuration>
           </execution>
         </executions>
       </plugin>

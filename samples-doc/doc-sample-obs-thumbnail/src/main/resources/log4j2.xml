@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console1" target="SYSTEM_OUT">
+      <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSS'Z'}{UTC}|%X{requestid}|%-5p|%c|%L|%m%n" />
+    </Console>
+
+    <!-- console appender -->
+    <Console name="Console" target="SYSTEM_OUT">
+        <JsonTemplateLayout eventTemplateUri="classpath:fgloglayout.json"/>
+    </Console>
+
+    <Console name="Console3" target="SYSTEM_OUT">
+        <JSONLayout compact="true" eventEol="true" properties="true" stacktraceAsString="true" includeTimeMillis="true">
+          <KeyValuePair key="requestId" value="${ctx:requestid:-}" />
+        </JSONLayout>
+    </Console>
+
+  </Appenders>
+
+  <Loggers>
+    <!-- see: https://support.huaweicloud.com/intl/en-us/sdk-java-devg-obs/obs_21_2004.html -->
+
+    <!-- Northbound log, for communication logs between OBS Java SDK and
+    third-party applications of users. -->
+    <Logger name="com.obs.services.AbstractClient" level="WARN"
+      additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    <!-- Southbound log, for communication logs between OBS Java SDK and the
+    OBS server. -->
+    <Logger name="com.obs.services.internal.RestStorageService" level="WARN"
+      additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    <!-- Run log of the OBS server. -->
+    <Logger name="com.obs.log.AccessLogger" level="WARN"
+      additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    <!-- Function log -->
+    <Logger name="com.opentelekomcloud.samples" level="DEBUG"
+      additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    <!-- console log -->
+    <Root level="WARN">
+      <AppenderRef ref="Console" />
+    </Root>
+  </Loggers>
+</Configuration>
