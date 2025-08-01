@@ -37,7 +37,7 @@ In this example the handler is: `mypackage.FGEventHandler.handleRequest`.
 Example code for Java FunctionGraph function
 --------------------------------------------
 
-The following example receives an event.
+The following example receives an event as a JsonObject.
 
 .. code-block:: java
   :caption: Example: FGEventHandler.java
@@ -74,77 +74,107 @@ In this example, the function expects an input similar to the following:
     }
 
 
-For this example we define following data object:
+Following examples show how to use Java objects as event:
 
 .. tabs::
 
-  .. tab:: EventData POJO
-
+  .. tab:: Plain EventData object
       .. code-block:: java
-        :caption: EventData
+        :caption: EventData 
 
-        public class EventData {
-          String id;
-          double amount;
-          String item;
+        import com.opentelekomcloud.services.runtime.Context;
+        import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
-          public EventData() {
+        public class SampleFG {
+
+          public String handleRequest(final SampleFG.EventData event, final Context context)  {
+
+            RuntimeLogger log = context.getLogger();
+
+            log.log(String.format("class name: %s", event.getClass().getName()));
+            log.log(String.format("key: %s", event.getKey()));
+
+            return "ok";
           }
 
-          public String getId(){
-            return this.id;
-          }
+          public class EventData {
+            String id;
+            double amount;
+            String item;
 
-          public void setId(String value){
-            this.id=value;
-          }
+            public EventData() {
+            }
 
-          public String getId(){
-            return this.id;
-          }
+            public String getId(){
+              return this.id;
+            }
 
-          public void setAmount(double value){
-            this.amount=value;
-          }
+            public void setId(String value){
+              this.id=value;
+            }
 
-          public double getAmount(){
-            return this.amount;
-          }
+            public String getId(){
+              return this.id;
+            }
 
-          public String getItem(){
-            return this.item;
-          }
+            public void setAmount(double value){
+              this.amount=value;
+            }
 
-          public void setItem(String value){
-            this.item=value;
-          }
+            public double getAmount(){
+              return this.amount;
+            }
 
+            public String getItem(){
+              return this.item;
+            }
+
+            public void setItem(String value){
+              this.item=value;
+            }
+
+          }
         }
 
-  .. tab:: EventData using Lombok
+  .. tab:: EventData data object using Lombok
       To use Lombok, you will need to `setup maven for Lombok <https://projectlombok.org/setup/maven>`_
 
       .. code-block:: java
         :caption: EventData
 
+        import com.opentelekomcloud.services.runtime.Context;
+        import com.opentelekomcloud.services.runtime.RuntimeLogger;
         import com.google.gson.annotations.SerializedName;
         import lombok.Data;
         import lombok.NoArgsConstructor;
         import lombok.ToString;
+        
+        public class SampleFG {
 
-        @Data
-        @ToString(includeFieldNames=true)
-        @NoArgsConstructor
-        public class EventData {
+          public String handleRequest(final SampleFG.EventData event, final Context context)  {
+            
+            RuntimeLogger log = context.getLogger();
 
-          @SerializedName("id")
-          String id;
+            log.log(String.format("class name: %s", event.getClass().getName()));
+            log.log(String.format("key: %s", event.getKey()));
+            
+            return "ok";
+          }
 
-          @SerializedName("amount")
-          double amount;
+          @Data
+          @ToString(includeFieldNames=true)
+          @NoArgsConstructor
+          public class EventData {
 
-          @SerializedName("item")
-          String item;
+            @SerializedName("id")
+            String id;
+
+            @SerializedName("amount")
+            double amount;
+
+            @SerializedName("item")
+            String item;
+          }
 
         }
 

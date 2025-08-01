@@ -18,6 +18,11 @@
   <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
   <description>Open Telekom Cloud FunctionGraph Java SDK samples documentation for SLF4j logging</description>
 
+  <properties>
+      <log4j.version>2.24.3</log4j.version>
+      <lombok.version>1.18.38</lombok.version>
+  </properties>
+
   <scm>
     <connection>scm:git:git://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git</connection>
     <developerConnection>scm:git:ssh://github.com:opentelekomcloud/opentelekomcloud-functiongraph-java.git</developerConnection>
@@ -28,25 +33,25 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
-      <version>2.24.3</version>
+      <version>${log4j.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>2.24.3</version>
+      <version>${log4j.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
-      <version>2.24.3</version>
+      <version>${log4j.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.38</version>
+      <version>${lombok.version}</version>
       <scope>compile</scope>
     </dependency>
 
@@ -57,25 +62,41 @@
     <plugins>
 
       <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-          <archive>
-            <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.FGLoggingSLF4j.handleRequest</FunctionGraph-Handler-Name>
-            </manifestEntries>
-          </archive>
-          <finalName>${project.name}</finalName>
-        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.6.0</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-transform-maven-shade-plugin-extensions</artifactId>
+            <version>0.2.0</version>
+          </dependency>
+        </dependencies>
         <executions>
           <execution>
-            <id>make-assembly</id>
+            <id>shade-jar-with-dependencies</id>
             <phase>package</phase>
             <goals>
-              <goal>single</goal>
+              <goal>shade</goal>
             </goals>
+            <configuration>
+    
+              <finalName>${project.name}</finalName>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+    
+              <transformers>
+                <transformer
+                  implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer" />
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Multi-Release>true</Multi-Release>
+                  </manifestEntries>
+                </transformer>
+              </transformers>
+            </configuration>
           </execution>
         </executions>
       </plugin>
