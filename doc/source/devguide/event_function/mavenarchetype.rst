@@ -56,11 +56,3 @@ In root of generated project use one of following commands to build project:
         :substitutions:
 
         mvn clean install
-
-  .. tab:: Using gradle
-
-     .. code-block:: shell
-        :substitutions:
-
-        gradle build
-

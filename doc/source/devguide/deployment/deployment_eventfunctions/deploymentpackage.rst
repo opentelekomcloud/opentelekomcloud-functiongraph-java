@@ -83,9 +83,9 @@ bucket.
 Building a deployment package
 -----------------------------
 
-Deployment packages can be built using gradle or maven.
+Deployment packages can be built using maven.
 
-Following snippets show how to build JAR Package with dependencies using maven or a ZIP package with gradle.
+Following snippets show how to build JAR Package with dependencies using maven.
 
 See full code in :github_repo_master:`doc-sample-deploy <sample-doc/doc-sample-deploy>`
 
@@ -97,14 +97,6 @@ See full code in :github_repo_master:`doc-sample-deploy <sample-doc/doc-sample-d
         :language: xml
 
      Generated JAR file can be found in folder ``${PROJECT_ROOT}/target/doc-sample-deploy-jar-with-dependencies.jar``
-
-  .. tab:: build.gradle
-
-     .. literalinclude:: /../../samples-doc/doc-sample-deploy/build.gradle
-        :language: Groovy
-
-     Generated ZIP file can be found in folder ``${PROJECT_ROOT}/build/distributions/doc-sample-deploy.zip``
-
 
 
 Deployment with the FunctionGraph console

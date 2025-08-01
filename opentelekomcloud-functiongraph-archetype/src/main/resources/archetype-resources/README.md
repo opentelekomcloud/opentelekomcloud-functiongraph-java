@@ -4,7 +4,7 @@ This project contains an OpenTelekomCloud FunctionGraph maven application.
 
 #[[##]]# Prerequisites
 - Java 1.8+
-- Apache Maven (or Gradle)
+- Apache Maven
 
 
 #[[####]]# Building the project
@@ -12,9 +12,4 @@ This project contains an OpenTelekomCloud FunctionGraph maven application.
 Using Maven:
 ```
 mvn clean install
-```
-
-Using Gradle:
-```
-gradle build
 ```

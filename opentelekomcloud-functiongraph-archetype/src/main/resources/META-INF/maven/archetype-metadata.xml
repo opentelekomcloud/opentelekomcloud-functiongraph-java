@@ -32,7 +32,6 @@
         <include>.gitignore</include>
         <include>README.md</include>
         <include>handler.txt</include>
-        <include>build.gradle</include>
       </includes>
     </fileSet>
 

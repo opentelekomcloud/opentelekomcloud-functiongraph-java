@@ -4,9 +4,10 @@ OpenTelekomCloud FunctionGraph Java documentation
 This is the FunctionGraph Java Development Guide for running
 FunctionGraph on OpenTelekomCloud.
 
-.. warning:: 
-  Project is in early development stage and not ready for production use yet.
-  
+.. warning::
+
+   Project is in early development stage and not ready for production use yet.
+
 .. toctree::
    :hidden:
 
