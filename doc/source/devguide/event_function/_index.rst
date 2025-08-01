@@ -83,7 +83,7 @@ Usage
 ^^^^^
 
 These packages can be included as dependency to your Maven `pom.xml`
-or gardle `build.gradle` as follows:
+as follows:
 
 .. tabs::
 
@@ -115,37 +115,3 @@ or gardle `build.gradle` as follows:
           </dependency>
           ...
         <dependencies>
-
-  .. tab:: build.gradle
-
-      .. code-block:: groovy
-        :substitutions:
-
-        plugins {
-          id 'java'
-        }
-
-        repositories {
-          mavenLocal() // to use maven local repository
-          mavenCentral() // to use maven central repository
-        }
-
-        dependencies {
-          implementation 'opentelekomcloud-functiongraph-java-core:|pom_version|'
-          implementation 'opentelekomcloud-functiongraph-java-events:|pom_version|'
-          implementation 'opentelekomcloud-functiongraph-java-test:|pom_version|'
-        }
-
-        task buildZip(type: Zip) {
-          // ZIP must contain only jar files in root folder
-          from jar
-          from processResources
-          from configurations.runtimeClasspath
-        }
-
-        java {
-          sourceCompatibility = JavaVersion.VERSION_11
-          targetCompatibility = JavaVersion.VERSION_11
-        }
-
-        build.dependsOn buildZip

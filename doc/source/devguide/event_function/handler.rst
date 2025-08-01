@@ -19,7 +19,7 @@ A typical Java FunctionGraph project is typically structured as follows:
   |        └─ mypackage
   |           └─ FGEventHandler.java              # (contains main handler handleRequest())
   |           └─ <other_supporting_classes>
-  └─  pom.xml or build.gradle
+  └─  pom.xml
 
 The main logic for the function resides in Java file
 `src/main/java/mypackage` folder.
@@ -122,8 +122,7 @@ For this example we define following data object:
         }
 
   .. tab:: EventData using Lombok
-      To use Lombok, you will need to `setup maven for Lombok <https://projectlombok.org/setup/maven>`_ or
-      `setup gradle for Lombok <https://projectlombok.org/setup/gradle>`_
+      To use Lombok, you will need to `setup maven for Lombok <https://projectlombok.org/setup/maven>`_
 
       .. code-block:: java
         :caption: EventData

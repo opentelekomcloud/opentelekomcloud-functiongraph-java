@@ -32,7 +32,6 @@
         <filtering>true</filtering>
         <includes>
           <include>archetype-resources/pom.xml</include>
-          <include>archetype-resources/build.gradle</include>
         </includes>
       </resource>
       <resource>
@@ -40,7 +39,6 @@
         <filtering>false</filtering>
         <excludes>
           <exclude>archetype-resources/pom.xml</exclude>
-          <exclude>archetype-resources/build.gradle</exclude>
         </excludes>
       </resource>
     </resources>
