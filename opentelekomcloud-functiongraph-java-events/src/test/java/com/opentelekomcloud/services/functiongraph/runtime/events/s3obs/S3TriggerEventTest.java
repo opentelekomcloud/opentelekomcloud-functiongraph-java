@@ -34,15 +34,43 @@ import com.google.gson.Gson;
  */
 public class S3TriggerEventTest {
 
+  private static final String TEST_FILE = "s3obs_event.json";
+
   @Test
   void testEvent() throws Exception {
     Path resourceDirectory = Paths.get("src", "test", "resources");
     String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
-    try (Reader reader = new FileReader(absolutePath + "/s3obs_event.json")) {
+    try (Reader reader = new FileReader(absolutePath + "/" + TEST_FILE)) {
       S3TriggerEvent event = new Gson().fromJson(reader, S3TriggerEvent.class);
 
       assertEquals("functionstorage-template", event.getBucketName());
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail();
+    }
+    assertTrue(true);
+
+  }
+
+  @Test
+  void testDate() throws Exception {
+
+    Gson gson = new Gson();
+
+    Path resourceDirectory = Paths.get("src", "test", "resources");
+    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+
+    try (Reader reader = new FileReader(absolutePath + "/" + TEST_FILE)) {
+      S3TriggerEvent event = new Gson().fromJson(reader, S3TriggerEvent.class);
+
+      String json = gson.toJson(event, S3TriggerEvent.class);
+
+      String expected = "\"eventTime\":\"2018-01-09T07:50:50.028Z\"";
+
+      // "eventTime": "2018-01-09T07:50:50.028Z"
+      assertTrue(json.indexOf(expected, 0) > 0);
 
     } catch (Exception e) {
       e.printStackTrace();

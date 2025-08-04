@@ -1,17 +1,3 @@
-/*
- * Copyright (c) 2025 T-Systems International GmbH.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
 import java.lang.reflect.Type;
@@ -29,12 +15,17 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 /**
- * Custom Gson TypeAdapter for serializing and deserializing Joda DateTime objects.
- * This adapter formats DateTime objects to a specific string format and parses them back.
+ * Custom Gson TypeAdapter for serializing and deserializing Joda DateTime
+ * objects.
+ * This adapter formats DateTime objects to a string format used in S3 and
+ * parses
+ * them back.
  */
-public class DateTimeTypeAdapter implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
+public class S3DateTimeAdapter implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
 
-  private static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+  // pattern used in S3 Event Record
+  private static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
   /**
    * DateTime format used for serialization and deserialization.
    */
@@ -53,7 +44,7 @@ public class DateTimeTypeAdapter implements JsonSerializer<DateTime>, JsonDeseri
       Type type,
       JsonSerializationContext jsonSerializationContext) {
 
-    return new JsonPrimitive(dateTime.toString(DATE_TIME_PATTERN));
+    return new JsonPrimitive(dateTime.toString(formatter));
 
   }
 
@@ -73,5 +64,4 @@ public class DateTimeTypeAdapter implements JsonSerializer<DateTime>, JsonDeseri
 
     return new DateTime(formatter.parseDateTime(jsonElement.getAsString()));
   }
-
 }
