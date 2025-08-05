@@ -2,20 +2,27 @@ package com.opentelekomcloud.samples;
 
 import java.util.UUID;
 
-import org.slf4j.MDC;
+import org.apache.logging.log4j.ThreadContext;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Testlogging {
+
+
   
   public static void main(String[] args){
 
-    MDC.put("requestid", UUID.randomUUID().toString());
+    String uuid = UUID.randomUUID().toString();
+    ThreadContext.put("requestid", uuid);
+
     log.debug("Hello world");
 
-    MDC.remove("requestid");
+    ThreadContext.remove("requestid");
 
   }
+  
+
+
   
 }

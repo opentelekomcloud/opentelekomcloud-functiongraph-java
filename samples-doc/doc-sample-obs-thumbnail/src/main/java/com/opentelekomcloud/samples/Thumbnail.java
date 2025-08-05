@@ -28,9 +28,9 @@ import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 
+import org.apache.logging.log4j.ThreadContext;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.util.LoaderUtil;
-import org.slf4j.MDC;
 
 import com.obs.services.ObsClient;
 import com.obs.services.model.ObjectMetadata;
@@ -65,7 +65,7 @@ public class Thumbnail {
 
   private void init(Context context) {
 
-    MDC.put("requestid", context.getRequestID());
+    ThreadContext.put("requestid", context.getRequestID());
 
     try {
       URL logURL = LoaderUtil.getThreadContextClassLoader().getResource("log4j2.xml");
@@ -94,7 +94,7 @@ public class Thumbnail {
       log.error("An error occurred while configuring Log4J:" + e.getMessage());
       throw new RuntimeException(e);
     } finally {
-      MDC.remove("requestid");
+      ThreadContext.remove("requestid");
     }
 
   }
@@ -103,7 +103,7 @@ public class Thumbnail {
 
     try {
 
-      MDC.put("requestid", context.getRequestID());
+      ThreadContext.put("requestid", context.getRequestID());
 
       // Log the event details
       log.debug(String.format("Received OBS event: %s", event));
@@ -164,7 +164,7 @@ public class Thumbnail {
       log.error("Error processing OBS event: " + e.getMessage());
       return "Error processing OBS event";
     } finally {
-      MDC.remove("requestid");
+      ThreadContext.remove("requestid");
     }
 
   }

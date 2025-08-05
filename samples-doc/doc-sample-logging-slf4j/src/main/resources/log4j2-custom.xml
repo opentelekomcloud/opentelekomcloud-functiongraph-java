@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
   <Properties>
-    <!-- requestid will be taken from MDC -->
-    <Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSS'Z'}{UTC}|%X{requestid}|%p|%F:%L|%m%n</Property>
+    <!-- requestid will be taken from ThreadContext -->
+    <Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSS'Z'}{UTC}|%X{requestid}|%p|%F:%L|%.10240m%n</Property>
   </Properties>
 
   <Appenders>

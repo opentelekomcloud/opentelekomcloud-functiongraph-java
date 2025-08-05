@@ -246,10 +246,10 @@ request obtained from the incoming request header ``x-cff-request-id``.
 Using a logging framework the user is responible for adding the request id to
 the log output.
 
-This can be achieved by using MDC (Mapped Diagnostic Context).
+This can be achieved by using ThreadContext object.
 
 The provided example ``OTCRequestContextLoggingFilter.java`` uses SpringBoot ``@Component``
-annotation and request/reponse filtering to add header values to the MDC.
+annotation and request/reponse filtering to add header values to the ThreadContext.
 
 .. literalinclude:: /../../samples-doc/doc-sample-springboot-2.x-rest/src/main/java/com/opentelekomcloud/samples/springboot/components/OTCRequestContextLoggingFilter.java
    :language: java
