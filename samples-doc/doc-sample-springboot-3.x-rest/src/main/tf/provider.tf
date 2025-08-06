@@ -71,7 +71,7 @@ terraform {
     region = "eu-de"
 
     # (Required) Skip credentials validation via the STS API.
-    # It's mandatory for OpenTelekomClou.
+    # It's mandatory for OpenTelekomCloud.
     skip_credentials_validation = true
 
     # (Required) Skip validation of provided region name. 

@@ -1,4 +1,4 @@
-# prefix will be prepended to all ressource names
+# prefix will be prepended to all resource names
 variable "prefix" {
   type    = string
   default = "doc-sample-obs-thumbnail"

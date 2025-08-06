@@ -26,7 +26,7 @@ variable "OTC_SDK_DOMAIN_NAME" {
 }
 
 # set by environment variable TF_VAR_OTC_SDK_PROJECTID
-variable" OTC_SDK_PROJECTID" {
+variable "OTC_SDK_PROJECTID" {
   description = "Project Id"
   type        = string
 }
@@ -71,7 +71,7 @@ terraform {
     region = "eu-de"
 
     # (Required) Skip credentials validation via the STS API.
-    # It's mandatory for OpenTelekomClou.
+    # It's mandatory for OpenTelekomCloud.
     skip_credentials_validation = true
 
     # (Required) Skip validation of provided region name. 

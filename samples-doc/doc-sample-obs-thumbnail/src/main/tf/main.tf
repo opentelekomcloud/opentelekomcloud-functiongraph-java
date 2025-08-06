@@ -24,7 +24,7 @@ resource "opentelekomcloud_obs_bucket_object" "code_object" {
 
 ###########################################################
 # Store md5 of zip file in terraform state file to check 
-# for code changes in lifecyle of 
+# for code changes in lifecycle of 
 # "opentelekomcloud_fgs_function_v2"
 ###########################################################
 resource "terraform_data" "replacement" {
