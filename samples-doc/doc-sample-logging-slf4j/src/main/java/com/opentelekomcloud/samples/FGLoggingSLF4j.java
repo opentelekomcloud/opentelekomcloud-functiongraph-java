@@ -63,7 +63,7 @@ public class FGLoggingSLF4j {
       // Initialize Log4J
       try {
         Configurator.reconfigure(
-            Objects.requireNonNull(LoaderUtil.getThreadContextClassLoader().getResource("log4j2-custom.xml")).toURI());
+            Objects.requireNonNull(LoaderUtil.getThreadContextClassLoader().getResource("log4j2.xml")).toURI());
       } catch (URISyntaxException e) {
         rlog.error("An error occurred while configuring Log4J:" + e.getMessage());
         throw new RuntimeException(e);

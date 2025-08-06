@@ -26,17 +26,17 @@ printing.
         :language: java
         :caption: :github_repo_master:`FGLoggingSLF4j.java <samples-doc/doc-sample-logging-slf4j/src/main/java/com/opentelekomcloud/samples/FGLoggingSLF4j.java>`
 
-  .. tab:: log4j2-custom.xml
+  .. tab:: log4j2.xml
 
-      .. literalinclude:: /../../samples-doc/doc-sample-logging-slf4j/src/main/resources/log4j2-custom.xml
+      .. literalinclude:: /../../samples-doc/doc-sample-logging-slf4j/src/main/resources/log4j2.xml
         :language: xml
-        :caption: :github_repo_master:`log4j2-custom.xml <samples-doc/doc-sample-logging-slf4j/src/main/resources/log4j2-custom.xml>`
+        :caption: :github_repo_master:`log4j2.xml <samples-doc/doc-sample-logging-slf4j/src/main/resources/log4j2.xml>`
 
   .. tab:: pom.xml
 
       .. literalinclude:: /../../samples-doc/doc-sample-logging-slf4j/pom.xml
         :language: xml
-        :caption: :github_repo_master:`log4j2-custom.xml <samples-doc/doc-sample-logging-slf4j/pom.xml>`
+        :caption: :github_repo_master:`log4j2.xml <samples-doc/doc-sample-logging-slf4j/pom.xml>`
 
 
 Log output

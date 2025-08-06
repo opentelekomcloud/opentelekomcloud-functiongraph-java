@@ -42,55 +42,6 @@
   </properties>
 
   <dependencies>
-    <!-- <dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-api</artifactId>
-    <version>2.23.1</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-core</artifactId>
-    <version>2.23.1</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-slf4j2-impl</artifactId>
-    <version>2.23.1</version>
-</dependency> -->
-
-    <!-- <dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-log4j12</artifactId>
-    <version>1.7.30</version>
-</dependency> -->
-    <!-- <dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
-</dependency>
-
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>log4j-over-slf4j</artifactId>
-    <version>1.7.30</version>
-</dependency> -->
-
-
-    <!-- <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${org.slf4j.version}</version>
-      <scope>compile</scope>
-    </dependency> -->
-
-    <!--
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-nop</artifactId>
-      <version>${org.slf4j.version}</version>
-    </dependency>
-  -->
-
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
@@ -104,17 +55,6 @@
       <version>${log4j.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-layout-template-json</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.17.2</version>
-    </dependency>
 
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -147,12 +87,36 @@
       <scope>compile</scope>
     </dependency>
 
+
+    <!-- Explicitly set okio and kotlin-stdlib versions to resolve conflicts in esdk-obs-java -->
+    <dependency>
+      <groupId>com.squareup.okio</groupId>
+      <artifactId>okio</artifactId>
+      <version>3.8.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>1.9.21</version>
+    </dependency>
+
     <dependency>
       <groupId>com.huaweicloud</groupId>
       <artifactId>esdk-obs-java</artifactId>
       <version>3.25.5</version>
-
+ 
       <exclusions>
+
+        <exclusion>
+          <groupId>com.squareup.okio</groupId>
+          <artifactId>okio</artifactId>
+        </exclusion>
+
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib</artifactId>
+        </exclusion>
 
         <exclusion>
           <groupId>com.fasterxml.jackson.core</groupId>
@@ -198,7 +162,7 @@
   <build>
 
     <plugins>
-    <!--
+      <!--
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
@@ -207,7 +171,7 @@
           </descriptorRefs>
           <archive>
             <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.Thumbnail.handleRequest</FunctionGraph-Handler-Name>
+      <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.Thumbnail.handleRequest</FunctionGraph-Handler-Name>
               <Multi-Release>true</Multi-Release>
             </manifestEntries>
           </archive>
@@ -243,10 +207,10 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-    
+
               <finalName>deployment-jar-with-dependencies</finalName>
               <shadedArtifactAttached>true</shadedArtifactAttached>
-    
+
               <transformers>
                 <transformer
                   implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer" />

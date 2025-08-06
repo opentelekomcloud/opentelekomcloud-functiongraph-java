@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
+
+  <Properties>
+    <!-- requestid will be taken from ThreadContext -->
+    <Property name="LOG_PATTERN">[%d{yyyy-MM-dd HH:mm:ss.SSS'Z'}{UTC} %-5level %X{requestid} %c:%L] %.10240m%n</Property>
+  </Properties>
+
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSS'Z'}{UTC}|%X{requestid}|%-5p|%c|%L|%m%n" />
+      <PatternLayout charset="UTF-8" pattern="${LOG_PATTERN}" />      
     </Console>
-
-    <!-- console appender -->
-    <!-- only works with Class Isolation set to true  -->
-    <Console name="Console1" target="SYSTEM_OUT">
-        <JsonTemplateLayout eventTemplateUri="classpath:fgloglayout.json"/>
-    </Console>
-
-    <!-- only works with Class Isolation set to true  -->
-    <Console name="Console2" target="SYSTEM_OUT">
-        <JSONLayout compact="true" eventEol="true" properties="true" stacktraceAsString="true" includeTimeMillis="true">
-          <KeyValuePair key="requestId" value="${ctx:requestid:-}" />
-        </JSONLayout>
-    </Console>
-
   </Appenders>
 
   <Loggers>

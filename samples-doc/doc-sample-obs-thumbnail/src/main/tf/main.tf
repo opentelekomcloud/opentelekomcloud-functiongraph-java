@@ -1,4 +1,3 @@
-
 ##########################################################
 # This bucket is used to store the function code  
 ##########################################################
@@ -21,21 +20,22 @@ resource "opentelekomcloud_obs_bucket_object" "code_object" {
   key    = format("%s/%s", "code", var.jar_file_name)
   source = format("${path.root}/../../../target/%s", var.jar_file_name)
   etag   = filemd5(format("${path.root}/../../../target/%s", var.jar_file_name))
-
 }
 
-##########################################################
-# store md5 of zip file in state     
-##########################################################
+###########################################################
+# Store md5 of zip file in terraform state file to check 
+# for code changes in lifecyle of 
+# "opentelekomcloud_fgs_function_v2"
+###########################################################
 resource "terraform_data" "replacement" {
   input = [
     filemd5(format("${path.root}/../../../target/%s", var.jar_file_name))
   ]
 }
 
-##########################################################
-# custom role
-##########################################################
+###########################################################
+# Custom role to allow FunctionGraph to access LTS and OBS
+###########################################################
 resource "opentelekomcloud_identity_role_v3" "role" {
   display_name  = format("%s-%s-role", var.prefix, var.function_name)
   description   = "Role for FunctionGraph to access OBS"
@@ -65,6 +65,9 @@ resource "opentelekomcloud_identity_role_v3" "role" {
 
 ##########################################################
 # Agency for FunctionGraph
+# Attention: Crating agency will take some time.
+# Calls to function after creating agency will fail until
+# agency is set up.
 ##########################################################
 resource "opentelekomcloud_identity_agency_v3" "agency" {
   depends_on            = [opentelekomcloud_identity_role_v3.role]
@@ -121,7 +124,6 @@ resource "opentelekomcloud_fgs_function_v2" "MyFunction" {
     # "RUNTIME_LOG_PATH" : "/tmp"
   })
 
-
   tags = {
     "app_group" = var.tag_app_group
   }
@@ -131,7 +133,6 @@ resource "opentelekomcloud_fgs_function_v2" "MyFunction" {
     replace_triggered_by = [
       terraform_data.replacement
     ]
-
   }
 }
 
@@ -175,6 +176,8 @@ resource "opentelekomcloud_s3_bucket" "inbucket" {
 
 ##########################################################
 # Output bucket for thumbnail images
+# For output a different bucket is used to avoid potential
+# risk of recursive invocation of FunctionGraph
 ##########################################################
 resource "opentelekomcloud_s3_bucket" "outbucket" {
   bucket        = lower(format("%s-%s-%s", var.prefix, var.function_name, "images-output"))
@@ -188,7 +191,8 @@ resource "opentelekomcloud_s3_bucket" "outbucket" {
 }
 
 ##########################################################
-# Create OBS Trigger
+# Create OBS Trigger listening for "ObjectCreate" in
+# input bucket
 ##########################################################
 resource "opentelekomcloud_fgs_trigger_v2" "obstrigger" {
   function_urn = opentelekomcloud_fgs_function_v2.MyFunction.urn
@@ -202,5 +206,3 @@ resource "opentelekomcloud_fgs_trigger_v2" "obstrigger" {
 
   })
 }
-
-
