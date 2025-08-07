@@ -16,9 +16,9 @@ Sample event
 
 Event with Base64 encoded body:
 
-.. literalinclude:: /../../samples-events/apig/src/test/resources/apig_event_base64.json
+.. literalinclude:: /../../samples-events/apig/src/test/resources/apig_base64_event.json
    :language: json
-   :caption: apig_event_base64.json
+   :caption: apig_base64_event.json
 
 
 Class definitions
