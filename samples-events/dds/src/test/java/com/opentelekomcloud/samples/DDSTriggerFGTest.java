@@ -15,57 +15,29 @@
 
 package com.opentelekomcloud.samples;
 
-import java.io.FileReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.opentelekomcloud.services.functiongraph.runtime.events.dds.DDSTriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
 
 public class DDSTriggerFGTest {
-  @Test
-  void testEvent() throws Exception {
-    Path resourceDirectory = Paths.get("src", "test", "resources");
-    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
-    try {
-      JsonObject eventJson = convertFileToJSON(absolutePath + "/dds_event.json");
+  @ParameterizedTest
+  @Event(value = "dds_event.json", type = DDSTriggerEvent.class)
+  void testEvent(DDSTriggerEvent event) throws Exception {
 
-      String eventSting = new Gson().toJson(eventJson);
+    assertNotNull(event);
+    TestContext context = new TestContext();
+    DDSTriggerFG fg = new DDSTriggerFG();
 
-      DDSTriggerEvent event = new Gson().fromJson(eventSting, DDSTriggerEvent.class);
+    String ret = fg.handleRequest(event, context);
 
-      TestContext context = new TestContext();
+    assertEquals("ok", ret);
 
-      DDSTriggerFG fg = new DDSTriggerFG();
-
-      String ret = fg.handleRequest(event, context);
-
-        assertEquals("ok", ret);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail();
-    }
-
-  }
-
-  public static JsonObject convertFileToJSON(String fileName) throws Exception {
-
-    JsonObject jsonObject = new JsonObject();
-
-    JsonElement jsonElement = JsonParser.parseReader(new FileReader(fileName));
-    jsonObject = jsonElement.getAsJsonObject();
-
-    return jsonObject;
   }
 
 }

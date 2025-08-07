@@ -1,7 +1,7 @@
 package com.opentelekomcloud.samples;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.FileReader;
 import java.nio.file.Path;
@@ -17,41 +17,20 @@ import com.opentelekomcloud.services.functiongraph.runtime.events.lts.LTSTrigger
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
 
 public class LTSTriggerFGTest {
-  @Test
-  void testEvent() throws Exception {
-    Path resourceDirectory = Paths.get("src", "test", "resources");
-    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
-    try {
-      JsonObject eventJson = convertFileToJSON(absolutePath + "/lts_event.json");
+  @ParameterizedTest
+  @Event(value = "lts_event.json", type = LTSTriggerEvent.class)
+  void testEvent(LTSTriggerEvent event) throws Exception {
 
-      String eventSting = new Gson().toJson(eventJson);
+    assertNotNull(event);
+    TestContext context = new TestContext();
 
-      LTSTriggerEvent event = new Gson().fromJson(eventSting, LTSTriggerEvent.class);
+    LTSTriggerFG fg = new LTSTriggerFG();
 
-      TestContext context = new TestContext();
+    String ret = fg.handleRequest(event, context);
 
-      LTSTriggerFG fg = new LTSTriggerFG();
+    assertTrue("ok".equals(ret));
 
-      String ret = fg.handleRequest(event, context);
-
-      assertTrue("ok".equals(ret));
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail();
-    }
-
-  }
-
-  public static JsonObject convertFileToJSON(String fileName) throws Exception {
-
-    JsonObject jsonObject = new JsonObject();
-
-    JsonElement jsonElement = JsonParser.parseReader(new FileReader(fileName));
-    jsonObject = jsonElement.getAsJsonObject();
-
-    return jsonObject;
   }
 
 }

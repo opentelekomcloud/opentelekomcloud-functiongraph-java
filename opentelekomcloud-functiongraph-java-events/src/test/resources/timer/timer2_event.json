@@ -1,0 +1,7 @@
+{
+  "version": "v2.0",
+  "time": "2025-06-01T08:30:00+08:00",
+  "trigger_type": "TIMER",
+  "trigger_name": "Timer_002",
+  "user_event": "User Event"
+}

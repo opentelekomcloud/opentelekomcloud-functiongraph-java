@@ -17,14 +17,47 @@ package com.opentelekomcloud.services.functiongraph.runtime.test;
 
 import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
+
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
- * TestContext useable in JUnit Test
+ * TestContext is a mock implementation of the {@link Context} interface used
+ * for testing purposes.
+ * It provides default values for various context properties such as request ID,
+ * function name, version,
+ * memory size, and others. This class can be used in unit tests to simulate the
+ * function execution context.
  */
 public class TestContext implements Context {
 
-  private final String requestId = UUID.randomUUID().toString();
+  private String requestId = UUID.randomUUID().toString();
+  private String funcName = "TEST_FUNCTION";
+  private String funcVersion = "latest";
+  private String funcPackage = "default";
+  private String funcInstanceId = UUID.randomUUID().toString();
+  private String funcAlias = "alias";
+  private String funcInvokeId = "invokeid";
+  private String funcTraceId = "traceid";
+  private String funcInvokeProperty = "invokeproperty";
+  private String funcWorkflowStateId = "workflowstateid";
+  private String funcWorkflowRunId = "workflowrunid";
+  private String funcWorkflowId = "workflowid";
+  private Object funcState = "succes";
+
+  private int funcMemorySize = 100;
+  private int funcCPUNumber = 1;
+  private int funcRemainingTimeInMilliSeconds = 100;
+
+  private String funcAccessKey = System.getenv("OTC_SDK_AK");
+  private String funcSecretKey = System.getenv("OTC_SDK_SK");
+  private String funcToken = System.getenv("OTC_SDK_TOKEN");
+  private String funcSecurityAccessKey = System.getenv("OTC_SDK_SECURITY_ACCESS_KEY");
+  private String funcSecuritySecretKey = System.getenv("OTC_SDK_SECURITY_SECRET_KEY");
+  private String funcSecurityToken = System.getenv("OTC_SDK_SECURITY_TOKEN");
+  private String funcProjectId = System.getenv("OTC_SDK_PROJECTID");
+
+  private HashMap<String, String> userData = new HashMap<>();
 
   /**
    * Get RequestId
@@ -39,7 +72,7 @@ public class TestContext implements Context {
    */
   @Override
   public int getRemainingTimeInMilliSeconds() {
-    return 100;
+    return this.funcRemainingTimeInMilliSeconds;
   }
 
   /**
@@ -47,7 +80,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getAccessKey() {
-    return System.getenv("OTC_SDK_AK");
+    return this.funcAccessKey;
   }
 
   /**
@@ -55,7 +88,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getSecretKey() {
-    return System.getenv("OTC_SDK_SK");
+    return this.funcSecretKey;
   }
 
   /**
@@ -63,7 +96,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getSecurityAccessKey() {
-    return null;
+    return this.funcSecurityAccessKey;
   }
 
   /**
@@ -71,15 +104,26 @@ public class TestContext implements Context {
    */
   @Override
   public String getSecuritySecretKey() {
-    return null;
+    return this.funcSecuritySecretKey;
   }
 
   /**
-   * Get UserData from environment variable with name envvarname
+   * Get user data by envvarname.
+   * If the envvarname is not found in userData, it will return the value from the
+   * environment variable with the same name.
+   *
+   * @param envvarname the name of the environment variable to retrieve
+   * @return the value of the environment variable or null if not found
    */
   @Override
   public String getUserData(String envvarname) {
-    return System.getenv(envvarname);
+
+    this.userData.get(envvarname);
+    if (this.userData.containsKey(envvarname)) {
+      return this.userData.get(envvarname);
+    } else {
+      return System.getenv(envvarname);
+    }
   }
 
   /**
@@ -87,7 +131,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getFunctionName() {
-    return "function-name";
+    return this.funcName;
   }
 
   /**
@@ -95,7 +139,7 @@ public class TestContext implements Context {
    */
   @Override
   public int getRunningTimeInSeconds() {
-    return 100;
+    return this.funcRemainingTimeInMilliSeconds / 1000;
   }
 
   /**
@@ -103,7 +147,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getVersion() {
-    return "latest";
+    return this.funcVersion;
   }
 
   /**
@@ -111,7 +155,7 @@ public class TestContext implements Context {
    */
   @Override
   public int getMemorySize() {
-    return 100;
+    return this.funcMemorySize;
   }
 
   /**
@@ -119,7 +163,7 @@ public class TestContext implements Context {
    */
   @Override
   public int getCPUNumber() {
-    return 1;
+    return this.funcCPUNumber;
   }
 
   /**
@@ -127,7 +171,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getProjectID() {
-    return System.getenv("OTC_SDK_PROJECTID");
+    return this.funcProjectId;
   }
 
   /**
@@ -135,7 +179,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getPackage() {
-    return "default";
+    return this.funcPackage;
   }
 
   /**
@@ -143,7 +187,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getToken() {
-    return System.getenv("OTC_SDK_SECURITY_TOKEN");
+    return this.funcToken;
   }
 
   /**
@@ -151,7 +195,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getSecurityToken() {
-    return "ST";
+    return this.funcSecurityToken;
   }
 
   /**
@@ -199,15 +243,15 @@ public class TestContext implements Context {
    */
   @Override
   public Object getState() {
-    return "succes";
+    return this.funcState;
   }
 
   /**
-   * Set state, does nothing
+   * Set state
    */
   @Override
-  public void setState(Object state) {
-    // nop
+  public void setState(Object funcState) {
+    this.funcState = funcState;
   }
 
   /**
@@ -215,7 +259,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getInstanceID() {
-    return "instanceid";
+    return this.funcInstanceId;
   }
 
   /**
@@ -223,7 +267,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getInvokeProperty() {
-    return "InvokeProperty";
+    return this.funcInvokeProperty;
   }
 
   /**
@@ -231,7 +275,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getTraceID() {
-    return "traceid";
+    return this.funcTraceId;
   }
 
   /**
@@ -239,7 +283,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getInvokeID() {
-    return "invokeid";
+    return this.funcInvokeId;
   }
 
   /**
@@ -247,7 +291,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getAlias() {
-    return "alias";
+    return this.funcAlias;
   }
 
   /**
@@ -255,7 +299,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getWorkflowRunID() {
-    return "workflowrunid";
+    return this.funcWorkflowRunId;
   }
 
   /**
@@ -263,7 +307,7 @@ public class TestContext implements Context {
    */
   @Override
   public String getWorkflowStateID() {
-    return "workflowstateid";
+    return this.funcWorkflowStateId;
   }
 
   /**
@@ -271,7 +315,163 @@ public class TestContext implements Context {
    */
   @Override
   public String getWorkflowID() {
-    return "workflowid";
+    return this.funcWorkflowId;
+  }
+
+  public void setVersion(String funcVersion) {
+    this.funcVersion = funcVersion;
+  }
+
+  public void setPackage(String funcPackage) {
+    this.funcPackage = funcPackage;
+  }
+
+  public void setAlias(String funcAlias) {
+    this.funcAlias = funcAlias;
+  }
+
+  public void setInvokeId(String funcInvokeId) {
+    this.funcInvokeId = funcInvokeId;
+  }
+
+  public void setTraceId(String funcTraceId) {
+    this.funcTraceId = funcTraceId;
+  }
+
+  public void setInvokeProperty(String funcInvokeProperty) {
+    this.funcInvokeProperty = funcInvokeProperty;
+  }
+
+  public void setWorkflowStateId(String funcWorkflowStateId) {
+    this.funcWorkflowStateId = funcWorkflowStateId;
+  }
+
+  public void setWorkflowRunId(String funcWorkflowRunId) {
+    this.funcWorkflowRunId = funcWorkflowRunId;
+  }
+
+  public void setWorkflowId(String funcWorkflowId) {
+    this.funcWorkflowId = funcWorkflowId;
+  }
+
+  public TestContext withFunctionName(String funcName) {
+    this.funcName = funcName;
+    return this;
+  }
+
+  public TestContext withVersion(String version) {
+    this.funcVersion = version;
+    return this;
+  }
+
+  public TestContext withPackage(String funcPackage) {
+    this.funcPackage = funcPackage;
+    return this;
+  }
+
+  public TestContext withAlias(String funcAlias) {
+    this.funcAlias = funcAlias;
+    return this;
+  }
+
+  public TestContext withInvokeId(String funcInvokeId) {
+    this.funcInvokeId = funcInvokeId;
+    return this;
+  }
+
+  public TestContext withTraceId(String funcTraceId) {
+    this.funcTraceId = funcTraceId;
+    return this;
+  }
+
+  public TestContext withInvokeProperty(String funcInvokeProperty) {
+    this.funcInvokeProperty = funcInvokeProperty;
+    return this;
+  }
+
+  public TestContext withWorkflowStateId(String funcWorkflowStateId) {
+    this.funcWorkflowStateId = funcWorkflowStateId;
+    return this;
+  }
+
+  public TestContext withWorkflowRunId(String funcWorkflowRunId) {
+    this.funcWorkflowRunId = funcWorkflowRunId;
+    return this;
+  }
+
+  public TestContext withWorkflowId(String funcWorkflowId) {
+    this.funcWorkflowId = funcWorkflowId;
+    return this;
+  }
+
+  public TestContext withState(Object funcState) {
+    this.funcState = funcState;
+    return this;
+  }
+
+  public TestContext withSecurityToken(String funcSecurityToken) {
+    this.funcSecurityToken = funcSecurityToken;
+    return this;
+  }
+
+  public TestContext withSecurityAccessKey(String funcSecurityAccessKey) {
+    this.funcSecurityAccessKey = funcSecurityAccessKey;
+    return this;
+  }
+
+  public TestContext withMemorySize(int funcMemorySize) {
+    this.funcMemorySize = funcMemorySize;
+    return this;
+  }
+
+  public TestContext withCPUNumber(int funcCPUNumber) {
+    this.funcCPUNumber = funcCPUNumber;
+    return this;
+  }
+
+  public TestContext withRemainingTimeInMilliSeconds(int funcRemainingTimeInMilliSeconds) {
+    this.funcRemainingTimeInMilliSeconds = funcRemainingTimeInMilliSeconds;
+    return this;
+  }
+
+  public TestContext withAccessKey(String funcAccessKey) {
+    this.funcAccessKey = funcAccessKey;
+    return this;
+  }
+
+  public TestContext withSecretKey(String funcSecretKey) {
+    this.funcSecretKey = funcSecretKey;
+    return this;
+  }
+
+  public TestContext withToken(String funcToken) {
+    this.funcToken = funcToken;
+    return this;
+  }
+
+  public TestContext withProjectId(String funcProjectId) {
+    this.funcProjectId = funcProjectId;
+    return this;
+  }
+
+  public TestContext withInstanceId(String funcInstanceId) {
+    this.funcInstanceId = funcInstanceId;
+    return this;
+  }
+
+  public TestContext withSecuritySecretKey(String funcSecuritySecretKey) {
+    this.funcSecuritySecretKey = funcSecuritySecretKey;
+    return this;
+  }
+
+  public TestContext withRequestId(String requestId) {
+    this.requestId = requestId;
+    return this;
+  }
+
+  public TestContext withUserData(String key, String value) {
+    this.userData.put(key, value);
+    return this;
   }
 
 }
