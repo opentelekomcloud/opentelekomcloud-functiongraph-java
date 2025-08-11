@@ -18,11 +18,6 @@
   <url>https://docs.otc.t-systems.com/opentelekomcloud-functiongraph-java</url>
   <description>Open Telekom Cloud FunctionGraph Java SDK samples documentation for SLF4j logging</description>
 
-  <properties>
-      <log4j.version>2.24.3</log4j.version>
-      <lombok.version>1.18.38</lombok.version>
-  </properties>
-
   <scm>
     <connection>scm:git:git://github.com/opentelekomcloud/opentelekomcloud-functiongraph-java.git</connection>
     <developerConnection>scm:git:ssh://github.com:opentelekomcloud/opentelekomcloud-functiongraph-java.git</developerConnection>

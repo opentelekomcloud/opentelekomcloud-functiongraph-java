@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.opentelekomcloud.services.functiongraph.runtime.test.annotations;
 
 import java.lang.annotation.Documented;
@@ -19,37 +20,32 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Optional;
 
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
-import com.opentelekomcloud.services.functiongraph.runtime.test.HandlerParamsArgumentsProvider;
+import com.opentelekomcloud.services.functiongraph.runtime.test.ContextArgumentsProvider;
 
 /**
- * HandlerParams is a custom annotation used to specify parameters for a function handler in tests.
- * It allows specifying an event, response, events, and responses to be used in the test method.
+ * Context is a custom annotation used to specify a JSON file containing event data for testing purposes.
+ * It can be applied to test methods to automatically load the specified event data.
+ * The annotation requires the path and file name of the JSON file.
+ * 
  * This annotation must be used in conjunction with
- * {@link org.junit.jupiter.params.ParameterizedTest}.<br/>
+ * {@link HandlerParams}.<br/>
+
  */
 @Documented
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@ArgumentsSource(HandlerParamsArgumentsProvider.class)
-public @interface HandlerParams {
+@ArgumentsSource(ContextArgumentsProvider.class)
+public @interface Context {
 
   /**
-   * Specifies the event to be used in the test.
+   * Path and file name of the json context
    * 
-   * @return the {@link Event} annotation containing the file name and type of the event
+   * @return the file name (including the path)
    */
-  Event event() default @Event("");
+  String value() default "";
 
-  Response response() default @Response("");
-
-  Events events() default @Events;
-
-  Responses responses() default @Responses;
-
-  Context context() default @Context("");
-
-  Contexts contexts() default @Contexts;
 }

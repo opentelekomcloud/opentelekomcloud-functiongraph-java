@@ -21,23 +21,27 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.google.gson.Gson;
-import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.HandlerParams;
 
-/** * EventLoader is a utility class that provides methods to load events from JSON files.
- * It is used in conjunction with the {@link HandlerParams} annotation to facilitate testing
- * by automatically loading event data for test methods.
+/**
+ * * ContextLoader is a utility class that provides methods to load context from
+ * JSON files.
+ * It reads a JSON file specified by its filename, deserializes it into an
+ * instance of {@link TestContext},
  */
-public class EventLoader {
+public class ContextLoader {
 
-  /** * Loads an event from a JSON file.
+  /**
+   * * Loads an Context from a JSON file.
    *
    * @param filename the name of the JSON file to load
-   * @param targetClass the class type to convert the JSON into
-   * @param <T> the type of the object to return
-   * @return an instance of the specified type containing the data from the JSON file
+   * @return an instance of the specified type containing the data from the JSON
+   *         file
    * @throws IllegalArgumentException if the filename does not end with ".json"
    */
-  public static <T> T loadEvent(String filename, Class<T> targetClass) {
+  public static TestContext loadContext(String filename) {
+    if (filename == null || filename.isEmpty()) {
+      return new TestContext();
+    }
 
     if (!filename.endsWith("json")) {
       throw new IllegalArgumentException("File " + filename + " must have json extension");
@@ -47,10 +51,11 @@ public class EventLoader {
     String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
     try (Reader reader = new FileReader(absolutePath + "/" + filename)) {
-      return new Gson().fromJson(reader, targetClass);
+      return new Gson().fromJson(reader, TestContext.class);
 
-    } catch (Exception  e) {
-      throw new EventLoadingException("Failed to load event from file: " + filename, e);
+    } catch (Exception e) {
+      throw new EventLoadingException("Failed to load context from file: " + filename, e);
     }
+
   }
 }

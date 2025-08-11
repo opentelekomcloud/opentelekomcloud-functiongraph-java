@@ -11,7 +11,7 @@ FunctionGraph service supports Java function logging using Log4j and Slf4j.
 
    The provided ``RunTimeLogger`` will add the requestId to the log output (see: see: :ref:`logging-ref`).
 
-   Using a logging framework the user is responible for adding the ``requestId`` to the log output.
+   Using a logging framework the user is responsible for adding the ``requestId`` to the log output.
    This can be achieved by using ThreadContext object.
 
 

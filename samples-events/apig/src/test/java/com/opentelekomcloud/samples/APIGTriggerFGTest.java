@@ -23,55 +23,119 @@ import org.junit.jupiter.params.ParameterizedTest;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerResponseEntity;
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Context;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Contexts;
 import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Events;
 import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.HandlerParams;
 import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Response;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Responses;
 
 public class APIGTriggerFGTest {
 
   @ParameterizedTest
   @HandlerParams(//
       event = @Event(value = "apig_event.json", type = APIGTriggerEvent.class), //
-      response = @Response(value = "apig_response.json", type = APIGTriggerResponseEntity.class))
-  void testApig(APIGTriggerEvent event, APIGTriggerResponseEntity response) throws Exception {
+      response = @Response(value = "apig_response.json", type = APIGTriggerResponseEntity.class), //
+      context = @Context("context.json"))
+  public void testMultipleEventsResponses1(APIGTriggerEvent event, APIGTriggerResponseEntity response,
+      TestContext context) throws Exception {
 
-    assertNotNull(event);
-    assertNotNull(response);
-
-    TestContext context = new TestContext();
-
-    APIGTriggerFG fg = new APIGTriggerFG();
-    APIGTriggerResponseEntity r = fg.handleRequest(event, context);
-
-    assertNotNull(r);
-
-    assertEquals(r.getBody(), response.getBody());
+    System.err.println(context.getRequestID());
 
   }
 
   @ParameterizedTest
   @HandlerParams(//
-      event = @Event(value = "apig_base64_event.json", type = APIGTriggerEvent.class), //
-      response = @Response(value = "apig_base64_response.json", type = APIGTriggerResponseEntity.class))
-  void testApigBase64(APIGTriggerEvent event, APIGTriggerResponseEntity response) throws Exception {
+      events = @Events(events = {
+          @Event("apig_event.json"),
+          @Event("apig_base64_event.json"),
+      }, type = APIGTriggerEvent.class), //
+      responses = @Responses(responses = {
+          @Response("apig_response.json"),
+          @Response("apig_base64_response.json")
+      }, type = APIGTriggerResponseEntity.class), //
+      contexts = @Contexts(contexts = {
+          @Context("context.json"),
+          @Context("context.json")
+      }))
+  public void testMultipleEventsResponses(APIGTriggerEvent event, APIGTriggerResponseEntity response,
+      TestContext context) throws Exception {
+
+    System.err.println(context.getRequestID());
 
     assertNotNull(event);
     assertNotNull(response);
-    assertEquals(event.getIsBase64Encoded(), true);
+
+    assertEquals(event.getIsBase64Encoded(), response.getIsBase64Encoded());
 
     // Test the function
     assertNotNull(event.getBody());
     assertNotNull(event.getHeaders());
     assertNotNull(event.getPathParameters());
 
-    TestContext context = new TestContext();
+    // TestContext context = new TestContext();
     APIGTriggerFG fg = new APIGTriggerFG();
     APIGTriggerResponseEntity r = fg.handleRequest(event, context);
 
     assertNotNull(r);
 
     assertEquals(r.getBody(), response.getBody());
+  }
 
+  @ParameterizedTest
+  @HandlerParams(//
+      events = @Events(events = {
+          @Event("apig_event.json") //
+      }, //
+          type = APIGTriggerEvent.class), //
+      responses = @Responses(responses = {
+          @Response("apig_response.json")
+      }, //
+          type = APIGTriggerResponseEntity.class), //
+
+      context = @Context("context.json"))
+  public void testMultipleEventsResponses2(APIGTriggerEvent event, APIGTriggerResponseEntity response,
+      TestContext context) throws Exception {
+
+    System.err.println(context.getRequestID());
+
+  }
+
+
+  @ParameterizedTest
+  @HandlerParams(//
+      events = @Events(events = {
+          @Event("apig_event.json"),
+          @Event("apig_base64_event.json"),
+      }, type = APIGTriggerEvent.class), //
+      responses = @Responses(responses = {
+          @Response("apig_response.json"),
+          @Response("apig_base64_response.json")
+      }, type = APIGTriggerResponseEntity.class), //
+     context = @Context("context.json"))
+  public void testMultipleEventsResponses4(APIGTriggerEvent event, APIGTriggerResponseEntity response,
+      TestContext context) throws Exception {
+
+    System.err.println(context.getRequestID());
+
+    assertNotNull(event);
+    assertNotNull(response);
+
+    assertEquals(event.getIsBase64Encoded(), response.getIsBase64Encoded());
+
+    // Test the function
+    assertNotNull(event.getBody());
+    assertNotNull(event.getHeaders());
+    assertNotNull(event.getPathParameters());
+
+    // TestContext context = new TestContext();
+    APIGTriggerFG fg = new APIGTriggerFG();
+    APIGTriggerResponseEntity r = fg.handleRequest(event, context);
+
+    assertNotNull(r);
+
+    assertEquals(r.getBody(), response.getBody());
   }
 
 }

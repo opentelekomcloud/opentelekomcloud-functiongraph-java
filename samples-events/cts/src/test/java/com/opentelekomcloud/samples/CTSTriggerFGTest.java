@@ -22,16 +22,21 @@ import org.junit.jupiter.params.ParameterizedTest;
 
 import com.opentelekomcloud.services.functiongraph.runtime.events.cts.CTSTriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Context;
 import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.HandlerEventContextParams;
 
 public class CTSTriggerFGTest {
 
   @ParameterizedTest
-  @Event(value = "cts_event.json", type = CTSTriggerEvent.class)
-  void testEvent(CTSTriggerEvent event) throws Exception {
+  @HandlerEventContextParams(//
+      event = @Event(value = "cts_event.json", type = CTSTriggerEvent.class), //
+      context = @Context("context.json") //
+  )  
+  public void testEvent(CTSTriggerEvent event, TestContext context) throws Exception {
 
     assertNotNull(event);
-    TestContext context = new TestContext();
+    
     CTSTriggerFG fg = new CTSTriggerFG();
     String ret = fg.handleRequest(event, context);
 
@@ -39,4 +44,6 @@ public class CTSTriggerFGTest {
 
   }
 
+
 }
+

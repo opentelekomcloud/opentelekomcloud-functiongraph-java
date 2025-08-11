@@ -148,16 +148,16 @@ Following examples show how to use Java objects as event:
         import lombok.Data;
         import lombok.NoArgsConstructor;
         import lombok.ToString;
-        
+
         public class SampleFG {
 
           public String handleRequest(final SampleFG.EventData event, final Context context)  {
-            
+
             RuntimeLogger log = context.getLogger();
 
             log.log(String.format("class name: %s", event.getClass().getName()));
             log.log(String.format("key: %s", event.getKey()));
-            
+
             return "ok";
           }
 
