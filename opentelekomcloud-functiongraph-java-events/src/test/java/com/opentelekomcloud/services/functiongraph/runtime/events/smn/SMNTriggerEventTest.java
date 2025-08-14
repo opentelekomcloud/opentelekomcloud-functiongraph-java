@@ -16,9 +16,11 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.params.ParameterizedTest;
 
+import com.google.gson.Gson;
 import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
 
 /**
@@ -33,4 +35,20 @@ public class SMNTriggerEventTest {
     assertEquals("test", event.getFunctionName());
   }
 
+    @ParameterizedTest
+  @Event(value = "smn_event.json", type = SMNTriggerEvent.class)
+  void testDate(SMNTriggerEvent event) {
+
+    Gson gson = new Gson();
+
+    String json = gson.toJson(event, SMNTriggerEvent.class);
+    System.out.println(json);
+
+    // as Instant has no timezone, UTZ time will be returned
+    String expected = "\"timestamp\":\"2018-01-09T07:11:40Z\"";
+
+    assertTrue(json.indexOf(expected, 0) > 0);
+  }
+
 }
+

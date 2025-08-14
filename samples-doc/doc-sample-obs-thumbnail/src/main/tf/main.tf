@@ -5,6 +5,8 @@ resource "opentelekomcloud_obs_bucket" "codebucket" {
   bucket = format("%s-%s", var.prefix, "codebucket")
   acl    = "private"
 
+  # Warning: force_destroy will delete bucket on 
+  # terraform destroy even if it contains objects
   force_destroy = true
 
   tags = {
@@ -166,6 +168,9 @@ resource "opentelekomcloud_lts_stream_v2" "MyLogStream" {
 resource "opentelekomcloud_s3_bucket" "inbucket" {
   bucket        = lower(format("%s-%s-%s", var.prefix, var.function_name, "images"))
   acl           = "private"
+
+  # Warning: force_destroy will delete bucket on 
+  # terraform destroy even if it contains objects
   force_destroy = true
 
   tags = {
@@ -182,6 +187,9 @@ resource "opentelekomcloud_s3_bucket" "inbucket" {
 resource "opentelekomcloud_s3_bucket" "outbucket" {
   bucket        = lower(format("%s-%s-%s", var.prefix, var.function_name, "images-output"))
   acl           = "private"
+
+  # Warning: force_destroy will delete bucket on 
+  # terraform destroy even if it contains objects
   force_destroy = true
 
   tags = {

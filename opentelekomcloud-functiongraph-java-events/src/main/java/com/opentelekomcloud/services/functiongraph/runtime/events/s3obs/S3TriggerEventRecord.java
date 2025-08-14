@@ -15,10 +15,11 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
-import org.joda.time.DateTime;
+import java.time.Instant;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.utils.S3InstantAdapter;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,8 +56,8 @@ public class S3TriggerEventRecord {
    * event time (2024-12-02T09:49:37.939Z)
    */
   @SerializedName("eventTime")
-  @JsonAdapter(S3DateTimeAdapter.class)
-  private DateTime eventTime;
+  @JsonAdapter(S3InstantAdapter.class)
+  private Instant eventTime;
 
   /**
    * event name
@@ -100,7 +101,7 @@ public class S3TriggerEventRecord {
    * @param s3 S3 entity containing bucket and object details
    * @param userIdentity User identity information related to the event
    */
-  public S3TriggerEventRecord(String awsRegion, String eventName, String eventSource, DateTime eventTime,
+  public S3TriggerEventRecord(String awsRegion, String eventName, String eventSource, Instant eventTime,
                                          String eventVersion, RequestParametersEntity requestParameters,
                                          ResponseElementsEntity responseElements, S3Entity s3,
                                          UserIdentityEntity userIdentity) {

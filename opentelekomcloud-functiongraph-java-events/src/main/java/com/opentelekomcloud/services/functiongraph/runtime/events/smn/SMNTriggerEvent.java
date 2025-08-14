@@ -15,8 +15,12 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
+import java.time.Instant;
+
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.opentelekomcloud.services.functiongraph.runtime.core.TriggerEvent;
+import com.opentelekomcloud.services.functiongraph.runtime.events.smn.utils.SMNTimestampInstantAdapter;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,7 +57,8 @@ public class SMNTriggerEvent implements TriggerEvent {
    * Event type
    */
   @SerializedName("timestamp")
-  private String timestamp;
+  @JsonAdapter(SMNTimestampInstantAdapter.class)
+  private Instant  timestamp;
 
   /**
    * 

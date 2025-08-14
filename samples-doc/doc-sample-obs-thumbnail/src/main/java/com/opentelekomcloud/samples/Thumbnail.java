@@ -59,6 +59,11 @@ public class Thumbnail {
   private final String PNG_TYPE = "png";
   private final String PNG_MIME = "image/png";
 
+  /**
+   * Initializes the function.
+   *
+   * @param context The function context.
+   */
   public void initializer(Context context) {
     init(context);
   }
@@ -72,24 +77,6 @@ public class Thumbnail {
       Configurator.reconfigure(
           Objects.requireNonNull(logURL.toURI()));
 
-      // InputStream input =
-      // LoaderUtil.getThreadContextClassLoader().getResourceAsStream("log4j2.xml");
-      // File file = File.createTempFile("log4j2", ".tmp");
-      // OutputStream out = new FileOutputStream(file);
-      // int read;
-      // byte[] bytes = new byte[1024];
-
-      // while ((read = input.read(bytes)) != -1) {
-      // out.write(bytes, 0, read);
-      // }
-      // out.close();
-      // file.deleteOnExit();
-
-      // String path = file.getAbsolutePath();
-      // log.debug("PATH: " + path);
-
-      // Log4j2Configurator.setLogConfig(path);
-
     } catch (Exception e) {
       log.error("An error occurred while configuring Log4J:" + e.getMessage());
       throw new RuntimeException(e);
@@ -99,6 +86,13 @@ public class Thumbnail {
 
   }
 
+  /**
+   * Handles the incoming S3 trigger event.
+   *
+   * @param event  The S3 trigger event.
+   * @param context The function context.
+   * @return The response string.
+   */
   public String handleRequest(final S3TriggerEvent event, final Context context) {
 
     try {

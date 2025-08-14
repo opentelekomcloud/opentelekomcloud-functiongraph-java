@@ -17,9 +17,11 @@ package com.opentelekomcloud.services.functiongraph.runtime.events.timer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.params.ParameterizedTest;
 
+import com.google.gson.Gson;
 import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
 import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Events;
 
@@ -47,5 +49,20 @@ public class TimerTriggerEventTest {
     public void testInjectEvents(TimerTriggerEvent event) {
         assertNotNull(event);
     }
+
+  @ParameterizedTest
+  @Event(value = "timer/timer_event.json", type = TimerTriggerEvent.class)
+  void testDate(TimerTriggerEvent event) {
+
+    Gson gson = new Gson();
+
+    String json = gson.toJson(event, TimerTriggerEvent.class);
+
+    // as Instant has no timezone, UTZ time will be returned
+    String expected = "\"time\":\"2023-06-01T00:30:00+00:00\"";
+
+    assertTrue(json.indexOf(expected, 0) > 0);
+  }
+
 }
 

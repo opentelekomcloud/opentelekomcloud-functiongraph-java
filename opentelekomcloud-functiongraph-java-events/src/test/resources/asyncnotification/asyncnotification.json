@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-07-28T11:47:56.893440057+02:00",
+  "request_context": {
+    "request_id": "c61f58df-f66d-4d07-b2c4-bbb515b53186",
+    "function_urn": "urn:fss:eu-de:ae050143781c4ab6a130522e5f2d30c1:function:default:api-trace-cloud-joiner:latest",
+    "condition": "UnhandledInvocationError",
+    "approximate_invoke_count": 0
+  },
+  "request_payload": "{\"Records\":[{\"eventVersion\":\"2.0\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"eu-de\",\"eventTime\":\"2025-07-28T09:47:50.352Z\",\"eventName\":\"ObjectCreated:Put\",\"userIdentity\":{\"principalId\":\"6666bbeb419a4b75a63b967c5c46a412\"},\"requestParameters\":{\"sourceIPAddress\":\"100.79.45.53\"},\"responseElements\":{\"x-amz-request-id\":\"00000198506E6AD14819AE201F9E29C6\",\"x-amz-id-2\":\"kPl5Me84NYwesulKFKSarlYhTbGbKgVFpZ2Xz4t4YwwjOr8GkqeLTj0UK6lcfFh5\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"3006c412-f42f-403d-b0e7-a7c2a25cbc96\",\"bucket\":{\"name\":\"api-demo\",\"ownerIdentity\":{\"PrincipalId\":\"e51dfca1c18747919f6c16af2721f35d\"},\"arn\":\"arn:aws:s3:::api-demo\"},\"object\":{\"key\":\"trace-cloud-source%2Fcts-trace-map-250728-114729.png\",\"eTag\":\"66dc38ecce603a2dc91abac2992a5f15\",\"size\":823596,\"versionId\":\"null\",\"sequencer\":\"00000000198506E6B5B60E6B30000000\"}}}]}",
+  "response_context": {
+    "status_code": 500,
+    "function_error": ""
+  },
+  "response_payload": "{\n  \"errorMessage\": \"function invocation exception, error: Error message:Request Error.OBS service Error Message.\",\n  \"errorType\": \"com.obs.services.exception.ObsException\",\n  \"stackTrace\": [\n    \"Caused by: com.obs.services.exception.ObsException: Error message:Request Error.OBS service Error Message. -- ResponseCode: 404, ResponseStatus: Not Found, XML Error Message: <?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\" standalone=\\\"yes\\\"?><Error><Code>NoSuchKey</Code><Message>The specified key does not exist.</Message><RequestId>00000198506E840444227733588B6C82</RequestId><HostId>3ad2q8SfpHGqe8IUfhqCZao3O8pJyrHAznn1pJPGMMZN9paNZftvrjQkKhosBmoO</HostId><Key>trace-cloud-source/cts-trace-map-250727-185959.png</Key></Error>\",\n    \"at com.obs.services.internal.utils.ServiceUtils.changeFromServiceException(ServiceUtils.java:543)\",\n    \"at com.obs.services.AbstractClient.doActionWithResult(AbstractClient.java:397)\",\n    \"at com.obs.services.AbstractObjectClient.getObject(AbstractObjectClient.java:383)\",\n    \"at com.obs.services.AbstractObjectClient.getObject(AbstractObjectClient.java:401)\",\n    \"at com.obs.services.AbstractObjectClient.getObject(AbstractObjectClient.java:412)\",\n    \"at com.opentelekomcloud.refstack.api.TraceCloudJoiner.downloadFile(TraceCloudJoiner.java:107)\",\n    \"at com.opentelekomcloud.refstack.api.TraceCloudJoiner.handleFile(TraceCloudJoiner.java:77)\",\n    \"at com.opentelekomcloud.refstack.api.TraceCloudJoiner.handleEvent(TraceCloudJoiner.java:56)\",\n    \"... 16 more\"\n  ]\n}"
+}

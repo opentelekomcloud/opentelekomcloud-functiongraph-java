@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
+package com.opentelekomcloud.services.functiongraph.runtime.events.timer.utils;
 
 import java.lang.reflect.Type;
-
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -29,54 +29,54 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-/**
- * Custom Gson TypeAdapter for serializing and deserializing Joda DateTime
+/*
+ * Custom Gson TypeAdapter for serializing and deserializing Instant
  * objects.
- * This adapter formats DateTime objects to a string format used in S3 and
- * parses
- * them back.
+ * This adapter formats Instant objects to a string format (UTC) used in
+ * Timer Event Record and parses them back.
  */
-public class S3DateTimeAdapter implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
+public class TimeInstantAdapter implements JsonSerializer<Instant>, JsonDeserializer<Instant> {
 
-  // pattern used in S3 Event Record
-  private static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+  // pattern used in Timer Event Record
+  private static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ssxxx";
 
-  /**
-   * DateTime format used for serialization and deserialization.
-   */
-  private static final DateTimeFormatter formatter = DateTimeFormat.forPattern(DATE_TIME_PATTERN);
+  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
 
   /**
-   * Serializes a DateTime object to a JSON element.
+   * Serializes a Instant object to a JSON element.
    *
-   * @param dateTime                 the DateTime object to serialize
+   * @param instant                  the Instant object to serialize
    * @param type                     the type of the object
    * @param jsonSerializationContext the context for serialization
-   * @return a JSON element representing the DateTime
+   * @return a JSON element representing the Instant
    */
   @Override
-  public JsonElement serialize(DateTime dateTime,
+  public JsonElement serialize(Instant instant,
       Type type,
       JsonSerializationContext jsonSerializationContext) {
 
-    return new JsonPrimitive(dateTime.toString(formatter));
+    OffsetDateTime odt = instant.atOffset(ZoneOffset.of("Z"));
+
+    String formatted = odt.format(formatter);
+
+    return new JsonPrimitive(formatted);
 
   }
 
   /**
-   * Deserializes a JSON element to a DateTime object.
+   * Deserializes a JSON element to a Instant object.
    *
    * @param jsonElement                the JSON element to deserialize
    * @param type                       the type of the object
    * @param jsonDeserializationContext the context for deserialization
-   * @return a DateTime object
+   * @return a Instant object
    * @throws JsonParseException if the JSON element cannot be parsed
    */
   @Override
-  public DateTime deserialize(JsonElement jsonElement,
+  public Instant deserialize(JsonElement jsonElement,
       Type type,
       JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
-    return new DateTime(formatter.parseDateTime(jsonElement.getAsString()));
+    return OffsetDateTime.parse(jsonElement.getAsString()).toInstant();
   }
 }

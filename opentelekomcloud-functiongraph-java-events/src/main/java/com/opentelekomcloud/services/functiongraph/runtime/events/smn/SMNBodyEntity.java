@@ -15,8 +15,12 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
-import com.google.gson.annotations.SerializedName;
+import java.time.Instant;
 import java.util.Map;
+
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.opentelekomcloud.services.functiongraph.runtime.events.smn.utils.SMNRecordTimestampInstantAdapter;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,7 +45,8 @@ public class SMNBodyEntity {
    * Timestamp
    */
   @SerializedName("timestamp")
-  private String timestamp;
+  @JsonAdapter(SMNRecordTimestampInstantAdapter.class)
+  private Instant timestamp;
 
   /**
    * Message attributes

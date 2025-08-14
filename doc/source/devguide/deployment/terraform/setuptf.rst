@@ -67,17 +67,17 @@ Set following environment variables:
 (*) see: `Remote State OBS <https://community.open-telekom-cloud.com/community?id=community_question&sys_id=1207be61138086d0d15a246ea6744162&view_source=searchResult>`_
 , `AWS CLI supported environment variables <https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-envvars.html#envvars-list>`_
 
+.. note:: **Simplify Environment variables handling for Terraform**
 
-Simplify Environment variables handling for Terraform
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    As Terraform can only access environment variables starting with ``TF_VAR_``
+    you can use follow script to transform ``OTC_*`` variables to
+    ``TF_VAR_OTC_*`` variables:
 
-As Terraform can only access environment variables starting with ``TF_VAR_``
-you can use follow script to transform ``OTC_*`` variables to
-``TF_VAR_OTC_*`` variables:
+    .. literalinclude:: /../../samples-doc/doc-sample-deploy-tf/src/main/tf/setupTFvars.sh
+      :language: shell
+      :caption: src/main/tf/setupTFvars.sh
 
-.. literalinclude:: /../../samples-doc/doc-sample-deploy-tf/src/main/tf/setupTFvars.sh
-   :language: shell
-   :caption: src/main/tf/setupTFvars.sh
+    You can run this script before running ``terraform init`` to set the environment variables.
 
 
 Configure ``provider.tf`` file
@@ -108,5 +108,16 @@ See: `Terraform State <https://developer.hashicorp.com/terraform/language/state>
 .. note::
 
    As you cannot create the state bucket in this terraform setup,
-   you have to create it using OpenTelekomCloud OBS console with
-   bucket name as defined in ``provider.tf`` file for ``bucket``.
+   you have to create it either:
+
+   * using OpenTelekomCloud OBS console with bucket name as defined in ``provider.tf`` file for ``bucket``.
+
+   * using the OpenTelekomCloud CLI with command `s3cmd <https://github.com/opentelekomcloud/obs-s3/blob/master/s3cmd/README.md>`_
+
+     .. code-block:: shell
+
+          s3cmd \
+            --access_key=${OTC_SDK_AK} \
+            --secret_key=${OTC_SDK_SK} \
+            --no-ssl \
+            mb s3://<bucket_name>

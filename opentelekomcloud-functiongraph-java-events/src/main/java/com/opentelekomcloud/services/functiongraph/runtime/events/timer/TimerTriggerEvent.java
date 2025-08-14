@@ -15,8 +15,12 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.timer;
 
+import java.time.Instant;
+
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.opentelekomcloud.services.functiongraph.runtime.core.TriggerEvent;
+import com.opentelekomcloud.services.functiongraph.runtime.events.timer.utils.TimeInstantAdapter;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,7 +45,8 @@ public class TimerTriggerEvent implements TriggerEvent {
    * Current time.
    */
   @SerializedName("time")
-  private String time;
+  @JsonAdapter(TimeInstantAdapter.class)
+  private Instant time;
 
   /**
    * trigger name

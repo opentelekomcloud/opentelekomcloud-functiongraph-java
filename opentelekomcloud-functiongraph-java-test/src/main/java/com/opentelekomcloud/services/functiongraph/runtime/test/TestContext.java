@@ -51,13 +51,13 @@ public class TestContext implements Context {
   private String funcAlias = "alias";
 
   @SerializedName("invokeID")
-  private String funcInvokeID = "invokeID";
+  private String funcInvokeID = "1";
 
   @SerializedName("traceID")
-  private String funcTraceID = "traceID";
+  private String funcTraceID = UUID.randomUUID().toString();
 
   @SerializedName("invokeProperty")
-  private String funcInvokeProperty = "invokeProperty";
+  private String funcInvokeProperty = "";
 
   @SerializedName("workflowStateID")
   private String funcWorkflowStateID = UUID.randomUUID().toString();
@@ -72,17 +72,16 @@ public class TestContext implements Context {
   private Object funcState = "succes";
 
   @SerializedName("memorySize")
-  private int funcMemorySize = 100;
+  private int funcMemorySize = 128;
 
   @SerializedName("cpuNumber")
-  private int funcCPUNumber = 1;
+  private int funcCPUNumber = 300;
 
   @SerializedName("remainingTimeInMilliSeconds")
-  private int funcRemainingTimeInMilliSeconds = 100;
+  private int funcRemainingTimeInMilliSeconds;
 
   @SerializedName("runningTimeInSeconds")
-
-  private int funcRunningTimeInSeconds = 100;
+  private int funcRunningTimeInSeconds = 30;
 
   @SerializedName("securityAccessKey")
   private String funcSecurityAccessKey = System.getenv("OTC_SDK_SECURITY_ACCESS_KEY");
@@ -107,8 +106,10 @@ public class TestContext implements Context {
 
   private HashMap<String, String> userData = new HashMap<>();
 
+  private transient long funcStartTime = System.currentTimeMillis();
+
   /**
-   * Get RequestId
+   * Get RequestId, defaults to random UUID
    */
   @Override
   public String getRequestID() {
@@ -119,16 +120,29 @@ public class TestContext implements Context {
     this.requestID = value;
   }
 
+  private int calculateRemainingTimeInMilliSeconds() {
+    long currentTime = System.currentTimeMillis();
+    long usedTime = Math.subtractExact(currentTime, this.funcStartTime);
+    int runningTimeInMilliSeconds = getRunningTimeInSeconds() * 1000;
+    int remainingTimeInMilliSeconds;
+    if ((int) usedTime < runningTimeInMilliSeconds) {
+      remainingTimeInMilliSeconds = Math.subtractExact(runningTimeInMilliSeconds, (int) usedTime);
+    } else {
+      remainingTimeInMilliSeconds = 0;
+    }
+
+    this.funcRemainingTimeInMilliSeconds = remainingTimeInMilliSeconds;
+
+    return remainingTimeInMilliSeconds;
+  }
+
   /**
-   * Get remaining time in milliseconds defaults to 100
+   * Get remaining time in milliseconds
    */
   @Override
   public int getRemainingTimeInMilliSeconds() {
+    this.funcRemainingTimeInMilliSeconds = calculateRemainingTimeInMilliSeconds();
     return this.funcRemainingTimeInMilliSeconds;
-  }
-
-  public void setRemainingTimeInMilliSeconds(int value) {
-    this.funcRemainingTimeInMilliSeconds = value;
   }
 
   /**
@@ -211,7 +225,7 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get running time in seconds, defaults to 100
+   * Get running time in seconds, defaults to 30
    */
   @Override
   public int getRunningTimeInSeconds() {
@@ -363,7 +377,7 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get instance id, defaults to "instanceid"
+   * Get instance id, defaults to random UUID
    */
   @Override
   public String getInstanceID() {
@@ -375,7 +389,7 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get invoke property, defaults to "InvokeProperty"
+   * Get invoke property, defaults to ""
    */
   @Override
   public String getInvokeProperty() {
@@ -387,7 +401,7 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get trace id, defaults to "traceid"
+   * Get trace id, defaults to random UUID
    */
   @Override
   public String getTraceID() {
@@ -399,7 +413,8 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get invoke id, defaults to "invokeid"
+   * Get invoke id (how often was function invoked), defaults to "1"
+   * 
    */
   @Override
   public String getInvokeID() {
@@ -423,7 +438,7 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get workflow run id alias, defaults to "workflowrunid"
+   * Get workflow run id alias, defaults to random UUID
    */
   @Override
   public String getWorkflowRunID() {
@@ -435,7 +450,7 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get workflow state id alias, defaults to "workflowstateid"
+   * Get workflow state id alias, defaults to random UUID
    */
   @Override
   public String getWorkflowStateID() {
@@ -447,7 +462,7 @@ public class TestContext implements Context {
   }
 
   /**
-   * Get workflowid alias, defaults to "workflowid"
+   * Get workflowid alias, defaults to random UUID
    */
   @Override
   public String getWorkflowID() {
@@ -530,11 +545,6 @@ public class TestContext implements Context {
 
   public TestContext withCPUNumber(int funcCPUNumber) {
     this.funcCPUNumber = funcCPUNumber;
-    return this;
-  }
-
-  public TestContext withRemainingTimeInMilliSeconds(int funcRemainingTimeInMilliSeconds) {
-    this.funcRemainingTimeInMilliSeconds = funcRemainingTimeInMilliSeconds;
     return this;
   }
 
