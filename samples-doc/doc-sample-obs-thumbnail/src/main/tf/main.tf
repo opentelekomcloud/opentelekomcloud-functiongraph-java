@@ -105,7 +105,7 @@ resource "opentelekomcloud_fgs_function_v2" "MyFunction" {
   memory_size      = 512
   timeout          = 30
   max_instance_num = 1
-  #enable_class_isolation = true
+  enable_class_isolation = true
   runtime = "Java17"
 
   code_type = "obs"
