@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-samples-events-pom</artifactId>
-    <version>0.0.7-beta</version>
+    <version>1.0.0</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
