@@ -89,11 +89,11 @@
 
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>${maven-surefire-plugin.version}</version>
       </plugin>
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>${maven-failsafe-plugin.version}</version>
       </plugin>
 
 

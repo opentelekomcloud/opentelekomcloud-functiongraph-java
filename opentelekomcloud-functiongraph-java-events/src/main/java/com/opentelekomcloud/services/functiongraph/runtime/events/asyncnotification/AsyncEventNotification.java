@@ -16,25 +16,38 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.asyncnotification;
 
 import java.time.Instant;
+import java.time.OffsetDateTime;
 
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.opentelekomcloud.services.functiongraph.runtime.events.asyncnotification.utils.TimestampInstantAdapter;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 @Data
 @ToString(includeFieldNames = true)
 @NoArgsConstructor
-public class AsyncEventNotification  {
+public class AsyncEventNotification {
+
+  /**
+   * Pattern for timestamp used in AsyncEventNotification
+   * e.g. "2025-07-28T11:47:56.893440057+02:00"
+   */
+  @SuppressWarnings("unused")
+  public transient static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSxxx";
 
   @SerializedName("timestamp")
-  //"2025-07-28T11:47:56.893440057+02:00"
-  @JsonAdapter(TimestampInstantAdapter.class)
-  private Instant timestamp;
+  // "2025-07-28T11:47:56.893440057+02:00"
+  private String timestamp;
+
+  /**
+   * Get timestamp as Instant
+   * 
+   * @return timestamp as Instant
+   */
+  public Instant getTimestampAsInstant() {
+    return OffsetDateTime.parse(this.timestamp).toInstant();
+  }
 
   @SerializedName("request_context")
   private RequestContext request_context;
@@ -47,5 +60,5 @@ public class AsyncEventNotification  {
 
   @SerializedName("response_payload")
   private String response_payload;
-  
+
 }

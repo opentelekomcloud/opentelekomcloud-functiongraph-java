@@ -57,9 +57,7 @@ public class TimerTriggerEventTest {
     Gson gson = new Gson();
 
     String json = gson.toJson(event, TimerTriggerEvent.class);
-
-    // as Instant has no timezone, UTZ time will be returned
-    String expected = "\"time\":\"2023-06-01T00:30:00+00:00\"";
+    String expected = "\"time\":\"2023-06-01T08:30:00+08:00\"";
 
     assertTrue(json.indexOf(expected, 0) > 0);
   }

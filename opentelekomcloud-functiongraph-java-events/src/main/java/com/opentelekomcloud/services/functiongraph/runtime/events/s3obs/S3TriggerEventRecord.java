@@ -16,10 +16,9 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
 import java.time.Instant;
+import java.time.ZoneOffset;
 
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.opentelekomcloud.services.functiongraph.runtime.events.s3obs.utils.S3InstantAdapter;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +33,14 @@ import lombok.ToString;
 @Data
 @ToString(includeFieldNames=true)
 public class S3TriggerEventRecord {
+
+  /** 
+   * Pattern used for eventTime in S3 Event Record
+   * e.g. "2024-12-02T09:49:37.939Z"
+   */
+  @SuppressWarnings("unused")
+  public transient static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
   /**
    * event version
    */
@@ -56,9 +63,17 @@ public class S3TriggerEventRecord {
    * event time (2024-12-02T09:49:37.939Z)
    */
   @SerializedName("eventTime")
-  @JsonAdapter(S3InstantAdapter.class)
-  private Instant eventTime;
+  private String eventTime;
 
+  /**
+   * Get event time as Instant
+   * 
+   * @return event time as Instant
+   */
+  public Instant getEventTimeAInstant() {
+    return Instant.parse(eventTime).atZone(ZoneOffset.of("Z")).toInstant();
+  }
+  
   /**
    * event name
    */
@@ -101,7 +116,7 @@ public class S3TriggerEventRecord {
    * @param s3 S3 entity containing bucket and object details
    * @param userIdentity User identity information related to the event
    */
-  public S3TriggerEventRecord(String awsRegion, String eventName, String eventSource, Instant eventTime,
+  public S3TriggerEventRecord(String awsRegion, String eventName, String eventSource, String eventTime,
                                          String eventVersion, RequestParametersEntity requestParameters,
                                          ResponseElementsEntity responseElements, S3Entity s3,
                                          UserIdentityEntity userIdentity) {

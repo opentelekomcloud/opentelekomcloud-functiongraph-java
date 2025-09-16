@@ -16,9 +16,9 @@ public class AsyncEventNotificationTest {
     Gson gson = new Gson();
 
     String json = gson.toJson(event, AsyncEventNotification.class);
+    System.out.println(json);
 
-    // as Instant has no timezone, UTZ time will be returned
-    String expected = "\"timestamp\":\"2025-07-28T09:47:56.893440057+00:00\"";
+    String expected = "\"timestamp\":\"2025-07-28T11:47:56.893440057+02:00\"";
 
     assertTrue(json.indexOf(expected, 0) > 0);
   }

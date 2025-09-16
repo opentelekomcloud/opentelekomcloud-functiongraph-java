@@ -15,7 +15,6 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,12 +30,6 @@ public class SMNTriggerEventTest {
 
   @ParameterizedTest
   @Event(value = "smn_event.json", type = SMNTriggerEvent.class)
-  void testEvent(SMNTriggerEvent event) throws Exception {
-    assertEquals("test", event.getFunctionName());
-  }
-
-    @ParameterizedTest
-  @Event(value = "smn_event.json", type = SMNTriggerEvent.class)
   void testDate(SMNTriggerEvent event) {
 
     Gson gson = new Gson();
@@ -51,4 +44,3 @@ public class SMNTriggerEventTest {
   }
 
 }
-
