@@ -1,10 +1,6 @@
 OpenTelekomCloud FunctionGraph Java libraries
 =============================================
 
-> [!WARNING]  
-> ################### BETA Version, subject to change ###################
->
-
 This repository provides the FunctionGraph Java Development Guide for running
 FunctionGraph on [OpenTelekomCloud](https://www.open-telekom-cloud.com/en).
 
