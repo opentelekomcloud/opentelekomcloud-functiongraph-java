@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+  <Properties>
+    <!-- requestid will be taken from ThreadContext -->
+    <Property name="LOG_PATTERN">[%d{yyyy-MM-dd HH:mm:ss.SSS'Z'}{UTC} %-5level %X{requestid} %c:%L] %.10240m%n</Property>
+  </Properties>
+
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout charset="UTF-8" pattern="${LOG_PATTERN}" />      
+    </Console>
+  </Appenders>
+
+  <Loggers>
+    <!-- see: https://support.huaweicloud.com/intl/en-us/sdk-java-devg-obs/obs_21_2004.html -->
+
+    <!-- Northbound log, for communication logs between OBS Java SDK and
+    third-party applications of users. -->
+    <Logger name="com.obs.services.AbstractClient" level="WARN"
+      additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    <!-- Southbound log, for communication logs between OBS Java SDK and the
+    OBS server. -->
+    <Logger name="com.obs.services.internal.RestStorageService" level="WARN"
+      additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    <!-- Run log of the OBS server. -->
+    <Logger name="com.obs.log.AccessLogger" level="WARN"
+      additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    <!-- Function log -->
+    <Logger name="com.opentelekomcloud.samples" level="DEBUG"
+      additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    <!-- console log -->
+    <Root level="WARN">
+      <AppenderRef ref="Console" />
+    </Root>
+  </Loggers>
+</Configuration>

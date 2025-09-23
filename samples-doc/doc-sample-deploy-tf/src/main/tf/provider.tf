@@ -6,33 +6,33 @@
 
 
 # set by environment variable TF_VAR_OTC_SDK_AK
-variable OTC_SDK_AK {
+variable "OTC_SDK_AK" {
   description = "Personal access key"
   type        = string
   sensitive   = true
 }
 
 # set by environment variable TF_VAR_OTC_SDK_SK
-variable OTC_SDK_SK {
+variable "OTC_SDK_SK" {
   description = "Personal secret key"
   type        = string
   sensitive   = true
 }
 
 # set by environment variable TF_VAR_OTC_SDK_DOMAIN_NAME
-variable OTC_SDK_DOMAIN_NAME {
+variable "OTC_SDK_DOMAIN_NAME" {
   description = "Domain Name, eg. OTC-EU-DE-000000000010000XXXXX"
   type        = string
 }
 
 # set by environment variable TF_VAR_OTC_SDK_PROJECTID
-variable OTC_SDK_PROJECTID {
+variable "OTC_SDK_PROJECTID" {
   description = "Project Id"
   type        = string
 }
 
 # set by environment variable TF_VAR_OTC_SDK_PROJECTNAME
-variable OTC_SDK_PROJECTNAME {
+variable "OTC_SDK_PROJECTNAME" {
   description = "Project Name, eg. eu-de_MYPROJECT"
   type        = string
 }
@@ -45,7 +45,7 @@ terraform {
 
     opentelekomcloud = {
       source  = "opentelekomcloud/opentelekomcloud"
-      version = ">= 1.36.43"
+      version = ">= 1.36.47"
     }
   }
   backend "s3" {    
@@ -71,7 +71,7 @@ terraform {
     region = "eu-de"
 
     # (Required) Skip credentials validation via the STS API.
-    # It's mandatory for OpenTelekomClou.
+    # It's mandatory for OpenTelekomCloud.
     skip_credentials_validation = true
 
     # (Required) Skip validation of provided region name. 

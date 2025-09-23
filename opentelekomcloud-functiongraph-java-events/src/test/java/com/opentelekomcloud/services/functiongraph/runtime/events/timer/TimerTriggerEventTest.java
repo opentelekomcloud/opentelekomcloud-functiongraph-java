@@ -16,40 +16,51 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.timer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.FileReader;
-import java.io.Reader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import com.google.gson.Gson;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Events;
+
 
 /**
  * TimerTriggerEventTest is used to test the TimerTriggerEvent class.
- * It reads a JSON file and verifies that the event is correctly parsed.
  */
 public class TimerTriggerEventTest {
 
-  @Test
-  void testEvent() throws Exception {
-    Path resourceDirectory = Paths.get("src", "test", "resources");
-    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
-
-    try (Reader reader = new FileReader(absolutePath + "/timer_event.json")) {
-      TimerTriggerEvent event = new Gson().fromJson(reader, TimerTriggerEvent.class);
-
-      assertEquals("Timer_001", event.getTriggerName());
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail();
+  @ParameterizedTest
+  @Event(value = "timer/timer_event.json", type = TimerTriggerEvent.class)
+  void testEvent(TimerTriggerEvent event) {
+    assertNotNull(event);
+    assertEquals("Timer_001", event.getTriggerName());
+  }
+  
+   @ParameterizedTest
+    @Events(
+            events = {
+                    @Event("timer/timer_event.json"),
+                    @Event("timer/timer2_event.json"),
+            },
+            type = TimerTriggerEvent.class
+    )
+    public void testInjectEvents(TimerTriggerEvent event) {
+        assertNotNull(event);
     }
-    assertTrue(true);
 
+  @ParameterizedTest
+  @Event(value = "timer/timer_event.json", type = TimerTriggerEvent.class)
+  void testDate(TimerTriggerEvent event) {
+
+    Gson gson = new Gson();
+
+    String json = gson.toJson(event, TimerTriggerEvent.class);
+    String expected = "\"time\":\"2023-06-01T08:30:00+08:00\"";
+
+    assertTrue(json.indexOf(expected, 0) > 0);
   }
 
 }
+

@@ -1,0 +1,6 @@
+{
+  "body": "Hello OpenTelekomCloud",
+  "headers": { "Content-Type": "application/json" },
+  "statusCode": 200,
+  "isBase64Encoded": false
+}

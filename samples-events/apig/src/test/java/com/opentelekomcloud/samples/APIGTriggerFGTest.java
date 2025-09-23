@@ -15,98 +15,127 @@
 
 package com.opentelekomcloud.samples;
 
-import java.io.FileReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Base64;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerEvent;
 import com.opentelekomcloud.services.functiongraph.runtime.events.apig.APIGTriggerResponseEntity;
 import com.opentelekomcloud.services.functiongraph.runtime.test.TestContext;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Context;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Contexts;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Events;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.HandlerParams;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Response;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Responses;
 
 public class APIGTriggerFGTest {
-  @Test
-  void testApig() throws Exception {
-    Path resourceDirectory = Paths.get("src", "test", "resources");
-    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
-    try {
-      JsonObject eventJson = convertFileToJSON(absolutePath + "/apig_event.json");
+  @ParameterizedTest
+  @HandlerParams(//
+      event = @Event(value = "apig_event.json", type = APIGTriggerEvent.class), //
+      response = @Response(value = "apig_response.json", type = APIGTriggerResponseEntity.class), //
+      context = @Context("context.json"))
+  public void testMultipleEventsResponses1(APIGTriggerEvent event, APIGTriggerResponseEntity response,
+      TestContext context) throws Exception {
 
-      String eventSting = new Gson().toJson(eventJson);
+    System.err.println(context.getRequestID());
 
-      APIGTriggerEvent event = new Gson().fromJson(eventSting, APIGTriggerEvent.class);
-
-      TestContext context = new TestContext();
-
-      APIGTriggerFG fg = new APIGTriggerFG();
-
-      APIGTriggerResponseEntity r = fg.handleRequest(event, context);
-
-        assertEquals(getValidReturnValue(event), r.getBody());
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail();
-    }
   }
 
-  @Test
-  void testApigBase64() throws Exception {
-    Path resourceDirectory = Paths.get("src", "test", "resources");
-    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+  @ParameterizedTest
+  @HandlerParams(//
+      events = @Events(events = {
+          @Event("apig_event.json"),
+          @Event("apig_base64_event.json"),
+      }, type = APIGTriggerEvent.class), //
+      responses = @Responses(responses = {
+          @Response("apig_response.json"),
+          @Response("apig_base64_response.json")
+      }, type = APIGTriggerResponseEntity.class), //
+      contexts = @Contexts(contexts = {
+          @Context("context.json"),
+          @Context("context.json")
+      }))
+  public void testMultipleEventsResponses(APIGTriggerEvent event, APIGTriggerResponseEntity response,
+      TestContext context) throws Exception {
 
-    try {
-      JsonObject eventJson = convertFileToJSON(absolutePath + "/apig_event_base64.json");
+    System.err.println(context.getRequestID());
 
-      String eventString = new Gson().toJson(eventJson);
+    assertNotNull(event);
+    assertNotNull(response);
 
-      APIGTriggerEvent event = new Gson().fromJson(eventString, APIGTriggerEvent.class);
-      
-      TestContext context = new TestContext();
+    assertEquals(event.getIsBase64Encoded(), response.getIsBase64Encoded());
 
-      APIGTriggerFG fg = new APIGTriggerFG();
+    // Test the function
+    assertNotNull(event.getBody());
+    assertNotNull(event.getHeaders());
+    assertNotNull(event.getPathParameters());
 
-      APIGTriggerResponseEntity r = fg.handleRequest(event, context);
+    // TestContext context = new TestContext();
+    APIGTriggerFG fg = new APIGTriggerFG();
+    APIGTriggerResponseEntity r = fg.handleRequest(event, context);
 
-        assertEquals(getValidReturnValue(event), r.getBody());
+    assertNotNull(r);
 
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail();
-    }
+    assertEquals(r.getBody(), response.getBody());
   }
 
-  private String getValidReturnValue(APIGTriggerEvent event){
-      String body = "";
-      if (event.getIsBase64Encoded())
-        body = new String(Base64.getDecoder().decode(event.getBody()), StandardCharsets.UTF_8);
-      else
-        body = event.getBody();
+  @ParameterizedTest
+  @HandlerParams(//
+      events = @Events(events = {
+          @Event("apig_event.json") //
+      }, //
+          type = APIGTriggerEvent.class), //
+      responses = @Responses(responses = {
+          @Response("apig_response.json")
+      }, //
+          type = APIGTriggerResponseEntity.class), //
 
-      Gson gson = new Gson();
-      EventBody eventBody = gson.fromJson(body, EventBody.class);  
-      
-      return String.format("Hello %s", eventBody.getName());
+      context = @Context("context.json"))
+  public void testMultipleEventsResponses2(APIGTriggerEvent event, APIGTriggerResponseEntity response,
+      TestContext context) throws Exception {
+
+    System.err.println(context.getRequestID());
+
   }
 
-  public static JsonObject convertFileToJSON(String fileName) throws Exception {
 
-    JsonObject jsonObject = new JsonObject();
+  @ParameterizedTest
+  @HandlerParams(//
+      events = @Events(events = {
+          @Event("apig_event.json"),
+          @Event("apig_base64_event.json"),
+      }, type = APIGTriggerEvent.class), //
+      responses = @Responses(responses = {
+          @Response("apig_response.json"),
+          @Response("apig_base64_response.json")
+      }, type = APIGTriggerResponseEntity.class), //
+     context = @Context("context.json"))
+  public void testMultipleEventsResponses4(APIGTriggerEvent event, APIGTriggerResponseEntity response,
+      TestContext context) throws Exception {
 
-    JsonElement jsonElement = JsonParser.parseReader(new FileReader(fileName));
-    jsonObject = jsonElement.getAsJsonObject();
+    System.err.println(context.getRequestID());
 
-    return jsonObject;
+    assertNotNull(event);
+    assertNotNull(response);
+
+    assertEquals(event.getIsBase64Encoded(), response.getIsBase64Encoded());
+
+    // Test the function
+    assertNotNull(event.getBody());
+    assertNotNull(event.getHeaders());
+    assertNotNull(event.getPathParameters());
+
+    // TestContext context = new TestContext();
+    APIGTriggerFG fg = new APIGTriggerFG();
+    APIGTriggerResponseEntity r = fg.handleRequest(event, context);
+
+    assertNotNull(r);
+
+    assertEquals(r.getBody(), response.getBody());
   }
 
 }

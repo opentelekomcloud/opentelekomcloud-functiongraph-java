@@ -27,23 +27,26 @@ import com.opentelekomcloud.services.runtime.Context;
 import com.opentelekomcloud.services.runtime.RuntimeLogger;
 
 /**
- * APIGTriggerFG is a sample function that demonstrates how to handle API Gateway events.
- * It processes the incoming event, decodes the body if necessary, and returns a response.
+ * APIGTriggerFG is a sample function that demonstrates how to handle API
+ * Gateway events.
+ * It processes the incoming event, decodes the body if necessary, and returns a
+ * response.
  */
 public class APIGTriggerFG {
-  
+
   /**
    * Handles the incoming API Gateway event and returns a response entity.
    * It retrieves the RuntimeLogger from the context and logs the event data.
    *
    * @param event   the API Gateway event data received by the function
-   * @param context the runtime context providing access to logging and other services
+   * @param context the runtime context providing access to logging and other
+   *                services
    * @return an APIGTriggerResponseEntity containing the response body and headers
    */
   public APIGTriggerResponseEntity handleRequest(final APIGTriggerEvent event, final Context context) {
 
     RuntimeLogger log = context.getLogger();
-    
+
     log.log(String.format("event: %s", event));
 
     String body = "";
@@ -55,9 +58,13 @@ public class APIGTriggerFG {
     Gson gson = new Gson();
     EventBody eventBody = gson.fromJson(body, EventBody.class);
 
-    String responseBody = String.format("Hello %s",eventBody.getName());
+    String responseBody = String.format("Hello %s", eventBody.getName());
 
- 
+    if (event.getIsBase64Encoded()) {
+      responseBody = new String(Base64.getEncoder().encode(responseBody.getBytes(StandardCharsets.UTF_8)),
+          StandardCharsets.UTF_8);
+    } 
+    
     Map<String, String> headers = new HashMap<>();
     headers.put("Content-Type", "application/json");
     return new APIGTriggerResponseEntity(200, headers, responseBody);
@@ -77,14 +84,17 @@ public class APIGTriggerFG {
    * This method is called before the function is stopped.
    * It can be used to perform any necessary cleanup operations.
    */
-  public void prestop() {}
+  public void prestop() {
+  }
 
   /**
    * This method is called to initialize the function.
    * It can be used to set up any necessary resources or configurations.
    *
-   * @param context the runtime context providing access to logging and other services
+   * @param context the runtime context providing access to logging and other
+   *                services
    */
-  public void initializer(Context context) {}
+  public void initializer(Context context) {
+  }
 
 }

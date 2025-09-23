@@ -15,6 +15,9 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.timer;
 
+import java.time.Instant;
+import java.time.OffsetDateTime;
+
 import com.google.gson.annotations.SerializedName;
 import com.opentelekomcloud.services.functiongraph.runtime.core.TriggerEvent;
 
@@ -24,12 +27,20 @@ import lombok.ToString;
 
 /**
  * TimerTriggerEvent is used to represent the event triggered by a timer.
- * It contains information such as version, time, trigger name, trigger type, and user event.
+ * It contains information such as version, time, trigger name, trigger type,
+ * and user event.
  */
 @Data
-@ToString(includeFieldNames=true)
+@ToString(includeFieldNames = true)
 @NoArgsConstructor
 public class TimerTriggerEvent implements TriggerEvent {
+
+  /**
+   * Pattern used for time in TriggerEvent
+   * e.g. "2023-06-01T08:30:00+08:00"
+   */
+  @SuppressWarnings("unused")
+  public transient static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ssxxx";
 
   /**
    * Version. (Currently, the version is v1.0.)
@@ -40,8 +51,18 @@ public class TimerTriggerEvent implements TriggerEvent {
   /**
    * Current time.
    */
+
   @SerializedName("time")
   private String time;
+
+  /**
+   * Get time as Instant
+   * 
+   * @return time as Instant
+   */
+  public Instant getTimeAsInstant() {
+    return OffsetDateTime.parse(this.time).toInstant();
+  }
 
   /**
    * trigger name

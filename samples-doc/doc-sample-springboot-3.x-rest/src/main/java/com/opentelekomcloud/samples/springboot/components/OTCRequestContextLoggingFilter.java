@@ -18,9 +18,9 @@ package com.opentelekomcloud.samples.springboot.components;
 import java.io.IOException;
 import java.util.Enumeration;
 
+import org.apache.logging.log4j.ThreadContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +33,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * OTCRequestContextLoggingFilter is a filter that logs request context information.
- * It captures specific headers from the HTTP request and stores them in the MDC (Mapped Diagnostic Context)
+ * It captures specific headers from the HTTP request and stores them in the ThreadContext
  * for logging purposes. This allows for better tracking of requests in logs.
  */
 @Component
@@ -85,16 +85,16 @@ public class OTCRequestContextLoggingFilter implements Filter {
     // Store values in ThreadLocal variables:
     requestId.set(cffRequestID);
 
-    // Put X_CFF_HEADERS to Logging MDC:
+    // Put X_CFF_HEADERS to Logging ThreadContext:
     for (String header : X_CFF_HEADERS) {
-      MDC.put(header, httpServletRequest.getHeader(header));
+      ThreadContext.put(header, httpServletRequest.getHeader(header));
     }
 
     chain.doFilter(request, response);
 
-    // Remove X_CFF_HEADERS from Logging MDC:
+    // Remove X_CFF_HEADERS from Logging ThreadContext:
     for (String header : X_CFF_HEADERS) {
-      MDC.remove(header);
+      ThreadContext.remove(header);
     }
 
     // Remove values from ThreadLocal variables:

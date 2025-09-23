@@ -15,8 +15,11 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
-import com.google.gson.annotations.SerializedName;
+import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.Map;
+
+import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,12 +27,20 @@ import lombok.ToString;
 
 /**
  * SMNBodyEntity is used to represent the body of an SMN event.
- * It contains information such as topic URN, timestamp, message attributes, message, type, message ID, and subject.
+ * It contains information such as topic URN, timestamp, message attributes,
+ * message, type, message ID, and subject.
  */
 @Data
-@ToString(includeFieldNames=true)
+@ToString(includeFieldNames = true)
 @NoArgsConstructor
 public class SMNBodyEntity {
+
+  /**
+   * Pattern used for timestamp in SMN Event Record
+   * e.g. "2018-01-09T07:11:40Z"
+   */
+  @SuppressWarnings("unused")
+  public transient static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
   /**
    * Topic URN
@@ -42,6 +53,15 @@ public class SMNBodyEntity {
    */
   @SerializedName("timestamp")
   private String timestamp;
+
+  /**
+   * Get timestamp as Instant
+   * 
+   * @return timestamp as Instant
+   */
+  public Instant getTimestampAsInstant() {
+    return OffsetDateTime.parse(this.timestamp).toInstant();
+  }
 
   /**
    * Message attributes
@@ -72,5 +92,5 @@ public class SMNBodyEntity {
    */
   @SerializedName("subject")
   private String subject;
- 
+
 }

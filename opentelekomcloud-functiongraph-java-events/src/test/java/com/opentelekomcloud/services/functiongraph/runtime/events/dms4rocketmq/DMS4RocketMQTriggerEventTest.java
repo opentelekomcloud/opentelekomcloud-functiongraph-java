@@ -16,39 +16,22 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.dms4rocketmq;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.FileReader;
-import java.io.Reader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import org.junit.jupiter.params.ParameterizedTest;
 
-import org.junit.jupiter.api.Test;
-
-import com.google.gson.Gson;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
 
 /**
- * DMS4RocketMQTriggerEventTest is used to test the DMS4RocketMQTriggerEvent class.
+ * DMS4RocketMQTriggerEventTest is used to test the DMS4RocketMQTriggerEvent
+ * class.
  * It reads a JSON file and verifies that the event is correctly parsed.
  */
 public class DMS4RocketMQTriggerEventTest {
 
-  @Test
-  void testEvent() throws Exception {
-    Path resourceDirectory = Paths.get("src", "test", "resources");
-    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
-
-    try (Reader reader = new FileReader(absolutePath + "/dms4rocketmq_event.json")) {
-      DMS4RocketMQTriggerEvent event = new Gson().fromJson(reader, DMS4RocketMQTriggerEvent.class);
-      assertEquals("ROCKETMQ", event.getTriggerType());
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail();
-    }
-    assertTrue(true);
-
+  @ParameterizedTest
+  @Event(value = "dms4rocketmq_event.json", type = DMS4RocketMQTriggerEvent.class)
+  void testEvent(DMS4RocketMQTriggerEvent event) throws Exception {
+    assertEquals("ROCKETMQ", event.getTriggerType());
   }
 
 }

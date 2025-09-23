@@ -23,31 +23,40 @@ package com.opentelekomcloud.services.runtime;
  */
 public interface Context {
   /**
-   * Gets the request ID associated with the request.
-	 * <p>
-	 * This is the same ID returned to the client that called invoke(). This ID
-	 * is reused for retries on the same request.
-	 * </p>
+   * Returns the request ID associated with the request.
+   * <p>
+   * This is the same ID returned to the client that called invoke(). This ID
+   * is reused for retries on the same request.
+   * </p>
+   * 
    * @return request ID
    */
   String getRequestID();
 
   /**
-   * Gets the time remaining for this execution in milliseconds
+   * Returns the time remaining for this execution in milliseconds.
+   * 
+   * = max(runningTimeInSeconds * 1000 - (currentTimeMillis - functionStartTime), 0)
    * 
    * @return remaining running time in milliseconds.
    */
   int getRemainingTimeInMilliSeconds();
 
   /**
+   * Returns the AccessKey from header: "x-access-key"
    * 
    * <b>If you use this method, you need to configure an agency for the
    * function.</b>*
+   * 
    * @deprecated
-   * <p>FunctionGraph has stopped maintaining the getAccessKey() API in the Runtime
-   * SDK.
-   * <p>You cannot use this API to obtain a temporary AK.
-   * <p> Use {@link Context#getSecurityAccessKey()} instead.
+   *             <p>
+   *             FunctionGraph has stopped maintaining the getAccessKey() API in
+   *             the Runtime
+   *             SDK.
+   *             <p>
+   *             You cannot use this API to obtain a temporary AK.
+   *             <p>
+   *             Use {@link Context#getSecurityAccessKey()} instead.
    * 
    * @return AccessKey (valid for 24 hours) with an agency.
    * 
@@ -56,13 +65,20 @@ public interface Context {
   String getAccessKey();
 
   /**
+   * Returns the SecretKey from header: "x-secret-key"
+   * 
    * <b>If you use this method, you need to configure an agency for the
    * function.</b>
+   * 
    * @deprecated
-   * <p>FunctionGraph has stopped maintaining the getSecretKey() API in the Runtime
-   * SDK.
-   * <p>You cannot use this API to obtain a temporary SK.
-   * <p> Use {@link Context#getSecuritySecretKey()} instead
+   *             <p>
+   *             FunctionGraph has stopped maintaining the getSecretKey() API in
+   *             the Runtime
+   *             SDK.
+   *             <p>
+   *             You cannot use this API to obtain a temporary SK.
+   *             <p>
+   *             Use {@link Context#getSecuritySecretKey()} instead
    *
    * @return SecretKey (valid for 24 hours) with an agency.
    * 
@@ -71,6 +87,8 @@ public interface Context {
   String getSecretKey();
 
   /**
+   * Returns the SecurityAccessKey from header: "x-security-access-key"
+   * 
    * <b>If you use this method, you need to configure an agency for the
    * function.</b>
    * 
@@ -80,6 +98,8 @@ public interface Context {
   String getSecurityAccessKey();
 
   /**
+   * Returns the SecuritySecretKey from header: "x-security-secret-key"
+   * 
    * <b>If you use this method, you need to configure an agency for the
    * function.</b>
    * 
@@ -88,67 +108,76 @@ public interface Context {
   String getSecuritySecretKey();
 
   /**
-    * 
+   * Returns the value of the specified environment variable.
+   * 
    * @param envvarname name of environment variable to get
-   * @return value of environment variable 
+   * @return value of environment variable
    */
   String getUserData(String envvarname);
 
   /**
-   * Gets the name of the function being executed.
+   * Returns the name of the function being executed.
    * 
    * @return name of function
    */
   String getFunctionName();
 
   /**
+   * Returns the timeout of function.
    * 
    * @return timeout of function
    */
   int getRunningTimeInSeconds();
 
   /**
-   * Gets the version of the function being executed.
+   * Returns the version of the function being executed.
    * 
    * @return version of the function
    */
   String getVersion();
 
   /**
+   * Returns the allocated memory of function.
    * 
    * @return allocated memory of function
    */
   int getMemorySize();
 
   /**
+   * Returns the CPU usage of function.
    * 
    * @return CPU usage of function
    */
   int getCPUNumber();
 
-
   /**
+   * Returns the project ID.
    * 
    * @return project id
    */
   String getProjectID();
 
   /**
+   * Returns the function package.
    * 
    * @return function group, that is, an app
    */
   String getPackage();
 
   /**
-    * <b>If you use this method, you need to configure an agency for the
+   * Returns the token from header: "x-auth-token"
+   * 
+   * <b>If you use this method, you need to configure an agency for the
    * function.</b>
-      * 
+   * 
    * @return token (valid for 24 hours) with an agency
    */
   String getToken();
 
   /**
-  * <b>If you use this method, you need to configure an agency for the
+   * Returns the SecurityToken from header: "x-security-token"
+   * 
+   * <b>If you use this method, you need to configure an agency for the
    * function.</b>
    * 
    * @return SecurityToken (valid for 24 hours) with an agency
@@ -156,14 +185,14 @@ public interface Context {
   String getSecurityToken();
 
   /**
-   * Gets the FunctionGraph logger instance associated with the context object
+   * Returns the FunctionGraph logger instance associated with the context object.
    * 
    * @return logger method provided by the context
    */
   RuntimeLogger getLogger();
-  
-  
+
   /**
+   * Returns the state of the function execution.
    * 
    * @return state
    */
@@ -172,41 +201,46 @@ public interface Context {
   void setState(Object var1);
 
   /**
+   * Returns instance id where the function is running.
    * 
    * @return instance id
    */
   String getInstanceID();
 
   /**
+   * Returns the invoke property.
    * 
    * @return invoke property
    */
   String getInvokeProperty();
 
   /**
-   * @deprecated
-   * <p>Not available on OpenTelekomCloud.
+   * Returns trace id.
    * 
    * @return trace id
    */
-  @Deprecated
   String getTraceID();
 
   /**
+   * Returns how often function has been called.
    * 
    * @return invoke id
    */
   String getInvokeID();
 
   /**
+   * Returns function alias from header: "x-invoke-alias"
    * 
    * @return alias
    */
   String getAlias();
 
   /**
+   * Returns the workflow execution id from header: "x-workflow-run-id"
+   * 
    * @deprecated
-   * <p>Not available on OpenTelekomCloud.
+   *             <p>
+   *             Not available on OpenTelekomCloud.
    * 
    * @return workflow run id
    */
@@ -214,8 +248,11 @@ public interface Context {
   String getWorkflowRunID();
 
   /**
+   * Returns the workflow state id from header: "x-workflow-state-id"
+   * 
    * @deprecated
-   * <p>Not available on OpenTelekomCloud.
+   *             <p>
+   *             Not available on OpenTelekomCloud.
    * 
    * @return workflow state id
    */
@@ -223,8 +260,11 @@ public interface Context {
   String getWorkflowStateID();
 
   /**
+   * Returns the workflow id from header: "x-workflow-id"
+   * 
    * @deprecated
-   * <p>Not available on OpenTelekomCloud.
+   *             <p>
+   *             Not available on OpenTelekomCloud.
    * 
    * @return workflow id
    */

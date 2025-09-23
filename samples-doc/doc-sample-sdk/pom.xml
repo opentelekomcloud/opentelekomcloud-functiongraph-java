@@ -6,7 +6,7 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-samples-doc-pom</artifactId>
-    <version>0.0.5-beta</version>
+    <version>1.0.0</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
@@ -25,10 +25,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- <maven.compiler.release>17</maven.compiler.release> -->
-    <org.slf4j.version>2.0.17</org.slf4j.version>
 
-    <commons-lang3.version>3.17.0</commons-lang3.version>
+    <commons-lang3.version>3.18.0</commons-lang3.version>
 
     <otc-sdk-core-v1.version>1.0.0</otc-sdk-core-v1.version>
   </properties>
@@ -44,7 +42,6 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>${org.slf4j.version}</version>
       <scope>compile</scope>
     </dependency>
 
@@ -52,13 +49,11 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-nop</artifactId>
-      <version>${org.slf4j.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>${commons-lang3.version}</version>
     </dependency>
 
   </dependencies>

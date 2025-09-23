@@ -15,6 +15,9 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
+
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
@@ -30,6 +33,14 @@ import lombok.ToString;
 @Data
 @ToString(includeFieldNames=true)
 public class S3TriggerEventRecord {
+
+  /** 
+   * Pattern used for eventTime in S3 Event Record
+   * e.g. "2024-12-02T09:49:37.939Z"
+   */
+  @SuppressWarnings("unused")
+  public transient static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
   /**
    * event version
    */
@@ -52,8 +63,17 @@ public class S3TriggerEventRecord {
    * event time (2024-12-02T09:49:37.939Z)
    */
   @SerializedName("eventTime")
-    private String eventTime;
+  private String eventTime;
 
+  /**
+   * Get event time as Instant
+   * 
+   * @return event time as Instant
+   */
+  public Instant getEventTimeAInstant() {
+    return Instant.parse(eventTime).atZone(ZoneOffset.of("Z")).toInstant();
+  }
+  
   /**
    * event name
    */
@@ -103,13 +123,7 @@ public class S3TriggerEventRecord {
             this.awsRegion = awsRegion;
             this.eventName = eventName;
             this.eventSource = eventSource;
-
-            // if (eventTime != null)
-            // {
-            //     this.eventTime = DateTime.parse(eventTime);
-            // }
             this.eventTime = eventTime;
-
             this.eventVersion = eventVersion;
             this.requestParameters = requestParameters;
             this.responseElements = responseElements;

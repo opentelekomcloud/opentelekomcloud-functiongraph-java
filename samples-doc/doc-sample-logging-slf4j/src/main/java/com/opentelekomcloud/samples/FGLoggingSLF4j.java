@@ -21,9 +21,10 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.ThreadContext;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.util.LoaderUtil;
-import org.slf4j.MDC;
+
 
 import com.google.gson.JsonObject;
 import com.opentelekomcloud.services.runtime.Context;
@@ -56,12 +57,13 @@ public class FGLoggingSLF4j {
     RuntimeLogger rlog = context.getLogger();
     rlog.log("Start initializing...");
     try {
-      // put requestId into MDC
-      MDC.put("requestid", context.getRequestID());
+      // put requestId into ThreadContext
+      
+      ThreadContext.put("requestid", context.getRequestID());
       // Initialize Log4J
       try {
         Configurator.reconfigure(
-            Objects.requireNonNull(LoaderUtil.getThreadContextClassLoader().getResource("log4j2-custom.xml")).toURI());
+            Objects.requireNonNull(LoaderUtil.getThreadContextClassLoader().getResource("log4j2.xml")).toURI());
       } catch (URISyntaxException e) {
         rlog.error("An error occurred while configuring Log4J:" + e.getMessage());
         throw new RuntimeException(e);
@@ -79,8 +81,8 @@ public class FGLoggingSLF4j {
       Configurator.setRootLevel(level);
 
     } finally {
-      // remove requestId from MDC
-      MDC.remove("requestid");
+      // remove requestId from ThreadContext     
+      ThreadContext.remove("requestid");
     }
 
     rlog.log("Finished initializing...");
@@ -91,8 +93,8 @@ public class FGLoggingSLF4j {
    */
   public String handleRequest(final JsonObject event, final Context context) {
     try {
-      // put requestId into MDC
-      MDC.put("requestid", context.getRequestID());
+      // put requestId into ThreadContext
+      ThreadContext.put("requestid", context.getRequestID());
 
       log.debug("debug log");
       log.info("info log");
@@ -100,8 +102,8 @@ public class FGLoggingSLF4j {
       log.error("error log");
 
     } finally {
-      // remove requestId from MDC
-      MDC.remove("requestid");
+      // remove requestId from ThreadContext
+      ThreadContext.remove("requestid");
     }
     return "ok";
   }

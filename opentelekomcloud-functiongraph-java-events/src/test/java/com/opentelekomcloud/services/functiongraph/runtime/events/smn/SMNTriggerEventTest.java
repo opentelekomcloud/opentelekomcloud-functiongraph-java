@@ -15,18 +15,12 @@
 
 package com.opentelekomcloud.services.functiongraph.runtime.events.smn;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.FileReader;
-import java.io.Reader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import com.google.gson.Gson;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
 
 /**
  * SMNTriggerEventTest is used to test the SMNTriggerEvent class.
@@ -34,21 +28,19 @@ import com.google.gson.Gson;
  */
 public class SMNTriggerEventTest {
 
-  @Test
-  void testEvent() throws Exception {
-    Path resourceDirectory = Paths.get("src", "test", "resources");
-    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+  @ParameterizedTest
+  @Event(value = "smn_event.json", type = SMNTriggerEvent.class)
+  void testDate(SMNTriggerEvent event) {
 
-    try (Reader reader = new FileReader(absolutePath + "/smn_event.json")) {
-      SMNTriggerEvent event = new Gson().fromJson(reader, SMNTriggerEvent.class);
-      assertEquals("test", event.getFunctionName());
+    Gson gson = new Gson();
 
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail();
-    }
-    assertTrue(true);
+    String json = gson.toJson(event, SMNTriggerEvent.class);
+    System.out.println(json);
 
+    // as Instant has no timezone, UTZ time will be returned
+    String expected = "\"timestamp\":\"2018-01-09T07:11:40Z\"";
+
+    assertTrue(json.indexOf(expected, 0) > 0);
   }
 
 }

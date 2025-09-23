@@ -16,17 +16,13 @@
 package com.opentelekomcloud.services.functiongraph.runtime.events.s3obs;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.FileReader;
-import java.io.Reader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import com.google.gson.Gson;
+import com.opentelekomcloud.services.functiongraph.runtime.test.annotations.Event;
 
 /**
  * S3TriggerEventTest is used to test the S3TriggerEvent class.
@@ -34,22 +30,28 @@ import com.google.gson.Gson;
  */
 public class S3TriggerEventTest {
 
-  @Test
-  void testEvent() throws Exception {
-    Path resourceDirectory = Paths.get("src", "test", "resources");
-    String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+  private static final String TEST_FILE = "s3obs_event.json";
 
-    try (Reader reader = new FileReader(absolutePath + "/s3obs_event.json")) {
-      S3TriggerEvent event = new Gson().fromJson(reader, S3TriggerEvent.class);
+  @ParameterizedTest
+  @Event(value = TEST_FILE, type = S3TriggerEvent.class)
+  void testEvent(S3TriggerEvent event) {
 
-      assertEquals("functionstorage-template", event.getBucketName());
+    assertNotNull(event);
+    assertEquals("functionstorage-template", event.getBucketName());
+  }
 
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail();
-    }
-    assertTrue(true);
+  @ParameterizedTest
+  @Event(value = TEST_FILE, type = S3TriggerEvent.class)
+  void testDate(S3TriggerEvent event) {
 
+    Gson gson = new Gson();
+
+    String json = gson.toJson(event, S3TriggerEvent.class);
+
+    String expected = "\"eventTime\":\"2018-01-09T07:50:50.028Z\"";
+
+    // "eventTime": "2018-01-09T07:50:50.028Z"
+    assertTrue(json.indexOf(expected, 0) > 0);
   }
 
 }

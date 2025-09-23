@@ -24,7 +24,8 @@ import lombok.ToString;
 
 /**
  * SMNTriggerEvent is used to represent the event triggered by SMN.
- * It contains an array of SMNRecordEntity, function name, request ID, and timestamp.
+ * It contains an array of SMNRecordEntity, function name, request ID, and
+ * timestamp.
  */
 @Data
 @ToString(includeFieldNames = true)
@@ -36,24 +37,6 @@ public class SMNTriggerEvent implements TriggerEvent {
    */
   @SerializedName("record")
   private SMNRecordEntity[] record;
-
-  /**
-   * Function name
-   */
-  @SerializedName("functionname")
-  private String functionName;
-
-  /**
-   * Request ID
-   */
-  @SerializedName("requestId")
-  private String requestId;
-
-  /**
-   * Event type
-   */
-  @SerializedName("timestamp")
-  private String timestamp;
 
   /**
    * 

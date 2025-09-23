@@ -48,10 +48,16 @@ public class TimerTriggerFG {
     s.append(String.format("Trigger type: %s\n", event.getTriggerType()));
     s.append(String.format("User event  : %s\n", event.getUserEvent()));
     s.append(String.format("Time        : %s\n", event.getTime()));
-
-    UserEvent u = gson.fromJson(event.getUserEvent(), UserEvent.class);
-    s.append(String.format("UserEvent: %s\n", u.toString()));
-
+    s.append(String.format("Instant    : %s\n", event.getTimeAsInstant()));
+    
+    try {
+      // try to parse user event
+      UserEvent u = gson.fromJson(event.getUserEvent(), UserEvent.class);
+      s.append(String.format("UserEvent: %s\n", u.toString()));
+    } catch (Exception e) {
+      s.append(String.format("UserEvent parse error: %s\n", e.getMessage()));
+    }
+    
     log.log(s.toString());
 
     return "ok";

@@ -3,19 +3,16 @@
       {
           "event_version": "1.0",
           "smn": {
-              "topic_urn": "topicUrn",
+              "topic_urn": "urn:smn:eu-de:87b7f28e70c14498b3c243af5b4c3881:TOPIC_NAME",
               "timestamp": "2018-01-09T07:11:40Z",
               "message_attributes": null,
               "message": "this is smn message content",
               "type": "notification",
-              "message_id": "a51671f77d4a479cacb09e2cd591a983",
+              "message_id": "9fcb1bc702734884951c2ba2c7d9c23c",
               "subject": "this is smn message subject"
           },
-          "event_subscription_urn": "functionUrn",
+          "event_subscription_urn": "urn:fss:eu-de:87b7f28e70c14498b3c243af5b4c3881:function:default:FUNCTION_NAME:latest",
           "event_source": "smn"
       }
-  ],
-  "functionname": "test",
-  "requestId": "7c307f6a-cf68-4e65-8be0-4c77405a1b2c",
-  "timestamp": "Tue Jan 09 2018 15:11:40 GMT+0800 (CST)"
+  ]
 }

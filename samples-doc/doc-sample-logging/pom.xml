@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.github.opentelekomcloud</groupId>
     <artifactId>opentelekomcloud-functiongraph-java-samples-doc-pom</artifactId>
-    <version>0.0.6-beta</version>
+    <version>1.0.0</version>
   </parent>
 
   <groupId>io.github.opentelekomcloud</groupId>
@@ -34,11 +34,6 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
-          <archive>
-            <manifestEntries>
-              <FunctionGraph-Handler-Name>com.opentelekomcloud.samples.SampleFG.handleRequest</FunctionGraph-Handler-Name>
-            </manifestEntries>
-          </archive>
           <finalName>${project.name}</finalName>
         </configuration>
         <executions>
