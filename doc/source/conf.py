@@ -64,6 +64,7 @@ otcdocs_auto_version = False
 sys.path.insert(0, os.path.abspath('../../'))
 sys.path.insert(0, os.path.abspath('../'))
 sys.path.insert(0, os.path.abspath('./'))
+sys.path.insert(0, os.path.abspath('..'))
 
 
 # TODO(shade) Set this to true once the build-openstack-sphinx-docs job is
