@@ -11,16 +11,9 @@
           document.write(
             '<a href="/opentelekomcloud-functiongraph-java/{{ pathto(master_doc) }}" class="docs-sidebar-section-title"><h4>{{project}} {{version}}</h4></a>'
           );
-        } else if (
-          window.location.hostname === "127.0.0.1" ||
-          window.location.hostname === "localhost"
-        ) {
-          document.write(
-            '<a href="/{{ pathto(master_doc) }}" class="docs-sidebar-section-title"><h4>{{project}} {{version}}</h4></a>'
-          );
         } else {
           document.write(
-            '<a href="../{{ pathto(master_doc) }}" class="docs-sidebar-section-title"><h4>{{project}} {{version}}</h4></a>'
+            '<a href="{{ pathto(master_doc) }}" class="docs-sidebar-section-title"><h4>{{project}} {{version}}</h4></a>'
           );
         }
       </script>
