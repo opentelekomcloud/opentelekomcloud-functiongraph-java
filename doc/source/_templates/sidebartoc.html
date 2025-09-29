@@ -7,13 +7,17 @@
     {%- if theme_display_global_toc_section %}
     <div class="docs-sidebar-section" id="table-of-contents">
       <script>
-        if (window.location.hostname !== "docs.otc.t-systems.com") {
-          document.write(
-            '<a href="/{{ pathto(master_doc) }}" class="docs-sidebar-section-title"><h4>{{project}} {{version}}</h4></a>'
-          );
-        } else {
+        if (window.location.hostname === "docs.otc.t-systems.com") {
           document.write(
             '<a href="/opentelekomcloud-functiongraph-java/{{ pathto(master_doc) }}" class="docs-sidebar-section-title"><h4>{{project}} {{version}}</h4></a>'
+          );
+        } else if (
+          window.location.hostname === "swift.eco.tsi-dev.otc-service.com"
+        ) {
+          ('<a href="../{{ pathto(master_doc) }}" class="docs-sidebar-section-title"><h4>{{project}} {{version}}</h4></a>');
+        } else {
+          document.write(
+            '<a href="/{{ pathto(master_doc) }}" class="docs-sidebar-section-title"><h4>{{project}} {{version}}</h4></a>'
           );
         }
       </script>
